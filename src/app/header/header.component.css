@@ -1,0 +1,54 @@
+
+/* Header & Nav */
+
+.tm-header {
+    background: #000000;
+    height: 80px;
+    position: relative;
+    z-index: 100;
+}
+
+.tm-site-name-container {
+    padding-top: 20px;
+}
+
+.tm-site-name {
+    color: #FCDD44;
+    font-size: 27px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.tm-site-name:hover,
+.tm-site-name:focus {
+    color: #FF720B;
+}
+
+.mobile-menu-icon {
+    display: none;
+}
+
+.tm-nav {
+    display: block;
+    overflow: hidden;
+}
+
+.tm-nav li {
+    list-style: none;
+    float: left;
+}
+
+.tm-nav li a {
+    color: #838383;
+    display: block;
+    padding: 45px 34px 15px 34px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.tm-nav li a.active,
+.tm-nav li a:focus,
+.tm-nav li a:hover {
+    background: #FCDD44;
+    color: #000;
+}

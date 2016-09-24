@@ -1,0 +1,24 @@
+/* Footer */
+
+.tm-black-bg {
+    background-color: #000;
+}
+
+.tm-copyright-text {
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.tm-copyright-text a {
+    color: #FCDD44;
+}
+
+.tm-copyright-text a:hover {
+    color: white;
+}
+
+.hotel-search-form .form-group {
+    margin-bottom: 30px;
+}
