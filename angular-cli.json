@@ -14,11 +14,11 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "mobile": false,
-      "styles": [        
+      "styles": [
         "../node_modules/font-awesome/css/font-awesome.min.css",
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/bootstrap-datetimepicker/dist/bootstrap-datetimepicker.min.css",
         "../node_modules/flexslider/flexslider.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "styles.css"
       ],
       "scripts": [

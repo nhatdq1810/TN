@@ -36,6 +36,11 @@ body {
     overflow-x: hidden;
 }
 
+.tm-gray-bg {
+    background-color: #E5E5E5;
+}
+
+/* Banner arrows */
 .flexslider.flexslider-banner .flex-direction-nav a:before {
     color: #FCDD44;
 }

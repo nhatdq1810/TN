@@ -84,10 +84,6 @@
 
 /* Section 1, index.html */
 
-.tm-gray-bg {
-    background-color: #E5E5E5;
-}
-
 .tm-home-section-1 {
     position: relative;
     top: -50px;
@@ -252,17 +248,7 @@
 }
 
 #hotelCarTabs {
-    border-bottom: none;
     height: 52px;
-}
-
-#hotelCarTabs li {
-    width: 50%;
-    height: 100%;
-}
-
-#hotelCarTabs > li > a {
-    margin-right: 0;
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
@@ -272,19 +258,6 @@
     border-radius: 0;
     color: #5C4905;
     font-weight: 600;
-}
-
-#hotelCarTabs > li > a:hover,
-#hotelCarTabs > li > a:focus {
-    border: none;
-    background: #F9E58B;
-}
-
-#hotelCarTabs > li.active > a,
-#hotelCarTabs > li.active > a:focus,
-#hotelCarTabs > li.active > a:hover {
-    background: transparent;
-    border: none;
 }
 
 
