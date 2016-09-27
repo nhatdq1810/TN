@@ -12,6 +12,7 @@ declare var $: JQueryStatic;
 
 export class HomepageComponent implements AfterViewInit {
 
+  model: string;
   constructor(private el: ElementRef) { }
 
   ngAfterViewInit(){
