@@ -10,6 +10,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormValidationComponent } from './form-validation/form-validation.component';
+import { Nouislider } from 'ng2-nouislider';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormValidationComponent } from './form-validation/form-validation.compo
     HomepageComponent,
     HeaderComponent,
     FooterComponent,
-    FormValidationComponent
+    FormValidationComponent,
+    Nouislider
   ],
   imports: [
     BrowserModule,

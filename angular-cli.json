@@ -15,6 +15,7 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
+        "../node_modules/nouislider/distribute/nouislider.min.css",
         "../node_modules/font-awesome/css/font-awesome.min.css",
         "../node_modules/bootstrap-datetimepicker/dist/bootstrap-datetimepicker.min.css",
         "../node_modules/flexslider/flexslider.css",
