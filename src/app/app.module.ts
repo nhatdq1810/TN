@@ -12,6 +12,10 @@ import { FooterComponent } from './footer/footer.component';
 import { FormValidationComponent } from './form-validation/form-validation.component';
 import { Nouislider } from 'ng2-nouislider';
 
+import { UserService } from './user.service';
+
+import './rxjs-extensions';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +33,9 @@ import { Nouislider } from 'ng2-nouislider';
     NgbModule,
     routing
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

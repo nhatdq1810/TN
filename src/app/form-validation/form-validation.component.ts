@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-form-validation',
@@ -11,7 +12,7 @@ export class FormValidationComponent implements OnInit {
   complexForm: FormGroup;
   sliderValue: number;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private userService: UserService) {
     this.complexForm = fb.group({
       'firstName': [null, Validators.required],
       'lastName': [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
@@ -26,6 +27,7 @@ export class FormValidationComponent implements OnInit {
 
   submitForm(value: any){
     console.log(value);
+    this.userService.layThongtinUser('nhat');
   }
 
 }
