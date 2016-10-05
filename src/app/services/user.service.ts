@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { User } from './user';
-let Constants = require('./Constants');
+import { User } from '../models/user';
+let Constants = require('../resources/constants');
 
 @Injectable()
 export class UserService {
@@ -17,7 +17,12 @@ export class UserService {
   layThongtinUser(username: string): Promise<User>{
     return this.http.get(Constants.apiUrl + 'user/' + username, {headers: Constants.headers})
       .toPromise()
-      .then(resp => (console.log(resp)))
+      .then(function (resp) {
+        for (var key in resp) {
+          console.log(key);
+          console.log(resp[key]);
+        }
+      })
       .catch(this.handleError);
   }
 

@@ -1,3 +1,6 @@
+import './resources/rxjs-extensions';
+import { UserService } from './services/user.service';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,11 +13,9 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormValidationComponent } from './form-validation/form-validation.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 import { Nouislider } from 'ng2-nouislider';
 
-import { UserService } from './user.service';
-
-import './rxjs-extensions';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import './rxjs-extensions';
     HeaderComponent,
     FooterComponent,
     FormValidationComponent,
-    Nouislider
+    Nouislider,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
