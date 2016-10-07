@@ -17,7 +17,6 @@
       "styles": [
         "../node_modules/nouislider/distribute/nouislider.min.css",
         "../node_modules/font-awesome/css/font-awesome.min.css",
-        "../node_modules/bootstrap-datetimepicker/dist/bootstrap-datetimepicker.min.css",
         "../node_modules/flexslider/flexslider.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "styles.css"
@@ -26,8 +25,7 @@
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/flexslider/jquery.flexslider-min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
-        "../node_modules/moment/min/moment.min.js",
-        "../node_modules/bootstrap-datetimepicker/dist/bootstrap-datetimepicker.min.js"
+        "../node_modules/moment/min/moment.min.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

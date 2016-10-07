@@ -15,6 +15,8 @@ import { FooterComponent } from './footer/footer.component';
 import { FormValidationComponent } from './form-validation/form-validation.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { Nouislider } from 'ng2-nouislider';
+import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
+
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { Nouislider } from 'ng2-nouislider';
     FooterComponent,
     FormValidationComponent,
     Nouislider,
-    SearchResultComponent
+    SearchResultComponent,
+    UPLOAD_DIRECTIVES
   ],
   imports: [
     BrowserModule,

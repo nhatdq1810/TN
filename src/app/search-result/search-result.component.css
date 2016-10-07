@@ -1,0 +1,11 @@
+.drop-zone {
+  min-height: 200px;
+  min-width: 200px;
+  border: dotted 3px lightgray;
+}
+.img-preview {
+  width: 50%;
+}
+.nv-file-over {
+  border: dotted 3px red;
+}
