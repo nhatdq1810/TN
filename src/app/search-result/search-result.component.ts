@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -8,46 +8,41 @@ import { Component, OnInit, NgZone, EventEmitter } from '@angular/core';
 })
 export class SearchResultComponent implements OnInit {
 
-  private zone: NgZone;
   private hasBaseDropZoneOver: boolean = false;
-  private progress: number = 0;
-  private response: any = {};
   private options: Object;
-  private uploadEvents: EventEmitter<any>;
   private previewData: any;
+  private uploadEvents: EventEmitter<any>;
 
   constructor() {
   }
 
   ngOnInit() {
-    this.zone = new NgZone({enableLongStackTrace: false});
     this.options = {
-      url: 'https://api.imgur.com/3/upload',
-      calculateSpeed: true,
-      customHeaders: {'Authorization': 'Client-ID f9ea705cdc1e4c9'},
+      url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
+      filterExtensions: true,
+      allowedExtensions: ['jpg', 'jpeg', 'png'],
+      data: {id: 1},
+      autoUpload: false,
       previewUrl: true
     };
     this.uploadEvents = new EventEmitter();
-  }
-
-  handleUpload(data: any): void {
-    console.log(data);
-    this.zone.run(() => {
-      this.response = data;
-      this.progress = Math.floor(data.progress.percent / 100);
-    });
+    this.previewData = null;
   }
 
   handlePreviewData(data: any): void {
     this.previewData = data;
   }
 
-  // fileOverBase(e: any): void{
-  //   this.hasBaseDropZoneOver = e;
-  // }
-
-  startUpload(){
+  startUpload() {
     this.uploadEvents.emit('startUpload');
   }
 
+  fileOverBase(e: any): void{
+    this.hasBaseDropZoneOver = e;
+  }
+
+  deleteImage(): void{
+    this.previewData = null;
+    this.hasBaseDropZoneOver = false;
+  }
 }

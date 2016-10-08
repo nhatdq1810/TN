@@ -1,5 +1,6 @@
 import './resources/rxjs-extensions';
 import { UserService } from './services/user.service';
+import { PhongtroService } from './services/phongtro.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormValidationComponent } from './form-validation/form-validation.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { CreatePhongtroComponent } from './create-phongtro/create-phongtro.component';
 import { Nouislider } from 'ng2-nouislider';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
 
@@ -28,6 +30,7 @@ import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
     FormValidationComponent,
     Nouislider,
     SearchResultComponent,
+    CreatePhongtroComponent,
     UPLOAD_DIRECTIVES
   ],
   imports: [
@@ -39,7 +42,8 @@ import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
     routing
   ],
   providers: [
-    UserService
+    UserService,
+    PhongtroService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,54 +1,57 @@
 <div class="tm-home-box-1">
-    <p id="hotelCarTabs">Phòng trọ</p>
-    <div class="tab-pane fade in active tm-white-bg" id="hotel">
-        <div class="tm-search-box effect2">
-            <form class="hotel-search-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
-                <div class="tm-form-inner">
-                    <div class="form-group">
-                      <nouislider [min]="500000" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['price']" [(ngModel)]="sliderValue"></nouislider>
-                      {{sliderValue}}
-                    </div>
-                    <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['firstName'].valid && complexForm.controls['firstName'].touched}">
-                        <label>First Name:</label>
-                        <input class="form-control" type="text" placeholder="John" [formControl]="complexForm.controls['firstName']">
-                        <div *ngIf="complexForm.controls['firstName'].hasError('required') && complexForm.controls['firstName'].touched" class="alert alert-danger">
-                        You must include first name.
-                        </div>
-                    </div>
-                    <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['lastName'].valid && complexForm.controls['lastName'].touched}">
-                        <label>Last Name</label>
-                        <input class="form-control" type="text" placeholder="Doe" [formControl]="complexForm.controls['lastName']">
-                        <div *ngIf="complexForm.controls['lastName'].hasError('required') && complexForm.controls['lastName'].touched" class="alert alert-danger">
-                        You must include last name.
-                        </div>
-                        <div *ngIf="complexForm.controls['lastName'].hasError('minlength') && complexForm.controls['lastName'].touched" class="alert alert-danger">
-                        Last name min length is 5.
-                        </div>
-                        <div *ngIf="complexForm.controls['lastName'].hasError('maxlength') && complexForm.controls['lastName'].touched" class="alert alert-danger">
-                        Last name max length is 10.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Gender</label>
-                        <div class="alert alert-danger" *ngIf="!complexForm.controls['gender'].valid && complexForm.controls['gender'].touched">
-                            You must select a gender.
-                        </div>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="gender" value="Male" [formControl]="complexForm.controls['gender']"> Male
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="gender" value="Female" [formControl]="complexForm.controls['gender']"> Female
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group tm-yellow-gradient-bg text-center">
-                    <button type="submit" name="submit" [disabled]="!complexForm.valid" class="tm-yellow-btn">Tìm ngay</button>
-                </div>
-            </form>
+  <p id="hotelCarTabs">Phòng trọ</p>
+  <div class="tab-pane fade in active tm-white-bg" id="hotel">
+    <div class="tm-search-box effect2">
+      <form class="hotel-search-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+        <div class="tm-form-inner">
+          <div class="form-group">
+            <nouislider [connect]="true" [min]="500000" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['price']" [(ngModel)]="sliderValue"></nouislider>
+            {{sliderValue}}
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['truong'].valid && complexForm.controls['truong'].touched}">
+            <label>Trường học:</label>
+            <input class="form-control" type="text" placeholder="Trường học" [formControl]="complexForm.controls['truong']" [(ngModel)]="selectedTruong" [ngbTypeahead]="search" [resultTemplate]="rt">
+            <template #rt let-r="result" let-t="term">
+              {{ r.name }}
+            </template>
+            <!-- <div *ngIf="complexForm.controls['truong'].hasError('required') && complexForm.controls['truong'].touched" class="alert alert-danger">
+              You must include first name.
+            </div> -->
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['lastName'].valid && complexForm.controls['lastName'].touched}">
+            <label>Last Name</label>
+            <input class="form-control" type="text" placeholder="Doe" [formControl]="complexForm.controls['lastName']">
+            <div *ngIf="complexForm.controls['lastName'].hasError('required') && complexForm.controls['lastName'].touched" class="alert alert-danger">
+              You must include last name.
+            </div>
+            <div *ngIf="complexForm.controls['lastName'].hasError('minlength') && complexForm.controls['lastName'].touched" class="alert alert-danger">
+              Last name min length is 5.
+            </div>
+            <div *ngIf="complexForm.controls['lastName'].hasError('maxlength') && complexForm.controls['lastName'].touched" class="alert alert-danger">
+              Last name max length is 10.
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Gender</label>
+            <div class="alert alert-danger" *ngIf="!complexForm.controls['gender'].valid && complexForm.controls['gender'].touched">
+              You must select a gender.
+            </div>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="gender" value="Male" [formControl]="complexForm.controls['gender']"> Male
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="gender" value="Female" [formControl]="complexForm.controls['gender']"> Female
+            </label>
+          </div>
         </div>
+        <div class="form-group tm-yellow-gradient-bg text-center">
+          <button type="submit" name="submit" [disabled]="!complexForm.valid" class="tm-yellow-btn">Tìm ngay</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
