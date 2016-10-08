@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { CreatePhongtroComponent } from './create-phongtro/create-phongtro.component';
 
 const appRoutes: Routes = [
   {
@@ -12,6 +13,15 @@ const appRoutes: Routes = [
   {
     path: 'search/result',
     component: SearchResultComponent
+  },
+  {
+    path: 'phongtro',
+    children: [
+      {
+        path: 'create',
+        component: CreatePhongtroComponent
+      }
+    ]
   },
   {
     path: '',
