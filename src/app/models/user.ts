@@ -6,7 +6,6 @@ export class User {
   diachi: string;
   sodt: string;
   email: string;
-  tien: number;
   skype: string;
   facebook: string;
   dotincay: number;

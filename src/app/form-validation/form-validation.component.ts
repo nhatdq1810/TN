@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { UserService } from '../services/user.service';
 import { Observable } from 'rxjs/Observable';
 import { PhongtroService } from '../services/phongtro.service';
@@ -16,34 +18,30 @@ export class FormValidationComponent implements OnInit {
   private complexForm: FormGroup;
   private sliderValue: number[];
   private selectedTruong: string;
-  private search: any;
+  private searching: boolean = false;
+  @Output() eventEmit = new EventEmitter();
 
-  constructor(private fb: FormBuilder, private userService: UserService, private ptService: PhongtroService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private ptService: PhongtroService, private router: Router) {
     this.complexForm = this.fb.group({
-      'truong': null,
-      'lastName': [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
-      'gender': [null, Validators.required],
-      'price': 1000000
+      'giatien': 1000000,
+      'truong': '',
+      'nganh': '',
+      // , Validators.compose([Validators.minLength(5), Validators.maxLength(10)])],
+      'gioitinh': ''
     });
     this.sliderValue = [1000000, 2500000];
-    this.ptService.getListPhongtro().subscribe((listPT: Phongtro[]) => {
-      this.search = (text$: Observable<string>) => {
-        text$
-          .debounceTime(200)
-          .map(term => term === '' ? [] : listPT.filter(phongtro => {
-            return new RegExp(term, 'gi').test(phongtro.truong);
-          }))
-      }
-    });
   }
 
   ngOnInit(){
-    this.selectedTruong = '';
   }
 
   submitForm(value: any){
-    console.log(value);
-    // this.userService.layThongtinUser('nhat');
+    this.ptService.timkiemPhongtro(value)
+      .then((result: string) => {
+        if(result === 'success') {
+          this.router.navigate(['/search/result']);
+        }
+      });
   }
 
 }

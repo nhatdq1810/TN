@@ -1,4 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Phongtro } from '../models/phongtro';
+import { PhongtroService } from '../services/phongtro.service';
 
 
 @Component({
@@ -12,8 +14,9 @@ export class SearchResultComponent implements OnInit {
   private options: Object;
   private previewData: any;
   private uploadEvents: EventEmitter<any>;
+  private listPT: Phongtro[];
 
-  constructor() {
+  constructor(private ptService: PhongtroService) {
   }
 
   ngOnInit() {
@@ -25,8 +28,13 @@ export class SearchResultComponent implements OnInit {
       autoUpload: false,
       previewUrl: true
     };
+
     this.uploadEvents = new EventEmitter();
     this.previewData = null;
+    this.listPT = this.ptService.listPT;
+    this.listPT.forEach((value, index) => {
+      console.log(value);
+    })
   }
 
   handlePreviewData(data: any): void {
