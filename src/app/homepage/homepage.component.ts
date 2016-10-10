@@ -1,6 +1,6 @@
 /// <reference path="../../../node_modules/@types/jquery/index.d.ts" />
 
-import { Component, ElementRef, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 declare var $: JQueryStatic;
 
@@ -10,11 +10,12 @@ declare var $: JQueryStatic;
   styleUrls: ['./homepage.component.css']
 })
 
-export class HomepageComponent implements AfterViewInit {
+export class HomepageComponent {
 
-  model: string;
-  specialDeals: any;
-  constructor(private el: ElementRef) {
+  private model: string;
+  private specialDeals: any;
+
+  constructor() {
     this.specialDeals = {
       img1: 'assets/img/index-01.jpg',
       addr1: 'Gò Vấp',
@@ -23,12 +24,6 @@ export class HomepageComponent implements AfterViewInit {
       addr2: 'Quận 5',
       price2: 5000000
     }
-  }
-
-  ngAfterViewInit(){
-    $(this.el.nativeElement).find('.flexslider').flexslider({
-      controlNav: false
-    });
   }
 
 }

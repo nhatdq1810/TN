@@ -29,6 +29,17 @@ a:focus {
     text-decoration: none;
 }
 
+img {
+    width: 100%;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
 
 /* Homepage */
 

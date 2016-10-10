@@ -16,16 +16,17 @@ export class FormValidationComponent implements OnInit {
 
   private complexForm: FormGroup;
   private sliderValue: number[];
+  private radioValue = 'nam';
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService, private router: Router) {
     this.complexForm = this.fb.group({
-      'giatien': 1000000,
+      'giatien': 500000,
       'truong': '',
       'nganh': '',
       // , Validators.compose([Validators.minLength(5), Validators.maxLength(10)])],
-      'gioitinh': ''
+      'gioitinh': 'Nam'
     });
-    this.sliderValue = [1000000, 2500000];
+    this.sliderValue = [500000, 5000000];
   }
 
   ngOnInit(){
@@ -34,7 +35,7 @@ export class FormValidationComponent implements OnInit {
   submitForm(value: any){
     this.ptService.timkiemPhongtro(value)
       .then((result: string) => {
-        if(result === 'success') {
+        if (result === 'success') {
           this.router.navigate(['/search/result']);
         }
       });

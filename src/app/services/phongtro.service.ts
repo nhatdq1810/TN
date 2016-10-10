@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Phongtro } from '../models/phongtro';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 
 let Constants = require('../resources/constants');
@@ -11,7 +12,7 @@ export class PhongtroService {
 
   private _listTKPT: any[];
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private router: Router) { }
 
   get listPT(): any[]{
     return this._listTKPT;
@@ -19,6 +20,7 @@ export class PhongtroService {
 
   private handleError(funcName: string, error: any): Promise<any> {
     console.error(funcName + ' has error ', error);
+    this.router.navigate(['/404']);
     return Promise.reject(error.message || error);
   }
 
