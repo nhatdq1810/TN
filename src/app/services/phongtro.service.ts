@@ -9,23 +9,29 @@ let Constants = require('../resources/constants');
 @Injectable()
 export class PhongtroService {
 
-  private _listPT: any[];
+  private _listTKPT: any[];
 
   constructor(private http: Http) { }
 
   get listPT(): any[]{
-    return this._listPT;
+    return this._listTKPT;
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
+  private handleError(funcName: string, error: any): Promise<any> {
+    console.error(funcName + ' has error ', error);
     return Promise.reject(error.message || error);
   }
 
-  layTatcaPhongtro(): Observable<Phongtro[]>{
-    return this.http
-      .get(Constants.apiUrl + 'phongtro/tatca', { headers: Constants.headers })
-      .map((resp: Response) => resp.json());
+  layTatcaPhongtro(): Promise<any>{
+    return new Promise((resolve) => {
+      this.http
+        .get(Constants.apiUrl + 'phongtro/tatca', { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(listPT => {
+          resolve(listPT);
+        },
+        error => this.handleError('layTatcaPhongtro', error));
+    });
   }
 
   timkiemPhongtro(model): Promise<any>{
@@ -33,10 +39,10 @@ export class PhongtroService {
       this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien[0]}&giatien_max=${model.giatien[1]}&truong=${model.truong}&nganh=${model.nganh}&gioitinh=${model.gioitinh}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(listPT => {
-          this._listPT = listPT;
+          this._listTKPT = listPT;
           resolve('success');
         },
-        error => this.handleError(error));
+        error => this.handleError('timkiemPhongtro', error));
     });
   }
 }

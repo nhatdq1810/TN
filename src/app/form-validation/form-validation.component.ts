@@ -1,9 +1,8 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from '../services/user.service';
-import { Observable } from 'rxjs/Observable';
 import { PhongtroService } from '../services/phongtro.service';
 import { Phongtro } from '../models/phongtro';
 
@@ -17,11 +16,8 @@ export class FormValidationComponent implements OnInit {
 
   private complexForm: FormGroup;
   private sliderValue: number[];
-  private selectedTruong: string;
-  private searching: boolean = false;
-  @Output() eventEmit = new EventEmitter();
 
-  constructor(private fb: FormBuilder, private userService: UserService, private ptService: PhongtroService, private router: Router) {
+  constructor(private fb: FormBuilder, private ptService: PhongtroService, private router: Router) {
     this.complexForm = this.fb.group({
       'giatien': 1000000,
       'truong': '',
