@@ -16,7 +16,7 @@ export class FormValidationComponent implements OnInit {
 
   private complexForm: FormGroup;
   private sliderValue: number[];
-  private radioValue = 'nam';
+  private checkboxValue: boolean;
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService, private router: Router) {
     this.complexForm = this.fb.group({
@@ -24,12 +24,17 @@ export class FormValidationComponent implements OnInit {
       'truong': '',
       'nganh': '',
       // , Validators.compose([Validators.minLength(5), Validators.maxLength(10)])],
-      'gioitinh': 'Nam'
+      'gioitinh': 'nam'
     });
     this.sliderValue = [500000, 5000000];
+    this.checkboxValue = true;
   }
 
   ngOnInit(){
+  }
+
+  setCheckboxValue() {
+    this.checkboxValue = !this.checkboxValue;
   }
 
   submitForm(value: any){

@@ -1,6 +1,7 @@
 /// <reference path="../../../node_modules/@types/jquery/index.d.ts" />
 
 import { Component } from '@angular/core';
+import { PhongtroService } from '../services/phongtro.service';
 
 declare var $: JQueryStatic;
 
@@ -14,16 +15,82 @@ export class HomepageComponent {
 
   private model: string;
   private specialDeals: any;
+  private hotDeals: any;
+  private newDeals: any;
 
-  constructor() {
-    this.specialDeals = {
-      img1: 'assets/img/index-01.jpg',
-      addr1: 'Gò Vấp',
-      price1: 2000000,
-      img2: 'assets/img/index-02.jpg',
-      addr2: 'Quận 5',
-      price2: 5000000
-    }
+  constructor(private ptService: PhongtroService) {
+    this.specialDeals = [
+      {
+        hinhanh: 'assets/img/index-01.jpg',
+        diachi: 'Gò Vấp',
+        giatien: 2000000
+      },
+      {
+        hinhanh: 'assets/img/index-02.jpg',
+        diachi: 'Quận 5',
+        giatien: 5000000
+      }
+    ];
+    this.hotDeals = [
+      {
+        hinhanh: 'assets/img/index-03.jpg',
+        diachi: '123 abc P.15 Quận Gò Vấp',
+        truong: 'PTIT',
+        ngaydang: '01/10/2016',
+        giatien: 2000000
+      },
+      {
+        hinhanh: 'assets/img/index-04.jpg',
+        diachi: '1236 abc P.15 Quận Gò Vấp',
+        truong: 'PTIT',
+        ngaydang: '01/10/2016',
+        giatien: 5000000
+      },
+      {
+        hinhanh: 'assets/img/index-05.jpg',
+        diachi: '1234 abc P.15 Quận Gò Vấp',
+        truong: 'PTIT',
+        ngaydang: '01/10/2016',
+        giatien: 2000000
+      },
+      {
+        hinhanh: 'assets/img/index-06.jpg',
+        diachi: '1235 abc P.15 Quận Gò Vấp',
+        truong: 'PTIT',
+        ngaydang: '01/10/2016',
+        giatien: 5000000
+      }
+    ];
+    this.newDeals = [
+      {
+        hinhanh: 'assets/img/index-07.jpg',
+        diachi: '123 abc P.15 Quận Gò Vấp',
+        truong: 'PTIT',
+        ngaydang: '01/10/2016',
+        giatien: 2000000
+      },
+      {
+        hinhanh: 'assets/img/index-08.jpg',
+        diachi: '1236 abc P.15 Quận Gò Vấp',
+        truong: 'PTIT',
+        ngaydang: '01/10/2016',
+        giatien: 5000000
+      },
+      {
+        hinhanh: 'assets/img/index-09.jpg',
+        diachi: '1234 abc P.15 Quận Gò Vấp',
+        truong: 'PTIT',
+        ngaydang: '01/10/2016',
+        giatien: 2000000
+      },
+      {
+        hinhanh: 'assets/img/index-10.jpg',
+        diachi: '1235 abc P.15 Quận Gò Vấp',
+        truong: 'PTIT',
+        ngaydang: '01/10/2016',
+        giatien: 5000000
+      }
+    ];
   }
 
 }

@@ -5,7 +5,7 @@
       <form class="hotel-search-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
         <div class="tm-form-inner">
           <div class="form-group">
-            <label>Giá tiền</label>
+            <label>Khoản tiền</label>
             <p class="sliderValue">
               <span>{{ sliderValue[0] }}</span>
               <span class="right">{{ sliderValue[1] }}</span>
@@ -40,18 +40,18 @@
             </div> -->
             <div class="radio">
               <label>
-                <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [(ngModel)]="radioValue"> Nam
+                <input type="checkbox" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="checkboxValue" (change)="setCheckboxValue()"> Nam
               </label>
             </div>
             <div class="radio">
               <label>
-                <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [(ngModel)]="radioValue"> Nữ
+                <input type="checkbox" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="!checkboxValue" (change)="setCheckboxValue()"> Nữ
               </label>
             </div>
           </div>
         </div>
         <div class="form-group tm-yellow-gradient-bg text-center">
-          <button type="submit" name="submit" [disabled]="!complexForm.valid" class="tm-yellow-btn">Tìm ngay</button>
+          <button type="submit" name="submit" [disabled]="!complexForm.valid" class="tm-yellow-btn">Tìm kiếm</button>
         </div>
       </form>
     </div>

@@ -1,180 +1,102 @@
 <section class="tm-banner">
-    <!-- banner -->
-    <div class="tm-banner-inner">
-        <h1 class="tm-banner-title">Phòng trọ <span class="tm-yellow-text">Tốt nhất</span></h1>
-        <p class="tm-banner-subtitle">Dành cho bạn</p>
-        <a href="#" class="tm-banner-link">Xem thêm</a>
-    </div>
-    <img src="assets/img/banner-1.jpg" alt="Image" />
+  <!-- banner -->
+  <div class="tm-banner-inner">
+    <h1 class="tm-banner-title">Phòng trọ <span class="tm-yellow-text">Tốt nhất</span></h1>
+    <p class="tm-banner-subtitle">Cho sinh viên</p>
+    <a href="#" class="tm-banner-link">Xem ngay</a>
+  </div>
+  <img src="assets/img/banner-1.jpg" alt="Image" />
 </section>
 <!-- gray bg -->
 <section class="container tm-home-section-1" id="more">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6">
+      <app-form-validation></app-form-validation>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+      <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
+        <img [src]="specialDeals[0].hinhanh" alt="image" class="img-responsive">
+        <a href="#">
+          <div class="tm-green-gradient-bg tm-city-price-container">
+            <span>{{specialDeals[0].diachi}}</span>
+            <span>{{specialDeals[0].giatien | number}}</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+      <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
+        <img [src]="specialDeals[1].hinhanh" alt="image" class="img-responsive">
+        <a href="#">
+          <div class="tm-red-gradient-bg tm-city-price-container">
+            <span>{{specialDeals[1].diachi}}</span>
+            <span>{{specialDeals[1].giatien | number}}</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="section-margin-top">
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-6">
-            <app-form-validation></app-form-validation>
+      <div class="tm-section-header">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <hr>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
-                <img [src]="specialDeals.img1" alt="image" class="img-responsive">
-                <a href="#">
-                    <div class="tm-green-gradient-bg tm-city-price-container">
-                        <span>{{specialDeals.addr1}}</span>
-                        <span>{{specialDeals.price1 | currency:"VND"}}</span>
-                    </div>
-                </a>
-            </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <h2 class="tm-section-title">Phòng trọ hot nhất</h2></div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <hr>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-                <img [src]="specialDeals.img2" alt="image" class="img-responsive">
-                <a href="#">
-                    <div class="tm-red-gradient-bg tm-city-price-container">
-                        <span>{{specialDeals.addr2}}</span>
-                        <span>{{specialDeals.price2 | currency:"VND"}}</span>
-                    </div>
-                </a>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="section-margin-top">
-        <div class="row">
-            <div class="tm-section-header">
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                    <hr>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <h2 class="tm-section-title">Phòng trọ hot nhất</h2></div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                    <hr>
-                </div>
-            </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12" *ngFor="let item of hotDeals">
+        <div class="tm-home-box-2">
+          <img [src]="item.hinhanh" alt="image" class="img-responsive">
+          <h3>{{item.diachi}}</h3>
+          <h3>{{item.truong}}</h3>
+          <p class="tm-money">{{item.giatien | number}}</p>
+          <div class="tm-home-box-2-container">
+            <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
+            <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Xem thêm</span></a>
+            <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-                <div class="tm-home-box-2">
-                    <img src="assets/img/index-03.jpg" alt="image" class="img-responsive">
-                    <h3>Proin Gravida Nibhvel Lorem Quis Bind</h3>
-                    <p class="tm-date">28 March 2016</p>
-                    <div class="tm-home-box-2-container">
-                        <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                        <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-                        <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-                <div class="tm-home-box-2">
-                    <img src="assets/img/index-04.jpg" alt="image" class="img-responsive">
-                    <h3>Proin Gravida Nibhvel Lorem Quis Bind</h3>
-                    <p class="tm-date">26 March 2016</p>
-                    <div class="tm-home-box-2-container">
-                        <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                        <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-                        <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-                <div class="tm-home-box-2">
-                    <img src="assets/img/index-05.jpg" alt="image" class="img-responsive">
-                    <h3>Proin Gravida Nibhvel Lorem Quis Bind</h3>
-                    <p class="tm-date">24 March 2016</p>
-                    <div class="tm-home-box-2-container">
-                        <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                        <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-                        <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
-                <div class="tm-home-box-2 tm-home-box-2-right">
-                    <img src="assets/img/index-06.jpg" alt="image" class="img-responsive">
-                    <h3>Proin Gravida Nibhvel Lorem Quis Bind</h3>
-                    <p class="tm-date">22 March 2016</p>
-                    <div class="tm-home-box-2-container">
-                        <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                        <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Travel</span></a>
-                        <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </section>
 <!-- white bg -->
 <section class="tm-white-bg section-padding-bottom">
-    <div class="container">
-        <div class="row">
-            <div class="tm-section-header section-margin-top">
-                <div class="col-lg-4 col-md-3 col-sm-3">
-                    <hr>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <h2 class="tm-section-title">Phòng trọ mới nhất</h2></div>
-                <div class="col-lg-4 col-md-3 col-sm-3">
-                    <hr>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="tm-home-box-3">
-                    <div class="tm-home-box-3-img-container">
-                        <img src="assets/img/index-07.jpg" alt="image" class="img-responsive">
-                    </div>
-                    <div class="tm-home-box-3-info">
-                        <p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-                        <div class="tm-home-box-2-container">
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                            <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="tm-home-box-3">
-                    <div class="tm-home-box-3-img-container">
-                        <img src="assets/img/index-08.jpg" alt="image" class="img-responsive">
-                    </div>
-                    <div class="tm-home-box-3-info">
-                        <p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-                        <div class="tm-home-box-2-container">
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                            <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="tm-home-box-3">
-                    <div class="tm-home-box-3-img-container">
-                        <img src="assets/img/index-09.jpg" alt="image" class="img-responsive">
-                    </div>
-                    <div class="tm-home-box-3-info">
-                        <p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-                        <div class="tm-home-box-2-container">
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                            <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="tm-home-box-3">
-                    <div class="tm-home-box-3-img-container">
-                        <img src="assets/img/index-10.jpg" alt="image" class="img-responsive">
-                    </div>
-                    <div class="tm-home-box-3-info">
-                        <p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-                        <div class="tm-home-box-2-container">
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                            <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="tm-section-header section-margin-top">
+        <div class="col-lg-4 col-md-3 col-sm-3">
+          <hr>
         </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <h2 class="tm-section-title">Phòng trọ mới nhất</h2></div>
+        <div class="col-lg-4 col-md-3 col-sm-3">
+          <hr>
+        </div>
+      </div>
+      <div class="col-lg-6" *ngFor="let item of newDeals">
+        <div class="tm-home-box-3">
+          <div class="tm-home-box-3-img-container">
+            <img [src]="item.hinhanh" alt="image" class="img-responsive">
+          </div>
+          <div class="tm-home-box-3-info">
+            <p class="tm-home-box-3-description">{{item.diachi}}</p>
+            <p class="tm-home-box-3-description">{{item.truong}}</p>
+            <p class="tm-money">{{item.giatien | number}}</p>
+            <div class="tm-home-box-2-container">
+              <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
+              <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Xem thêm</span></a>
+              <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>

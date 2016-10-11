@@ -36,6 +36,42 @@ export class PhongtroService {
     });
   }
 
+  layPhongtroUutien(): Promise<any> {
+    return new Promise((resolve) => {
+      this.http
+        .get(Constants.apiUrl + 'phongtro/uutien', { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(listPT => {
+          resolve(listPT);
+        },
+        error => this.handleError('layPhongtroUutien', error));
+    });
+  }
+
+  layPhongtroHot(): Promise<any> {
+    return new Promise((resolve) => {
+      this.http
+        .get(Constants.apiUrl + 'phongtro/hot', { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(listPT => {
+          resolve(listPT);
+        },
+        error => this.handleError('layPhongtroHot', error));
+    });
+  }
+
+  layPhongtroMoi(): Promise<any> {
+    return new Promise((resolve) => {
+      this.http
+        .get(Constants.apiUrl + 'phongtro/moi', { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(listPT => {
+          resolve(listPT);
+        },
+        error => this.handleError('layPhongtroMoi', error));
+    });
+  }
+
   timkiemPhongtro(model): Promise<any>{
     return new Promise((resolve) => {
       this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien[0]}&giatien_max=${model.giatien[1]}&truong=${model.truong}&nganh=${model.nganh}&gioitinh=${model.gioitinh}`, { headers: Constants.headers })
