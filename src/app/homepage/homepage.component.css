@@ -263,6 +263,10 @@ hr {
   max-width: 254px;
 }
 
+.tm-home-box-2 .img-responsive {
+  max-height: 185px;
+}
+
 .tm-home-box-2 h3 {
   font-size: 14px;
   padding: 20px 20px 0;
@@ -334,6 +338,11 @@ hr {
 
 .tm-home-box-3-img-container {
   float: left;
+}
+
+.tm-home-box-3-img-container .img-responsive {
+  max-height: 100%;
+  max-width: 250px;
 }
 
 .tm-home-box-3-info {

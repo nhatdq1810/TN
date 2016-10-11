@@ -1,3 +1,10 @@
 <div class="container">
-
+    <div class="row">
+        <div ngFileDrop *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" (onFileOver)="fileOverBase($event)" [events]="uploadEvents" [ngClass]="{'file-over': hasBaseDropZoneOver}" class="drop-zone">
+        </div>
+        <input type="file" ngFileSelect *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
+        <img *ngIf="previewData" [src]="previewData" alt="Preview Data" class="img-preview">
+        <button *ngIf="previewData" (click)="startUpload()" class="glyphicon glyphicon-upload">Upload</button>
+        <button *ngIf="previewData" (click)="deleteImage()" class="glyphicon glyphicon-remove-circle">Xóa</button>
+    </div>
 </div>

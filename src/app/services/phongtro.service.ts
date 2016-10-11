@@ -36,22 +36,10 @@ export class PhongtroService {
     });
   }
 
-  layPhongtroUutien(): Promise<any> {
+  layPhongtroHot(gioihan: number): Promise<any> {
     return new Promise((resolve) => {
       this.http
-        .get(Constants.apiUrl + 'phongtro/uutien', { headers: Constants.headers })
-        .map((resp: Response) => resp.json())
-        .subscribe(listPT => {
-          resolve(listPT);
-        },
-        error => this.handleError('layPhongtroUutien', error));
-    });
-  }
-
-  layPhongtroHot(): Promise<any> {
-    return new Promise((resolve) => {
-      this.http
-        .get(Constants.apiUrl + 'phongtro/hot', { headers: Constants.headers })
+        .get(Constants.apiUrl + 'phongtro/hot?gioihan=' + gioihan, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(listPT => {
           resolve(listPT);
@@ -60,10 +48,10 @@ export class PhongtroService {
     });
   }
 
-  layPhongtroMoi(): Promise<any> {
+  layPhongtroMoi(gioihan: number): Promise<any> {
     return new Promise((resolve) => {
       this.http
-        .get(Constants.apiUrl + 'phongtro/moi', { headers: Constants.headers })
+        .get(Constants.apiUrl + 'phongtro/moi?gioihan=' + gioihan, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(listPT => {
           resolve(listPT);

@@ -1,6 +1,6 @@
 /// <reference path="../../../node_modules/@types/jquery/index.d.ts" />
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PhongtroService } from '../services/phongtro.service';
 
 declare var $: JQueryStatic;
@@ -11,7 +11,7 @@ declare var $: JQueryStatic;
   styleUrls: ['./homepage.component.css']
 })
 
-export class HomepageComponent {
+export class HomepageComponent implements OnInit{
 
   private model: string;
   private specialDeals: any;
@@ -91,6 +91,19 @@ export class HomepageComponent {
         giatien: 5000000
       }
     ];
+  }
+
+  ngOnInit() {
+    this.ptService.layPhongtroMoi(4)
+      .then(listPT => {
+        this.newDeals = listPT;
+        console.log(this.newDeals);
+      });
+    this.ptService.layPhongtroHot(4)
+      .then(listPT => {
+        this.hotDeals = listPT;
+        console.log(this.hotDeals);
+      });
   }
 
 }
