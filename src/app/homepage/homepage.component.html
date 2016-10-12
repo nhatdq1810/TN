@@ -49,20 +49,31 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12" *ngFor="let item of hotDeals">
-        <div class="tm-home-box-2">
-          <img [src]="item.hinhanh" alt="image" class="img-responsive">
-          <h3>{{item.diachi}}</h3>
-          <h3>{{item.truong}}</h3>
-          <p class="tm-money">{{item.giatien | number}}</p>
-          <div class="tm-home-box-2-container">
-            <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-            <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Xem thêm</span></a>
-            <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-          </div>
-        </div>
-      </div>
+    <div class="row flexslider" #flexslider>
+      <!-- <div class="" > -->
+      <ul class="slides">
+        <li *ngFor="let item of hotDeals">
+          <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12"> -->
+          <!-- <div class="tm-home-box-2"> -->
+          <a [routerLink]="['/phongtro/detail', item.id]">
+            <img [src]="item.hinhanh" alt="image" class="img-responsive">
+            <h3>{{item.diachi | uppercase}}</h3>
+            <p class="tm-money">
+              Số lượng: <span>{{item.songuoi}}</span>
+              <span class="right">{{item.gioitinh | uppercase}}</span>
+            </p>
+            <p class="tm-money">{{item.giatien | number}}</p>
+            <!-- <div class="tm-home-box-2-container">
+              <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
+              <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Xem thêm</span></a>
+              <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
+            </div> -->
+          </a>
+          <!-- </div> -->
+          <!-- </div> -->
+        </li>
+      </ul>
+      <!-- </div> -->
     </div>
   </div>
 </section>
@@ -80,7 +91,34 @@
           <hr>
         </div>
       </div>
-      <div class="col-lg-6" *ngFor="let item of newDeals">
+    </div>
+    <div class="row flexslider" #flexslider2>
+      <!-- <div class="" > -->
+      <ul class="slides">
+        <li *ngFor="let item of newDeals">
+          <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12"> -->
+          <!-- <div class="tm-home-box-2"> -->
+          <a [routerLink]="['/phongtro/detail', item.id]">
+            <img [src]="item.hinhanh" alt="image" class="img-responsive">
+            <h3>{{item.diachi | uppercase}}</h3>
+            <p class="tm-money">
+              Số lượng: <span>{{item.songuoi}}</span>
+              <span class="right">{{item.gioitinh | uppercase}}</span>
+            </p>
+            <p class="tm-money">{{item.giatien | number}}</p>
+            <!-- <div class="tm-home-box-2-container">
+              <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
+              <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Xem thêm</span></a>
+              <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
+            </div> -->
+          </a>
+          <!-- </div> -->
+          <!-- </div> -->
+        </li>
+      </ul>
+      <!-- </div> -->
+    </div>
+    <!-- <div class="col-lg-6" *ngFor="let item of newDeals">
         <div class="tm-home-box-3">
           <div class="tm-home-box-3-img-container">
             <img [src]="item.hinhanh" alt="image" class="img-responsive">
@@ -96,7 +134,7 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
   </div>
 </section>

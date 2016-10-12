@@ -41,7 +41,7 @@
 .tm-nav li a {
     color: #838383;
     display: block;
-    padding: 45px 34px 15px 34px;
+    padding: 45px 30px 15px;
     text-transform: uppercase;
     transition: all 0.3s ease;
     font-weight: bold;

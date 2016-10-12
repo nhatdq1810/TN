@@ -149,6 +149,10 @@
   font-weight: 600;
 }
 
+.tm-city-price-container span {
+  margin: 0 10px;
+}
+
 .tm-yellow-btn {
   width: 130px;
   height: 40px;
@@ -264,7 +268,7 @@ hr {
 }
 
 .tm-home-box-2 .img-responsive {
-  max-height: 185px;
+  // max-height: 185px;
 }
 
 .tm-home-box-2 h3 {
@@ -341,8 +345,8 @@ hr {
 }
 
 .tm-home-box-3-img-container .img-responsive {
-  max-height: 100%;
-  max-width: 250px;
+  // max-height: 100%;
+  // max-width: 250px;
 }
 
 .tm-home-box-3-info {
@@ -609,9 +613,19 @@ hr {
 
 /* Flexslider */
 
-.flex-caption,
-.flexslider.flexslider .slides img {
+.flexslider a {
   float: left;
+  color: #333333;
+}
+
+.flexslider h3 {
+  margin: 10px 20px 0;
+}
+
+.flex-caption,
+.flexslider .slides img {
+  height: 250px;
+  // float: left;
 }
 
 .flex-caption {

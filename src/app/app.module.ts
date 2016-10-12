@@ -1,6 +1,7 @@
 import './resources/rxjs-extensions';
 import { UserService } from './services/user.service';
 import { PhongtroService } from './services/phongtro.service';
+import { LoggedInService } from './services/logged-in.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,7 +20,8 @@ import { FormValidationComponent } from './form-validation/form-validation.compo
 import { SearchResultComponent } from './search-result/search-result.component';
 import { CreatePhongtroComponent } from './create-phongtro/create-phongtro.component';
 import { Error404Component } from './404/404.component';
-
+import { LoginComponent } from './login/login.component';
+import { PhongtroDetailComponent } from './phongtro-detail/phongtro-detail.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { Error404Component } from './404/404.component';
     SearchResultComponent,
     CreatePhongtroComponent,
     UPLOAD_DIRECTIVES,
-    Error404Component
+    Error404Component,
+    LoginComponent,
+    PhongtroDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ import { Error404Component } from './404/404.component';
   ],
   providers: [
     UserService,
-    PhongtroService
+    PhongtroService,
+    LoggedInService
   ],
   bootstrap: [AppComponent]
 })

@@ -54,7 +54,7 @@ body {
 
 /* Banner arrows */
 
-.flexslider.flexslider-banner .flex-direction-nav a:before {
+.flexslider .flex-direction-nav a:before {
     color: #FCDD44;
 }
 

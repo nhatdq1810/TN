@@ -1,10 +1,13 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoggedInService } from './services/logged-in.service';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { CreatePhongtroComponent } from './create-phongtro/create-phongtro.component';
 import { Error404Component } from './404/404.component';
+import { LoginComponent } from './login/login.component';
+import { PhongtroDetailComponent } from './phongtro-detail/phongtro-detail.component';
 
 const appRoutes: Routes = [
   {
@@ -16,6 +19,10 @@ const appRoutes: Routes = [
     component: Error404Component
   },
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: 'search/result',
     component: SearchResultComponent
   },
@@ -24,7 +31,12 @@ const appRoutes: Routes = [
     children: [
       {
         path: 'create',
-        component: CreatePhongtroComponent
+        component: CreatePhongtroComponent,
+        canActivate: [LoggedInService]
+      },
+      {
+        path: 'detail/:id',
+        component: PhongtroDetailComponent
       }
     ]
   },
