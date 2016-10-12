@@ -31,8 +31,8 @@ const appRoutes: Routes = [
     children: [
       {
         path: 'create',
-        component: CreatePhongtroComponent,
-        canActivate: [LoggedInService]
+        component: CreatePhongtroComponent
+        // canActivate: [LoggedInService]
       },
       {
         path: 'detail/:id',

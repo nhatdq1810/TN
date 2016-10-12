@@ -36,6 +36,18 @@ export class PhongtroService {
     });
   }
 
+  layPhongtro(id: number): Promise<any> {
+    return new Promise((resolve) => {
+      this.http
+        .get(Constants.apiUrl + 'phongtro/' + id, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(pt => {
+          resolve(pt);
+        },
+        error => this.handleError('layPhongtro', error));
+    });
+  }
+
   layPhongtroHot(gioihan: number): Promise<any> {
     return new Promise((resolve) => {
       this.http

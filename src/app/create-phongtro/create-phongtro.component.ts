@@ -24,7 +24,7 @@ export class CreatePhongtroComponent {
       url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
       filterExtensions: true,
       allowedExtensions: ['jpg', 'jpeg', 'png'],
-      data: { id: 6 },
+      data: { id: 10 },
       autoUpload: false,
       previewUrl: true
     };
