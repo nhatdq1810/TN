@@ -24,7 +24,7 @@ export class SearchResultComponent implements OnInit {
       url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
       filterExtensions: true,
       allowedExtensions: ['jpg', 'jpeg', 'png'],
-      data: {id: 1},
+      data: {id: 11},
       autoUpload: false,
       previewUrl: true
     };
@@ -32,9 +32,6 @@ export class SearchResultComponent implements OnInit {
     this.uploadEvents = new EventEmitter();
     this.previewData = null;
     this.listPT = this.ptService.listPT;
-    this.listPT.forEach((value, index) => {
-      console.log(value);
-    })
   }
 
   handlePreviewData(data: any): void {

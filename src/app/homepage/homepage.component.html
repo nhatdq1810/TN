@@ -15,8 +15,8 @@
     </div>
     <div *ngIf="specialDeals[0]" class="col-lg-4 col-md-4 col-sm-6">
       <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
-        <img [src]="specialDeals[0].hinhanh" alt="image" class="img-responsive">
         <a [routerLink]="['/phongtro/detail', specialDeals[0].id]">
+          <img [src]="specialDeals[0].hinhanh" alt="image" class="img-responsive">
           <div class="tm-green-gradient-bg tm-city-price-container">
             <span>{{specialDeals[0].diachi}}</span>
             <span>{{specialDeals[0].giatien | number}}</span>
@@ -26,8 +26,8 @@
     </div>
     <div *ngIf="specialDeals[1]" class="col-lg-4 col-md-4 col-sm-6">
       <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-        <img [src]="specialDeals[1].hinhanh" alt="image" class="img-responsive">
         <a [routerLink]="['/phongtro/detail', specialDeals[1].id]">
+          <img [src]="specialDeals[1].hinhanh" alt="image" class="img-responsive">
           <div class="tm-red-gradient-bg tm-city-price-container">
             <span>{{specialDeals[1].diachi}}</span>
             <span>{{specialDeals[1].giatien | number}}</span>

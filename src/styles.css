@@ -71,6 +71,7 @@ body {
 /* flexslider dots*/
 
 .flexslider .flex-control-nav {
+  width: auto;
   bottom: 0;
   top: -40px;
   text-align: left;
