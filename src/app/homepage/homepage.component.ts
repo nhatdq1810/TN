@@ -21,8 +21,8 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
   @ViewChild('flexslider2') el2: ElementRef;
 
   constructor(private ptService: PhongtroService) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   init() {
@@ -40,7 +40,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         $(this.el.nativeElement).flexslider({
           animation: 'slide',
           animationLoop: true,
-          itemWidth: 200,
+          itemWidth: 300,
           controlNav: false
         });
       });
@@ -50,7 +50,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         $(this.el2.nativeElement).flexslider({
           animation: 'slide',
           animationLoop: true,
-          itemWidth: 200,
+          itemWidth: 300,
           controlNav: false
         });
       });

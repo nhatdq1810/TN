@@ -609,7 +609,20 @@ hr {
 /* Flexslider */
 
 .flexslider .slides li {
-  border-left: 1px solid #dddddd;
+  border: 1px solid rgba(252, 221, 68, 1);
+  border-right: none;
+}
+
+.flexslider .slides li:last-of-type {
+  border-right: 1px solid rgba(252, 221, 68, 1);
+}
+
+.flexslider .slides li:hover {
+  font-weight: 600;
+}
+
+.flexslider .slides li img:hover {
+  transition: scale(1.1);
 }
 
 .flexslider .slides a {
