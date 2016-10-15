@@ -9,6 +9,10 @@ p {
   padding: 0;
 }
 
+ul {
+  list-style: none;
+}
+
 h1,
 h2,
 h3 {
@@ -24,13 +28,22 @@ p {
   font-family: 'Open Sans', sans-serif;
 }
 
+a {
+  color: #000000;
+}
+
 a:hover,
 a:focus {
+  color: #000000;
   text-decoration: none;
 }
 
 img {
   width: 100%;
+}
+
+textarea {
+  resize: none;
 }
 
 .left {
@@ -43,6 +56,19 @@ img {
 
 .black-color {
   color: #000000;
+}
+
+.white-color {
+  color: #ffffff;
+}
+
+.tm-white-bg {
+  background-color: #fff;
+}
+
+.border-lr-yellow {
+  border-right: 1px solid rgba(252, 221, 68, 1);
+  border-left: none;
 }
 
 
@@ -85,6 +111,35 @@ body {
 .flexslider .flex-control-paging li a.flex-active {
   background: rgba(252, 221, 68, 1);
 }
+
+
+/* phongtro-detail tabs */
+/*
+.phongtro-detail .nav-tabs {
+  border-bottom: 1px solid rgba(252, 221, 68, 1);
+}
+
+.phongtro-detail .nav-item {
+  border-right: 1px solid rgba(252, 221, 68, 1);
+}
+
+.phongtro-detail .tab-content {
+  margin-top: 15px;
+}
+
+.phongtro-deital .nav>li>a:focus,
+.phongtro-detail .nav>li>a:hover {
+  background-color: rgba(252, 221, 68, 1);
+  color: #ffffff;
+}
+
+.phongtro-detail .nav>li>a:hover {
+  border-color: transparent;
+}
+
+.phongtro-detail .nav>li>a:visited {
+  background-color: rgba(252, 221, 68, 1);
+}*/
 
 @media screen and (max-width: 1199px) {
   .tm-banner-title {

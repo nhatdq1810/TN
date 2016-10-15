@@ -32,6 +32,7 @@ export class SearchResultComponent implements OnInit {
     this.uploadEvents = new EventEmitter();
     this.previewData = null;
     this.listPT = this.ptService.listPT;
+    console.log(this.listPT);
   }
 
   handlePreviewData(data: any): void {

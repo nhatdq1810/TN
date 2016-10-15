@@ -3,7 +3,7 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { PhongtroService } from '../services/phongtro.service';
 
-declare var $: JQueryStatic;
+declare let $: JQueryStatic;
 
 @Component({
   selector: 'app-homepage',
@@ -17,15 +17,20 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
   private specialDeals: any[] = [];
   private hotDeals: any[];
   private newDeals: any[];
+  private quantityNewDeals: number;
+  private outOfNumber: boolean;
   @ViewChild('flexslider') el: ElementRef;
-  @ViewChild('flexslider2') el2: ElementRef;
+  // @ViewChild('flexslider2') el2: ElementRef;
 
   constructor(private ptService: PhongtroService) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   init() {
+    this.outOfNumber = false;
+    this.quantityNewDeals = 4;
+
     this.ptService.layPhongtro(1)
       .then(pt => {
         this.specialDeals[0] = pt;
@@ -34,25 +39,47 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
       .then(pt => {
         this.specialDeals[1] = pt;
       });
-    this.ptService.layPhongtroHot(10)
+    this.ptService.layPhongtroHot(6)
       .then(listPT => {
         this.hotDeals = listPT;
-        $(this.el.nativeElement).flexslider({
-          animation: 'slide',
-          animationLoop: true,
-          itemWidth: 300,
-          controlNav: false
-        });
       });
-    this.ptService.layPhongtroMoi(10)
+    this.ptService.layPhongtroMoi(this.quantityNewDeals)
       .then(listPT => {
         this.newDeals = listPT;
-        $(this.el2.nativeElement).flexslider({
-          animation: 'slide',
-          animationLoop: true,
-          itemWidth: 300,
-          controlNav: false
-        });
+      });
+  }
+
+  ngOnInit() {
+
+  }
+
+  ngAfterViewChecked() {
+    $(this.el.nativeElement).flexslider({
+      animation: 'slide',
+      animationLoop: false,
+      minItems: 2,
+      itemWidth: 250
+    });
+    // $(this.el2.nativeElement).flexslider({
+    //   animation: 'slide',
+    //   animationLoop: false,
+    //   minItems: 2,
+    //   itemWidth: 285
+    // });
+  }
+
+  getMoreHotDeals() {
+    this.ptService.layPhongtroHot(10);
+  }
+
+  getMoreNewDeals() {
+    this.quantityNewDeals += 4;
+    this.ptService.layPhongtroMoi(this.quantityNewDeals)
+      .then(listPT => {
+        this.newDeals = listPT;
+        if(this.quantityNewDeals > this.newDeals.length) {
+          this.outOfNumber = true;
+        }
       });
   }
 
@@ -235,25 +262,6 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         giatien: 5000000
       }
     ];
-  }
-
-  ngOnInit() {
-
-  }
-
-  ngAfterViewChecked() {
-    $(this.el.nativeElement).flexslider({
-      animation: 'slide',
-      animationLoop: true,
-      minItems: 2,
-      itemWidth: 255
-    });
-    $(this.el2.nativeElement).flexslider({
-      animation: 'slide',
-      animationLoop: true,
-      minItems: 2,
-      itemWidth: 255
-    });
   }
 
 }

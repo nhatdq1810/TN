@@ -12,7 +12,9 @@ export class PhongtroService {
 
   private _listTKPT: any[];
 
-  constructor(private http: Http, private router: Router) { }
+  constructor(private http: Http, private router: Router) {
+    this._listTKPT = [];
+  }
 
   get listPT(): any[]{
     return this._listTKPT;
@@ -54,6 +56,7 @@ export class PhongtroService {
         .get(Constants.apiUrl + 'phongtro/hot?gioihan=' + gioihan, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(listPT => {
+          this._listTKPT = listPT;
           resolve(listPT);
         },
         error => this.handleError('layPhongtroHot', error));

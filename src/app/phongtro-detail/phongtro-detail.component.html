@@ -1,5 +1,30 @@
-<p *ngIf="phongtro">
-  phongtro-detail works!
-  {{phongtro.id}}
-  {{phongtro.diachi}}
-</p>
+<sebm-google-map *ngIf="phongtro" [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+  <sebm-google-map-marker [latitude]="lat" [longitude]="lng">
+    <sebm-google-map-info-window [disableAutoPan]="false">
+      <strong>{{phongtro.diachi}}</strong>
+    </sebm-google-map-info-window>
+  </sebm-google-map-marker>
+</sebm-google-map>
+<div *ngIf="phongtro" class="phongtro-img container">
+  <div class="row">
+    <img [src]="phongtro.hinhanh" class="img-responsive">
+  </div>
+</div>
+<div *ngIf="phongtro" class="tm-white-bg">
+  <div class="container">
+    <div class="row phongtro-detail">
+      <ngb-tabset [activeId]="info">
+        <ngb-tab id="info" class="phongtro-info" title="THÔNG TIN">
+          <template ngbTabContent>
+            <p>{{phongtro.giatien | number}}</p>
+          </template>
+        </ngb-tab>
+        <ngb-tab class="comments" title="BÌNH LUẬN">
+          <template ngbTabContent>
+            <app-comments></app-comments>
+          </template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>
+</div>

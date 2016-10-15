@@ -56,11 +56,11 @@
   transition: all 0.3s ease;
 }
 
-.tm-banner-link:hover,
-.tm-banner-link:focus {
+.tm-banner-link:hover {
   background: rgba(252, 221, 68, 1);
   color: #000;
 }
+
 
 /* Section 1, index.html */
 
@@ -93,7 +93,7 @@
   /* IE6-9 */
 }
 
-.tm-green-gradient-bg {
+.green-gradient-bg {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2ec66b+0,2dc970+1,2ac96c+2,2bc76e+4,2bc869+5,2ac871+6,29c86c+7,28c76b+15,2bc76c+16,21bb61+73,1eb860+100 */
   background: #2ec66b;
   /* Old browsers */
@@ -108,7 +108,7 @@
   /* IE6-9 */
 }
 
-.tm-red-gradient-bg {
+.red-gradient-bg {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e97262+0,ef6865+1,ed6c5f+2,f07162+4,f17062+5,eb6f67+6,ec6c5f+7,ec6b5e+18,eb5d4f+56,e95242+100 */
   background: #e97262;
   /* Old browsers */
@@ -209,10 +209,6 @@
   left: auto;
 }
 
-.tm-white-bg {
-  background-color: #fff;
-}
-
 .tm-home-box-1 .img-responsive {
   height: 360px;
 }
@@ -278,8 +274,8 @@ hr {
 }
 
 .tm-info {
-  color: #c3c3c3;
-  padding: 10px 20px;
+  color: #000000;
+  padding: 10px 20px 0;
   text-transform: uppercase;
 }
 
@@ -606,32 +602,56 @@ hr {
 }
 
 
+/* new deals */
+
+.new-deals li {
+  margin-bottom: 15px;
+}
+
+.new-deals li h3 {
+  font-size: 20px;
+  padding: 10px 20px 0;
+}
+
+.new-deals li h3:last-of-type {
+  padding: 10px 20px;
+}
+
+.new-deals li img {
+  height: 250px;
+  transition: all .5s ease-in-out;
+}
+
+.new-deals li img:hover {
+  transform: scale(1.1);
+}
+
+
 /* Flexslider */
 
-.flexslider .slides li {
-  border: 1px solid rgba(252, 221, 68, 1);
-  border-right: none;
+.flexslider .slides div.phongtro-info:first-of-type {
+  border-left: 1px solid rgba(252, 221, 68, 1);
 }
 
-.flexslider .slides li:last-of-type {
-  border-right: 1px solid rgba(252, 221, 68, 1);
+.phongtro-img {
+  overflow: hidden;
 }
 
-.flexslider .slides li:hover {
-  font-weight: 600;
+.flexslider .slides li img {
+  transition: all .5s ease-in-out;
 }
 
 .flexslider .slides li img:hover {
-  transition: scale(1.1);
-}
-
-.flexslider .slides a {
-  color: #333333;
+  transform: scale(1.1);
 }
 
 .flexslider .slides h3 {
   font-size: 20px;
-  margin: 10px 20px 0;
+  padding: 10px 20px 0;
+}
+
+.flexslider .slides h3:last-of-type {
+  padding: 10px 20px;
 }
 
 .flex-caption,

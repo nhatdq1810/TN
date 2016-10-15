@@ -1,3 +1,4 @@
+let Constants = require('./resources/constants');
 import './resources/rxjs-extensions';
 import { UserService } from './services/user.service';
 import { PhongtroService } from './services/phongtro.service';
@@ -11,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
 import { Nouislider } from 'ng2-nouislider';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -22,6 +24,7 @@ import { CreatePhongtroComponent } from './create-phongtro/create-phongtro.compo
 import { Error404Component } from './404/404.component';
 import { LoginComponent } from './login/login.component';
 import { PhongtroDetailComponent } from './phongtro-detail/phongtro-detail.component';
+import { CommentsComponent } from './comments/comments.component';
 
 
 @NgModule({
@@ -37,7 +40,8 @@ import { PhongtroDetailComponent } from './phongtro-detail/phongtro-detail.compo
     UPLOAD_DIRECTIVES,
     Error404Component,
     LoginComponent,
-    PhongtroDetailComponent
+    PhongtroDetailComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,10 @@ import { PhongtroDetailComponent } from './phongtro-detail/phongtro-detail.compo
     ReactiveFormsModule,
     HttpModule,
     NgbModule,
-    routing
+    routing,
+    AgmCoreModule.forRoot({
+      apiKey: Constants.googleApiKey
+    })
   ],
   providers: [
     UserService,

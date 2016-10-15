@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Http } from '@angular/http';
 import { PhongtroService } from '../services/phongtro.service';
 import { Phongtro } from '../models/phongtro';
+
+let Constants = require('../resources/constants');
 
 @Component({
   selector: 'app-phongtro-detail',
@@ -11,8 +14,11 @@ import { Phongtro } from '../models/phongtro';
 export class PhongtroDetailComponent implements OnInit {
 
   private phongtro: Phongtro;
+  private lat: number;
+  private lng: number;
+  private zoom: number;
 
-  constructor(private ptService: PhongtroService, private route: ActivatedRoute) {
+  constructor(private ptService: PhongtroService, private route: ActivatedRoute, private http: Http) {
     this.init();
   }
 
@@ -23,11 +29,24 @@ export class PhongtroDetailComponent implements OnInit {
     })
     this.ptService.layPhongtro(id).then((pt: Phongtro) => {
       this.phongtro = pt;
+      this.getLatLng();
+      this.zoom = 18;
     });
   }
 
-  ngOnInit() {
-    console.log(this.phongtro);
+  getLatLng() {
+    let addr = '864 Lê Đức Thọ, phường 16, Gò Vấp, Hồ Chí Minh';
+    let url = `${Constants.geocodeUrl}${addr},ViệtNam&key=${Constants.googleApiKey}`;
+
+    this.http.get(url)
+      .map(resp => resp.json())
+      .subscribe(resp => {
+        let location = resp.results[0].geometry.location;
+        this.lat = location.lat;
+        this.lng = location.lng;
+      });
   }
 
+  ngOnInit() {
+  }
 }

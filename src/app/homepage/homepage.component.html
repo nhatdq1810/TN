@@ -17,7 +17,7 @@
       <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
         <a [routerLink]="['/phongtro/detail', specialDeals[0].id]">
           <img [src]="specialDeals[0].hinhanh" alt="image" class="img-responsive">
-          <div class="tm-green-gradient-bg tm-city-price-container">
+          <div class="tm-green-gradient-bg green-gradient-bg tm-city-price-container">
             <span>{{specialDeals[0].diachi}}</span>
             <span>{{specialDeals[0].giatien | number}}</span>
           </div>
@@ -28,7 +28,7 @@
       <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
         <a [routerLink]="['/phongtro/detail', specialDeals[1].id]">
           <img [src]="specialDeals[1].hinhanh" alt="image" class="img-responsive">
-          <div class="tm-red-gradient-bg tm-city-price-container">
+          <div class="tm-red-gradient-bg red-gradient-bg tm-city-price-container">
             <span>{{specialDeals[1].diachi}}</span>
             <span>{{specialDeals[1].giatien | number}}</span>
           </div>
@@ -50,26 +50,27 @@
       </div>
     </div>
     <div class="row flexslider" #flexslider>
-      <!-- <div class="" > -->
+      <!-- <a [routerLink]="['/search/result']" (click)="getMoreHotDeals()">Xem thêm...</a> -->
       <ul class="slides">
-        <li *ngFor="let item of hotDeals">
+        <li *ngFor="let item of hotDeals" class="">
           <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12"> -->
           <!-- <div class="tm-home-box-2"> -->
           <a [routerLink]="['/phongtro/detail', item.id]">
-            <img [src]="item.hinhanh" alt="image" class="img-responsive">
-            <h3>{{item.diachi | uppercase}}</h3>
-            <p class="tm-info">
-              <span>Phòng: </span>
-              <span class="black-color">{{item.gioitinh}}</span>
-            </p>
-            <p class="tm-info">
-              <span>Số lượng: </span>
-              <span class="black-color">{{item.songuoi}}</span>
-            </p>
-            <p class="tm-info">
-              <span>Giá: </span>
-              <span class="black-color">{{item.giatien | number}}</span>
-            </p>
+            <div class="phongtro-img">
+              <img [src]="item.hinhanh" alt="image" class="img-responsive">
+            </div>
+            <div class="phongtro-info red-gradient-bg border-lr-yellow">
+              <h3 class="white-color">{{item.diachi | uppercase}}</h3>
+              <p class="tm-info">
+                <span>Phòng: </span>
+                <span class="white-color">{{item.gioitinh}}</span>
+              </p>
+              <p class="tm-info">
+                <span>Số lượng: </span>
+                <span class="white-color">{{item.songuoi}}</span>
+              </p>
+              <h3 class="white-color">{{item.giatien | number}}</h3>
+            </div>
             <!-- <div class="tm-home-box-2-container">
               <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
               <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Xem thêm</span></a>
@@ -80,7 +81,6 @@
           <!-- </div> -->
         </li>
       </ul>
-      <!-- </div> -->
     </div>
   </div>
 </section>
@@ -99,38 +99,68 @@
         </div>
       </div>
     </div>
-    <div class="row flexslider" #flexslider2>
-      <!-- <div class="" > -->
-      <ul class="slides">
-        <li *ngFor="let item of newDeals">
-          <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12"> -->
-          <!-- <div class="tm-home-box-2"> -->
+    <div class="row">
+      <ul class="new-deals">
+        <li *ngFor="let item of newDeals" class="col-lg-3 col-md-3 col-xs-6">
           <a [routerLink]="['/phongtro/detail', item.id]">
-            <img [src]="item.hinhanh" alt="image" class="img-responsive">
-            <h3>{{item.diachi | uppercase}}</h3>
-            <p class="tm-info">
-              <span>Phòng: </span>
-              <span class="black-color">{{item.gioitinh}}</span>
-            </p>
-            <p class="tm-info">
-              <span>Số lượng: </span>
-              <span class="black-color">{{item.songuoi}}</span>
-            </p>
-            <p class="tm-info">
-              <span>Giá: </span>
-              <span class="black-color">{{item.giatien | number}}</span>
-            </p>
-            <!-- <div class="tm-home-box-2-container">
+            <div class="phongtro-img">
+              <img [src]="item.hinhanh" alt="image" class="img-responsive">
+            </div>
+            <div class="phongtro-info green-gradient-bg">
+              <h3 class="white-color">{{item.diachi | uppercase}}</h3>
+              <p class="tm-info">
+                <span>Phòng: </span>
+                <span class="white-color">{{item.gioitinh}}</span>
+              </p>
+              <p class="tm-info">
+                <span>Số lượng: </span>
+                <span class="white-color">{{item.songuoi}}</span>
+              </p>
+              <!-- <p class="tm-info">
+                <span>Giá: </span>
+                <span class="white-color">{{item.giatien | number}}</span>
+              </p> -->
+              <h3 class="white-color">{{item.giatien | number}}</h3>
+            </div>
+          </a>
+        </li>
+        <li class="col-lg-3 col-md-3 col-xs-6" *ngIf="!outOfNumber">
+          <a [routerLink]="['/']" class="tm-banner-link" (click)="getMoreNewDeals()">Xem thêm...</a>
+        </li>
+      </ul>
+      <!-- <ul class="slides">
+        <li *ngFor="let item of newDeals">
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12"> -->
+      <!-- <div class="tm-home-box-2"> -->
+      <!-- <a [routerLink]="['/phongtro/detail', item.id]">
+            <div class="phongtro-img">
+              <img [src]="item.hinhanh" alt="image" class="img-responsive">
+            </div>
+            <div class="phongtro-info">
+              <h3>{{item.diachi | uppercase}}</h3>
+              <p class="tm-info">
+                <span>Phòng: </span>
+                <span class="black-color">{{item.gioitinh}}</span>
+              </p>
+              <p class="tm-info">
+                <span>Số lượng: </span>
+                <span class="black-color">{{item.songuoi}}</span>
+              </p>
+              <p class="tm-info">
+                <span>Giá: </span>
+                <span class="black-color">{{item.giatien | number}}</span>
+              </p>
+            </div> -->
+      <!-- <div class="tm-home-box-2-container">
               <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
               <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Xem thêm</span></a>
               <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
             </div> -->
-          </a>
-          <!-- </div> -->
-          <!-- </div> -->
-        </li>
-      </ul>
+      <!-- </a> -->
       <!-- </div> -->
+      <!-- </div> -->
+      <!-- </li> -->
+      <!-- </ul> -->
     </div>
     <!-- <div class="col-lg-6" *ngFor="let item of newDeals">
         <div class="tm-home-box-3">
