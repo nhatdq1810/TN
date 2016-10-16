@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
 import { Nouislider } from 'ng2-nouislider';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
@@ -57,7 +57,8 @@ import { CommentsComponent } from './comments/comments.component';
   providers: [
     UserService,
     PhongtroService,
-    LoggedInService
+    LoggedInService,
+    NgbTabsetConfig
   ],
   bootstrap: [AppComponent]
 })

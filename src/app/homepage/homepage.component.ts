@@ -1,6 +1,7 @@
 /// <reference path="../../../node_modules/@types/jquery/index.d.ts" />
 
 import { Component, OnInit, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
+import { Router } from '@angular/router';
 import { PhongtroService } from '../services/phongtro.service';
 
 declare let $: JQueryStatic;
@@ -18,18 +19,17 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
   private hotDeals: any[];
   private newDeals: any[];
   private quantityNewDeals: number;
-  private outOfNumber: boolean;
+  private searchLink: string[] = [];
   @ViewChild('flexslider') el: ElementRef;
-  // @ViewChild('flexslider2') el2: ElementRef;
 
-  constructor(private ptService: PhongtroService) {
+  constructor(private ptService: PhongtroService, private router: Router) {
     // this.fakeInit();
     this.init();
   }
 
   init() {
-    this.outOfNumber = false;
-    this.quantityNewDeals = 4;
+    this.quantityNewDeals = 3;
+    this.searchLink[0] = ('/');
 
     this.ptService.layPhongtro(1)
       .then(pt => {
@@ -57,15 +57,9 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
     $(this.el.nativeElement).flexslider({
       animation: 'slide',
       animationLoop: false,
-      minItems: 2,
-      itemWidth: 250
+      itemWidth: 350,
+      itemMargin: 10
     });
-    // $(this.el2.nativeElement).flexslider({
-    //   animation: 'slide',
-    //   animationLoop: false,
-    //   minItems: 2,
-    //   itemWidth: 285
-    // });
   }
 
   getMoreHotDeals() {
@@ -73,14 +67,17 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
   }
 
   getMoreNewDeals() {
-    this.quantityNewDeals += 4;
+    this.quantityNewDeals += 3;
+
     this.ptService.layPhongtroMoi(this.quantityNewDeals)
       .then(listPT => {
         this.newDeals = listPT;
-        if(this.quantityNewDeals > this.newDeals.length) {
-          this.outOfNumber = true;
-        }
       });
+
+    if(this.quantityNewDeals >= 12) {
+      this.searchLink[0] = '/search/result';
+    }
+
   }
 
   fakeInit() {

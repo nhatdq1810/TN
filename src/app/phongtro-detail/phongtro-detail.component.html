@@ -1,4 +1,4 @@
-<sebm-google-map *ngIf="phongtro" [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+<sebm-google-map *ngIf="phongtro" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
   <sebm-google-map-marker [latitude]="lat" [longitude]="lng">
     <sebm-google-map-info-window [disableAutoPan]="false">
       <strong>{{phongtro.diachi}}</strong>
@@ -13,8 +13,8 @@
 <div *ngIf="phongtro" class="tm-white-bg">
   <div class="container">
     <div class="row phongtro-detail">
-      <ngb-tabset [activeId]="info">
-        <ngb-tab id="info" class="phongtro-info" title="THÔNG TIN">
+      <ngb-tabset>
+        <ngb-tab class="phongtro-info" title="THÔNG TIN">
           <template ngbTabContent>
             <p>{{phongtro.giatien | number}}</p>
           </template>

@@ -69,6 +69,7 @@ export class PhongtroService {
         .get(Constants.apiUrl + 'phongtro/moi?gioihan=' + gioihan, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(listPT => {
+          this._listTKPT = listPT;
           resolve(listPT);
         },
         error => this.handleError('layPhongtroMoi', error));

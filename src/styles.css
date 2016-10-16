@@ -29,6 +29,7 @@ p {
 }
 
 a {
+  outline: none;
   color: #000000;
 }
 
@@ -62,6 +63,10 @@ textarea {
   color: #ffffff;
 }
 
+.price-color {
+  color: #0ba;
+}
+
 .tm-white-bg {
   background-color: #fff;
 }
@@ -71,6 +76,9 @@ textarea {
   border-left: none;
 }
 
+.border-b-dotted {
+  border-bottom: 2px dotted #FCDD44;
+}
 
 /* Homepage */
 
@@ -114,6 +122,8 @@ body {
 
 
 /* phongtro-detail tabs */
+
+
 /*
 .phongtro-detail .nav-tabs {
   border-bottom: 1px solid rgba(252, 221, 68, 1);
