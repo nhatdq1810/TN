@@ -1,0 +1,146 @@
+<sebm-google-map *ngIf="phongtro" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
+  <sebm-google-map-marker [latitude]="lat" [longitude]="lng">
+    <sebm-google-map-info-window [disableAutoPan]="false">
+      <strong>{{phongtro.diachi}}</strong>
+    </sebm-google-map-info-window>
+  </sebm-google-map-marker>
+</sebm-google-map>
+<div *ngIf="phongtro" class="phongtro-detail container">
+  <div class="row">
+    <div class="col-lg-9 col-md-9">
+      <div class="phongtro-title">
+        <h1>{{phongtro.diachi}}</h1>
+        <p>{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
+      </div>
+      <div class="phongtro-header">
+        <div class="phongtro-price">
+          <strong>{{phongtro.giatien | number}}</strong>
+        </div>
+        <div class="phongtro-social">
+          <span>Share: </span>
+          <a [routerLink]="['/']"><i class="fa fa-facebook"></i></a>
+          <a [routerLink]="['/']"><i class="fa fa-instagram"></i></a>
+          <a [routerLink]="['/']"><i class="fa fa-google-plus"></i></a>
+        </div>
+      </div>
+      <div class="phongtro-img">
+        <img [src]="phongtro.hinhanh" class="img-responsive">
+      </div>
+      <div class="phongtro-info">
+        <accordion [closeOthers]="true">
+          <accordion-group *ngIf="user" heading="LIÊN HỆ">
+            <ul>
+              <li>
+                <p>Họ tên</p>
+                <strong>{{user.hoten}}</strong>
+              </li>
+              <li *ngIf="user.sodt && user.sodt !== ''">
+                <p>ĐTDĐ</p>
+                <strong>{{user.sodt}}</strong>
+              </li>
+              <li>
+                <p>Email</p>
+                <strong>{{user.email}}</strong>
+              </li>
+              <li *ngIf="user.facebook && user.facebook !== ''">
+                <p>Facebook</p>
+                <strong>{{user.facebook}}</strong>
+              </li>
+              <li *ngIf="user.skype && user.skype !== ''">
+                <p>Skype</p>
+                <strong>{{user.skype}}</strong>
+              </li>
+            </ul>
+          </accordion-group>
+          <accordion-group *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0" heading="ĐẶT CỌC">
+            <div>{{phongtro.tiencoc}}</div>
+          </accordion-group>
+          <accordion-group class="extra-info" heading="THÔNG TIN" [isOpen]="true">
+            <ul class="row">
+              <li>
+                <div class="border-b-dotted">
+                  <i class="fa fa-building-o"></i>
+                  <p>Diện tích (m<sup>2</sup>)</p>
+                </div>
+                <div class="phongtro-value">
+                  <strong>{{phongtro.dientich | number}}</strong>
+                </div>
+              </li>
+              <li>
+                <div class="border-b-dotted">
+                  <i *ngIf="phongtro.gioitinh === 'nam'" class="fa fa-male"></i>
+                  <i *ngIf="phongtro.gioitinh === 'nữ'" class="fa fa-female"></i>
+                  <p>Số lượng</p>
+                </div>
+                <div class="phongtro-value">
+                  <strong>{{phongtro.songuoi}}</strong>
+                </div>
+              </li>
+              <li *ngIf="phongtro.truong && phongtro.truong !== ''">
+                <div class="border-b-dotted">
+                  <i class="fa fa-university"></i>
+                  <p>Gần trường</p>
+                </div>
+                <div class="phongtro-value">
+                  <strong>{{phongtro.truong | uppercase}}</strong>
+                </div>
+              </li>
+              <li *ngIf="phongtro.nganh && phongtro.nganh !== ''">
+                <div class="border-b-dotted">
+                  <i class="fa fa-graduation-cap"></i>
+                  <p>Cùng ngành</p>
+                </div>
+                <div class="phongtro-value">
+                  <strong>{{phongtro.nganh | uppercase}}</strong>
+                </div>
+              </li>
+              <li *ngIf="phongtro.khoa && phongtro.khoa !== ''">
+                <div class="border-b-dotted">
+                  <i class="fa fa-clock-o"></i>
+                  <p>Cùng niên khóa</p>
+                </div>
+                <div class="phongtro-value">
+                  <strong>{{phongtro.khoa | uppercase}}</strong>
+                </div>
+              </li>
+              <li>
+                <div class="border-b-dotted">
+                  <i class="fa fa-wifi"></i>
+                  <p>Wifi</p>
+                </div>
+                <div class="phongtro-value">
+                  <strong *ngIf="phongtro.wifi === 0">Không</strong>
+                  <strong *ngIf="phongtro.wifi === 1">Có</strong>
+                </div>
+              </li>
+              <li>
+                <div class="border-b-dotted">
+                  <i class="fa fa-key"></i>
+                  <p>Ở với chủ</p>
+                </div>
+                <div class="phongtro-value">
+                  <strong *ngIf="phongtro.chu === 0">Không</strong>
+                  <strong *ngIf="phongtro.chu === 1">Có</strong>
+                </div>
+              </li>
+              <li *ngIf="phongtro.ghichu && phongtro.ghichu !== ''">
+                <div class="border-b-dotted">
+                  <i class="fa fa-sticky-note"></i>
+                  <p>Ghi chú</p>
+                </div>
+                <div class="phongtro-value">
+                  <strong>{{phongtro.ghichu}}</strong>
+                </div>
+              </li>
+            </ul>
+          </accordion-group>
+          <accordion-group class="comments" heading="BÌNH LUẬN">
+            <app-comments></app-comments>
+          </accordion-group>
+        </accordion>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3">
+    </div>
+  </div>
+</div>

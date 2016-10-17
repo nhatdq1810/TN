@@ -8,23 +8,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgbModule, NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { routing } from './app.routing';
 import { Nouislider } from 'ng2-nouislider';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { FormValidationComponent } from './form-validation/form-validation.component';
-import { SearchResultComponent } from './search-result/search-result.component';
-import { CreatePhongtroComponent } from './create-phongtro/create-phongtro.component';
-import { Error404Component } from './404/404.component';
-import { LoginComponent } from './login/login.component';
-import { PhongtroDetailComponent } from './phongtro-detail/phongtro-detail.component';
-import { CommentsComponent } from './comments/comments.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { FormValidationComponent } from './components/form-validation/form-validation.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
+import { CreatePhongtroComponent } from './components/create-phongtro/create-phongtro.component';
+import { Error404Component } from './components/404/404.component';
+import { LoginComponent } from './components/login/login.component';
+import { PhongtroDetailComponent } from './components/phongtro-detail/phongtro-detail.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 
 @NgModule({
@@ -48,7 +48,7 @@ import { CommentsComponent } from './comments/comments.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    NgbModule,
+    AccordionModule,
     routing,
     AgmCoreModule.forRoot({
       apiKey: Constants.googleApiKey
@@ -57,8 +57,7 @@ import { CommentsComponent } from './comments/comments.component';
   providers: [
     UserService,
     PhongtroService,
-    LoggedInService,
-    NgbTabsetConfig
+    LoggedInService
   ],
   bootstrap: [AppComponent]
 })

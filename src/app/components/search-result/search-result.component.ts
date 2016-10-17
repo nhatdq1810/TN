@@ -1,20 +1,20 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Phongtro } from '../models/phongtro';
-import { PhongtroService } from '../services/phongtro.service';
+import { Phongtro } from '../../models/phongtro';
+import { PhongtroService } from '../../services/phongtro.service';
 
-let Constants = require('../resources/constants');
 
 @Component({
-  selector: 'app-create-phongtro',
-  templateUrl: './create-phongtro.component.html',
-  styleUrls: ['./create-phongtro.component.css']
+  selector: 'app-search-result',
+  templateUrl: './search-result.component.html',
+  styleUrls: ['./search-result.component.css']
 })
-export class CreatePhongtroComponent {
+export class SearchResultComponent implements OnInit {
 
   private hasBaseDropZoneOver: boolean = false;
   private options: Object;
   private previewData: any;
   private uploadEvents: EventEmitter<any>;
+  private listPT: Phongtro[];
 
   constructor(private ptService: PhongtroService) {
   }
@@ -24,13 +24,15 @@ export class CreatePhongtroComponent {
       url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
       filterExtensions: true,
       allowedExtensions: ['jpg', 'jpeg', 'png'],
-      data: { id: 10 },
+      data: {id: 11},
       autoUpload: false,
       previewUrl: true
     };
 
     this.uploadEvents = new EventEmitter();
     this.previewData = null;
+    this.listPT = this.ptService.listPT;
+    console.log(this.listPT);
   }
 
   handlePreviewData(data: any): void {
@@ -41,13 +43,12 @@ export class CreatePhongtroComponent {
     this.uploadEvents.emit('startUpload');
   }
 
-  fileOverBase(e: any): void {
+  fileOverBase(e: any): void{
     this.hasBaseDropZoneOver = e;
   }
 
-  deleteImage(): void {
+  deleteImage(): void{
     this.previewData = null;
     this.hasBaseDropZoneOver = false;
   }
-
 }

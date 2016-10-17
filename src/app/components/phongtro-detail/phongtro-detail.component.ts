@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http';
-import { PhongtroService } from '../services/phongtro.service';
-import { Phongtro } from '../models/phongtro';
+import { PhongtroService } from '../../services/phongtro.service';
+import { UserService } from '../../services/user.service';
+import { Phongtro } from '../../models/phongtro';
+import { User } from '../../models/user';
 
-let Constants = require('../resources/constants');
+let Constants = require('../../resources/constants');
 
 @Component({
   selector: 'app-phongtro-detail',
@@ -14,11 +16,13 @@ let Constants = require('../resources/constants');
 export class PhongtroDetailComponent implements OnInit {
 
   private phongtro: Phongtro;
+  private user: User;
   private lat: number;
   private lng: number;
   private zoom: number;
 
-  constructor(private ptService: PhongtroService, private route: ActivatedRoute, private http: Http) {
+  constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http) {
+    // this.fakeInit();
     this.init();
   }
 
@@ -31,6 +35,10 @@ export class PhongtroDetailComponent implements OnInit {
       this.phongtro = pt;
       this.getLatLng();
       this.zoom = 18;
+      this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
+        console.log(usr);
+        this.user = usr;
+      })
     });
   }
 
@@ -48,5 +56,28 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  fakeInit() {
+    this.getLatLng();
+    this.zoom = 18;
+    this.phongtro = {
+      id: 3,
+      hinhanh: 'assets/img/index-03.jpg',
+      diachi: '123 abc P.15 Quận Gò Vấp',
+      songuoi: 2,
+      dientich: 2500,
+      gioitinh: 'nam',
+      nganh: '',
+      khoa: '',
+      wifi: 0,
+      chu: 0,
+      ghichu: '',
+      userID: 1,
+      tiencoc: 0,
+      truong: 'PTIT',
+      ngaydang: '01/10/2016',
+      giatien: 2000000
+    };
   }
 }

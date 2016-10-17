@@ -1,8 +1,8 @@
-/// <reference path="../../../node_modules/@types/jquery/index.d.ts" />
+/// <reference path="../../../../node_modules/@types/jquery/index.d.ts" />
 
 import { Component, OnInit, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
-import { PhongtroService } from '../services/phongtro.service';
+import { PhongtroService } from '../../services/phongtro.service';
 
 declare let $: JQueryStatic;
 
@@ -81,6 +81,9 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
   }
 
   fakeInit() {
+    this.quantityNewDeals = 3;
+    this.searchLink[0] = ('/');
+
     this.specialDeals = [
       {
         id: 1,

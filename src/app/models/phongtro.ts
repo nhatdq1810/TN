@@ -6,6 +6,7 @@ export class Phongtro {
   songuoi: number;
   hinhanh: string;
   tiencoc: number;
+  dientich: number;
   gioitinh: string;
   truong: string;
   nganh: string;

@@ -35,6 +35,7 @@ a {
 
 a:hover,
 a:focus {
+  outline: none;
   color: #000000;
   text-decoration: none;
 }
@@ -80,6 +81,7 @@ textarea {
   border-bottom: 2px dotted #FCDD44;
 }
 
+
 /* Homepage */
 
 body {
@@ -87,7 +89,7 @@ body {
 }
 
 .tm-gray-bg {
-  background-color: #E5E5E5;
+  background-color: #f6f6f6;
 }
 
 
@@ -121,35 +123,16 @@ body {
 }
 
 
-/* phongtro-detail tabs */
+/* accordion */
 
-
-/*
-.phongtro-detail .nav-tabs {
-  border-bottom: 1px solid rgba(252, 221, 68, 1);
-}
-
-.phongtro-detail .nav-item {
-  border-right: 1px solid rgba(252, 221, 68, 1);
-}
-
-.phongtro-detail .tab-content {
-  margin-top: 15px;
-}
-
-.phongtro-deital .nav>li>a:focus,
-.phongtro-detail .nav>li>a:hover {
-  background-color: rgba(252, 221, 68, 1);
+accordion-group .panel-heading:focus,
+accordion-group .panel-heading:hover,
+accordion-group.panel-open .panel-heading,
+accordion-group.panel-open .panel-title {
   color: #ffffff;
+  font-weight: 600;
+  background-color: #fcdd44;
 }
-
-.phongtro-detail .nav>li>a:hover {
-  border-color: transparent;
-}
-
-.phongtro-detail .nav>li>a:visited {
-  background-color: rgba(252, 221, 68, 1);
-}*/
 
 @media screen and (max-width: 1199px) {
   .tm-banner-title {

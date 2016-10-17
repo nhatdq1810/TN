@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { UserService } from '../services/user.service';
-import { PhongtroService } from '../services/phongtro.service';
-import { Phongtro } from '../models/phongtro';
+import { UserService } from '../../services/user.service';
+import { PhongtroService } from '../../services/phongtro.service';
+import { Phongtro } from '../../models/phongtro';
 
 
 @Component({

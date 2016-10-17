@@ -56,4 +56,15 @@ export class UserService {
     })
   }
 
+  layThongtinUserID(id: number): Promise<User> {
+    return new Promise(resolve => {
+      this.http.get(Constants.apiUrl + 'user/id/' + id, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(user => {
+          resolve(user);
+        },
+        err => this.handleError('layThongtinUserID', err));
+    })
+  }
+
 }

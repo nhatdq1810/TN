@@ -1,0 +1,78 @@
+sebm-google-map {
+  height: 300px;
+}
+
+.phongtro-detail [class*="phongtro-"] {
+  margin: 20px 0;
+}
+
+.phongtro-detail .phongtro-social [class*="fa"] {
+  color: #fcdd44;
+}
+
+.phongtro-detail .phongtro-social [class*="fa"]:focus,
+.phongtro-detail .phongtro-social [class*="fa"]:hover {
+  color: #c7254e;
+}
+
+.phongtro-title {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.phongtro-title p {
+  color: #838383;
+  margin: 10px 5px;
+}
+
+.phongtro-header {
+  overflow: hidden;
+}
+
+.phongtro-header div {
+  margin: 0;
+}
+
+.phongtro-price {
+  float: left;
+}
+
+.phongtro-price strong {
+  border: 1px solid #d6d6d6;
+  background: #ffffff;
+  font-size: 40px;
+  color: #c7254e;
+  padding: 20px;
+}
+
+.phongtro-social {
+  float: right;
+}
+
+.phongtro-social a {
+  display: inline-block;
+  font-size: 20px;
+  margin: 0 5px;
+}
+
+.phongtro-img .img-responsive {
+  height: 450px;
+}
+
+.phongtro-info .extra-info li {
+  display: inline-block;
+  text-align: center;
+  width: 135px;
+  padding: 10px;
+  margin: 5px 15px;
+  font-size: 16px;
+  border: 1px solid #dddddd;
+}
+
+.phongtro-info .extra-info .border-b-dotted {
+  padding-bottom: 10px;
+}
+
+.phongtro-info .extra-info .phongtro-value {
+  padding-top: 10px;
+  margin: 0;
+}
