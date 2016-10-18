@@ -16,11 +16,18 @@ sebm-google-map {
 }
 
 .phongtro-title {
+  overflow: hidden;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.phongtro-title h1 {
+  font-weight: 600;
+}
+
 .phongtro-title p {
+  float: right;
   color: #838383;
+  opacity: .7;
   margin: 10px 5px;
 }
 
@@ -51,11 +58,38 @@ sebm-google-map {
 .phongtro-social a {
   display: inline-block;
   font-size: 20px;
-  margin: 0 5px;
+  margin: 0 15px;
 }
 
 .phongtro-img .img-responsive {
   height: 450px;
+}
+
+.user-info .user-name {
+  text-align: center;
+}
+
+.user-info .user-name strong {
+  font-size: 30px;
+}
+
+.user-info .user-detail {
+  margin-top: 10px;
+}
+
+.phongtro-info .user-detail li {
+  display: inline-block;
+  text-align: center;
+  width: calc((100%/4) - 40px);
+  font-size: 16px;
+  margin: 0 15px;
+}
+
+.phongtro-info .user-detail li i {
+  display: block;
+  color: #c7254e;
+  font-size: 25px;
+  margin-bottom: 10px;
 }
 
 .phongtro-info .extra-info li {
@@ -66,6 +100,11 @@ sebm-google-map {
   margin: 5px 15px;
   font-size: 16px;
   border: 1px solid #dddddd;
+}
+
+.phongtro-info .extra-info i {
+  color: #c7254e;
+  font-size: 25px;
 }
 
 .phongtro-info .extra-info .border-b-dotted {

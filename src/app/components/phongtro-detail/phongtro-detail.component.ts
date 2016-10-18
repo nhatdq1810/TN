@@ -22,8 +22,8 @@ export class PhongtroDetailComponent implements OnInit {
   private zoom: number;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   init() {
@@ -36,20 +36,19 @@ export class PhongtroDetailComponent implements OnInit {
       this.getLatLng();
       this.zoom = 18;
       this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
-        console.log(usr);
         this.user = usr;
       })
     });
   }
 
   getLatLng() {
-    let addr = '864 Lê Đức Thọ, phường 16, Gò Vấp, Hồ Chí Minh';
-    let url = `${Constants.geocodeUrl}${addr},ViệtNam&key=${Constants.googleApiKey}`;
+    let url = `${Constants.geocodeUrl}${this.phongtro.diachi},ViệtNam&key=${Constants.googleApiKey}`;
 
     this.http.get(url)
       .map(resp => resp.json())
       .subscribe(resp => {
         let location = resp.results[0].geometry.location;
+        console.log(resp);
         this.lat = location.lat;
         this.lng = location.lng;
       });
@@ -59,12 +58,10 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   fakeInit() {
-    this.getLatLng();
-    this.zoom = 18;
     this.phongtro = {
       id: 3,
       hinhanh: 'assets/img/index-03.jpg',
-      diachi: '123 abc P.15 Quận Gò Vấp',
+      diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
       songuoi: 2,
       dientich: 2500,
       gioitinh: 'nam',
@@ -79,5 +76,19 @@ export class PhongtroDetailComponent implements OnInit {
       ngaydang: '01/10/2016',
       giatien: 2000000
     };
+    this.user = {
+      diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
+      dotincay: 1,
+      email: 'abc@gmail.com',
+      facebook: 'https://facebook.com/abc',
+      skype: 'abc@outlook.com',
+      hoten: 'abc',
+      id: 1,
+      password: '123456',
+      sodt: '0123456789',
+      username: 'abcd'
+    };
+    this.getLatLng();
+    this.zoom = 18;
   }
 }

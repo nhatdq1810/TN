@@ -28,29 +28,30 @@
       </div>
       <div class="phongtro-info">
         <accordion [closeOthers]="true">
-          <accordion-group *ngIf="user" heading="LIÊN HỆ">
-            <ul>
-              <li>
-                <p>Họ tên</p>
-                <strong>{{user.hoten}}</strong>
-              </li>
-              <li *ngIf="user.sodt && user.sodt !== ''">
-                <p>ĐTDĐ</p>
-                <strong>{{user.sodt}}</strong>
-              </li>
-              <li>
-                <p>Email</p>
-                <strong>{{user.email}}</strong>
-              </li>
-              <li *ngIf="user.facebook && user.facebook !== ''">
-                <p>Facebook</p>
-                <strong>{{user.facebook}}</strong>
-              </li>
-              <li *ngIf="user.skype && user.skype !== ''">
-                <p>Skype</p>
-                <strong>{{user.skype}}</strong>
-              </li>
-            </ul>
+          <accordion-group *ngIf="user" heading="LIÊN HỆ" class="user-info">
+            <div class="row user-name border-b-dotted">
+              <strong>{{user.hoten}}</strong>
+            </div>
+            <div class="user-detail">
+              <ul class="row">
+                <li *ngIf="user.sodt && user.sodt !== ''">
+                  <i class="fa fa-mobile"></i>
+                  <strong>{{user.sodt}}</strong>
+                </li>
+                <li>
+                  <i class="fa fa-envelope-o"></i>
+                  <strong>{{user.email}}</strong>
+                </li>
+                <li *ngIf="user.facebook && user.facebook !== ''">
+                  <i class="fa fa-facebook"></i>
+                  <strong>{{user.facebook}}</strong>
+                </li>
+                <li *ngIf="user.skype && user.skype !== ''">
+                  <i class="fa fa-skype"></i>
+                  <strong>{{user.skype}}</strong>
+                </li>
+              </ul>
+            </div>
           </accordion-group>
           <accordion-group *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0" heading="ĐẶT CỌC">
             <div>{{phongtro.tiencoc}}</div>
