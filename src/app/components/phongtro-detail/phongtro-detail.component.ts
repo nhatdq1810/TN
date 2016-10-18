@@ -79,7 +79,7 @@ export class PhongtroDetailComponent implements OnInit {
       diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
       dotincay: 1,
       email: 'abc@gmail.com',
-      facebook: 'https://facebook.com/abc',
+      facebook: 'https://www.facebook.com/abc',
       skype: 'sutrix.nhat.dang',
       // skype: 'dangquangnhat18101994',
       hoten: 'abc',
