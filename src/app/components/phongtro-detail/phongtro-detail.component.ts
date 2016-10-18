@@ -22,8 +22,8 @@ export class PhongtroDetailComponent implements OnInit {
   private zoom: number;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   init() {
@@ -48,7 +48,6 @@ export class PhongtroDetailComponent implements OnInit {
       .map(resp => resp.json())
       .subscribe(resp => {
         let location = resp.results[0].geometry.location;
-        console.log(resp);
         this.lat = location.lat;
         this.lng = location.lng;
       });
@@ -81,7 +80,8 @@ export class PhongtroDetailComponent implements OnInit {
       dotincay: 1,
       email: 'abc@gmail.com',
       facebook: 'https://facebook.com/abc',
-      skype: 'abc@outlook.com',
+      skype: 'sutrix.nhat.dang',
+      // skype: 'dangquangnhat18101994',
       hoten: 'abc',
       id: 1,
       password: '123456',

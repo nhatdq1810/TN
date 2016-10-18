@@ -10,13 +10,13 @@
     <div class="col-lg-9 col-md-9">
       <div class="phongtro-title">
         <h1>{{phongtro.diachi}}</h1>
-        <p>{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
+        <p class="right">{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
       </div>
       <div class="phongtro-header">
-        <div class="phongtro-price">
+        <div class="phongtro-price left">
           <strong>{{phongtro.giatien | number}}</strong>
         </div>
-        <div class="phongtro-social">
+        <div class="phongtro-social right">
           <span>Share: </span>
           <a [routerLink]="['/']"><i class="fa fa-facebook"></i></a>
           <a [routerLink]="['/']"><i class="fa fa-instagram"></i></a>
@@ -27,31 +27,49 @@
         <img [src]="phongtro.hinhanh" class="img-responsive">
       </div>
       <div class="phongtro-info">
-        <accordion [closeOthers]="true">
+        <accordion [closeOthers]="false">
           <accordion-group *ngIf="user" heading="LIÊN HỆ" class="user-info">
-            <div class="row user-name border-b-dotted">
+            <div class="row user-name">
               <strong>{{user.hoten}}</strong>
             </div>
-            <div class="user-detail">
-              <ul class="row">
-                <li *ngIf="user.sodt && user.sodt !== ''">
+            <ul class="row user-detail">
+              <li>
+                <div class="border-b-dotted">
                   <i class="fa fa-mobile"></i>
+                  <p>ĐTDĐ</p>
+                </div>
+                <div class="user-value">
                   <strong>{{user.sodt}}</strong>
-                </li>
-                <li>
+                </div>
+              </li>
+              <li>
+                <div class="border-b-dotted">
                   <i class="fa fa-envelope-o"></i>
+                  <p>Email</p>
+                </div>
+                <div class="user-value">
                   <strong>{{user.email}}</strong>
-                </li>
-                <li *ngIf="user.facebook && user.facebook !== ''">
+                </div>
+              </li>
+              <li>
+                <div class="border-b-dotted">
                   <i class="fa fa-facebook"></i>
+                  <p>Facebook</p>
+                </div>
+                <div class="user-value">
                   <strong>{{user.facebook}}</strong>
-                </li>
-                <li *ngIf="user.skype && user.skype !== ''">
+                </div>
+              </li>
+              <li>
+                <div class="border-b-dotted">
                   <i class="fa fa-skype"></i>
+                  <p>Skype</p>
+                </div>
+                <div class="user-value">
                   <strong>{{user.skype}}</strong>
-                </li>
-              </ul>
-            </div>
+                </div>
+              </li>
+            </ul>
           </accordion-group>
           <accordion-group *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0" heading="ĐẶT CỌC">
             <div>{{phongtro.tiencoc}}</div>
@@ -98,7 +116,7 @@
               <li *ngIf="phongtro.khoa && phongtro.khoa !== ''">
                 <div class="border-b-dotted">
                   <i class="fa fa-clock-o"></i>
-                  <p>Cùng niên khóa</p>
+                  <p>Cùng khoa</p>
                 </div>
                 <div class="phongtro-value">
                   <strong>{{phongtro.khoa | uppercase}}</strong>

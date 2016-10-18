@@ -6,12 +6,12 @@ sebm-google-map {
   margin: 20px 0;
 }
 
-.phongtro-detail .phongtro-social [class*="fa"] {
+.phongtro-detail .phongtro-social i {
   color: #fcdd44;
 }
 
-.phongtro-detail .phongtro-social [class*="fa"]:focus,
-.phongtro-detail .phongtro-social [class*="fa"]:hover {
+.phongtro-detail .phongtro-social i:focus,
+.phongtro-detail .phongtro-social i:hover {
   color: #c7254e;
 }
 
@@ -25,7 +25,6 @@ sebm-google-map {
 }
 
 .phongtro-title p {
-  float: right;
   color: #838383;
   opacity: .7;
   margin: 10px 5px;
@@ -39,20 +38,12 @@ sebm-google-map {
   margin: 0;
 }
 
-.phongtro-price {
-  float: left;
-}
-
 .phongtro-price strong {
   border: 1px solid #d6d6d6;
   background: #ffffff;
   font-size: 40px;
   color: #c7254e;
   padding: 20px;
-}
-
-.phongtro-social {
-  float: right;
 }
 
 .phongtro-social a {
@@ -65,8 +56,32 @@ sebm-google-map {
   height: 450px;
 }
 
+.phongtro-info li {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+  vertical-align: top;
+  width: 145px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #dddddd;
+}
+
+.phongtro-info .border-b-dotted {
+  padding-bottom: 10px;
+}
+
+.phongtro-info i {
+  color: #c7254e;
+  font-size: 25px;
+}
+
 .user-info .user-name {
   text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
 }
 
 .user-info .user-name strong {
@@ -74,41 +89,15 @@ sebm-google-map {
 }
 
 .user-info .user-detail {
-  margin-top: 10px;
+  padding-top: 10px;
 }
 
-.phongtro-info .user-detail li {
-  display: inline-block;
-  text-align: center;
-  width: calc((100%/4) - 40px);
-  font-size: 16px;
-  margin: 0 15px;
+.user-info .user-detail li {
+  width: 188px;
 }
 
-.phongtro-info .user-detail li i {
-  display: block;
-  color: #c7254e;
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
-.phongtro-info .extra-info li {
-  display: inline-block;
-  text-align: center;
-  width: 135px;
-  padding: 10px;
-  margin: 5px 15px;
-  font-size: 16px;
-  border: 1px solid #dddddd;
-}
-
-.phongtro-info .extra-info i {
-  color: #c7254e;
-  font-size: 25px;
-}
-
-.phongtro-info .extra-info .border-b-dotted {
-  padding-bottom: 10px;
+.user-info .user-detail .user-value {
+  padding-top: 10px;
 }
 
 .phongtro-info .extra-info .phongtro-value {
