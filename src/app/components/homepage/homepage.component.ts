@@ -23,8 +23,8 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
   @ViewChild('flexslider') el: ElementRef;
 
   constructor(private ptService: PhongtroService, private router: Router) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   init() {
@@ -104,6 +104,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-03.jpg',
         diachi: '123 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -114,6 +115,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-04.jpg',
         diachi: '1236 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -124,6 +126,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-05.jpg',
         diachi: '1234 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -134,6 +137,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-06.jpg',
         diachi: '1235 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -144,6 +148,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-06.jpg',
         diachi: '123 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -154,6 +159,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-05.jpg',
         diachi: '1236 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -164,6 +170,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-04.jpg',
         diachi: '1234 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -174,6 +181,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-03.jpg',
         diachi: '1235 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -186,6 +194,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-07.jpg',
         diachi: '123 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -196,6 +205,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-08.jpg',
         diachi: '1236 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -206,6 +216,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-09.jpg',
         diachi: '1234 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -216,6 +227,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-10.jpg',
         diachi: '1235 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -226,6 +238,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-07.jpg',
         diachi: '123 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -236,6 +249,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-08.jpg',
         diachi: '1236 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -246,6 +260,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-09.jpg',
         diachi: '1234 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
         ngaydang: '01/10/2016',
@@ -256,6 +271,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         hinhanh: 'assets/img/index-10.jpg',
         diachi: '1235 abc P.15 Quận Gò Vấp',
         songuoi: 2,
+        dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
         ngaydang: '01/10/2016',

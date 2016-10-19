@@ -25,6 +25,7 @@ import { Error404Component } from './components/404/404.component';
 import { LoginComponent } from './components/login/login.component';
 import { PhongtroDetailComponent } from './components/phongtro-detail/phongtro-detail.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { AsideComponent } from './components/aside/aside.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { CommentsComponent } from './components/comments/comments.component';
     Error404Component,
     LoginComponent,
     PhongtroDetailComponent,
-    CommentsComponent
+    CommentsComponent,
+    AsideComponent
   ],
   imports: [
     BrowserModule,
