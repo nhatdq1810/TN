@@ -3,6 +3,7 @@ import './resources/rxjs-extensions';
 import { UserService } from './services/user.service';
 import { PhongtroService } from './services/phongtro.service';
 import { LoggedInService } from './services/logged-in.service';
+import { NganhangService } from './services/nganhang.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -26,6 +27,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PhongtroDetailComponent } from './components/phongtro-detail/phongtro-detail.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { AsideComponent } from './components/aside/aside.component';
+import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { AsideComponent } from './components/aside/aside.component';
     LoginComponent,
     PhongtroDetailComponent,
     CommentsComponent,
-    AsideComponent
+    AsideComponent,
+    TransferMoneyComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { AsideComponent } from './components/aside/aside.component';
   providers: [
     UserService,
     PhongtroService,
-    LoggedInService
+    LoggedInService,
+    NganhangService
   ],
   bootstrap: [AppComponent]
 })

@@ -9,6 +9,7 @@ let Constants = require('../resources/constants');
 export class UserService {
 
   private loggedIn = false;
+  private user: User;
 
   constructor(private http: Http) {
     this.loggedIn = !!localStorage.getItem('isLoggedIn');
@@ -17,6 +18,10 @@ export class UserService {
   private handleError(funcName: string, error: any): Observable<any> {
     console.error('An error occurred', error);
     return Observable.throw(error.message || error);
+  }
+
+  getUser(): User {
+    return this.user;
   }
 
   login(username, password) {
@@ -30,7 +35,8 @@ export class UserService {
         .subscribe(resp => {
           this.loggedIn = true;
           localStorage.setItem('isLoggedIn', 'true');
-          resolve(resp.data);
+          this.user = resp;
+          resolve(resp);
         },
         err => this.handleError('login', err));
     })

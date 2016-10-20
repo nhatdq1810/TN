@@ -1,5 +1,4 @@
 <section class="tm-banner">
-  <!-- banner -->
   <div class="tm-banner-inner">
     <h1 class="tm-banner-title">Phòng trọ <span class="tm-yellow-text">Tốt nhất</span></h1>
     <p class="tm-banner-subtitle">Cho sinh viên</p>
@@ -7,7 +6,6 @@
   </div>
   <img src="assets/img/banner-1.jpg" alt="Image" />
 </section>
-<!-- gray bg -->
 <section class="container tm-home-section-1" id="more">
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-6">
@@ -57,8 +55,6 @@
       <!-- <a [routerLink]="['/search/result']" (click)="getMoreHotDeals()">Xem thêm...</a> -->
       <ul class="slides deals-list">
         <li *ngFor="let item of hotDeals">
-          <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12"> -->
-          <!-- <div class="tm-home-box-2"> -->
           <a [routerLink]="['/phongtro/detail', item.id]">
             <div class="phongtro-img">
               <img [src]="item.hinhanh" [alt]="item.diachi" [title]="item.diachi" class="img-responsive">
@@ -80,35 +76,19 @@
                   <span *ngIf="item.wifi === 0">Không</span>
                   <span *ngIf="item.wifi === 1">Có</span>
                 </li>
-                <li>
+                <li *ngIf="item.truong && item.truong !== ''">
                   <i class="fa fa-university"></i>
                   <span>{{item.truong}}</span>
                 </li>
               </ul>
-              <!-- <p class="tm-info">
-                <span>Phòng: </span>
-                <span>{{item.gioitinh}}</span>
-              </p>
-              <p class="tm-info">
-                <span>Số lượng: </span>
-                <span>{{item.songuoi}}</span>
-              </p> -->
             </div>
             <h3 class="phongtro-price">{{item.giatien | number}}</h3>
           </a>
-          <!-- <div class="tm-home-box-2-container">
-              <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-              <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description">Xem thêm</span></a>
-              <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-            </div> -->
-          <!-- </div> -->
-          <!-- </div> -->
         </li>
       </ul>
     </div>
   </div>
 </section>
-<!-- white bg -->
 <section class="tm-white-bg section-padding-bottom">
   <div class="container">
     <div class="row">
@@ -147,7 +127,7 @@
                   <span *ngIf="item.wifi === 0">Không</span>
                   <span *ngIf="item.wifi === 1">Có</span>
                 </li>
-                <li>
+                <li *ngIf="item.truong && item.truong !== ''">
                   <i class="fa fa-university"></i>
                   <span>{{item.truong}}</span>
                 </li>

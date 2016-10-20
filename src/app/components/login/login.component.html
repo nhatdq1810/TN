@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" aria-label="Close" (click)="loginModal.hide()">
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
         <h2 class="modal-title">Đăng nhập</h2>
@@ -10,9 +10,9 @@
       <div class="modal-body">
         <div class="login-form">
           <div class="login">
-            <form>
-              <input type="text" name="Userame" placeholder="Username" required="">
-              <input type="password" name="Password" placeholder="Password" required="">
+            <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+              <input type="text" [formControl]="complexForm.controls['username']" name="username" placeholder="Tài khoản">
+              <input type="password" [formControl]="complexForm.controls['password']" name="password" placeholder="Mật khẩu">
               <div class="send-button">
                 <input type="submit" value="Đăng nhập">
               </div>

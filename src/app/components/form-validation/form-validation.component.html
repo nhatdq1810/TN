@@ -35,9 +35,6 @@
           </div>
           <div class="form-group">
             <label>Giới tính</label>
-            <!-- <div class="alert alert-danger" *ngIf="!complexForm.controls['gioitinh'].valid && complexForm.controls['gioitinh'].touched">
-              You must select a gioitinh.
-            </div> -->
             <div class="radio">
               <label>
                 <input type="checkbox" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="checkboxValue" (change)="setCheckboxValue()"> Nam

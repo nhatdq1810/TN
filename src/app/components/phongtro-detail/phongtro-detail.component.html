@@ -5,6 +5,7 @@
     </sebm-google-map-info-window>
   </sebm-google-map-marker>
 </sebm-google-map>
+<app-login #modal></app-login>
 <div *ngIf="phongtro" class="phongtro-detail container">
   <div class="row">
     <div class="col-lg-9 col-md-9">
@@ -72,7 +73,10 @@
             </ul>
           </accordion-group>
           <accordion-group *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0" heading="ĐẶT CỌC">
-            <div>{{phongtro.tiencoc}}</div>
+            <div>
+              <p>{{phongtro.tiencoc}}</p>
+              <button (click)="modal.showModal('nganhang')">Đăng nhập</button>
+            </div>
           </accordion-group>
           <accordion-group class="extra-info" heading="THÔNG TIN" [isOpen]="true">
             <ul class="row">
