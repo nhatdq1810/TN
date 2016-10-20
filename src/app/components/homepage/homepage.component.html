@@ -75,6 +75,15 @@
                   <i *ngIf="item.gioitinh === 'nữ'" class="fa fa-female"></i>
                   <span>{{item.songuoi}}</span>
                 </li>
+                <li>
+                  <i class="fa fa-wifi"></i>
+                  <span *ngIf="item.wifi === 0">Không</span>
+                  <span *ngIf="item.wifi === 1">Có</span>
+                </li>
+                <li>
+                  <i class="fa fa-university"></i>
+                  <span>{{item.truong}}</span>
+                </li>
               </ul>
               <!-- <p class="tm-info">
                 <span>Phòng: </span>
@@ -123,14 +132,26 @@
             </div>
             <div class="phongtro-info border-b-dotted">
               <h3>{{item.diachi | uppercase}}</h3>
-              <p class="tm-info">
-                <span>Phòng: </span>
-                <span>{{item.gioitinh}}</span>
-              </p>
-              <p class="tm-info">
-                <span>Số lượng: </span>
-                <span>{{item.songuoi}}</span>
-              </p>
+              <ul>
+                <li>
+                  <i class="fa fa-building-o"></i>
+                  <span>{{item.dientich}}</span>
+                </li>
+                <li>
+                  <i *ngIf="item.gioitinh === 'nam'" class="fa fa-male"></i>
+                  <i *ngIf="item.gioitinh === 'nữ'" class="fa fa-female"></i>
+                  <span>{{item.songuoi}}</span>
+                </li>
+                <li>
+                  <i class="fa fa-wifi"></i>
+                  <span *ngIf="item.wifi === 0">Không</span>
+                  <span *ngIf="item.wifi === 1">Có</span>
+                </li>
+                <li>
+                  <i class="fa fa-university"></i>
+                  <span>{{item.truong}}</span>
+                </li>
+              </ul>
             </div>
             <h3 class="phongtro-price">{{item.giatien | number}}</h3>
           </a>

@@ -12,10 +12,12 @@
                     <ul>
                         <li><a routerLink="/home" routerLinkActive="active">Trang chủ</a></li>
                         <li><a routerLink="/search/result" routerLinkActive="active">Tìm kiếm</a></li>
-                        <li><a routerLink="/login" routerLinkActive="active">Đăng nhập</a></li>
+                        <li><a routerLink="/" (click)="modal.showModal()">Đăng ký</a></li>
+                        <li><a routerLink="/" (click)="modal.showModal()">Đăng nhập</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
 </div>
+<app-login #modal></app-login>

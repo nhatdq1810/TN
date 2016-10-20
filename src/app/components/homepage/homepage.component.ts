@@ -107,6 +107,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 2000000
       },
@@ -118,6 +119,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 5000000
       },
@@ -129,6 +131,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 2000000
       },
@@ -140,6 +143,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 5000000
       },
@@ -151,6 +155,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 2000000
       },
@@ -162,6 +167,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 5000000
       },
@@ -173,6 +179,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 2000000
       },
@@ -184,6 +191,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 5000000
       }
@@ -197,6 +205,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 2000000
       },
@@ -208,6 +217,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 5000000
       },
@@ -219,6 +229,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 2000000
       },
@@ -230,6 +241,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 5000000
       },
@@ -241,6 +253,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 2000000
       },
@@ -252,6 +265,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 5000000
       },
@@ -263,6 +277,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nam',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 2000000
       },
@@ -274,6 +289,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
+        wifi: 1,
         ngaydang: '01/10/2016',
         giatien: 5000000
       }

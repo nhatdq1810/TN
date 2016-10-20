@@ -1,3 +1,49 @@
-<p>
-  login works!
-</p>
+<div bsModal [config]="modalOptions" #loginModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="loginModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="modal-title">Đăng nhập</h2>
+      </div>
+      <div class="modal-body">
+        <div class="login-form">
+          <div class="login">
+            <form>
+              <input type="text" name="Userame" placeholder="Username" required="">
+              <input type="password" name="Password" placeholder="Password" required="">
+              <div class="send-button">
+                <input type="submit" value="Đăng nhập">
+              </div>
+            </form>
+            <a class="forgot-password" routerLink="/">Quên mật khẩu?</a>
+            <div class="social-icons">
+              <p>- Đăng nhập với -</p>
+              <ul>
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-facebook"></i>
+                    <span class="text">Facebook</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-twitter"></i>
+                    <span class="text">Twitter</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/">
+                    <i class="fa fa-google-plus"></i>
+                    <span class="text">Google+</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

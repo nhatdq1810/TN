@@ -1,0 +1,97 @@
+.login form {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.41);
+  outline: none;
+  color: #000;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-bottom: 1px solid #fcdd44;
+}
+
+input[type="submit"] {
+  width: 60%;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 100;
+  background-color: transparent;
+  color: #ccc;
+  border: 1px solid rgba(17, 17, 17, 0.41);
+  border-width: thin;
+  cursor: pointer;
+  outline: none;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  text-decoration: none;
+}
+
+input[type="submit"]:hover {
+  background-color: #000000;
+  border: 1px solid #fcdd44;
+  color: #ffffff;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  text-decoration: none;
+}
+
+.forgot-password {
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  text-align: center;
+}
+
+.social-icons p {
+  margin-bottom: 20px;
+}
+
+.social-icons li {
+  display: inline-block;
+  font-size: 16px;
+  width: calc((100%/3) - 5px);
+}
+
+.social-icons li i {
+  transition: all .5s ease-in-out;
+}
+
+.social-icons li:hover i {
+  color: #c7254e;
+  transform: rotatey(360deg);
+  -webkit-transform: rotatey(360deg);
+  -o-transform: rotatey(360deg);
+  -moz-transform: rotatey(360deg);
+  -ms-transform: rotatey(360deg);
+}
+
+.social-icons li:hover span {
+  font-weight: 600;
+}
+
+.social-icons li i {
+  color: #fcdd44;
+  font-size: 20px;
+}
+
+.social-icons li span {
+  margin-left: 5px;
+}
