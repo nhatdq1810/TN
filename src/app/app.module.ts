@@ -28,6 +28,8 @@ import { PhongtroDetailComponent } from './components/phongtro-detail/phongtro-d
 import { CommentsComponent } from './components/comments/comments.component';
 import { AsideComponent } from './components/aside/aside.component';
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
+import { RegisterComponent } from './components/register/register.component';
+import { GridListComponent } from './components/grid-list/grid-list.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { TransferMoneyComponent } from './components/transfer-money/transfer-mon
     PhongtroDetailComponent,
     CommentsComponent,
     AsideComponent,
-    TransferMoneyComponent
+    TransferMoneyComponent,
+    RegisterComponent,
+    GridListComponent
   ],
   imports: [
     BrowserModule,

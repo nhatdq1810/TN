@@ -1,9 +1,10 @@
-.login form {
+.register form {
   margin-bottom: 20px;
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
   width: 100%;
   margin-bottom: 20px;
   padding: 10px;
@@ -16,7 +17,8 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type="email"]:focus {
   border-bottom: 1px solid #fcdd44;
 }
 
@@ -39,8 +41,7 @@ input[type="submit"] {
   text-decoration: none;
 }
 
-input[type="submit"]:hover,
-.options .register:hover {
+input[type="submit"]:hover {
   background-color: #000000;
   border: 1px solid #fcdd44;
   color: #ffffff;
@@ -52,32 +53,6 @@ input[type="submit"]:hover,
   text-decoration: none;
 }
 
-.options {
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.options a {
-  color: gray;
-  transition: color .3s ease-in-out;
-}
-
-.options a:hover {
-  color: #fcdd44;
-}
-
-.options .register {
-  float: right;
-  border: 1px solid rgba(17, 17, 17, 0.41);
-  font-size: 16px;
-  padding: 6px 15px;
-  transition: 0.5s all;
-  -webkit-transition: 0.5s all;
-  -moz-transition: 0.5s all;
-  -o-transition: 0.5s all;
-  -ms-transition: 0.5s all;
-}
-
 .social-icons {
   text-align: center;
 }
@@ -86,20 +61,20 @@ input[type="submit"]:hover,
   margin-bottom: 20px;
 }
 
-.social-icons li span {
-  margin-left: 5px;
-}
-
 .social-icons li {
   display: inline-block;
   font-size: 16px;
   width: calc((100%/3) - 5px);
 }
 
+.social-icons li span {
+  margin-left: 5px;
+}
+
 .social-icons li i {
+  transition: all .5s ease-in-out;
   color: #fcdd44;
   font-size: 20px;
-  transition: all .5s ease-in-out;
 }
 
 .social-icons li:hover i {

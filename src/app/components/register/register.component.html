@@ -1,26 +1,24 @@
-<div bsModal [config]="modalOptions" #loginModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div bsModal [config]="modalOptions" #registerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" aria-label="Close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h2 class="modal-title">Đăng nhập</h2>
+        <h2 class="modal-title">Đăng ký</h2>
       </div>
       <div class="modal-body">
-        <div class="login-form">
-          <div class="login">
+        <div class="register-form">
+          <div class="register">
             <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
               <input type="text" [formControl]="complexForm.controls['username']" name="username" placeholder="Tài khoản">
               <input type="password" [formControl]="complexForm.controls['password']" name="password" placeholder="Mật khẩu">
+              <input type="text" [formControl]="complexForm.controls['hoten']" name="hoten" placeholder="Họ tên">
+              <input type="email" [formControl]="complexForm.controls['email']" name="email" placeholder="Email">
               <div class="send-button">
-                <input type="submit" value="Đăng nhập">
+                <input type="submit" value="Đăng ký">
               </div>
             </form>
-            <div class="options">
-              <a class="forgot-password" routerLink="/">Quên mật khẩu?</a>
-              <a class="register" routerLink="/" (click)="closeModal();registerModal.showModal();">Đăng ký?</a>
-            </div>
             <div class="social-icons">
               <p>- Đăng nhập với -</p>
               <ul>
@@ -50,4 +48,3 @@
     </div>
   </div>
 </div>
-<app-register #registerModal></app-register>

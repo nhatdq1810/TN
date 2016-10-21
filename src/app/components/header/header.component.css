@@ -16,11 +16,9 @@
     color: #FCDD44;
     font-size: 27px;
     font-weight: 600;
-    // text-transform: uppercase;
 }
 
-.tm-site-name:hover,
-.tm-site-name:focus {
+.tm-site-name:hover {
     color: #FF720B;
 }
 
@@ -34,7 +32,6 @@
 }
 
 .tm-nav li {
-    /*list-style: none;*/
     float: left;
 }
 

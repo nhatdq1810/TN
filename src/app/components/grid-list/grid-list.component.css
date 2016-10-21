@@ -1,0 +1,38 @@
+/* new deals */
+
+.new-deals li {
+  display: inline-block;
+  vertical-align: top;
+  width: calc((100%/4) - 20px);
+  margin: 0 10px 30px;
+}
+
+.deals-block.new-deals .deals-list .phongtro-info li {
+  width: auto;
+  margin: 0 5px 10px 0;
+}
+
+.deals-block.new-deals .deals-list .get-more-btn {
+  width: 110px;
+  margin: 150px 50px;
+}
+
+.deals-block.new-deals .deals-list .get-more-btn a {
+  width: auto;
+  height: auto;
+  font-weight: 600;
+  color: #2c3e50;
+  border: 2px solid #2c3e50;
+  font-size: 12px;
+  padding: 6px 15px;
+}
+
+.deals-block.new-deals .deals-list .get-more-btn:hover {
+  background-color: transparent;
+  outline: none;
+}
+
+.deals-block.new-deals .deals-list .get-more-btn:hover a {
+  color: #FCDD44;
+  border: 2px solid #FCDD44;
+}

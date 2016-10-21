@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private nghService: NganhangService, private router: Router, private fb: FormBuilder) {
     this.modalOptions = {
       ignoreBackdropClick: true
-    }
+    };
     this.complexForm = this.fb.group({
       'username':['', Validators.required],
       'password':['', Validators.required]

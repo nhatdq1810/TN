@@ -23,8 +23,8 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
   @ViewChild('flexslider') el: ElementRef;
 
   constructor(private ptService: PhongtroService, private router: Router) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   init() {

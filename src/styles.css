@@ -129,6 +129,71 @@ body {
 }
 
 
+/* For list deals */
+
+.deals-block .deals-list .phongtro-img {
+  overflow: hidden;
+}
+
+.deals-block .deals-list li,
+.deals-block .deals-list li img {
+  transition: all .5s ease-in-out;
+}
+
+.deals-block .deals-list li:hover {
+  background-color: #2c3e50;
+  outline: blue;
+}
+
+.deals-block .deals-list li:hover img {
+  transform: scale(1.1);
+}
+
+.deals-block .deals-list li:hover .phongtro-info,
+.deals-block .deals-list li:hover p {
+  color: #ffffff;
+}
+
+.deals-block .deals-list li:hover .phongtro-price {
+  color: #f3bc65;
+}
+
+.deals-block .deals-list h3 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.deals-block .deals-list .phongtro-info {
+  margin: 10px 20px;
+}
+
+.deals-block .deals-list .phongtro-info li {
+  display: inline-block;
+  background: #e3e3e3;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.deals-block .deals-list li:hover .phongtro-info li {
+  color: #000000;
+}
+
+.deals-block .deals-list .phongtro-info li span {
+  margin-left: 5px;
+}
+
+.deals-block .deals-list .phongtro-price {
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #c7254e;
+}
+
+.deals-block .deals-list img {
+  height: 250px;
+}
+
+
 /* accordion */
 
 accordion-group .panel-heading:focus,
@@ -138,6 +203,13 @@ accordion-group.panel-open .panel-title {
   color: #ffffff;
   font-weight: 600;
   background-color: #fcdd44;
+}
+
+
+/* close button modal */
+
+.close {
+  font-size: 50px;
 }
 
 @media screen and (max-width: 1199px) {

@@ -5,19 +5,17 @@
                 <a routerLink="/home" class="tm-site-name">troSV</a>
             </div>
             <div class="col-lg-6 col-md-8 col-sm-9">
-                <div class="mobile-menu-icon">
-                    <i class="fa fa-bars"></i>
-                </div>
                 <nav class="tm-nav">
                     <ul>
                         <li><a routerLink="/home" routerLinkActive="active">Trang chủ</a></li>
                         <li><a routerLink="/search/result" routerLinkActive="active">Tìm kiếm</a></li>
-                        <li><a routerLink="/" (click)="modal.showModal()">Đăng ký</a></li>
-                        <li><a routerLink="/" (click)="modal.showModal()">Đăng nhập</a></li>
+                        <li><a routerLink="/" (click)="registerModal.showModal()">Đăng ký</a></li>
+                        <li><a routerLink="/" (click)="loginModal.showModal()">Đăng nhập</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
 </div>
-<app-login #modal></app-login>
+<app-login #loginModal></app-login>
+<app-register #registerModal></app-register>

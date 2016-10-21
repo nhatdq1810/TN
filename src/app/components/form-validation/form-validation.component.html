@@ -7,8 +7,8 @@
           <div class="form-group">
             <label>Khoản tiền</label>
             <p class="sliderValue">
-              <span>{{ sliderValue[0] }}</span>
-              <span class="right">{{ sliderValue[1] }}</span>
+              <span>{{ sliderValue[0] | number }}</span>
+              <span class="right">{{ sliderValue[1] | number }}</span>
             </p>
             <nouislider [connect]="true" [min]="500000" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['giatien']" [(ngModel)]="sliderValue"></nouislider>
           </div>

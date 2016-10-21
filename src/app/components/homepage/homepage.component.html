@@ -45,7 +45,7 @@
           <hr>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6">
-          <h2 class="tm-section-title">Phòng trọ hot nhất</h2></div>
+          <h2 class="tm-section-title">Phòng trọ hot</h2></div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <hr>
         </div>
@@ -97,13 +97,14 @@
           <hr>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6">
-          <h2 class="tm-section-title">Phòng trọ mới nhất</h2></div>
+          <h2 class="tm-section-title">Phòng trọ mới</h2></div>
         <div class="col-lg-4 col-md-3 col-sm-3">
           <hr>
         </div>
       </div>
     </div>
-    <div class="row deals-block new-deals">
+    <app-grid-list [deals]="newDeals"></app-grid-list>
+    <!-- <div class="row deals-block new-deals">
       <ul class="deals-list">
         <li *ngFor="let item of newDeals">
           <a [routerLink]="['/phongtro/detail', item.id]">
@@ -140,6 +141,6 @@
           <a [routerLink]="searchLink" class="" (click)="getMoreNewDeals()">Xem thêm...</a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </section>
