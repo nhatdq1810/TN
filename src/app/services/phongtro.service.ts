@@ -11,6 +11,7 @@ let Constants = require('../resources/constants');
 export class PhongtroService {
 
   private _listTKPT: any[];
+  private _currentPT: any;
 
   constructor(private http: Http, private router: Router) {
     this._listTKPT = [];
@@ -18,6 +19,10 @@ export class PhongtroService {
 
   get listPT(): any[]{
     return this._listTKPT;
+  }
+
+  get currentPT(): any{
+    return this._currentPT;
   }
 
   private handleError(funcName: string, error: any): Promise<any> {
@@ -31,8 +36,12 @@ export class PhongtroService {
       this.http
         .get(Constants.apiUrl + 'phongtro/tatca', { headers: Constants.headers })
         .map((resp: Response) => resp.json())
-        .subscribe(listPT => {
-          resolve(listPT);
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('layTatcaPhongtro', resp.result);
+          }
         },
         error => this.handleError('layTatcaPhongtro', error));
     });
@@ -43,8 +52,13 @@ export class PhongtroService {
       this.http
         .get(Constants.apiUrl + 'phongtro/' + id, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
-        .subscribe(pt => {
-          resolve(pt);
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            this._currentPT = resp;
+            resolve(resp);
+          } else {
+            this.handleError('layPhongtro', resp.result);
+          }
         },
         error => this.handleError('layPhongtro', error));
     });
@@ -55,9 +69,13 @@ export class PhongtroService {
       this.http
         .get(Constants.apiUrl + 'phongtro/hot?gioihan=' + gioihan, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
-        .subscribe(listPT => {
-          this._listTKPT = listPT;
-          resolve(listPT);
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            this._listTKPT = resp;
+            resolve(resp)
+          } else {
+            this.handleError('layPhongtroHot', resp.result);
+          }
         },
         error => this.handleError('layPhongtroHot', error));
     });
@@ -68,9 +86,13 @@ export class PhongtroService {
       this.http
         .get(Constants.apiUrl + 'phongtro/moi?gioihan=' + gioihan, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
-        .subscribe(listPT => {
-          this._listTKPT = listPT;
-          resolve(listPT);
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            this._listTKPT = resp;
+            resolve(resp);
+          } else {
+            this.handleError('layPhongtroMoi', resp.result);
+          }
         },
         error => this.handleError('layPhongtroMoi', error));
     });
@@ -80,9 +102,13 @@ export class PhongtroService {
     return new Promise((resolve) => {
       this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien[0]}&giatien_max=${model.giatien[1]}&truong=${model.truong}&nganh=${model.nganh}&gioitinh=${model.gioitinh}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
-        .subscribe(listPT => {
-          this._listTKPT = listPT;
-          resolve('success');
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            this._listTKPT = resp;
+            resolve('success');
+          } else {
+            this.handleError('timkiemPhongtro', resp.result);
+          }
         },
         error => this.handleError('timkiemPhongtro', error));
     });

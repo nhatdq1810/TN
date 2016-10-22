@@ -17,11 +17,11 @@
                 <input type="submit" value="Đăng nhập">
               </div>
             </form>
-            <div class="options">
+            <div class="options" *ngIf="loginForm !== 'nganhang'">
               <a class="forgot-password" routerLink="/">Quên mật khẩu?</a>
               <a class="register" routerLink="/" (click)="closeModal();registerModal.showModal();">Đăng ký?</a>
             </div>
-            <div class="social-icons">
+            <div class="social-icons" *ngIf="loginForm !== 'nganhang'">
               <p>- Đăng nhập với -</p>
               <ul>
                 <li>
@@ -50,4 +50,4 @@
     </div>
   </div>
 </div>
-<app-register #registerModal></app-register>
+<app-register #registerModal *ngIf="loginForm !== 'nganhang'"></app-register>

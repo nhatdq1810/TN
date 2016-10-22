@@ -9,19 +9,19 @@ let Constants = require('../resources/constants');
 export class UserService {
 
   private loggedIn = false;
-  private user: User;
+  private _user: User;
 
   constructor(private http: Http) {
     this.loggedIn = !!localStorage.getItem('isLoggedIn');
   }
 
   private handleError(funcName: string, error: any): Observable<any> {
-    console.error('An error occurred', error);
+    console.error(funcName + ' has error ', error);
     return Observable.throw(error.message || error);
   }
 
-  getUser(): User {
-    return this.user;
+  get user(): User {
+    return this._user;
   }
 
   login(username, password) {
@@ -33,10 +33,14 @@ export class UserService {
       this.http.post(Constants.apiUrl + 'user/login', JSON.stringify(data), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
-          this.loggedIn = true;
-          localStorage.setItem('isLoggedIn', 'true');
-          this.user = resp;
-          resolve(resp);
+          if (!resp.result || resp.result !== 'fail') {
+            this.loggedIn = true;
+            localStorage.setItem('isLoggedIn', 'true');
+            this._user = resp;
+            resolve(resp);
+          } else {
+            this.handleError('login', resp.result);
+          }
         },
         err => this.handleError('login', err));
     })
@@ -55,8 +59,12 @@ export class UserService {
     return new Promise(resolve => {
       this.http.get(Constants.apiUrl + 'user/' + username, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
-        .subscribe(user => {
-          resolve(user);
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('layThongtinUser', resp.result);
+          }
         },
         err => this.handleError('layThongtinUser', err));
     })
@@ -66,8 +74,12 @@ export class UserService {
     return new Promise(resolve => {
       this.http.get(Constants.apiUrl + 'user/id/' + id, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
-        .subscribe(user => {
-          resolve(user);
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('layThongtinUserID', resp.result);
+          }
         },
         err => this.handleError('layThongtinUserID', err));
     })

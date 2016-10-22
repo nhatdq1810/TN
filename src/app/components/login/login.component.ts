@@ -13,6 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   @ViewChild('loginModal') loginModal: ModalDirective;
+  @ViewChild('transferModal') transferModal: ModalDirective;
   private modalOptions: ModalOptions;
   private loginForm: string;
   private complexForm: FormGroup;
@@ -33,16 +34,17 @@ export class LoginComponent implements OnInit {
   submitForm(value: any) {
     if(this.loginForm !== 'nganhang') {
       this.userService.login(value.username, value.password)
-        .then(result => {
-          if (result) {
+        .then(resp => {
+          if (resp) {
             this.closeModal();
           }
         });
     } else {
       this.nghService.login(value.username, value.password)
-        .then(result => {
-          if (result) {
+        .then(resp => {
+          if (resp) {
             this.closeModal();
+            this.router.navigate(['/transfer']);
           }
         });
     }

@@ -1,25 +1,20 @@
-<div bsModal [config]="modalOptions" #transferModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h2 class="modal-title">Chuyển tiền</h2>
+<h2 class="modal-title">Chuyển tiền</h2>
+<div class="transfer-form">
+  <div class="transfer" *ngIf="ngh_gui && ngh_nhan && phongtro">
+    <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+      <span>Họ tên người gửi: </span>
+      <input type="text" [formControl]="complexForm.controls['hoten_gui']" [readonly]="true" name="hoten_gui">
+      <span>Số tiền: </span>
+      <input type="number" [formControl]="complexForm.controls['tiencoc']" [readonly]="true" name="tiencoc">
+      <span>Họ tên người nhận: </span>
+      <input type="text" [formControl]="complexForm.controls['hoten_nhan']" [readonly]="true" name="hoten_nhan">
+      <span>Địa chỉ người nhận: </span>
+      <input type="text" [formControl]="complexForm.controls['diachi_nhan']" [readonly]="true" name="diachi_nhan">
+      <span>Số ĐT người nhận: </span>
+      <input type="text" [formControl]="complexForm.controls['sodt_nhan']" [readonly]="true" name="sodt_nhan">
+      <div class="send-button">
+        <input type="submit" value="Xác nhận">
       </div>
-      <div class="modal-body">
-        <div class="transfer-form">
-          <div class="transfer">
-            <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
-              <input type="text" [formControl]="complexForm.controls['username']" name="username" placeholder="Tài khoản">
-              <input type="password" [formControl]="complexForm.controls['password']" name="password" placeholder="Mật khẩu">
-              <div class="send-button">
-                <input type="submit" value="Đăng nhập">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+    </form>
   </div>
 </div>

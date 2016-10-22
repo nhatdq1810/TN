@@ -4,6 +4,7 @@ import { UserService } from './services/user.service';
 import { PhongtroService } from './services/phongtro.service';
 import { LoggedInService } from './services/logged-in.service';
 import { NganhangService } from './services/nganhang.service';
+import { GiaodichService } from './services/giaodich.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -68,7 +69,8 @@ import { GridListComponent } from './components/grid-list/grid-list.component';
     UserService,
     PhongtroService,
     LoggedInService,
-    NganhangService
+    NganhangService,
+    GiaodichService
   ],
   bootstrap: [AppComponent]
 })

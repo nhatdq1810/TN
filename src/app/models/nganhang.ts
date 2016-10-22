@@ -7,4 +7,5 @@ export class Nganhang {
   sodt: string;
   cmnd: string;
   tien: number;
+  userID: number;
 }
