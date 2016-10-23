@@ -41,7 +41,7 @@ export class PhongtroService {
             resolve(resp);
           } else {
             this.handleError('layTatcaPhongtro', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         error => this.handleError('layTatcaPhongtro', error));
@@ -59,7 +59,7 @@ export class PhongtroService {
             resolve(resp);
           } else {
             this.handleError('layPhongtro', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         error => this.handleError('layPhongtro', error));
@@ -77,7 +77,7 @@ export class PhongtroService {
             resolve(resp)
           } else {
             this.handleError('layPhongtroHot', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         error => this.handleError('layPhongtroHot', error));
@@ -95,7 +95,7 @@ export class PhongtroService {
             resolve(resp);
           } else {
             this.handleError('layPhongtroMoi', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         error => this.handleError('layPhongtroMoi', error));
@@ -112,7 +112,7 @@ export class PhongtroService {
             resolve('success');
           } else {
             this.handleError('timkiemPhongtro', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         error => this.handleError('timkiemPhongtro', error));

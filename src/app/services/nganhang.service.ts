@@ -35,7 +35,7 @@ export class NganhangService {
             resolve(resp);
           } else {
             this.handleError('login', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         err => this.handleError('login', err));
@@ -51,7 +51,7 @@ export class NganhangService {
             resolve(resp);
           } else {
             this.handleError('layTkNghTheoUserID', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         err => this.handleError('layTkNghTheoUserID', err));

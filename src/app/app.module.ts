@@ -31,6 +31,7 @@ import { AsideComponent } from './components/aside/aside.component';
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
 import { RegisterComponent } from './components/register/register.component';
 import { GridListComponent } from './components/grid-list/grid-list.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { GridListComponent } from './components/grid-list/grid-list.component';
     AsideComponent,
     TransferMoneyComponent,
     RegisterComponent,
-    GridListComponent
+    GridListComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

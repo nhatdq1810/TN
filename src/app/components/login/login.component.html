@@ -12,11 +12,11 @@
         <div class="login-form">
           <div class="login">
             <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
-              <input type="text" [formControl]="complexForm.controls['username']" name="username" placeholder="Tài khoản">
+              <input class="input-modal" type="text" [formControl]="complexForm.controls['username']" name="username" placeholder="Tài khoản">
               <alert [type]="'danger'" *ngIf="complexForm.controls['username'].hasError('required') && complexForm.controls['username'].touched">
                 Bạn chưa nhập tài khoản.
               </alert>
-              <input type="password" [formControl]="complexForm.controls['password']" name="password" placeholder="Mật khẩu">
+              <input class="input-modal" type="password" [formControl]="complexForm.controls['password']" name="password" placeholder="Mật khẩu">
               <alert [type]="'danger'" *ngIf="complexForm.controls['password'].hasError('required') && complexForm.controls['password'].touched">
                 Bạn chưa nhập mật khẩu.
               </alert>
@@ -31,7 +31,7 @@
             </form>
             <div class="options" *ngIf="loginForm !== 'nganhang'">
               <a class="forgot-password" routerLink="/">Quên mật khẩu?</a>
-              <a class="register btn-modal" routerLink="/" (click)="closeModal();registerModal.showModal();">Đăng ký?</a>
+              <a class="register btn-modal right" (click)="closeModal(); registerModal.showModal();">Đăng ký?</a>
             </div>
             <div class="social-icons" *ngIf="loginForm !== 'nganhang'">
               <p>- Đăng nhập với -</p>
@@ -62,4 +62,4 @@
     </div>
   </div>
 </div>
-<app-register #registerModal *ngIf="loginForm !== 'nganhang'"></app-register>
+<app-register #registerModal></app-register>

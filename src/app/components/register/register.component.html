@@ -8,13 +8,34 @@
         <h2 class="modal-title">Đăng ký</h2>
       </div>
       <div class="modal-body">
-        <div class="register-form">
+        <div *ngIf="registerSuccess" class="register-success">
+          <p>Chúc mừng, bạn đã đăng ký thành công !</p>
+          <span class="right">Tự động đăng nhập trong 5 giây</span>
+        </div>
+        <div *ngIf="!registerSuccess" class="register-form">
           <div class="register">
             <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
-              <input type="text" [formControl]="complexForm.controls['username']" name="username" placeholder="Tài khoản">
-              <input type="password" [formControl]="complexForm.controls['password']" name="password" placeholder="Mật khẩu">
-              <input type="text" [formControl]="complexForm.controls['hoten']" name="hoten" placeholder="Họ tên">
-              <input type="email" [formControl]="complexForm.controls['email']" name="email" placeholder="Email">
+              <input class="input-modal" type="text" [formControl]="complexForm.controls['username']" name="username" placeholder="Tài khoản">
+              <alert [type]="'danger'" *ngIf="complexForm.controls['username'].hasError('required') && complexForm.controls['username'].touched">
+                Bạn chưa nhập tài khoản.
+              </alert>
+              <input class="input-modal" type="password" [formControl]="complexForm.controls['password']" name="password" placeholder="Mật khẩu">
+              <alert [type]="'danger'" *ngIf="complexForm.controls['password'].hasError('required') && complexForm.controls['password'].touched">
+                Bạn chưa nhập mật khẩu.
+              </alert>
+              <input class="input-modal" type="text" [formControl]="complexForm.controls['hoten']" name="hoten" placeholder="Họ tên">
+              <alert [type]="'danger'" *ngIf="complexForm.controls['hoten'].hasError('required') && complexForm.controls['hoten'].touched">
+                Bạn chưa nhập họ tên.
+              </alert>
+              <input class="input-modal" type="email" [formControl]="complexForm.controls['email']" name="email" placeholder="Email">
+              <alert [type]="'danger'" *ngIf="complexForm.controls['email'].hasError('required') && complexForm.controls['email'].touched">
+                Bạn chưa nhập email.
+              </alert>
+              <div *ngIf="!canRegister">
+                <alert *ngFor="let item of errorMsg" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert()">
+                  {{item?.msg}}
+                </alert>
+              </div>
               <div class="send-button">
                 <input class="btn-modal" type="submit" value="Đăng ký">
               </div>

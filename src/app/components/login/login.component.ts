@@ -13,7 +13,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   @ViewChild('loginModal') loginModal: ModalDirective;
-  @ViewChild('transferModal') transferModal: ModalDirective;
   private modalOptions: ModalOptions;
   private loginForm: string;
   private complexForm: FormGroup;
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit {
         .then(resp => {
           if (resp) {
             this.closeModal();
-            this.userService.checkLoggedIn.next(true);
           } else {
             this.isLoggedIn = false;
             this.alertLoggedIn = [{

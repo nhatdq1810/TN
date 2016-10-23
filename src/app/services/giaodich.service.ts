@@ -26,7 +26,7 @@ export class GiaodichService {
             resolve(resp);
           } else {
             this.handleError('chuyenTien', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         err => this.handleError('chuyenTien', err));

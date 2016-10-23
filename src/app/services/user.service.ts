@@ -39,10 +39,11 @@ export class UserService {
             this.loggedIn = true;
             localStorage.setItem('isLoggedIn', 'true');
             this._user = resp;
+            this.checkLoggedIn.next(true);
             resolve(resp);
           } else {
             this.handleError('login', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         err => this.handleError('login', err));
@@ -68,7 +69,7 @@ export class UserService {
             resolve(resp);
           } else {
             this.handleError('layThongtinUser', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         err => this.handleError('layThongtinUser', err));
@@ -84,10 +85,30 @@ export class UserService {
             resolve(resp);
           } else {
             this.handleError('layThongtinUserID', resp.result);
-            reject(resp);
+            reject(resp.result);
           }
         },
         err => this.handleError('layThongtinUserID', err));
+    })
+  }
+
+  themUser(user: User): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.http.post(Constants.apiUrl + 'user/moi', JSON.stringify(user), { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result) {
+            this.loggedIn = true;
+            localStorage.setItem('isLoggedIn', 'true');
+            this._user = resp;
+            this.checkLoggedIn.next(true);
+            resolve(resp);
+          } else {
+            this.handleError('themUser', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('themUser', err));
     })
   }
 

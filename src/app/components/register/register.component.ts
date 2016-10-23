@@ -12,9 +12,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
 
   @ViewChild('registerModal') registerModal: ModalDirective;
-  @ViewChild('loginModal') loginModal: ModalDirective;
   private modalOptions: ModalOptions;
   private complexForm: FormGroup;
+  private errorMsg: Array<Object>;
+  private canRegister = true;
+  private registerSuccess = false;
 
   constructor(private userService: UserService, private router: Router, private fb: FormBuilder) {
     this.modalOptions = {
@@ -26,27 +28,40 @@ export class RegisterComponent implements OnInit {
       'hoten': ['', Validators.required],
       'email': ['', Validators.required]
     });
+    this.errorMsg = [{
+      msg: ''
+    }];
   }
 
   ngOnInit() {
   }
 
   submitForm(value: any) {
-    // if (this.registerForm !== 'nganhang') {
-    //   this.userService.register(value.username, value.password)
-    //     .then(result => {
-    //       if (result) {
-    //         this.closeModal();
-    //       }
-    //     });
-    // } else {
-    //   this.nghService.register(value.username, value.password)
-    //     .then(result => {
-    //       if (result) {
-    //         this.closeModal();
-    //       }
-    //     });
-    // }
+    let user: any = {
+      username: value.username,
+      password: value.password,
+      hoten: value.hoten,
+      email: value.email
+    }
+    this.userService.themUser(user)
+      .then(resp => {
+        if (resp) {
+          this.registerSuccess = true;
+          setTimeout(() => {
+            this.closeModal();
+          }, 5000);
+        }
+      })
+      .catch(result => {
+        this.canRegister = false;
+        this.errorMsg = [{
+          msg: result
+        }];
+      });
+  }
+
+  closeAlert() {
+    this.errorMsg.splice(0, 1);
   }
 
   closeModal() {
