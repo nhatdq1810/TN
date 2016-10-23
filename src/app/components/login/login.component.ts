@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   private modalOptions: ModalOptions;
   private loginForm: string;
   private complexForm: FormGroup;
+  private isLoggedIn = true;
+  private alertLoggedIn: Array<Object>;
 
   constructor(private userService: UserService, private nghService: NganhangService, private router: Router, private fb: FormBuilder) {
     this.modalOptions = {
@@ -26,9 +28,16 @@ export class LoginComponent implements OnInit {
       'username':['', Validators.required],
       'password':['', Validators.required]
     });
+    this.alertLoggedIn = [{
+      msg: 'Tài khoản hoặc mật khẩu không đúng!'
+    }];
   }
 
   ngOnInit() {
+  }
+
+  closeAlert() {
+    this.alertLoggedIn.splice(0, 1);
   }
 
   submitForm(value: any) {
@@ -37,7 +46,19 @@ export class LoginComponent implements OnInit {
         .then(resp => {
           if (resp) {
             this.closeModal();
+            this.userService.checkLoggedIn.next(true);
+          } else {
+            this.isLoggedIn = false;
+            this.alertLoggedIn = [{
+              msg: 'Tài khoản hoặc mật khẩu không đúng!'
+            }];
           }
+        })
+        .catch(reason => {
+          this.isLoggedIn = false;
+          this.alertLoggedIn = [{
+            msg: 'Tài khoản hoặc mật khẩu không đúng!'
+          }];
         });
     } else {
       this.nghService.login(value.username, value.password)
@@ -45,7 +66,12 @@ export class LoginComponent implements OnInit {
           if (resp) {
             this.closeModal();
             this.router.navigate(['/transfer']);
+          } else {
+            this.isLoggedIn = false;
           }
+        })
+        .catch(reason => {
+          this.isLoggedIn = false;
         });
     }
   }

@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { PhongtroService } from '../../services/phongtro.service';
 import { UserService } from '../../services/user.service';
 import { NganhangService } from '../../services/nganhang.service';
@@ -16,12 +18,13 @@ import { Giaodich } from '../../models/giaodich';
 })
 export class TransferMoneyComponent implements OnInit {
 
+  @ViewChild('errorModal') errorModal: ModalDirective;
   private complexForm: FormGroup;
   private ngh_gui: Nganhang;
   private ngh_nhan: Nganhang[];
   private phongtro: Phongtro;
 
-  constructor(private fb: FormBuilder, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
+  constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
 
     this.ngh_gui = this.nghService.currentNgh;
     this.phongtro = this.ptService.currentPT;
@@ -59,9 +62,16 @@ export class TransferMoneyComponent implements OnInit {
       ngay: currentdate,
       tien: this.phongtro.tiencoc
     }
-    this.gdService.chuyenTien(gd).then(resp => {
+    this.gdService.chuyenTien(this.phongtro.id, gd).then(resp => {
       console.log(resp);
+      this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
+    }).catch(error => {
+      this.errorModal.show();
     })
+  }
+
+  goBack() {
+    this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
   }
 
 }

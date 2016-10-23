@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { User } from '../models/user';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Rx';
 
 let Constants = require('../resources/constants');
 
 @Injectable()
 export class UserService {
 
+  public checkLoggedIn = new Subject();
   private loggedIn = false;
   private _user: User;
 
@@ -29,7 +31,7 @@ export class UserService {
       username: username,
       password: password
     };
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.http.post(Constants.apiUrl + 'user/login', JSON.stringify(data), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
@@ -40,6 +42,7 @@ export class UserService {
             resolve(resp);
           } else {
             this.handleError('login', resp.result);
+            reject(resp);
           }
         },
         err => this.handleError('login', err));
@@ -49,6 +52,7 @@ export class UserService {
   logout(){
     localStorage.removeItem('isLoggedIn');
     this.loggedIn = false;
+    this.checkLoggedIn.next(false);
   }
 
   isLoggedIn(){
@@ -56,7 +60,7 @@ export class UserService {
   }
 
   layThongtinUser(username: string): Promise<User>{
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'user/' + username, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
@@ -64,6 +68,7 @@ export class UserService {
             resolve(resp);
           } else {
             this.handleError('layThongtinUser', resp.result);
+            reject(resp);
           }
         },
         err => this.handleError('layThongtinUser', err));
@@ -71,7 +76,7 @@ export class UserService {
   }
 
   layThongtinUserID(id: number): Promise<User> {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'user/id/' + id, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
@@ -79,6 +84,7 @@ export class UserService {
             resolve(resp);
           } else {
             this.handleError('layThongtinUserID', resp.result);
+            reject(resp);
           }
         },
         err => this.handleError('layThongtinUserID', err));

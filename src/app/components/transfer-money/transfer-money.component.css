@@ -1,0 +1,22 @@
+.error-form p {
+  font-size: 20px;
+  text-align: center;
+  color: #c7254e;
+}
+
+.btn-modal {
+  width: 155px;
+  font-weight: 600;
+}
+
+.btn-modal.left {
+  text-align: left;
+}
+
+.btn-modal.right {
+  text-align: center;
+}
+
+.btn-modal i {
+  margin: 0 5px;
+}

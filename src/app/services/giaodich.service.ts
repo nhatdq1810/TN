@@ -13,19 +13,20 @@ export class GiaodichService {
 
   private handleError(funcName: string, error: any): Observable<any> {
     console.error(funcName + ' has error ', error);
-    this.router.navigate(['/404']);
+    // this.router.navigate(['/404']);
     return Observable.throw(error.message || error);
   }
 
-  chuyenTien(model) {
-    return new Promise(resolve => {
-      this.http.post(Constants.apiUrl + 'giaodich/chuyenTien', JSON.stringify(model), { headers: Constants.headers })
+  chuyenTien(phongtroID, model) {
+    return new Promise((resolve, reject) => {
+      this.http.post(Constants.apiUrl + `giaodich/phongtro/${phongtroID}/chuyenTien`, JSON.stringify(model), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
             this.handleError('chuyenTien', resp.result);
+            reject(resp);
           }
         },
         err => this.handleError('chuyenTien', err));

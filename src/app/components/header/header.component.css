@@ -1,52 +1,62 @@
-
 /* Header & Nav */
 
 .tm-header {
-    background: #000000;
-    height: 80px;
-    position: relative;
-    z-index: 100;
+  background: #000000;
+  height: 80px;
+  position: relative;
+  z-index: 100;
 }
 
 .tm-site-name-container {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 .tm-site-name {
-    color: #FCDD44;
-    font-size: 27px;
-    font-weight: 600;
+  color: #FCDD44;
+  font-size: 27px;
+  font-weight: 600;
 }
 
 .tm-site-name:hover {
-    color: #FF720B;
+  color: #FF720B;
 }
 
 .mobile-menu-icon {
-    display: none;
+  display: none;
 }
 
 .tm-nav {
-    display: block;
-    overflow: hidden;
+  display: block;
+  overflow: hidden;
 }
 
 .tm-nav li {
-    float: left;
+  float: left;
 }
 
 .tm-nav li a {
-    color: #838383;
-    display: block;
-    padding: 45px 30px 15px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    font-weight: bold;
+  color: #838383;
+  display: block;
+  padding: 45px 30px 15px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  font-weight: bold;
 }
 
 .tm-nav li a.active,
 .tm-nav li a:focus,
 .tm-nav li a:hover {
-    background: #FCDD44;
-    color: #000;
+  background: #FCDD44;
+  color: #000;
+}
+
+.logout-form p {
+  text-align: center;
+  color: #c7254e;
+  font-size: 36px;
+}
+
+.btn-modal {
+  font-size: 20px;
+  width: calc(50% - 2px);
 }

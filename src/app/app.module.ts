@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AccordionModule, ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { AccordionModule, ModalModule, AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { routing } from './app.routing';
 import { Nouislider } from 'ng2-nouislider';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
@@ -61,6 +61,7 @@ import { GridListComponent } from './components/grid-list/grid-list.component';
     AccordionModule,
     routing,
     ModalModule,
+    AlertModule,
     AgmCoreModule.forRoot({
       apiKey: Constants.googleApiKey
     })

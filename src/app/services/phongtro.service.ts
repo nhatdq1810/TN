@@ -25,14 +25,14 @@ export class PhongtroService {
     return this._currentPT;
   }
 
-  private handleError(funcName: string, error: any): Promise<any> {
+  private handleError(funcName: string, error: any): Observable<any> {
     console.error(funcName + ' has error ', error);
-    this.router.navigate(['/404']);
-    return Promise.reject(error.message || error);
+    // this.router.navigate(['/404']);
+    return Observable.throw(error.message || error);
   }
 
   layTatcaPhongtro(): Promise<any>{
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.http
         .get(Constants.apiUrl + 'phongtro/tatca', { headers: Constants.headers })
         .map((resp: Response) => resp.json())
@@ -41,6 +41,7 @@ export class PhongtroService {
             resolve(resp);
           } else {
             this.handleError('layTatcaPhongtro', resp.result);
+            reject(resp);
           }
         },
         error => this.handleError('layTatcaPhongtro', error));
@@ -48,7 +49,7 @@ export class PhongtroService {
   }
 
   layPhongtro(id: number): Promise<any> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.http
         .get(Constants.apiUrl + 'phongtro/' + id, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
@@ -58,6 +59,7 @@ export class PhongtroService {
             resolve(resp);
           } else {
             this.handleError('layPhongtro', resp.result);
+            reject(resp);
           }
         },
         error => this.handleError('layPhongtro', error));
@@ -65,7 +67,7 @@ export class PhongtroService {
   }
 
   layPhongtroHot(gioihan: number): Promise<any> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.http
         .get(Constants.apiUrl + 'phongtro/hot?gioihan=' + gioihan, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
@@ -75,6 +77,7 @@ export class PhongtroService {
             resolve(resp)
           } else {
             this.handleError('layPhongtroHot', resp.result);
+            reject(resp);
           }
         },
         error => this.handleError('layPhongtroHot', error));
@@ -82,7 +85,7 @@ export class PhongtroService {
   }
 
   layPhongtroMoi(gioihan: number): Promise<any> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.http
         .get(Constants.apiUrl + 'phongtro/moi?gioihan=' + gioihan, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
@@ -92,6 +95,7 @@ export class PhongtroService {
             resolve(resp);
           } else {
             this.handleError('layPhongtroMoi', resp.result);
+            reject(resp);
           }
         },
         error => this.handleError('layPhongtroMoi', error));
@@ -99,7 +103,7 @@ export class PhongtroService {
   }
 
   timkiemPhongtro(model): Promise<any>{
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien[0]}&giatien_max=${model.giatien[1]}&truong=${model.truong}&nganh=${model.nganh}&gioitinh=${model.gioitinh}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
@@ -108,6 +112,7 @@ export class PhongtroService {
             resolve('success');
           } else {
             this.handleError('timkiemPhongtro', resp.result);
+            reject(resp);
           }
         },
         error => this.handleError('timkiemPhongtro', error));

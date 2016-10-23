@@ -26,7 +26,7 @@ export class NganhangService {
       username: username,
       password: password
     };
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.http.post(Constants.apiUrl + 'nganhang/login', JSON.stringify(data), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
@@ -35,6 +35,7 @@ export class NganhangService {
             resolve(resp);
           } else {
             this.handleError('login', resp.result);
+            reject(resp);
           }
         },
         err => this.handleError('login', err));
@@ -42,14 +43,15 @@ export class NganhangService {
   }
 
   layTkNghTheoUserID(userID) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'nganhang/userID/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
-            this.handleError('layTkNghTheoUserID', resp.result)
+            this.handleError('layTkNghTheoUserID', resp.result);
+            reject(resp);
           }
         },
         err => this.handleError('layTkNghTheoUserID', err));

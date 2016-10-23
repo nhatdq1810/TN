@@ -18,3 +18,24 @@
     </form>
   </div>
 </div>
+<div bsModal #errorModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" (onHidden)="goBack()">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="errorModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="modal-title">Thông báo</h2>
+      </div>
+      <div class="modal-body">
+        <div class="error-form">
+          <p>Tài khoản của bạn hiện không đủ tiền</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a routerLink="/phongtro/detail/{{phongtro.id}}" class="btn-modal left"><i class="fa fa-arrow-left"></i>Về trang trước</a>
+        <a routerLink="/home" class="btn-modal right">Trang chủ</a>
+      </div>
+    </div>
+  </div>
+</div>

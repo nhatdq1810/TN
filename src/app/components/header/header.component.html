@@ -1,21 +1,43 @@
 <div class="tm-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-                <a routerLink="/home" class="tm-site-name">troSV</a>
-            </div>
-            <div class="col-lg-6 col-md-8 col-sm-9">
-                <nav class="tm-nav">
-                    <ul>
-                        <li><a routerLink="/home" routerLinkActive="active">Trang chủ</a></li>
-                        <li><a routerLink="/search/result" routerLinkActive="active">Tìm kiếm</a></li>
-                        <li><a routerLink="" (click)="registerModal.showModal()">Đăng ký</a></li>
-                        <li><a routerLink="" (click)="loginModal.showModal()">Đăng nhập</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
+        <a routerLink="/home" class="tm-site-name">troSV</a>
+      </div>
+      <div class="col-lg-6 col-md-8 col-sm-9">
+        <nav class="tm-nav">
+          <ul>
+            <li><a routerLink="/home" routerLinkActive="active">Trang chủ</a></li>
+            <li><a routerLink="/search/result" routerLinkActive="active">Tìm kiếm</a></li>
+            <li *ngIf="!isLoggedIn"><a (click)="registerModal.showModal()">Đăng ký</a></li>
+            <li *ngIf="!isLoggedIn"><a (click)="loginModal.showModal()">Đăng nhập</a></li>
+            <li *ngIf="isLoggedIn"><a (click)="logoutModal.show()">Đăng xuất</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
+  </div>
+</div>
+<div bsModal #logoutModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="logoutModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="modal-title">Đăng xuất</h2>
+      </div>
+      <div class="modal-body">
+        <div class="logout-form">
+          <p>Bạn muốn đăng xuất ???</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal" (click)="logout(); logoutModal.hide();">Đăng xuất</button>
+        <button class="btn-modal" (click)="logoutModal.hide();">Không</button>
+      </div>
+    </div>
+  </div>
 </div>
 <app-login #loginModal></app-login>
 <app-register #registerModal></app-register>
