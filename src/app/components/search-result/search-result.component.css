@@ -1,3 +1,29 @@
-.list-pt ul {
-  margin-top: 30px;
+.search-area  {
+  margin: 30px 0;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.41);
+}
+
+.form-group {
+  display: inline-block;
+  width: calc((100%/3) - 60px);
+  margin-right: 40px;
+  margin-bottom: 20px;
+}
+
+.form-group:last-of-type {
+  margin-bottom: 0;
+}
+
+.form-group > label {
+  font-size: 20px;
+}
+
+.form-group span {
+  color: #c7254e;
+  font-weight: 600;
+}
+
+.radio {
+  margin-top: 0;
 }

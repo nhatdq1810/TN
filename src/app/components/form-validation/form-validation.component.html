@@ -1,8 +1,8 @@
 <div class="tm-home-box-1">
-  <p id="hotelCarTabs">Phòng trọ</p>
-  <div class="tab-pane fade in active tm-white-bg" id="hotel">
+  <p id="ptCarTabs">Phòng trọ</p>
+  <div class="tab-pane fade in active tm-white-bg" id="pt">
     <div class="tm-search-box effect2">
-      <form class="hotel-search-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+      <form class="pt-search-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
         <div class="tm-form-inner">
           <div class="form-group">
             <label>Khoản tiền</label>
@@ -37,12 +37,12 @@
             <label>Giới tính</label>
             <div class="radio">
               <label>
-                <input type="checkbox" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="checkboxValue" (change)="setCheckboxValue()"> Nam
+                <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="true"> Nam
               </label>
             </div>
             <div class="radio">
               <label>
-                <input type="checkbox" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="!checkboxValue" (change)="setCheckboxValue()"> Nữ
+                <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']"> Nữ
               </label>
             </div>
           </div>

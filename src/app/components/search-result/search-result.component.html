@@ -1,5 +1,89 @@
 <div class="container">
-    <div class="row list-pt">
-      <app-grid-list [deals]="listPT"></app-grid-list>
-    </div>
+  <div class="search-area">
+    <form class="pt-search-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+      <div class="tm-form-inner">
+        <div class="form-group">
+          <label>Khoản tiền</label>
+          <p class="sliderValue">
+            <span>{{ giatienValue[0] | number }}</span>
+            <span class="right">{{ giatienValue[1] | number }}</span>
+          </p>
+          <nouislider [connect]="true" [min]="500000" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['giatien']" [(ngModel)]="giatienValue"></nouislider>
+        </div>
+        <div class="form-group">
+          <label>Tiền cọc</label>
+          <p class="sliderValue">
+            <span>{{ tiencocValue[0] | number }}</span>
+            <span class="right">{{ tiencocValue[1] | number }}</span>
+          </p>
+          <nouislider [connect]="true" [min]="0" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['tiencoc']" [(ngModel)]="tiencocValue"></nouislider>
+        </div>
+        <div class="form-group">
+          <label>Diện tích</label>
+          <p class="sliderValue">
+            <span>{{ dientichValue[0] | number }}</span>
+            <span class="right">{{ dientichValue[1] | number }}</span>
+          </p>
+          <nouislider [connect]="true" [min]="10" [max]="20" [step]="1" [formControl]="complexForm.controls['dientich']" [(ngModel)]="dientichValue"></nouislider>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['truong'].valid && complexForm.controls['truong'].touched}">
+          <label>Trường học:</label>
+          <input class="form-control" type="text" placeholder="Trường học" [formControl]="complexForm.controls['truong']">
+        </div>
+        <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['nganh'].valid && complexForm.controls['nganh'].touched}">
+          <label>Ngành học</label>
+          <input class="form-control" type="text" placeholder="Chuyên ngành" [formControl]="complexForm.controls['nganh']">
+        </div>
+        <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['khoa'].valid && complexForm.controls['khoa'].touched}">
+          <label>Niên khóa</label>
+          <input class="form-control" type="number" placeholder="Niên khóa" [formControl]="complexForm.controls['khoa']">
+        </div>
+        <div class="form-group">
+          <label>Giới tính</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="true"> Nam
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']"> Nữ
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Wifi</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="wifi" value="1" [checked]="true" [formControl]="complexForm.controls['wifi']">Có
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']">Không
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Ở với chủ</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="chu" value="1" [checked]="true" [formControl]="complexForm.controls['chu']">Có
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']">Không
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" name="submit" [disabled]="!complexForm.valid" class="btn-modal">Tìm kiếm</button>
+      </div>
+    </form>
+  </div>
+  <div class="list-pt">
+    <app-grid-list [deals]="listPT"></app-grid-list>
+  </div>
 </div>

@@ -12,6 +12,7 @@ export class PhongtroService {
 
   private _listTKPT: any[];
   private _currentPT: any;
+  private _searchTerm: any;
 
   constructor(private http: Http, private router: Router) {
     this._listTKPT = [];
@@ -23,6 +24,10 @@ export class PhongtroService {
 
   get currentPT(): any{
     return this._currentPT;
+  }
+
+  get searchTerm(): any {
+    return this._searchTerm;
   }
 
   private handleError(funcName: string, error: any): Observable<any> {
@@ -103,19 +108,36 @@ export class PhongtroService {
   }
 
   timkiemPhongtro(model): Promise<any>{
+    this._searchTerm = {
+      giatien_min: model.giatien[0],
+      giatien_max: model.giatien[1],
+      truong: model.truong,
+      nganh: model.nganh,
+      gioitinh: model.gioitinh
+    }
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien[0]}&giatien_max=${model.giatien[1]}&truong=${model.truong}&nganh=${model.nganh}&gioitinh=${model.gioitinh}`, { headers: Constants.headers })
-        .map((resp: Response) => resp.json())
-        .subscribe(resp => {
-          if (!resp.result || resp.result !== 'fail') {
-            this._listTKPT = resp;
-            resolve('success');
-          } else {
-            this.handleError('timkiemPhongtro', resp.result);
-            reject(resp.result);
-          }
-        },
-        error => this.handleError('timkiemPhongtro', error));
-    });
+      resolve('success');
+    })
+    // return new Promise((resolve, reject) => {
+    //   this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien[0]}&giatien_max=${model.giatien[1]}&truong=${model.truong}&nganh=${model.nganh}&gioitinh=${model.gioitinh}`, { headers: Constants.headers })
+    //     .map((resp: Response) => resp.json())
+    //     .subscribe(resp => {
+    //       if (!resp.result || resp.result !== 'fail') {
+    //         this._searchTerm = {
+    //           giatien_min: model.giatien[0],
+    //           giatiem_max: model.giatien[1],
+    //           truong: model.truong,
+    //           nganh: model.nganh,
+    //           gioitinh: model.gioitinh
+    //         }
+    //         this._listTKPT = resp;
+    //         resolve('success');
+    //       } else {
+    //         this.handleError('timkiemPhongtro', resp.result);
+    //         reject(resp.result);
+    //       }
+    //     },
+    //     error => this.handleError('timkiemPhongtro', error));
+    // });
   }
 }
