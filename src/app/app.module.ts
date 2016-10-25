@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AccordionModule, ModalModule, AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { AccordionModule, ModalModule, AlertModule, DropdownModule  } from 'ng2-bootstrap/ng2-bootstrap';
 import { routing } from './app.routing';
 import { Nouislider } from 'ng2-nouislider';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
@@ -64,6 +64,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     routing,
     ModalModule,
     AlertModule,
+    DropdownModule,
     AgmCoreModule.forRoot({
       apiKey: Constants.googleApiKey
     })

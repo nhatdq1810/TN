@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-user-info',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+    this.init();
+  }
 
   ngOnInit() {
+  }
+
+  init() {
+    let password: boolean;
+    this.route.params.forEach((params: Params) => {
+      password = params['password'];
+    })
+    console.log(password);
   }
 
 }

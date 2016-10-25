@@ -9,6 +9,7 @@ import { Error404Component } from './components/404/404.component';
 import { LoginComponent } from './components/login/login.component';
 import { PhongtroDetailComponent } from './components/phongtro-detail/phongtro-detail.component';
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 const appRoutes: Routes = [
   {
@@ -44,6 +45,10 @@ const appRoutes: Routes = [
   {
     path: 'transfer',
     component: TransferMoneyComponent
+  },
+  {
+    path: 'user/info',
+    component: UserInfoComponent
   },
   {
     path: '',

@@ -42,12 +42,12 @@
           <label>Giới tính</label>
           <div class="radio">
             <label>
-              <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="true"> Nam
+              <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh"> Nam
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']"> Nữ
+              <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="!initGioitinh"> Nữ
             </label>
           </div>
         </div>
@@ -55,7 +55,7 @@
           <label>Wifi</label>
           <div class="radio">
             <label>
-              <input type="radio" name="wifi" value="1" [checked]="true" [formControl]="complexForm.controls['wifi']">Có
+              <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="true">Có
             </label>
           </div>
           <div class="radio">
@@ -68,7 +68,7 @@
           <label>Ở với chủ</label>
           <div class="radio">
             <label>
-              <input type="radio" name="chu" value="1" [checked]="true" [formControl]="complexForm.controls['chu']">Có
+              <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="true">Có
             </label>
           </div>
           <div class="radio">

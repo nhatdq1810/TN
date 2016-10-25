@@ -1,19 +1,25 @@
-<h2 class="modal-title">Chuyển tiền</h2>
-<div class="transfer-form">
-  <div class="transfer" *ngIf="ngh_gui && ngh_nhan && phongtro">
+<div class="container transfer-form">
+  <h1 class="modal-title">Chuyển tiền</h1>
+  <div class="row transfer" *ngIf="ngh_gui && ngh_nhan && phongtro">
     <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
-      <span>Họ tên người gửi: </span>
-      <input type="text" [formControl]="complexForm.controls['hoten_gui']" [readonly]="true" name="hoten_gui">
-      <span>Số tiền: </span>
-      <input type="number" [formControl]="complexForm.controls['tiencoc']" [readonly]="true" name="tiencoc">
-      <span>Họ tên người nhận: </span>
-      <input type="text" [formControl]="complexForm.controls['hoten_nhan']" [readonly]="true" name="hoten_nhan">
-      <span>Địa chỉ người nhận: </span>
-      <input type="text" [formControl]="complexForm.controls['diachi_nhan']" [readonly]="true" name="diachi_nhan">
-      <span>Số ĐT người nhận: </span>
-      <input type="text" [formControl]="complexForm.controls['sodt_nhan']" [readonly]="true" name="sodt_nhan">
+      <div class="ngh-gui col-md-4">
+        <span>Họ tên người gửi: </span>
+        <input class="input-modal" type="text" [formControl]="complexForm.controls['hoten_gui']" [readonly]="true" name="hoten_gui">
+      </div>
+      <div class="center-section col-md-4">
+        <span>Số tiền: </span>
+        <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencoc']" [readonly]="true" name="tiencoc">
+      </div>
+      <div class="ngh-nhan col-md-4">
+        <span>Họ tên người nhận: </span>
+        <input class="input-modal" type="text" [formControl]="complexForm.controls['hoten_nhan']" [readonly]="true" name="hoten_nhan">
+        <span>Địa chỉ người nhận: </span>
+        <input class="input-modal" type="text" [formControl]="complexForm.controls['diachi_nhan']" [readonly]="true" name="diachi_nhan">
+        <span>Số ĐT người nhận: </span>
+        <input class="input-modal" type="text" [formControl]="complexForm.controls['sodt_nhan']" [readonly]="true" name="sodt_nhan">
+      </div>
       <div class="send-button">
-        <input type="submit" value="Xác nhận">
+        <input class="btn-modal" type="submit" value="Xác nhận">
       </div>
     </form>
   </div>
@@ -33,8 +39,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a routerLink="/phongtro/detail/{{phongtro.id}}" class="btn-modal left"><i class="fa fa-arrow-left"></i>Về trang trước</a>
-        <a routerLink="/home" class="btn-modal right">Trang chủ</a>
+        <a [routerLink]="['/phongtro/detail', phongtro.id]" class="btn-modal left"><i class="fa fa-arrow-left"></i>Về trang trước</a>
+        <a [routerLink]="['/home']" class="btn-modal right">Trang chủ</a>
       </div>
     </div>
   </div>

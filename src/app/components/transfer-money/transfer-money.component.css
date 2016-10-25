@@ -1,3 +1,32 @@
+.transfer-form {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.transfer-form h1 {
+  margin-bottom: 30px;
+}
+
+.input-modal {
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0 auto 30px;
+}
+
+.center-section .input-modal {
+  color: #c7254e;
+}
+
+.ngh-nhan .input-modal:last-of-type {
+  margin-bottom: 0;
+}
+
+.send-button {
+  text-align: center;
+}
+
 .error-form p {
   font-size: 20px;
   text-align: center;

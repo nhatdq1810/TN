@@ -12,6 +12,7 @@ export class SearchResultComponent implements OnInit {
 
   private listPT: any[];
   private complexForm: FormGroup;
+  private initGioitinh: boolean;
   private giatienValue: number[];
   private tiencocValue: number[];
   private dientichValue: number[];
@@ -19,31 +20,69 @@ export class SearchResultComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService) {
     this.fakeInit();
-    console.log(this.searchTerm);
     // this.init();
-    this.complexForm = this.fb.group({
-      'giatien': this.searchTerm.giatien_min,
-      'tiencoc': 0,
-      'dientich': 10,
-      'truong': this.searchTerm.truong,
-      'nganh': this.searchTerm.nganh,
-      'khoa': '',
-      'gioitinh': this.searchTerm.gioitinh,
-      'wifi': 1,
-      'chu': 1
-    });
-    this.giatienValue = [this.searchTerm.giatien_min, this.searchTerm.giatien_max];
-    this.tiencocValue = [0, 5000000];
-    this.dientichValue = [10, 20];
   }
 
   ngOnInit() {
 
   }
 
+  initListPT() {
+    this.ptService.layPhongtroHot(7).then(resp => {
+      this.listPT = resp;
+    });
+  }
+
+  initSearchTerm() {
+    this.complexForm = this.fb.group({
+      'giatien': 500000,
+      'tiencoc': 0,
+      'dientich': 10,
+      'truong': '',
+      'nganh': '',
+      'khoa': '',
+      'gioitinh': '',
+      'wifi': 1,
+      'chu': 1
+    });
+
+    this.initGioitinh = true;
+    this.giatienValue = [500000, 5000000];
+    this.tiencocValue = [0, 5000000];
+    this.dientichValue = [10, 20];
+  }
+
   init() {
     this.listPT = this.ptService.listPT;
     this.searchTerm = this.ptService.searchTerm;
+
+    if (this.listPT === undefined) {
+      this.initListPT();
+    }
+    if (this.searchTerm === undefined) {
+      this.initSearchTerm();
+    } else {
+      this.complexForm = this.fb.group({
+        'giatien': this.searchTerm.giatien_min,
+        'tiencoc': 0,
+        'dientich': 10,
+        'truong': this.searchTerm.truong,
+        'nganh': this.searchTerm.nganh,
+        'khoa': '',
+        'gioitinh': this.searchTerm.gioitinh,
+        'wifi': 1,
+        'chu': 1
+      });
+
+      if (this.searchTerm.gioitinh === 'nam') {
+        this.initGioitinh = true;
+      } else {
+        this.initGioitinh = false;
+      }
+      this.giatienValue = [this.searchTerm.giatien_min, this.searchTerm.giatien_max];
+      this.tiencocValue = [0, 5000000];
+      this.dientichValue = [10, 20];
+    }
   }
 
   submitForm(value: any) {
@@ -73,18 +112,6 @@ export class SearchResultComponent implements OnInit {
   fakeInit() {
     this.searchTerm = this.ptService.searchTerm;
     this.listPT = [
-      {
-        id: 11,
-        hinhanh: 'assets/img/index-07.jpg',
-        diachi: '123 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nam',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 2000000
-      },
       {
         id: 12,
         hinhanh: 'assets/img/index-08.jpg',
@@ -170,6 +197,31 @@ export class SearchResultComponent implements OnInit {
         giatien: 5000000
       }
     ];
+
+    if (this.searchTerm === undefined) {
+      this.initSearchTerm();
+    } else {
+      this.complexForm = this.fb.group({
+        'giatien': this.searchTerm.giatien_min,
+        'tiencoc': 0,
+        'dientich': 10,
+        'truong': this.searchTerm.truong,
+        'nganh': this.searchTerm.nganh,
+        'khoa': '',
+        'gioitinh': this.searchTerm.gioitinh,
+        'wifi': 1,
+        'chu': 1
+      });
+
+      if (this.searchTerm.gioitinh === 'nam') {
+        this.initGioitinh = true;
+      } else {
+        this.initGioitinh = false;
+      }
+      this.giatienValue = [this.searchTerm.giatien_min, this.searchTerm.giatien_max];
+      this.tiencocValue = [0, 5000000];
+      this.dientichValue = [10, 20];
+    }
   }
 
 }

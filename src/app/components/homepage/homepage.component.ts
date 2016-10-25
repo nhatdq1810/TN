@@ -222,18 +222,6 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
         giatien: 5000000
       },
       {
-        id: 13,
-        hinhanh: 'assets/img/index-09.jpg',
-        diachi: '1234 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nam',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 2000000
-      },
-      {
         id: 14,
         hinhanh: 'assets/img/index-10.jpg',
         diachi: '1235 abc P.15 Quận Gò Vấp',

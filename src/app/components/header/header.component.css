@@ -27,15 +27,18 @@
 
 .tm-nav {
   display: block;
-  overflow: hidden;
 }
 
-.tm-nav li {
+.tm-nav > ul > li {
   float: left;
 }
 
-.tm-nav li a {
+.tm-nav li a,
+.tm-nav li button {
+  border: none;
+  border-radius: initial;
   color: #838383;
+  background: transparent;
   display: block;
   padding: 45px 30px 15px;
   text-transform: uppercase;
@@ -45,9 +48,21 @@
 
 .tm-nav li a.active,
 .tm-nav li a:focus,
-.tm-nav li a:hover {
+.tm-nav li a:hover,
+.tm-nav .dropdown.open button,
+.tm-nav .dropdown button:hover {
   background: #FCDD44;
-  color: #000;
+  color: #000000;
+}
+
+.dropdown-menu {
+  right: 0;
+  left: initial;
+}
+
+.dropdown-menu li a {
+  text-align: right;
+  padding: 10px;
 }
 
 .logout-form p {

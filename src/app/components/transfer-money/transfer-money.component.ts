@@ -25,7 +25,14 @@ export class TransferMoneyComponent implements OnInit {
   private phongtro: Phongtro;
 
   constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
+    this.fakeInit();
+    // this.init();
+  }
 
+  ngOnInit() {
+  }
+
+  init() {
     this.ngh_gui = this.nghService.currentNgh;
     this.phongtro = this.ptService.currentPT;
     this.nghService.layTkNghTheoUserID(this.phongtro.userID).then((listTk: Nganhang[]) => {
@@ -38,9 +45,6 @@ export class TransferMoneyComponent implements OnInit {
         'sodt_nhan': new FormControl(this.ngh_nhan[0].sodt, Validators.required)
       });
     });
-  }
-
-  ngOnInit() {
   }
 
   submitForm(value: any) {
@@ -63,7 +67,6 @@ export class TransferMoneyComponent implements OnInit {
       tien: this.phongtro.tiencoc
     }
     this.gdService.chuyenTien(this.phongtro.id, gd).then(resp => {
-      console.log(resp);
       this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
     }).catch(error => {
       this.errorModal.show();
@@ -72,6 +75,56 @@ export class TransferMoneyComponent implements OnInit {
 
   goBack() {
     this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
+  }
+
+  fakeInit() {
+    this.phongtro = {
+      chu: 1,
+      wifi: 1,
+      diachi: '',
+      dientich: 10,
+      ghichu: '',
+      giatien: 2000000,
+      gioitinh: 'nam',
+      hinhanh: '',
+      id: 1,
+      khoa: '',
+      nganh: '',
+      ngaydang: '',
+      songuoi: 2,
+      tiencoc: 1000000,
+      truong: '',
+      userID: 1
+    };
+    this.ngh_gui = {
+      cmnd: '123456789',
+      diachi: '123 abc',
+      hoten: 'abc',
+      id: 1,
+      password: '123454',
+      sodt: '0123456789',
+      tien: 0,
+      userID: 1,
+      username: 'abc'
+    };
+    this.ngh_nhan = [{
+      cmnd: '111222333',
+      diachi: '123 abc',
+      hoten: 'abc',
+      id: 2,
+      password: '123454',
+      sodt: '0123456789',
+      tien: 0,
+      userID: 2,
+      username: 'bbb'
+    }];
+    this.complexForm = this.fb.group({
+      'hoten_gui': new FormControl(this.ngh_gui.hoten, Validators.required),
+      'tiencoc': new FormControl(this.phongtro.tiencoc, Validators.required),
+      'hoten_nhan': new FormControl(this.ngh_nhan[0].hoten, Validators.required),
+      'diachi_nhan': new FormControl(this.ngh_nhan[0].diachi, Validators.required),
+      'sodt_nhan': new FormControl(this.ngh_nhan[0].sodt, Validators.required)
+    });
   }
 
 }

@@ -22,8 +22,8 @@ export class PhongtroDetailComponent implements OnInit {
   private zoom: number;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   init() {
@@ -70,7 +70,7 @@ export class PhongtroDetailComponent implements OnInit {
       chu: 0,
       ghichu: '',
       userID: 1,
-      tiencoc: 0,
+      tiencoc: 1000000,
       truong: 'PTITPTITPTITPTITPTITPTITPTITPTITPTITPTIT',
       ngaydang: '01/10/2016',
       giatien: 2000000
@@ -81,7 +81,6 @@ export class PhongtroDetailComponent implements OnInit {
       email: 'abc@gmail.com',
       facebook: 'https://www.facebook.com/abcabcabcabcabcabcabcabcabcabc',
       skype: 'sutrix.nhat.dangsutrix.nhat.dangsutrix.nhat.dangsutrix.nhat.dang',
-      // skype: 'dangquangnhat18101994',
       hoten: 'abc',
       id: 1,
       password: '123456',

@@ -30,7 +30,7 @@
               </div>
             </form>
             <div class="options" *ngIf="loginForm !== 'nganhang'">
-              <a class="forgot-password" routerLink="/">Quên mật khẩu?</a>
+              <a class="forgot-password" [routerLink]="['/']">Quên mật khẩu?</a>
               <a class="register btn-modal right" (click)="closeModal(); registerModal.showModal();">Đăng ký?</a>
             </div>
             <div class="social-icons" *ngIf="loginForm !== 'nganhang'">
