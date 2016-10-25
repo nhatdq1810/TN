@@ -17,8 +17,8 @@
                   Thông tin cá nhân <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
-                  <li role="menuitem"><a [routerLink]="['/user/info', {password: true}]" class="dropdown-item">Đổi mật khẩu</a></li>
-                  <li role="menuitem"><a [routerLink]="['/user/info', {password: false}]" class="dropdown-item">Thay đổi thông tin</a></li>
+                  <li role="menuitem"><a [routerLink]="['/user/info', {formInfo: 'password'}]" class="dropdown-item">Đổi mật khẩu</a></li>
+                  <li role="menuitem"><a [routerLink]="['/user/info', {formInfo: 'info'}]" class="dropdown-item">Sửa thông tin cá nhân</a></li>
                   <li role="menuitem"><a [routerLink]="['/phongtro/user']" class="dropdown-item">Phòng trọ của tôi</a></li>
                   <li class="divider dropdown-divider"></li>
                   <li role="menuitem"><a (click)="logoutModal.show()">Đăng xuất</a></li>

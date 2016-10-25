@@ -15,23 +15,10 @@
           <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['truong'].valid && complexForm.controls['truong'].touched}">
             <label>Trường học:</label>
             <input class="form-control" type="text" placeholder="Trường học" [formControl]="complexForm.controls['truong']">
-            <!-- <span *ngIf="searching"> searching...</span> -->
-            <!-- <div *ngIf="complexForm.controls['truong'].hasError('required') && complexForm.controls['truong'].touched" class="alert alert-danger">
-              You must include first name.
-            </div> -->
           </div>
           <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['nganh'].valid && complexForm.controls['nganh'].touched}">
             <label>Ngành học</label>
             <input class="form-control" type="text" placeholder="Chuyên ngành" [formControl]="complexForm.controls['nganh']">
-            <!-- <div *ngIf="complexForm.controls['nganh'].hasError('required') && complexForm.controls['nganh'].touched" class="alert alert-danger">
-              You must include last name.
-            </div>
-            <div *ngIf="complexForm.controls['nganh'].hasError('minlength') && complexForm.controls['nganh'].touched" class="alert alert-danger">
-              Last name min length is 5.
-            </div>
-            <div *ngIf="complexForm.controls['nganh'].hasError('maxlength') && complexForm.controls['nganh'].touched" class="alert alert-danger">
-              Last name max length is 10.
-            </div> -->
           </div>
           <div class="form-group">
             <label>Giới tính</label>

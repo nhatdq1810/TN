@@ -1,0 +1,35 @@
+.user-info {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.user-info h1 {
+  margin-bottom: 30px;
+}
+
+.form-group {
+  display: inline-block;
+  margin-right: 50px;
+  width: calc(50% - 55px);
+  margin-bottom: 30px;
+}
+
+.form-group input {
+  text-align: center;
+}
+
+.send-button {
+  margin: auto;
+  width: 30%;
+}
+
+.send-button input {
+  width: 100%;
+  font-size: 20px;
+}
+
+.password-form .form-group {
+  margin: 0 auto 30px;
+  display: block;
+  width: 50%;
+}
