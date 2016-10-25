@@ -19,8 +19,8 @@ export class SearchResultComponent implements OnInit {
   private searchTerm: any;
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {
@@ -55,23 +55,22 @@ export class SearchResultComponent implements OnInit {
   init() {
     this.listPT = this.ptService.listPT;
     this.searchTerm = this.ptService.searchTerm;
-
-    if (this.listPT === undefined) {
+    if (this.listPT.length === 0) {
       this.initListPT();
     }
-    if (this.searchTerm === undefined) {
+    if (!this.searchTerm) {
       this.initSearchTerm();
     } else {
       this.complexForm = this.fb.group({
-        'giatien': this.searchTerm.giatien_min,
-        'tiencoc': 0,
-        'dientich': 10,
+        'giatien': this.searchTerm.giatien[0],
+        'tiencoc': this.searchTerm.tiencoc[0],
+        'dientich': this.searchTerm.dientich[0],
         'truong': this.searchTerm.truong,
         'nganh': this.searchTerm.nganh,
-        'khoa': '',
+        'khoa': this.searchTerm.khoa,
         'gioitinh': this.searchTerm.gioitinh,
-        'wifi': 1,
-        'chu': 1
+        'wifi': this.searchTerm.wifi,
+        'chu': this.searchTerm.chu
       });
 
       if (this.searchTerm.gioitinh === 'nam') {
@@ -79,9 +78,9 @@ export class SearchResultComponent implements OnInit {
       } else {
         this.initGioitinh = false;
       }
-      this.giatienValue = [this.searchTerm.giatien_min, this.searchTerm.giatien_max];
-      this.tiencocValue = [0, 5000000];
-      this.dientichValue = [10, 20];
+      this.giatienValue = [this.searchTerm.giatien[0], this.searchTerm.giatien[1]];
+      this.tiencocValue = [this.searchTerm.tiencoc[0], this.searchTerm.tiencoc[1]];
+      this.dientichValue = [this.searchTerm.dientich[0], this.searchTerm.dientich[1]];
     }
   }
 
@@ -101,7 +100,7 @@ export class SearchResultComponent implements OnInit {
       chu: +(value.chu)
     }
     console.log(searchTerm);
-    // this.ptService.timkiemPhongtro(value)
+    // this.ptService.timkiemPhongtro(searchTerm)
     //   .then((result: string) => {
     //     if (result === 'success') {
     //       this.router.navigate(['/search/result']);
@@ -198,7 +197,7 @@ export class SearchResultComponent implements OnInit {
       }
     ];
 
-    if (this.searchTerm === undefined) {
+    if (!this.searchTerm) {
       this.initSearchTerm();
     } else {
       this.complexForm = this.fb.group({

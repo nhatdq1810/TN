@@ -22,8 +22,8 @@ export class PhongtroDetailComponent implements OnInit {
   private zoom: number;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   init() {

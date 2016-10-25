@@ -17,8 +17,8 @@ export class UserInfoComponent implements OnInit {
   private formInfo: string;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService, private location: Location) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {

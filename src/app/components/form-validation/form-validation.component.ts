@@ -32,6 +32,17 @@ export class FormValidationComponent implements OnInit {
   }
 
   submitForm(value: any){
+    value.truong.toLowerCase();
+    value.nganh.toLowerCase();
+    value.tiencoc = [];
+    value.dientich = [];
+    value.tiencoc[0] = 0;
+    value.tiencoc[1] = 5000000;
+    value.dientich[0] = 10;
+    value.dientich[1] = 20;
+    value.khoa = '';
+    value.wifi = 1;
+    value.chu = 1;
     this.ptService.timkiemPhongtro(value)
       .then((result: string) => {
         if (result === 'success') {

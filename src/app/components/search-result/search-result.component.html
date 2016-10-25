@@ -83,7 +83,7 @@
       </div>
     </form>
   </div>
-  <div class="list-pt">
+  <div *ngIf="listPT" class="list-pt">
     <app-grid-list [deals]="listPT"></app-grid-list>
   </div>
 </div>
