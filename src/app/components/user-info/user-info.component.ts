@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 
@@ -16,9 +15,9 @@ export class UserInfoComponent implements OnInit {
   private user: User;
   private formInfo: string;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService, private location: Location) {
-    // this.fakeInit();
-    this.init();
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService) {
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {
@@ -44,10 +43,6 @@ export class UserInfoComponent implements OnInit {
 
   submitForm(value: any) {
     console.log(value);
-  }
-
-  goback() {
-    this.location.back();
   }
 
   fakeInit() {

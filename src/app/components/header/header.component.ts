@@ -12,8 +12,8 @@ export class HeaderComponent implements OnInit {
   private user: any;
 
   constructor(private userService: UserService) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {

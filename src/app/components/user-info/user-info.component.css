@@ -1,17 +1,84 @@
-.user-info {
+.margin-right {
+  margin-right: 50px;
+}
+
+.user-info-component {
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-.user-info h1 {
+.goback {
+  overflow: hidden;
+}
+
+.goback .btn-modal {
+  width: 145px;
+  padding: 10px 5px;
+  padding-right: 0;
+}
+
+.goback .btn-modal i {
+  margin: 0 5px;
+}
+
+.nav {
+  overflow: hidden;
+  margin-right: -15px;
+  margin-top: 50px;
+}
+
+.nav .btn-modal {
+  border-right: none;
+  width: 70%;
   margin-bottom: 30px;
+  padding: 0;
+}
+
+.nav .btn-modal a {
+  float: right;
+  width: 100%;
+  padding: 20px;
+  padding-right: 0;
+}
+
+.nav .btn-modal:hover,
+.nav .btn-modal.active {
+  width: 100%;
+  background-color: #000000;
+  border: 1px solid #fcdd44;
+  border-right: none;
+}
+
+.nav .btn-modal:hover a,
+.nav .btn-modal.active a {
+  color: #ffffff;
+}
+
+.user-info-block {
+  border-left: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.user-info-block h1 {
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+
+.user-info-form {
+  margin-left: 130px;
 }
 
 .form-group {
   display: inline-block;
-  margin-right: 50px;
-  width: calc(50% - 55px);
+  vertical-align: top;
+  width: calc(50% - 30px);
   margin-bottom: 30px;
+}
+
+.form-group p {
+  color: #c7254e;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .form-group input {

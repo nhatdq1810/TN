@@ -108,30 +108,30 @@ export class PhongtroService {
   }
 
   timkiemPhongtro(model): Promise<any>{
-    // this._searchTerm = {
-    //   giatien_min: model.giatien[0],
-    //   giatien_max: model.giatien[1],
-    //   truong: model.truong,
-    //   nganh: model.nganh,
-    //   gioitinh: model.gioitinh
-    // }
-    // return new Promise((resolve, reject) => {
-    //   resolve('success');
-    // })
+    this._searchTerm = {
+      giatien_min: model.giatien[0],
+      giatien_max: model.giatien[1],
+      truong: model.truong,
+      nganh: model.nganh,
+      gioitinh: model.gioitinh
+    }
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien[0]}&giatien_max=${model.giatien[1]}&tiencoc_min=${model.tiencoc[0]}&tiencoc_max=${model.tiencoc[1]}&dientich_min=${model.dientich[0]}&dientich_max=${model.dientich[1]}&truong=${model.truong}&nganh=${model.nganh}&khoa=${model.khoa}&gioitinh=${model.gioitinh}&wifi=${model.wifi}&chu=${model.chu}`, { headers: Constants.headers })
-        .map((resp: Response) => resp.json())
-        .subscribe(resp => {
-          if (!resp.result || resp.result !== 'fail') {
-            this._searchTerm = model;
-            this._listTKPT = resp;
-            resolve('success');
-          } else {
-            this.handleError('timkiemPhongtro', resp.result);
-            reject(resp.result);
-          }
-        },
-        error => this.handleError('timkiemPhongtro', error));
-    });
+      resolve('success');
+    })
+    // return new Promise((resolve, reject) => {
+    //   this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien[0]}&giatien_max=${model.giatien[1]}&tiencoc_min=${model.tiencoc[0]}&tiencoc_max=${model.tiencoc[1]}&dientich_min=${model.dientich[0]}&dientich_max=${model.dientich[1]}&truong=${model.truong}&nganh=${model.nganh}&khoa=${model.khoa}&gioitinh=${model.gioitinh}&wifi=${model.wifi}&chu=${model.chu}`, { headers: Constants.headers })
+    //     .map((resp: Response) => resp.json())
+    //     .subscribe(resp => {
+    //       if (!resp.result || resp.result !== 'fail') {
+    //         this._searchTerm = model;
+    //         this._listTKPT = resp;
+    //         resolve('success');
+    //       } else {
+    //         this.handleError('timkiemPhongtro', resp.result);
+    //         reject(resp.result);
+    //       }
+    //     },
+    //     error => this.handleError('timkiemPhongtro', error));
+    // });
   }
 }
