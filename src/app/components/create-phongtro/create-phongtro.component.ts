@@ -24,8 +24,8 @@ export class CreatePhongtroComponent {
   private initGioitinh: boolean;
 
   constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
-    // this.init();
-    this.fakeInit();
+    this.init();
+    // this.fakeInit();
   }
 
   ngOnInit() {
