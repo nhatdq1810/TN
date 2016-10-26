@@ -16,7 +16,7 @@ let Constants = require('../../resources/constants');
 export class CreatePhongtroComponent {
 
   private hasBaseDropZoneOver: boolean = false;
-  private options: Object;
+  private options: any;
   private previewData: any;
   private uploadEvents: EventEmitter<any>;
   private user: User;
@@ -41,13 +41,60 @@ export class CreatePhongtroComponent {
       url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
       filterExtensions: true,
       allowedExtensions: ['jpg', 'jpeg', 'png'],
-      data: { id: 10 },
+      data: { id: 0 },
       autoUpload: false,
       previewUrl: true
     };
 
+    this.complexForm = this.fb.group({
+      'diachi': ['', Validators.required],
+      'giatien': ['', Validators.required],
+      'tiencoc': '',
+      'dientich': ['', Validators.required],
+      'hinhanh': '',
+      'songuoi': ['', Validators.required],
+      'truong': '',
+      'nganh': '',
+      'khoa': '',
+      'gioitinh': 'nam',
+      'wifi': 1,
+      'chu': 1,
+      'ghichu': '',
+      'userID': this.user.id
+    });
+
     this.uploadEvents = new EventEmitter();
     this.previewData = null;
+  }
+
+  submitForm(value: any) {
+    let date = new Date();
+    let tmpMonth = date.getMonth() + 1;
+    let month = '' + tmpMonth;
+    if (tmpMonth < 10) {
+      month = '0' + tmpMonth;
+    }
+    let currentdate = date.getFullYear() + "/"
+      + month + "/"
+      + date.getDate() + " "
+      + date.getHours() + ":"
+      + date.getMinutes() + ":"
+      + date.getSeconds();
+
+    value.wifi = +value.wifi;
+    value.chu = +value.chu;
+    value.tiencoc = +value.tiencoc
+    value.ngaydang = currentdate;
+    value.diachi = value.diachi.toLowerCase();
+    value.truong = value.truong.toLowerCase();
+    value.nganh = value.nganh.toLowerCase();
+    this.ptService.themPhongtro(value).then(resp => {
+      this.options.data.id = resp.id;
+      this.startUpload();
+      setTimeout(() => {
+        this.router.navigate(['/phongtro/detail', resp.id]);
+      }, 3000);
+    });
   }
 
   handlePreviewData(data: any): void {
@@ -75,7 +122,7 @@ export class CreatePhongtroComponent {
       facebook: 'https://www.facebook.com/abcabcabcabcabcabcabcabcabcabc',
       skype: 'sutrix.nhat.dangsutrix.nhat.dangsutrix.nhat.dangsutrix.nhat.dang',
       hoten: 'abc',
-      id: 1,
+      id: 3,
       password: '123456',
       sodt: '0123456789',
       username: 'abcd'
@@ -84,23 +131,26 @@ export class CreatePhongtroComponent {
       url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
       filterExtensions: true,
       allowedExtensions: ['jpg', 'jpeg', 'png'],
-      data: { id: 10 },
+      data: { id: 0 },
       autoUpload: false,
       previewUrl: true
     };
 
     this.complexForm = this.fb.group({
-      'diachi': '',
-      'giatien': '',
+      'diachi': ['', Validators.required],
+      'giatien': ['', Validators.required],
       'tiencoc': '',
-      'dientich': '',
-      'songuoi': '',
+      'dientich': ['', Validators.required],
+      'hinhanh': '',
+      'songuoi': ['', Validators.required],
       'truong': '',
       'nganh': '',
       'khoa': '',
-      'gioitinh': '',
+      'gioitinh': 'nam',
       'wifi': 1,
-      'chu': 1
+      'chu': 1,
+      'ghichu': '',
+      'userID': this.user.id
     });
     this.initGioitinh = true;
 

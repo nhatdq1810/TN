@@ -24,7 +24,7 @@
           <a [routerLink]="['/']"><i class="fa fa-google-plus"></i></a>
         </div>
       </div>
-      <div class="phongtro-img">
+      <div *ngIf="phongtro.hinhanh && phongtro.hinhanh !== ''" class="phongtro-img">
         <img [src]="phongtro.hinhanh" class="img-responsive">
       </div>
       <div class="phongtro-info">
@@ -71,7 +71,7 @@
               <li *ngIf="phongtro.khoa && phongtro.khoa !== ''">
                 <div class="border-b-dotted">
                   <i class="fa fa-clock-o"></i>
-                  <p>Cùng khoa</p>
+                  <p>Cùng khóa</p>
                 </div>
                 <div class="phongtro-value">
                   <strong>{{phongtro.khoa | uppercase}}</strong>

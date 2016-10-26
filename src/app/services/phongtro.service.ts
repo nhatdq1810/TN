@@ -134,4 +134,20 @@ export class PhongtroService {
     //     error => this.handleError('timkiemPhongtro', error));
     // });
   }
+
+  themPhongtro(model): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(Constants.apiUrl + 'phongtro/moi', JSON.stringify(model), { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('themPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('themPhongtro', err));
+    })
+  }
 }

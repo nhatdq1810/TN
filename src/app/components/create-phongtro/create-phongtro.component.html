@@ -6,7 +6,6 @@
         </div>
         <input type="file" id="hinhanh-phongtro" ngFileSelect *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
         <img *ngIf="previewData" [src]="previewData" alt="Preview Data" class="img-preview">
-        <button *ngIf="previewData" (click)="startUpload()" class="glyphicon glyphicon-upload">Upload</button>
         <button *ngIf="previewData" (click)="deleteImage()" class="glyphicon glyphicon-remove-circle">Xóa</button>
       </div>
       <div class="col-md-8">
@@ -94,8 +93,12 @@
           </label>
         </div>
       </div>
+      <div class="form-group col-md-8">
+        <label>Ghi chú</label>
+        <textarea placeholder="Ghi chú thêm..." [formControl]="complexForm.controls['ghichu']"></textarea>
+      </div>
       <div class="send-button col-md-6">
-        <input class="btn-modal" type="submit" value="Tạo phòng trọ">
+        <input [disabled]="!complexForm.valid" class="btn-modal" type="submit" value="Tạo phòng trọ">
       </div>
     </form>
   </div>
