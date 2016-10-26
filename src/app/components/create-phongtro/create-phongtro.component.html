@@ -1,10 +1,102 @@
 <div class="container">
-    <div class="row">
+  <div class="row create-phongtro-block">
+    <form *ngIf="formInfo !== 'password'" class="create-phongtro-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+      <div class="form-group col-md-4">
         <div ngFileDrop *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" (onFileOver)="fileOverBase($event)" [events]="uploadEvents" [ngClass]="{'file-over': hasBaseDropZoneOver}" class="drop-zone">
         </div>
-        <input type="file" ngFileSelect *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
+        <input type="file" id="hinhanh-phongtro" ngFileSelect *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
         <img *ngIf="previewData" [src]="previewData" alt="Preview Data" class="img-preview">
         <button *ngIf="previewData" (click)="startUpload()" class="glyphicon glyphicon-upload">Upload</button>
         <button *ngIf="previewData" (click)="deleteImage()" class="glyphicon glyphicon-remove-circle">Xóa</button>
-    </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group col-md-6">
+          <label>Địa chỉ</label>
+          <input class="input-modal" type="text" [formControl]="complexForm.controls['diachi']" name="diachi" placeholder="Địa chỉ">
+          <alert [type]="'danger'" *ngIf="complexForm.controls['diachi'].hasError('required') && complexForm.controls['diachi'].touched">
+            Bạn chưa nhập địa chỉ phòng trọ.
+          </alert>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Giá tiền</label>
+          <input class="input-modal" type="number" [formControl]="complexForm.controls['giatien']" name="giatien" placeholder="Giá tiền">
+          <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
+            Bạn chưa nhập giá thuê phòng trọ.
+          </alert>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Diện tích</label>
+          <input class="input-modal" type="number" [formControl]="complexForm.controls['dientich']" name="dientich" placeholder="Diện tích">
+          <alert [type]="'danger'" *ngIf="complexForm.controls['dientich'].hasError('required') && complexForm.controls['dientich'].touched">
+            Bạn chưa nhập diện tích phòng trọ.
+          </alert>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Số người cần</label>
+          <input class="input-modal" type="number" [formControl]="complexForm.controls['songuoi']" name="songuoi" placeholder="Số người cần">
+          <alert [type]="'danger'" *ngIf="complexForm.controls['dientich'].hasError('required') && complexForm.controls['dientich'].touched">
+            Bạn chưa nhập số lượng người cần tìm.
+          </alert>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Tiền cọc</label>
+          <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="Tiền cọc">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Trường học:</label>
+          <input class="input-modal" type="text" placeholder="Trường học" [formControl]="complexForm.controls['truong']">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Ngành học</label>
+          <input class="input-modal" type="text" placeholder="Chuyên ngành" [formControl]="complexForm.controls['nganh']">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Niên khóa</label>
+          <input class="input-modal" type="number" placeholder="Niên khóa" [formControl]="complexForm.controls['khoa']">
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Ở với chủ</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="true">Có
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']">Không
+          </label>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Wifi</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="true">Có
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']">Không
+          </label>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Giới tính</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh"> Nam
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="!initGioitinh"> Nữ
+          </label>
+        </div>
+      </div>
+      <div class="send-button col-md-6">
+        <input class="btn-modal" type="submit" value="Tạo phòng trọ">
+      </div>
+    </form>
+  </div>
 </div>

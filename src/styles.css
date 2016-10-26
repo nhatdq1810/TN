@@ -201,7 +201,6 @@ accordion-group .panel-heading:focus,
 accordion-group .panel-heading:hover,
 accordion-group.panel-open .panel-heading,
 accordion-group.panel-open .panel-title {
-  color: #ffffff;
   font-weight: 600;
   background-color: #fcdd44;
 }

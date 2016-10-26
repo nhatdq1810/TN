@@ -39,15 +39,15 @@
           <input class="form-control" type="number" placeholder="Niên khóa" [formControl]="complexForm.controls['khoa']">
         </div>
         <div class="form-group">
-          <label>Giới tính</label>
+          <label>Ở với chủ</label>
           <div class="radio">
             <label>
-              <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh"> Nam
+              <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="true">Có
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="!initGioitinh"> Nữ
+              <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']">Không
             </label>
           </div>
         </div>
@@ -65,15 +65,15 @@
           </div>
         </div>
         <div class="form-group">
-          <label>Ở với chủ</label>
+          <label>Giới tính</label>
           <div class="radio">
             <label>
-              <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="true">Có
+              <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh"> Nam
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']">Không
+              <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="!initGioitinh"> Nữ
             </label>
           </div>
         </div>

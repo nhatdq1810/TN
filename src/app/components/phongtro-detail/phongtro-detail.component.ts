@@ -19,11 +19,11 @@ export class PhongtroDetailComponent implements OnInit {
   private user: User;
   private lat: number;
   private lng: number;
-  private zoom: number;
+  private zoom: number = 18;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   init() {
@@ -34,7 +34,6 @@ export class PhongtroDetailComponent implements OnInit {
     this.ptService.layPhongtro(id).then((pt: Phongtro) => {
       this.phongtro = pt;
       this.getLatLng();
-      this.zoom = 18;
       this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
         this.user = usr;
       })
@@ -88,6 +87,5 @@ export class PhongtroDetailComponent implements OnInit {
       username: 'abcd'
     };
     this.getLatLng();
-    this.zoom = 18;
   }
 }

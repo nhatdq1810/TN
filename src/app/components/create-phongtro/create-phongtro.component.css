@@ -1,11 +1,22 @@
+.create-phongtro-block {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 .drop-zone {
   min-height: 200px;
   min-width: 200px;
   border: dotted 3px lightgray;
 }
+
 .img-preview {
   width: 50%;
 }
+
 .file-over {
   border: dotted 3px red;
+}
+
+.form-group {
+  margin-bottom: 30px;
 }

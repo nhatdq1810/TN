@@ -2,9 +2,8 @@
   margin-right: 50px;
 }
 
-.user-info-component {
-  margin-top: 30px;
-  margin-bottom: 30px;
+.user-info-component > div {
+  padding-top: 50px;
 }
 
 .goback {
@@ -24,7 +23,7 @@
 .nav {
   overflow: hidden;
   margin-right: -15px;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .nav .btn-modal {
@@ -56,15 +55,16 @@
 
 .user-info-block {
   border-left: 1px solid rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+  padding: 50px;
 }
 
 .user-info-block h1 {
   margin-bottom: 30px;
-  margin-left: 30px;
 }
 
 .user-info-form {
-  margin-left: 130px;
+  margin-left: 100px;
 }
 
 .form-group {
@@ -75,7 +75,6 @@
 }
 
 .form-group p {
-  color: #c7254e;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;

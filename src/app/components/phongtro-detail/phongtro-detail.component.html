@@ -29,55 +29,6 @@
       </div>
       <div class="phongtro-info">
         <accordion [closeOthers]="false">
-          <accordion-group *ngIf="user" heading="LIÊN HỆ" class="user-info">
-            <div class="row user-name">
-              <strong>{{user.hoten | uppercase}}</strong>
-            </div>
-            <ul class="row user-detail">
-              <li>
-                <div class="border-b-dotted">
-                  <i class="fa fa-mobile"></i>
-                  <p>ĐTDĐ</p>
-                </div>
-                <div class="user-value">
-                  <strong>{{user.sodt}}</strong>
-                </div>
-              </li>
-              <li>
-                <div class="border-b-dotted">
-                  <i class="fa fa-envelope-o"></i>
-                  <p>Email</p>
-                </div>
-                <div class="user-value">
-                  <strong>{{user.email}}</strong>
-                </div>
-              </li>
-              <li>
-                <div class="border-b-dotted">
-                  <i class="fa fa-facebook"></i>
-                  <p>Facebook</p>
-                </div>
-                <div class="user-value">
-                  <strong>{{user.facebook}}</strong>
-                </div>
-              </li>
-              <li>
-                <div class="border-b-dotted">
-                  <i class="fa fa-skype"></i>
-                  <p>Skype</p>
-                </div>
-                <div class="user-value">
-                  <strong>{{user.skype}}</strong>
-                </div>
-              </li>
-            </ul>
-          </accordion-group>
-          <accordion-group *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0 && phongtro.songuoi > 0" heading="ĐẶT CỌC">
-            <div>
-              <p>{{phongtro.tiencoc | number}}</p>
-              <button (click)="modal.showModal('nganhang')">Đăng nhập</button>
-            </div>
-          </accordion-group>
           <accordion-group class="extra-info" heading="THÔNG TIN" [isOpen]="true">
             <ul class="row">
               <li>
@@ -156,6 +107,55 @@
                 </div>
               </li>
             </ul>
+          </accordion-group>
+          <accordion-group *ngIf="user" heading="LIÊN HỆ" class="user-info">
+            <div class="row user-name">
+              <strong>{{user.hoten | uppercase}}</strong>
+            </div>
+            <ul class="row user-detail">
+              <li>
+                <div class="border-b-dotted">
+                  <i class="fa fa-mobile"></i>
+                  <p>ĐTDĐ</p>
+                </div>
+                <div class="user-value">
+                  <strong>{{user.sodt}}</strong>
+                </div>
+              </li>
+              <li>
+                <div class="border-b-dotted">
+                  <i class="fa fa-envelope-o"></i>
+                  <p>Email</p>
+                </div>
+                <div class="user-value">
+                  <strong>{{user.email}}</strong>
+                </div>
+              </li>
+              <li>
+                <div class="border-b-dotted">
+                  <i class="fa fa-facebook"></i>
+                  <p>Facebook</p>
+                </div>
+                <div class="user-value">
+                  <strong>{{user.facebook}}</strong>
+                </div>
+              </li>
+              <li>
+                <div class="border-b-dotted">
+                  <i class="fa fa-skype"></i>
+                  <p>Skype</p>
+                </div>
+                <div class="user-value">
+                  <strong>{{user.skype}}</strong>
+                </div>
+              </li>
+            </ul>
+          </accordion-group>
+          <accordion-group *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0 && phongtro.songuoi > 0" heading="ĐẶT CỌC">
+            <div>
+              <p>{{phongtro.tiencoc | number}}</p>
+              <button (click)="modal.showModal('nganhang')">Đăng nhập</button>
+            </div>
           </accordion-group>
           <accordion-group class="comments" heading="BÌNH LUẬN">
             <app-comments></app-comments>
