@@ -1,5 +1,16 @@
 <div class="comments">
-  <form>
-    <textarea placeholder="Bình luận..."></textarea>
-  </form>
+  <div class="comments-form">
+    <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+      <textarea [formControl]="complexForm.controls['comment']" placeholder="Bình luận..."></textarea>
+      <div class="send-button right">
+        <input [disabled]="complexForm.value.comment === ''" class="btn-modal" type="submit" value="Gửi bình luận">
+      </div>
+    </form>
+  </div>
+  <div class="other-comments">
+    <div *ngFor="let item of listCmt" class="comments-item">
+      <p class="noidung">{{item.noidung}}</p>
+      <p class="ngay right">{{item.ngay}}</p>
+    </div>
+  </div>
 </div>

@@ -18,40 +18,40 @@
         </div>
         <div class="form-group col-md-6">
           <label>Giá tiền</label>
-          <input class="input-modal" type="number" [formControl]="complexForm.controls['giatien']" name="giatien" placeholder="Giá tiền">
+          <input class="input-modal" type="number" [formControl]="complexForm.controls['giatien']" name="giatien" placeholder="2000000">
           <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
             Bạn chưa nhập giá thuê phòng trọ.
           </alert>
         </div>
         <div class="form-group col-md-6">
-          <label>Diện tích</label>
-          <input class="input-modal" type="number" [formControl]="complexForm.controls['dientich']" name="dientich" placeholder="Diện tích">
+          <label>Diện tích (m<sup>2</sup>)</label>
+          <input class="input-modal" type="number" [formControl]="complexForm.controls['dientich']" name="dientich" placeholder="20">
           <alert [type]="'danger'" *ngIf="complexForm.controls['dientich'].hasError('required') && complexForm.controls['dientich'].touched">
             Bạn chưa nhập diện tích phòng trọ.
           </alert>
         </div>
         <div class="form-group col-md-6">
           <label>Số người cần</label>
-          <input class="input-modal" type="number" [formControl]="complexForm.controls['songuoi']" name="songuoi" placeholder="Số người cần">
+          <input class="input-modal" type="number" [formControl]="complexForm.controls['songuoi']" name="songuoi" placeholder="1">
           <alert [type]="'danger'" *ngIf="complexForm.controls['dientich'].hasError('required') && complexForm.controls['dientich'].touched">
             Bạn chưa nhập số lượng người cần tìm.
           </alert>
         </div>
         <div class="form-group col-md-6">
           <label>Tiền cọc</label>
-          <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="Tiền cọc">
+          <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="2000000">
         </div>
         <div class="form-group col-md-6">
           <label>Trường học:</label>
-          <input class="input-modal" type="text" placeholder="Trường học" [formControl]="complexForm.controls['truong']">
+          <input class="input-modal" type="text" placeholder="Học viện công nghệ bưu chính viễn thông" [formControl]="complexForm.controls['truong']">
         </div>
         <div class="form-group col-md-6">
           <label>Ngành học</label>
-          <input class="input-modal" type="text" placeholder="Chuyên ngành" [formControl]="complexForm.controls['nganh']">
+          <input class="input-modal" type="text" placeholder="Công nghệ thông tin" [formControl]="complexForm.controls['nganh']">
         </div>
         <div class="form-group col-md-6">
           <label>Niên khóa</label>
-          <input class="input-modal" type="number" placeholder="Niên khóa" [formControl]="complexForm.controls['khoa']">
+          <input class="input-modal" type="text" placeholder="2012 - 2017" [formControl]="complexForm.controls['khoa']">
         </div>
       </div>
       <div class="form-group col-md-4">

@@ -197,11 +197,30 @@ body {
 
 /* accordion */
 
+.panel-group accordion-group .panel-default {
+  border-radius: initial;
+}
+
+.panel-group accordion-group .panel-heading {
+  cursor: pointer;
+}
+
+.panel-group accordion-group .panel-heading {
+  text-align: center;
+  padding: 20px;
+  transition: all .5s ease-in-out;
+}
+
+.panel-group accordion-group .panel-title {
+  font-size: 20px;
+}
+
 accordion-group .panel-heading:focus,
 accordion-group .panel-heading:hover,
 accordion-group.panel-open .panel-heading,
 accordion-group.panel-open .panel-title {
   font-weight: 600;
+  border-color: #fcdd44;
   background-color: #fcdd44;
 }
 

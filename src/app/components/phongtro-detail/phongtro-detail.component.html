@@ -157,8 +157,8 @@
               <button (click)="modal.showModal('nganhang')">Đăng nhập</button>
             </div>
           </accordion-group>
-          <accordion-group class="comments" heading="BÌNH LUẬN">
-            <app-comments></app-comments>
+          <accordion-group class="comments" heading="BÌNH LUẬN" [isOpen]="true">
+            <app-comments [phongtroID]="phongtro.id"></app-comments>
           </accordion-group>
         </accordion>
       </div>

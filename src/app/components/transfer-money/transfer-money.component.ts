@@ -11,6 +11,8 @@ import { Phongtro } from '../../models/phongtro';
 import { Nganhang } from '../../models/nganhang';
 import { Giaodich } from '../../models/giaodich';
 
+let Constants = require('../../resources/constants');
+
 @Component({
   selector: 'app-transfer-money',
   templateUrl: './transfer-money.component.html',
@@ -78,35 +80,8 @@ export class TransferMoneyComponent implements OnInit {
   }
 
   fakeInit() {
-    this.phongtro = {
-      chu: 1,
-      wifi: 1,
-      diachi: '',
-      dientich: 10,
-      ghichu: '',
-      giatien: 2000000,
-      gioitinh: 'nam',
-      hinhanh: '',
-      id: 1,
-      khoa: '',
-      nganh: '',
-      ngaydang: '',
-      songuoi: 2,
-      tiencoc: 1000000,
-      truong: '',
-      userID: 1
-    };
-    this.ngh_gui = {
-      cmnd: '123456789',
-      diachi: '123 abc',
-      hoten: 'abc',
-      id: 1,
-      password: '123454',
-      sodt: '0123456789',
-      tien: 0,
-      userID: 1,
-      username: 'abc'
-    };
+    this.phongtro = Constants.fakePt;
+    this.ngh_gui = Constants.fakeNgh;
     this.ngh_nhan = [{
       cmnd: '111222333',
       diachi: '123 abc',

@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 
+let Constants = require('../../resources/constants');
+
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
@@ -49,18 +51,7 @@ export class UserInfoComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.formInfo = params['formInfo'];
     });
-    this.user = {
-      diachi: '',
-      dotincay: 0,
-      email: 'abc@a.com',
-      facebook: '',
-      hoten: 'abc',
-      id: 1,
-      password: '123456',
-      skype: '',
-      sodt: '',
-      username: 'abc'
-    };
+    this.user = Constants.fakeUser;
     this.complexForm = this.fb.group({
       'password': ['', Validators.required],
       'hoten': [this.user.hoten, Validators.required],

@@ -22,8 +22,8 @@ export class PhongtroDetailComponent implements OnInit {
   private zoom: number = 18;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   init() {
@@ -56,36 +56,8 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   fakeInit() {
-    this.phongtro = {
-      id: 3,
-      hinhanh: 'assets/img/index-03.jpg',
-      diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
-      songuoi: 2,
-      dientich: 2500,
-      gioitinh: 'nam',
-      nganh: '',
-      khoa: '',
-      wifi: 0,
-      chu: 0,
-      ghichu: '',
-      userID: 1,
-      tiencoc: 1000000,
-      truong: 'PTITPTITPTITPTITPTITPTITPTITPTITPTITPTIT',
-      ngaydang: '01/10/2016',
-      giatien: 2000000
-    };
-    this.user = {
-      diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
-      dotincay: 1,
-      email: 'abc@gmail.com',
-      facebook: 'https://www.facebook.com/abcabcabcabcabcabcabcabcabcabc',
-      skype: 'sutrix.nhat.dangsutrix.nhat.dangsutrix.nhat.dangsutrix.nhat.dang',
-      hoten: 'abc',
-      id: 1,
-      password: '123456',
-      sodt: '0123456789',
-      username: 'abcd'
-    };
+    this.phongtro = Constants.fakePt;
+    this.user = Constants.fakeUser;
     this.getLatLng();
   }
 }

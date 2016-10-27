@@ -24,8 +24,8 @@ export class CreatePhongtroComponent {
   private initGioitinh: boolean;
 
   constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
-    this.init();
-    // this.fakeInit();
+    // this.init();
+    this.fakeInit();
   }
 
   ngOnInit() {
@@ -115,18 +115,7 @@ export class CreatePhongtroComponent {
   }
 
   fakeInit() {
-    this.user = {
-      diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
-      dotincay: 1,
-      email: 'abc@gmail.com',
-      facebook: 'https://www.facebook.com/abcabcabcabcabcabcabcabcabcabc',
-      skype: 'sutrix.nhat.dangsutrix.nhat.dangsutrix.nhat.dangsutrix.nhat.dang',
-      hoten: 'abc',
-      id: 3,
-      password: '123456',
-      sodt: '0123456789',
-      username: 'abcd'
-    };
+    this.user = Constants.fakeUser;
     this.options = {
       url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
       filterExtensions: true,

@@ -1,5 +1,23 @@
-.comments textarea {
+.comments-form {
+  overflow: hidden;
+}
+
+.comments-form textarea {
   height: 100px;
   width: 100%;
   padding: 15px;
+}
+
+.comments-form input[type="submit"] {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.comments-item {
+  overflow: hidden;
+}
+
+.comments-item .noidung {
+  white-space: pre-line;
 }

@@ -19,7 +19,7 @@
           <nouislider [connect]="true" [min]="0" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['tiencoc']" [(ngModel)]="tiencocValue"></nouislider>
         </div>
         <div class="form-group">
-          <label>Diện tích</label>
+          <label>Diện tích (m<sup>2</sup>)</label>
           <p class="sliderValue">
             <span>{{ dientichValue[0] | number }}</span>
             <span class="right">{{ dientichValue[1] | number }}</span>
@@ -28,15 +28,15 @@
         </div>
         <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['truong'].valid && complexForm.controls['truong'].touched}">
           <label>Trường học:</label>
-          <input class="form-control" type="text" placeholder="Trường học" [formControl]="complexForm.controls['truong']">
+          <input class="form-control" type="text" placeholder="Học viện công nghệ bưu chính viễn thông" [formControl]="complexForm.controls['truong']">
         </div>
         <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['nganh'].valid && complexForm.controls['nganh'].touched}">
           <label>Ngành học</label>
-          <input class="form-control" type="text" placeholder="Chuyên ngành" [formControl]="complexForm.controls['nganh']">
+          <input class="form-control" type="text" placeholder="Công nghệ thông tin" [formControl]="complexForm.controls['nganh']">
         </div>
         <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['khoa'].valid && complexForm.controls['khoa'].touched}">
           <label>Niên khóa</label>
-          <input class="form-control" type="number" placeholder="Niên khóa" [formControl]="complexForm.controls['khoa']">
+          <input class="form-control" type="text" placeholder="2012 - 2017" [formControl]="complexForm.controls['khoa']">
         </div>
         <div class="form-group">
           <label>Ở với chủ</label>

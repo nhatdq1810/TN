@@ -5,6 +5,7 @@ import { PhongtroService } from './services/phongtro.service';
 import { LoggedInService } from './services/logged-in.service';
 import { NganhangService } from './services/nganhang.service';
 import { GiaodichService } from './services/giaodich.service';
+import { CommentService } from './services/comment.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -74,7 +75,8 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     PhongtroService,
     LoggedInService,
     NganhangService,
-    GiaodichService
+    GiaodichService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })
