@@ -5,11 +5,11 @@ import { Nganhang } from '../models/nganhang';
 
 'use strict';
 
-export var apiUrl = 'http://localhost:8080/trosv/api/';
-export var headers = new Headers({ 'Content-Type': 'application/json' });
-export var googleApiKey = 'AIzaSyA9jeLAznvDLTykLxHlDZkxe-Ewo9OSB0Y';
-export var geocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
-export var fakeUser: User = {
+export let apiUrl = 'http://localhost:8080/trosv/api/';
+export let headers = new Headers({ 'Content-Type': 'application/json' });
+export let googleApiKey = 'AIzaSyA9jeLAznvDLTykLxHlDZkxe-Ewo9OSB0Y';
+export let geocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
+export let fakeUser: User = {
   diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
   dotincay: 1,
   email: 'abc@gmail.com',
@@ -21,7 +21,7 @@ export var fakeUser: User = {
   sodt: '0123456789',
   username: 'abcd'
 };
-export var fakePt: Phongtro = {
+export let fakePt: Phongtro = {
   id: 3,
   hinhanh: 'assets/img/index-03.jpg',
   diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
@@ -39,7 +39,7 @@ export var fakePt: Phongtro = {
   ngaydang: '01/10/2016',
   giatien: 2000000
 };
-export var fakeListPt: Array<Phongtro> = [
+export let fakeListPt: Array<Phongtro> = [
   {
     id: 12,
     hinhanh: 'assets/img/index-08.jpg',
@@ -167,7 +167,7 @@ export var fakeListPt: Array<Phongtro> = [
     giatien: 2000000
   }
 ];
-export var fakeNgh: Nganhang = {
+export let fakeNgh: Nganhang = {
   cmnd: '123456789',
   diachi: '123 abc',
   hoten: 'abc',
@@ -178,3 +178,31 @@ export var fakeNgh: Nganhang = {
   userID: 1,
   username: 'abc'
 };
+
+let formatDate = (value) => {
+  let tmp = value;
+  if(tmp < 10) {
+    value = '0' + tmp;
+  } else {
+    value = '' + tmp;
+  }
+  return value;
+}
+
+export let getCurrentDate = function () {
+  let date = new Date();
+  let month = formatDate(date.getMonth() + 1);
+  let day = formatDate(date.getDate());
+  let hours = formatDate(date.getHours());
+  let minutes = formatDate(date.getMinutes());
+  let seconds = formatDate(date.getSeconds());
+
+  let currentDate = date.getFullYear() + "/"
+    + month + "/"
+    + day + " "
+    + hours + ":"
+    + minutes + ":"
+    + seconds;
+
+  return currentDate;
+}

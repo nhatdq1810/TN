@@ -31,4 +31,20 @@ export class CommentService {
     });
   }
 
+  themComment(model) {
+    return new Promise((resolve, reject) => {
+      this.http.post(Constants.apiUrl + 'comment/moi', JSON.stringify(model), { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('themComment', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('themComment', err));
+    });
+  }
+
 }

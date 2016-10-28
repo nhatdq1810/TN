@@ -69,6 +69,10 @@ sebm-google-map {
   border: 1px solid #dddddd;
 }
 
+.phongtro-info .ghichu {
+  width: 315px;
+}
+
 .phongtro-info .border-b-dotted {
   padding-bottom: 10px;
 }

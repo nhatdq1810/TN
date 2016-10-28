@@ -19,6 +19,13 @@ export class RegisterComponent implements OnInit {
   private registerSuccess = false;
 
   constructor(private userService: UserService, private router: Router, private fb: FormBuilder) {
+    this.init();
+  }
+
+  ngOnInit() {
+  }
+
+  init() {
     this.modalOptions = {
       ignoreBackdropClick: true
     };
@@ -31,9 +38,6 @@ export class RegisterComponent implements OnInit {
     this.errorMsg = [{
       msg: ''
     }];
-  }
-
-  ngOnInit() {
   }
 
   submitForm(value: any) {
@@ -69,6 +73,7 @@ export class RegisterComponent implements OnInit {
   }
 
   showModal() {
+    this.init();
     this.registerModal.show();
   }
 

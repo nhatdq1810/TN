@@ -20,19 +20,23 @@ export class LoginComponent implements OnInit {
   private alertLoggedIn: Array<Object>;
 
   constructor(private userService: UserService, private nghService: NganhangService, private router: Router, private fb: FormBuilder) {
+    this.init();
+  }
+
+  ngOnInit() {
+  }
+
+  init() {
     this.modalOptions = {
       ignoreBackdropClick: true
     };
     this.complexForm = this.fb.group({
-      'username':['', Validators.required],
-      'password':['', Validators.required]
+      'username': ['', Validators.required],
+      'password': ['', Validators.required]
     });
     this.alertLoggedIn = [{
       msg: 'Tài khoản hoặc mật khẩu không đúng!'
     }];
-  }
-
-  ngOnInit() {
   }
 
   closeAlert() {
@@ -80,6 +84,7 @@ export class LoginComponent implements OnInit {
 
   showModal(loginForm: string) {
     this.loginForm = loginForm;
+    this.init();
     this.loginModal.show();
   }
 

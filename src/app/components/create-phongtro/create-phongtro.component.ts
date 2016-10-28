@@ -68,23 +68,12 @@ export class CreatePhongtroComponent {
   }
 
   submitForm(value: any) {
-    let date = new Date();
-    let tmpMonth = date.getMonth() + 1;
-    let month = '' + tmpMonth;
-    if (tmpMonth < 10) {
-      month = '0' + tmpMonth;
-    }
-    let currentdate = date.getFullYear() + "/"
-      + month + "/"
-      + date.getDate() + " "
-      + date.getHours() + ":"
-      + date.getMinutes() + ":"
-      + date.getSeconds();
+    let currentDate = Constants.getCurrentDate();
 
     value.wifi = +value.wifi;
     value.chu = +value.chu;
     value.tiencoc = +value.tiencoc
-    value.ngaydang = currentdate;
+    value.ngaydang = currentDate;
     value.diachi = value.diachi.toLowerCase();
     value.truong = value.truong.toLowerCase();
     value.nganh = value.nganh.toLowerCase();

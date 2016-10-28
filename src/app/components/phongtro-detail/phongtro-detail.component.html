@@ -42,8 +42,8 @@
               </li>
               <li>
                 <div class="border-b-dotted">
-                  <i *ngIf="phongtro.gioitinh === 'nam'" class="fa fa-male"></i>
-                  <i *ngIf="phongtro.gioitinh === 'nữ'" class="fa fa-female"></i>
+                  <i *ngIf="phongtro.gioitinh === 'nam'" class="fa fa-mars"></i>
+                  <i *ngIf="phongtro.gioitinh === 'nữ'" class="fa fa-venus"></i>
                   <p>Số lượng</p>
                 </div>
                 <div class="phongtro-value">
@@ -97,7 +97,7 @@
                   <strong *ngIf="phongtro.chu === 1">Có</strong>
                 </div>
               </li>
-              <li *ngIf="phongtro.ghichu && phongtro.ghichu !== ''">
+              <li class="ghichu" *ngIf="phongtro.ghichu && phongtro.ghichu !== ''">
                 <div class="border-b-dotted">
                   <i class="fa fa-sticky-note"></i>
                   <p>Ghi chú</p>

@@ -1,5 +1,8 @@
 .comments-form {
   overflow: hidden;
+  padding-bottom: 20px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #dddddd;
 }
 
 .comments-form textarea {
@@ -14,8 +17,27 @@
   padding: 10px 20px;
 }
 
+.other-comments {
+  padding: 0 20px;
+}
+
 .comments-item {
   overflow: hidden;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.comments-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.comments-item .user-name {
+  font-weight: 600;
+}
+
+.comments-item .ngay {
+  color: #aaaaaa;
 }
 
 .comments-item .noidung {

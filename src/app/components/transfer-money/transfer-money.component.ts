@@ -56,16 +56,12 @@ export class TransferMoneyComponent implements OnInit {
     if (tmpMonth < 10) {
       month = '0' + tmpMonth;
     }
-    let currentdate = date.getFullYear() + "/"
-      + month + "/"
-      + date.getDate() + " "
-      + date.getHours() + ":"
-      + date.getMinutes() + ":"
-      + date.getSeconds();
+    let currentDate = Constants.getCurrentDate();
+
     let gd: Giaodich = {
       nganhangID_gui: this.ngh_gui.id,
       nganhangID_nhan: this.ngh_nhan[0].id,
-      ngay: currentdate,
+      ngay: currentDate,
       tien: this.phongtro.tiencoc
     }
     this.gdService.chuyenTien(this.phongtro.id, gd).then(resp => {
