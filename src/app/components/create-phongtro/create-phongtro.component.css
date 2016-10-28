@@ -9,14 +9,34 @@
   border: dotted 3px lightgray;
 }
 
-.img-preview {
-  width: 50%;
-}
-
 .file-over {
   border: dotted 3px red;
 }
 
+.img-preview {
+  width: 360px;
+  height: 200px;
+}
+
+.input-btn {
+  margin-top: 10px;
+}
+
+.fa.fa-times:before {
+  padding-right: 5px;
+}
+
+.fa.fa-times.btn-modal {
+  font-size: 20px;
+  width: 80px;
+}
+
 .form-group {
   margin-bottom: 30px;
+}
+
+.form-group textarea {
+  width: 100%;
+  height: 100px;
+  padding: 15px;
 }

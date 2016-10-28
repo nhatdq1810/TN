@@ -4,9 +4,11 @@
       <div class="form-group col-md-4">
         <div ngFileDrop *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" (onFileOver)="fileOverBase($event)" [events]="uploadEvents" [ngClass]="{'file-over': hasBaseDropZoneOver}" class="drop-zone">
         </div>
-        <input type="file" id="hinhanh-phongtro" ngFileSelect *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
         <img *ngIf="previewData" [src]="previewData" alt="Preview Data" class="img-preview">
-        <button *ngIf="previewData" (click)="deleteImage()" class="glyphicon glyphicon-remove-circle">Xóa</button>
+        <div class="input-btn">
+          <input type="file" id="hinhanh-phongtro" ngFileSelect *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
+          <button *ngIf="previewData" (click)="deleteImage()" class="fa fa-times btn-modal">Xóa</button>
+        </div>
       </div>
       <div class="col-md-8">
         <div class="form-group col-md-6">
