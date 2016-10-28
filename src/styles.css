@@ -88,6 +88,14 @@ textarea {
   border-bottom: 2px dotted #FCDD44;
 }
 
+.form-control {
+  padding: 6px 10px;
+}
+
+.ngay {
+  color: #aaaaaa;
+}
+
 
 /* Homepage */
 

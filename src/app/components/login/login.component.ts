@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Http } from '@angular/http';
 import { UserService } from '../../services/user.service';
 import { NganhangService } from '../../services/nganhang.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ModalDirective, ModalOptions } from 'ng2-bootstrap/ng2-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
   private isLoggedIn = true;
   private alertLoggedIn: Array<Object>;
 
-  constructor(private userService: UserService, private nghService: NganhangService, private router: Router, private fb: FormBuilder) {
+  constructor(private userService: UserService, private nghService: NganhangService, private authService: AuthService, private router: Router, private fb: FormBuilder, private http: Http) {
     this.init();
   }
 
@@ -41,6 +43,20 @@ export class LoginComponent implements OnInit {
 
   closeAlert() {
     this.alertLoggedIn.splice(0, 1);
+  }
+
+  socialLogin(socialName) {
+    if(socialName === 'facebook'){
+      this.authService.login();
+      // new Promise((resolve, reject) => {
+      //   this.http.get('https://nhatdq1810.auth0.com/authorize/?client_id=W86crS2GtE2H6uTKOSsiEemJpLuutnVB&response_type=token&redirect_uri=http://localhost:4200/home&state=OPAQUE_VALUE&connection=facebook')
+      //   .subscribe(resp => {
+      //     resolve(resp);
+      //   });
+      // }).then(result => {
+      //   console.log(result);
+      // })
+    }
   }
 
   submitForm(value: any) {

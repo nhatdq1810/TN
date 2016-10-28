@@ -16,6 +16,7 @@ import { routing } from './app.routing';
 import { Nouislider } from 'ng2-nouislider';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
@@ -71,6 +72,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     })
   ],
   providers: [
+    AUTH_PROVIDERS,
     UserService,
     PhongtroService,
     LoggedInService,
