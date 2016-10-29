@@ -47,15 +47,9 @@ export class LoginComponent implements OnInit {
 
   socialLogin(socialName) {
     if(socialName === 'facebook'){
-      this.authService.login();
-      // new Promise((resolve, reject) => {
-      //   this.http.get('https://nhatdq1810.auth0.com/authorize/?client_id=W86crS2GtE2H6uTKOSsiEemJpLuutnVB&response_type=token&redirect_uri=http://localhost:4200/home&state=OPAQUE_VALUE&connection=facebook')
-      //   .subscribe(resp => {
-      //     resolve(resp);
-      //   });
-      // }).then(result => {
-      //   console.log(result);
-      // })
+      this.authService.facebookLogin();
+    } else {
+      this.authService.googleLogin();
     }
   }
 

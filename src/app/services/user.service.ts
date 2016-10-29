@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Rx';
@@ -13,7 +14,7 @@ export class UserService {
   private loggedIn = false;
   private _user: User;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private router: Router) {
     this.loggedIn = !!localStorage.getItem('isLoggedIn');
   }
 
@@ -24,6 +25,10 @@ export class UserService {
 
   get user(): User {
     return this._user;
+  }
+
+  set user(user: User) {
+    this._user = user;
   }
 
   login(username, password) {
@@ -51,9 +56,13 @@ export class UserService {
   }
 
   logout(){
+    localStorage.removeItem('id_token');
     localStorage.removeItem('isLoggedIn');
     this.loggedIn = false;
     this.checkLoggedIn.next(false);
+    let homepage = encodeURIComponent('http://localhost:4200/home');
+    console.log(homepage);
+    window.location.href = `https://nhatdq1810.auth0.com/v2/logout?returnTo=${homepage}`;
   }
 
   isLoggedIn(){
@@ -92,7 +101,7 @@ export class UserService {
     })
   }
 
-  themUser(user: User): Promise<User> {
+  themUser(user): Promise<User> {
     return new Promise((resolve, reject) => {
       this.http.post(Constants.apiUrl + 'user/moi', JSON.stringify(user), { headers: Constants.headers })
         .map((resp: Response) => resp.json())

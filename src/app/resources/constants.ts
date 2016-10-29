@@ -206,3 +206,9 @@ export let getCurrentDate = function () {
 
   return currentDate;
 }
+
+export let authConfig = {
+  clientID: 'W86crS2GtE2H6uTKOSsiEemJpLuutnVB',
+  domain: 'nhatdq1810.auth0.com',
+  callbackURL: 'http://localhost:4200/'
+}
