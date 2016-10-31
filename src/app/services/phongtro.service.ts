@@ -71,6 +71,23 @@ export class PhongtroService {
     });
   }
 
+  layPhongtroUser(userID: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(Constants.apiUrl + 'phongtro/user/' + userID, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('layPhongtroUser', resp.result);
+            reject(resp.result);
+          }
+        },
+        error => this.handleError('layPhongtroUser', error));
+    });
+  }
+
   layPhongtroHot(gioihan: number): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http
@@ -148,6 +165,23 @@ export class PhongtroService {
           }
         },
         err => this.handleError('themPhongtro', err));
-    })
+    });
   }
+
+  xoaPhongtro(id: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.delete(Constants.apiUrl + 'phongtro/' + id, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('xoaPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('xoaPhongtro', err));
+    });
+  }
+
 }

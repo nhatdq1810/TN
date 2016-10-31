@@ -12,7 +12,7 @@ export class UserService {
 
   public checkLoggedIn = new Subject();
   private loggedIn = false;
-  private _user: User;
+  private _user: any;
 
   constructor(private http: Http, private router: Router) {
     this.loggedIn = !!localStorage.getItem('isLoggedIn');
@@ -23,11 +23,11 @@ export class UserService {
     return Observable.throw(error.message || error);
   }
 
-  get user(): User {
+  get user(): any {
     return this._user;
   }
 
-  set user(user: User) {
+  set user(user: any) {
     this._user = user;
   }
 

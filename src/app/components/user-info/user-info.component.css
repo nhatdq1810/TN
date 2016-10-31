@@ -2,6 +2,12 @@
   margin-right: 50px;
 }
 
+.container-fluid,
+.user-info-component,
+.user-info-component > div {
+  height: 100%;
+}
+
 .user-info-component > div {
   padding-top: 50px;
 }

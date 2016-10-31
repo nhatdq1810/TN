@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="create-phongtro" *ngIf="listPT.length === 0">
+      <p>Bạn chưa tạo phòng trọ nào !</p>
+      <a class="btn-modal" [routerLink]="['/phongtro/create']">Tạo phòng trọ</a>
+    </div>
+    <ul *ngIf="listPT.length !== 0">
+      <li *ngFor="let item of listPT">
+        {{item.diachi}}
+        <button (click)="showConfirm(item)">Xóa</button>
+      </li>
+    </ul>
+  </div>
+</div>
+<div bsModal #confirmModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="confirmModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="modal-title">Xóa phòng trọ</h2>
+      </div>
+      <div class="modal-body" *ngIf="ptXoa">
+        <div class="confirm-form">
+          <p class="header">Bạn thật sự muốn xóa phòng trọ này ???</p>
+          <p>{{ptXoa.diachi}}</p>
+          <p>{{ptXoa.dientich}}</p>
+          <p>{{ptXoa.songuoi}}</p>
+          <p>{{ptXoa.giatien}}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal left" (click)="xoaPT(); confirmModal.hide();">Xóa phòng trọ này</button>
+        <button class="btn-modal right" (click)="confirmModal.hide();">Không</button>
+      </div>
+    </div>
+  </div>
+</div>

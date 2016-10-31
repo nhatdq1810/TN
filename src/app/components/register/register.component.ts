@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ModalDirective, ModalOptions } from 'ng2-bootstrap/ng2-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
   private canRegister = true;
   private registerSuccess = false;
 
-  constructor(private userService: UserService, private router: Router, private fb: FormBuilder) {
+  constructor(private userService: UserService, private authService: AuthService, private router: Router, private fb: FormBuilder) {
     this.init();
   }
 
@@ -38,6 +39,14 @@ export class RegisterComponent implements OnInit {
     this.errorMsg = [{
       msg: ''
     }];
+  }
+
+  socialLogin(socialName) {
+    if (socialName === 'facebook') {
+      this.authService.facebookLogin();
+    } else {
+      this.authService.googleLogin();
+    }
   }
 
   submitForm(value: any) {

@@ -35,6 +35,7 @@ import { TransferMoneyComponent } from './components/transfer-money/transfer-mon
 import { RegisterComponent } from './components/register/register.component';
 import { GridListComponent } from './components/grid-list/grid-list.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     TransferMoneyComponent,
     RegisterComponent,
     GridListComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    PhongtroUserComponent
   ],
   imports: [
     BrowserModule,

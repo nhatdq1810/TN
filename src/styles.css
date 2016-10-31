@@ -3,6 +3,11 @@
 
 /* CSS Resets */
 
+html,
+body {
+  height: 100%;
+}
+
 ul,
 p {
   margin: 0;

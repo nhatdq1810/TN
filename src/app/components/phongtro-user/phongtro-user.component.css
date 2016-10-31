@@ -1,0 +1,37 @@
+.container,
+.row,
+.create-phongtro,
+ul {
+  height: 100%;
+}
+
+.create-phongtro {
+  text-align: center;
+}
+
+.create-phongtro .btn-modal {
+  padding: 20px;
+
+}
+
+.create-phongtro p {
+  font-size: 40px;
+  color: #aaaaaa;
+  margin-bottom: 50px;
+}
+
+.create-phongtro,
+ul {
+  padding-top: 50px;
+}
+
+.confirm-form p.header {
+  text-align: center;
+  color: #c7254e;
+  font-size: 25px;
+}
+
+.btn-modal {
+  font-size: 20px;
+  width: 200px;
+}
