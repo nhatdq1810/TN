@@ -1,0 +1,18 @@
+#suggest-pt {
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+#suggest-pt h2 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+#suggest-pt app-grid-list >>> li {
+  width: auto;
+}
+
+#suggest-pt app-grid-list >>> .get-more-btn {
+  margin: 0 30px 10px;
+}

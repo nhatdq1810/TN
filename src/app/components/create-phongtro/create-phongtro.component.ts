@@ -47,7 +47,10 @@ export class CreatePhongtroComponent {
     };
 
     this.complexForm = this.fb.group({
-      'diachi': ['', Validators.required],
+      'sonha': ['', Validators.required],
+      'phuong': ['', Validators.required],
+      'quan': ['', Validators.required],
+      'tp': ['', Validators.required],
       'giatien': ['', Validators.required],
       'tiencoc': '',
       'dientich': ['', Validators.required],
@@ -74,16 +77,21 @@ export class CreatePhongtroComponent {
     value.chu = +value.chu;
     value.tiencoc = +value.tiencoc
     value.ngaydang = currentDate;
-    value.diachi = value.diachi.toLowerCase();
+    value.sonha = value.sonha.toLowerCase();
+    value.phuong = value.sonha.toLowerCase();
+    value.quan = value.sonha.toLowerCase();
+    value.tp = value.sonha.toLowerCase();
+    value.diachi = value.sonha + ',phường ' + value.phuong + ', quận ' + value.quan + ', thành phố ' + value.tp;
     value.truong = value.truong.toLowerCase();
     value.nganh = value.nganh.toLowerCase();
-    this.ptService.themPhongtro(value).then(resp => {
-      this.options.data.id = resp.id;
-      this.startUpload();
-      setTimeout(() => {
-        this.router.navigate(['/phongtro/detail', resp.id]);
-      }, 3000);
-    });
+    console.log(value);
+    // this.ptService.themPhongtro(value).then(resp => {
+    //   this.options.data.id = resp.id;
+    //   this.startUpload();
+    //   setTimeout(() => {
+    //     this.router.navigate(['/phongtro/detail', resp.id]);
+    //   }, 3000);
+    // });
   }
 
   handlePreviewData(data: any): void {
@@ -115,7 +123,10 @@ export class CreatePhongtroComponent {
     };
 
     this.complexForm = this.fb.group({
-      'diachi': ['', Validators.required],
+      'sonha': ['', Validators.required],
+      'phuong': ['', Validators.required],
+      'quan': ['', Validators.required],
+      'tp': ['', Validators.required],
       'giatien': ['', Validators.required],
       'tiencoc': '',
       'dientich': ['', Validators.required],

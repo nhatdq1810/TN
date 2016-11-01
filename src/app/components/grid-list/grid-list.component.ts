@@ -8,11 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class GridListComponent implements OnInit {
 
   @Input() deals: any[];
+  @Input() searchLink: string;
+  @Input() getMoreDeals: Function;
 
   constructor() {
+
   }
 
   ngOnInit() {
+    console.log(this.searchLink);
+    console.log(this.getMoreDeals);
   }
 
 }

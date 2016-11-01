@@ -103,44 +103,6 @@
         </div>
       </div>
     </div>
-    <app-grid-list [deals]="newDeals"></app-grid-list>
-    <!-- <div class="row deals-block new-deals">
-      <ul class="deals-list">
-        <li *ngFor="let item of newDeals">
-          <a [routerLink]="['/phongtro/detail', item.id]">
-            <div class="phongtro-img">
-              <img [src]="item.hinhanh" alt="image" class="img-responsive">
-            </div>
-            <div class="phongtro-info border-b-dotted">
-              <h3>{{item.diachi | uppercase}}</h3>
-              <ul>
-                <li>
-                  <i class="fa fa-building-o"></i>
-                  <span>{{item.dientich}}</span>
-                </li>
-                <li>
-                  <i *ngIf="item.gioitinh === 'nam'" class="fa fa-mars"></i>
-                  <i *ngIf="item.gioitinh === 'nữ'" class="fa fa-venus"></i>
-                  <span>{{item.songuoi}}</span>
-                </li>
-                <li>
-                  <i class="fa fa-wifi"></i>
-                  <span *ngIf="item.wifi === 0">Không</span>
-                  <span *ngIf="item.wifi === 1">Có</span>
-                </li>
-                <li *ngIf="item.truong && item.truong !== ''">
-                  <i class="fa fa-university"></i>
-                  <span>{{item.truong}}</span>
-                </li>
-              </ul>
-            </div>
-            <h3 class="phongtro-price">{{item.giatien | number}}</h3>
-          </a>
-        </li>
-        <li class="get-more-btn">
-          <a [routerLink]="searchLink" class="" (click)="getMoreNewDeals()">Xem thêm...</a>
-        </li>
-      </ul>
-    </div> -->
+    <app-grid-list [deals]="newDeals" [getMoreDeals]="getMoreNewDeals" [searchLink]="'/'"></app-grid-list>
   </div>
 </section>

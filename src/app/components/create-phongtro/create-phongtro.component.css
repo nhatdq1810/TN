@@ -18,6 +18,10 @@
   height: 200px;
 }
 
+.info-required {
+  overflow: hidden;
+}
+
 .input-btn {
   margin-top: 10px;
 }

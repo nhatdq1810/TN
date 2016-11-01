@@ -2,7 +2,7 @@
 .row,
 .create-phongtro,
 ul {
-  height: 100%;
+  min-height: 100%;
 }
 
 .create-phongtro {
@@ -11,7 +11,6 @@ ul {
 
 .create-phongtro .btn-modal {
   padding: 20px;
-
 }
 
 .create-phongtro p {
@@ -23,6 +22,57 @@ ul {
 .create-phongtro,
 ul {
   padding-top: 50px;
+}
+
+li {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+li .btn-modal {
+  width: calc(5% - 10px);
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.phongtro-block {
+  border: 1px solid #dddddd;
+  margin-right: 10px;
+  width: 95%;
+}
+
+.phongtro-block a {
+  display: block;
+  overflow: hidden;
+  transition: all .5s ease-in-out;
+  font-weight: 700;
+}
+
+.phongtro-block a:hover {
+  background-color: #2c3e50;
+  outline: blue;
+  color: #fcdd44;
+}
+
+.phongtro-block img {
+  width: 30%;
+  height: 250px;
+}
+
+.phongtro-block .phongtro-info {
+  width: 70%;
+  font-size: 20px;
+  padding-left: 30px;
+  padding-top: 10px;
+}
+
+.phongtro-block .phongtro-info p {
+  padding-bottom: 20px;
+}
+
+.phongtro-block .phongtro-info span {
+  color: #aaaaaa;
+  margin-right: 10px;
 }
 
 .confirm-form p.header {

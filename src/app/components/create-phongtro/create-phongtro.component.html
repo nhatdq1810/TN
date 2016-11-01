@@ -11,33 +11,49 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="form-group col-md-6">
-          <label>Địa chỉ</label>
-          <input class="input-modal" type="text" [formControl]="complexForm.controls['diachi']" name="diachi" placeholder="Địa chỉ">
-          <alert [type]="'danger'" *ngIf="complexForm.controls['diachi'].hasError('required') && complexForm.controls['diachi'].touched">
-            Bạn chưa nhập địa chỉ phòng trọ.
-          </alert>
-        </div>
-        <div class="form-group col-md-6">
-          <label>Giá tiền</label>
-          <input class="input-modal" type="number" [formControl]="complexForm.controls['giatien']" name="giatien" placeholder="2000000">
-          <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
-            Bạn chưa nhập giá thuê phòng trọ.
-          </alert>
-        </div>
-        <div class="form-group col-md-6">
-          <label>Diện tích (m<sup>2</sup>)</label>
-          <input class="input-modal" type="number" [formControl]="complexForm.controls['dientich']" name="dientich" placeholder="20">
-          <alert [type]="'danger'" *ngIf="complexForm.controls['dientich'].hasError('required') && complexForm.controls['dientich'].touched">
-            Bạn chưa nhập diện tích phòng trọ.
-          </alert>
-        </div>
-        <div class="form-group col-md-6">
-          <label>Số người cần</label>
-          <input class="input-modal" type="number" [formControl]="complexForm.controls['songuoi']" name="songuoi" placeholder="1">
-          <alert [type]="'danger'" *ngIf="complexForm.controls['dientich'].hasError('required') && complexForm.controls['dientich'].touched">
-            Bạn chưa nhập số lượng người cần tìm.
-          </alert>
+        <div class="info-required">
+          <div class="form-group col-md-6">
+            <label>Địa chỉ</label>
+            <input class="input-modal" type="text" [formControl]="complexForm.controls['sonha']" name="sonha" placeholder="Số nhà và tên đường">
+            <alert [type]="'danger'" *ngIf="complexForm.controls['sonha'].hasError('required') && complexForm.controls['sonha'].touched">
+              Bạn chưa nhập số nhà và tên đường.
+            </alert>
+            <input class="input-modal" type="text" [formControl]="complexForm.controls['phuong']" name="phuong" placeholder="Phường">
+            <alert [type]="'danger'" *ngIf="complexForm.controls['phuong'].hasError('required') && complexForm.controls['phuong'].touched">
+              Bạn chưa nhập phường.
+            </alert>
+            <input class="input-modal" type="text" [formControl]="complexForm.controls['quan']" name="quan" placeholder="Quận/Huyện">
+            <alert [type]="'danger'" *ngIf="complexForm.controls['quan'].hasError('required') && complexForm.controls['quan'].touched">
+              Bạn chưa nhập quận/huyện.
+            </alert>
+            <input class="input-modal" type="text" [formControl]="complexForm.controls['tp']" name="tp" placeholder="Thành phố">
+            <alert [type]="'danger'" *ngIf="complexForm.controls['tp'].hasError('required') && complexForm.controls['tp'].touched">
+              Bạn chưa nhập thành phố.
+            </alert>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Giá tiền</label>
+              <input class="input-modal" type="number" [formControl]="complexForm.controls['giatien']" name="giatien" placeholder="2000000">
+              <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
+                Bạn chưa nhập giá thuê phòng trọ.
+              </alert>
+            </div>
+            <div class="form-group">
+              <label>Diện tích (m<sup>2</sup>)</label>
+              <input class="input-modal" type="number" [formControl]="complexForm.controls['dientich']" name="dientich" placeholder="20">
+              <alert [type]="'danger'" *ngIf="complexForm.controls['dientich'].hasError('required') && complexForm.controls['dientich'].touched">
+                Bạn chưa nhập diện tích phòng trọ.
+              </alert>
+            </div>
+            <div class="form-group">
+              <label>Số người cần tìm</label>
+              <input class="input-modal" type="number" [formControl]="complexForm.controls['songuoi']" name="songuoi" placeholder="1">
+              <alert [type]="'danger'" *ngIf="complexForm.controls['songuoi'].hasError('required') && complexForm.controls['songuoi'].touched">
+                Bạn chưa nhập số lượng người cần tìm.
+              </alert>
+            </div>
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label>Tiền cọc</label>

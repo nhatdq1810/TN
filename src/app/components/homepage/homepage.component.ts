@@ -19,7 +19,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
   private hotDeals: any[];
   private newDeals: any[];
   private quantityNewDeals: number;
-  private searchLink: string[] = [];
+  private searchLink: string;
   @ViewChild('flexslider') el: ElementRef;
 
   constructor(private ptService: PhongtroService, private router: Router) {
@@ -29,7 +29,7 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
 
   init() {
     this.quantityNewDeals = 3;
-    this.searchLink[0] = ('/');
+    this.searchLink = ('/');
 
     this.ptService.layPhongtro(1)
       .then(pt => {
@@ -75,14 +75,13 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
       });
 
     if(this.quantityNewDeals >= 12) {
-      this.searchLink[0] = '/search/result';
+      this.searchLink = '/search/result';
     }
-
   }
 
   fakeInit() {
     this.quantityNewDeals = 3;
-    this.searchLink[0] = ('/');
+    this.searchLink = ('/');
 
     this.specialDeals = [
       {

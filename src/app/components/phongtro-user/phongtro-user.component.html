@@ -6,8 +6,18 @@
     </div>
     <ul *ngIf="listPT.length !== 0">
       <li *ngFor="let item of listPT">
-        {{item.diachi}}
-        <button (click)="showConfirm(item)">Xóa</button>
+        <div class="phongtro-block left">
+          <a [routerLink]="['/phongtro/detail', item.id]">
+            <img [src]="item.hinhanh" class="left">
+            <div class="phongtro-info left">
+              <p><span>Địa chỉ:</span>{{item.diachi}}</p>
+              <p><span>Diện tích (m<sup>2</sup>):</span>{{item.dientich}}</p>
+              <p><span>Số người cần tìm:</span>{{item.songuoi}}</p>
+            </div>
+          </a>
+        </div>
+        <button class="fa fa-wrench btn-modal right" (click)="editPT(item)"></button>
+        <button class="fa fa-times btn-modal right" (click)="showConfirm(item)"></button>
       </li>
     </ul>
   </div>
