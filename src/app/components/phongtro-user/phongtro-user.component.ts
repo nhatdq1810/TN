@@ -37,16 +37,16 @@ export class PhongtroUserComponent implements OnInit {
 
   xoaPT() {
     console.log(this.ptXoa.id);
-    this.listPT.forEach((el, index) => {
-      if (el.id === this.ptXoa.id) {
-        this.listPT.splice(index, 1);
-      }
-    });
+    // this.listPT.forEach((el, index) => {
+    //   if (el.id === this.ptXoa.id) {
+    //     this.listPT.splice(index, 1);
+    //   }
+    // });
 
-    // this.ptService.xoaPhongtro(this.ptXoa.id)
-    //   .then(listPT => {
-    //     this.listPT = listPT;
-    //   });
+    this.ptService.xoaPhongtro(this.userService.user.id, this.ptXoa.id)
+      .then(listPT => {
+        this.listPT = listPT;
+      });
   }
 
   fakeInit() {

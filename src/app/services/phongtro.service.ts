@@ -165,9 +165,9 @@ export class PhongtroService {
     });
   }
 
-  xoaPhongtro(id: number): Promise<any> {
+  xoaPhongtro(userID, id: number): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.delete(Constants.apiUrl + 'phongtro/' + id, { headers: Constants.headers })
+      this.http.delete(Constants.apiUrl + 'phongtro/' + id + '/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
