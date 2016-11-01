@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PhongtroService } from '../../services/phongtro.service';
 
 @Component({
   selector: 'app-aside',
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class AsideComponent implements OnInit {
 
   private deals: Array<any> = [];
+  private searchLink: string = '/search/result';
+  private currentPT: any;
 
-  constructor() {
+  constructor(private ptService: PhongtroService) {
     this.init();
-    this.fakeInit();
+    // this.fakeInit();
   }
 
   ngOnInit() {
@@ -19,6 +22,35 @@ export class AsideComponent implements OnInit {
 
   init() {
 
+    this.currentPT = this.ptService.currentPT;
+    if(!this.currentPT.tiencoc || this.currentPT.tiencoc === 0) {
+      this.currentPT.tiencoc = this.currentPT.giatien;
+    }
+    let searchTerm = {
+      giatien_min: 500000,
+      giatien_max: this.currentPT.giatien + 1000000,
+      tiencoc_min: 0,
+      tiencoc_max: this.currentPT.tiencoc + 1000000,
+      dientich_min: 10,
+      dientich_max: this.currentPT.dientich + 5,
+      truong: '',
+      nganh: '',
+      khoa: '',
+      gioitinh: this.currentPT.gioitinh,
+      wifi: +(this.currentPT.wifi),
+      chu: +(this.currentPT.chu)
+    };
+    this.ptService.timkiemPhongtro(searchTerm)
+      .then(result => {
+        if(result === 'success') {
+          this.deals = this.ptService.listPT;
+          this.deals.forEach((deal, index) => {
+            if (deal.id === this.currentPT.id) {
+              this.deals.splice(index, 1);
+            }
+          });
+        }
+      });
   }
 
   fakeInit() {

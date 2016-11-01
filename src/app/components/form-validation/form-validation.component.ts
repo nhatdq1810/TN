@@ -36,10 +36,12 @@ export class FormValidationComponent implements OnInit {
     value.nganh.toLowerCase();
     value.tiencoc = [];
     value.dientich = [];
-    value.tiencoc[0] = 0;
-    value.tiencoc[1] = 5000000;
-    value.dientich[0] = 10;
-    value.dientich[1] = 20;
+    value.tiencoc_min = 0;
+    value.tiencoc_max = 5000000;
+    value.dientich_min = 10;
+    value.dientich_max = 20;
+    value.giatien_min = value.giatien[0];
+    value.giatien_max = value.giatien[1];
     value.khoa = '';
     value.wifi = 1;
     value.chu = 1;

@@ -66,19 +66,6 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
     this.ptService.layPhongtroHot(10);
   }
 
-  getMoreNewDeals() {
-    this.quantityNewDeals += 3;
-
-    this.ptService.layPhongtroMoi(this.quantityNewDeals)
-      .then(listPT => {
-        this.newDeals = listPT;
-      });
-
-    if(this.quantityNewDeals >= 12) {
-      this.searchLink = '/search/result';
-    }
-  }
-
   fakeInit() {
     this.quantityNewDeals = 3;
     this.searchLink = ('/');

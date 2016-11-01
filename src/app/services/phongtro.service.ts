@@ -10,16 +10,15 @@ let Constants = require('../resources/constants');
 @Injectable()
 export class PhongtroService {
 
-  private _listTKPT: any[];
+  private _listPT: any[] = [];
   private _currentPT: any;
   private _searchTerm: any;
 
   constructor(private http: Http, private router: Router) {
-    this._listTKPT = [];
   }
 
   get listPT(): any[]{
-    return this._listTKPT;
+    return this._listPT;
   }
 
   get currentPT(): any{
@@ -28,6 +27,10 @@ export class PhongtroService {
 
   get searchTerm(): any {
     return this._searchTerm;
+  }
+
+  set searchTerm(term) {
+    this._searchTerm = term;
   }
 
   private handleError(funcName: string, error: any): Observable<any> {
@@ -95,7 +98,7 @@ export class PhongtroService {
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
-            this._listTKPT = resp;
+            this._listPT = resp;
             resolve(resp)
           } else {
             this.handleError('layPhongtroHot', resp.result);
@@ -113,7 +116,7 @@ export class PhongtroService {
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
-            this._listTKPT = resp;
+            this._listPT = resp;
             resolve(resp);
           } else {
             this.handleError('layPhongtroMoi', resp.result);
@@ -125,31 +128,25 @@ export class PhongtroService {
   }
 
   timkiemPhongtro(model): Promise<any>{
-    this._searchTerm = {
-      giatien_min: model.giatien[0],
-      giatien_max: model.giatien[1],
-      truong: model.truong,
-      nganh: model.nganh,
-      gioitinh: model.gioitinh
-    }
-    return new Promise((resolve, reject) => {
-      resolve('success');
-    })
+    // this._searchTerm = model;
     // return new Promise((resolve, reject) => {
-    //   this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien[0]}&giatien_max=${model.giatien[1]}&tiencoc_min=${model.tiencoc[0]}&tiencoc_max=${model.tiencoc[1]}&dientich_min=${model.dientich[0]}&dientich_max=${model.dientich[1]}&truong=${model.truong}&nganh=${model.nganh}&khoa=${model.khoa}&gioitinh=${model.gioitinh}&wifi=${model.wifi}&chu=${model.chu}`, { headers: Constants.headers })
-    //     .map((resp: Response) => resp.json())
-    //     .subscribe(resp => {
-    //       if (!resp.result || resp.result !== 'fail') {
-    //         this._searchTerm = model;
-    //         this._listTKPT = resp;
-    //         resolve('success');
-    //       } else {
-    //         this.handleError('timkiemPhongtro', resp.result);
-    //         reject(resp.result);
-    //       }
-    //     },
-    //     error => this.handleError('timkiemPhongtro', error));
+    //   resolve('success');
     // });
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien_min}&giatien_max=${model.giatien_max}&tiencoc_min=${model.tiencoc_min}&tiencoc_max=${model.tiencoc_max}&dientich_min=${model.dientich_min}&dientich_max=${model.dientich_max}&truong=${model.truong}&nganh=${model.nganh}&khoa=${model.khoa}&gioitinh=${model.gioitinh}&wifi=${model.wifi}&chu=${model.chu}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            this._searchTerm = model;
+            this._listPT = resp;
+            resolve('success');
+          } else {
+            this.handleError('timkiemPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        error => this.handleError('timkiemPhongtro', error));
+    });
   }
 
   themPhongtro(model): Promise<any> {

@@ -6,7 +6,7 @@
           <label>Khoản tiền</label>
           <p class="sliderValue">
             <span>{{ giatienValue[0] | number }}</span>
-            <span class="right">{{ giatienValue[1] | number }}</span>
+            <span class="right">{{ giatienValue[1] | number }}+</span>
           </p>
           <nouislider [connect]="true" [min]="500000" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['giatien']" [(ngModel)]="giatienValue"></nouislider>
         </div>
@@ -14,7 +14,7 @@
           <label>Tiền cọc</label>
           <p class="sliderValue">
             <span>{{ tiencocValue[0] | number }}</span>
-            <span class="right">{{ tiencocValue[1] | number }}</span>
+            <span class="right">{{ tiencocValue[1] | number }}+</span>
           </p>
           <nouislider [connect]="true" [min]="0" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['tiencoc']" [(ngModel)]="tiencocValue"></nouislider>
         </div>
@@ -22,7 +22,7 @@
           <label>Diện tích (m<sup>2</sup>)</label>
           <p class="sliderValue">
             <span>{{ dientichValue[0] | number }}</span>
-            <span class="right">{{ dientichValue[1] | number }}</span>
+            <span class="right">{{ dientichValue[1] | number }}+</span>
           </p>
           <nouislider [connect]="true" [min]="10" [max]="20" [step]="1" [formControl]="complexForm.controls['dientich']" [(ngModel)]="dientichValue"></nouislider>
         </div>
@@ -42,12 +42,12 @@
           <label>Ở với chủ</label>
           <div class="radio">
             <label>
-              <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="true">Có
+              <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="initChu">Có
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']">Không
+              <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']" [checked]="!initChu">Không
             </label>
           </div>
         </div>
@@ -55,12 +55,12 @@
           <label>Wifi</label>
           <div class="radio">
             <label>
-              <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="true">Có
+              <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="initWifi">Có
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']">Không
+              <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']" [checked]="!initWifi">Không
             </label>
           </div>
         </div>

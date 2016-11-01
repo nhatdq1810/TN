@@ -61,7 +61,6 @@ export class UserService {
     this.loggedIn = false;
     this.checkLoggedIn.next(false);
     let homepage = encodeURIComponent('http://localhost:4200/home');
-    console.log(homepage);
     window.location.href = `https://nhatdq1810.auth0.com/v2/logout?returnTo=${homepage}`;
   }
 

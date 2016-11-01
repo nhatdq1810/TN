@@ -13,14 +13,16 @@ export class SearchResultComponent implements OnInit {
   private listPT: any[];
   private complexForm: FormGroup;
   private initGioitinh: boolean;
+  private initChu: boolean;
+  private initWifi: boolean;
   private giatienValue: number[];
   private tiencocValue: number[];
   private dientichValue: number[];
   private searchTerm: any;
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {
@@ -47,6 +49,8 @@ export class SearchResultComponent implements OnInit {
     });
 
     this.initGioitinh = true;
+    this.initChu = false;
+    this.initWifi = true;
     this.giatienValue = [500000, 5000000];
     this.tiencocValue = [0, 5000000];
     this.dientichValue = [10, 20];
@@ -55,16 +59,14 @@ export class SearchResultComponent implements OnInit {
   init() {
     this.listPT = this.ptService.listPT;
     this.searchTerm = this.ptService.searchTerm;
-    if (this.listPT.length === 0) {
-      this.initListPT();
-    }
+
     if (!this.searchTerm) {
       this.initSearchTerm();
     } else {
       this.complexForm = this.fb.group({
-        'giatien': this.searchTerm.giatien[0],
-        'tiencoc': this.searchTerm.tiencoc[0],
-        'dientich': this.searchTerm.dientich[0],
+        'giatien': this.searchTerm.giatien_min,
+        'tiencoc': this.searchTerm.tiencoc_min,
+        'dientich': this.searchTerm.dientich_min,
         'truong': this.searchTerm.truong,
         'nganh': this.searchTerm.nganh,
         'khoa': this.searchTerm.khoa,
@@ -78,9 +80,42 @@ export class SearchResultComponent implements OnInit {
       } else {
         this.initGioitinh = false;
       }
-      this.giatienValue = [this.searchTerm.giatien[0], this.searchTerm.giatien[1]];
-      this.tiencocValue = [this.searchTerm.tiencoc[0], this.searchTerm.tiencoc[1]];
-      this.dientichValue = [this.searchTerm.dientich[0], this.searchTerm.dientich[1]];
+      if (this.searchTerm.chu === 1) {
+        this.initChu = true;
+      } else {
+        this.initChu = false;
+      }
+      if (this.searchTerm.wifi === 1) {
+        this.initWifi = true;
+      } else {
+        this.initWifi = false;
+      }
+
+      if(this.searchTerm.giatien_min > 5000000) {
+        this.searchTerm.giatien_min = 5000000;
+      }
+      if (this.searchTerm.giatien_max > 5000000) {
+        this.searchTerm.giatien_max = 5000000;
+      }
+      if (this.searchTerm.tiencoc_min > 5000000) {
+        this.searchTerm.tiencoc_min = 5000000;
+      }
+      if (this.searchTerm.tiencoc_max > 5000000) {
+        this.searchTerm.tiencoc_max = 5000000;
+      }
+      if (this.searchTerm.dientich_min > 20) {
+        this.searchTerm.dientich_min = 20;
+      }
+      if (this.searchTerm.dientich_max > 20) {
+        this.searchTerm.dientich_max = 20;
+      }
+      this.giatienValue = [this.searchTerm.giatien_min, this.searchTerm.giatien_max];
+      this.tiencocValue = [this.searchTerm.tiencoc_min, this.searchTerm.tiencoc_max];
+      this.dientichValue = [this.searchTerm.dientich_min, this.searchTerm.dientich_max];
+    }
+
+    if (this.listPT.length === 0) {
+      this.initListPT();
     }
   }
 
@@ -99,13 +134,12 @@ export class SearchResultComponent implements OnInit {
       wifi: +(value.wifi),
       chu: +(value.chu)
     }
-    console.log(searchTerm);
-    // this.ptService.timkiemPhongtro(searchTerm)
-    //   .then((result: string) => {
-    //     if (result === 'success') {
-    //       this.router.navigate(['/search/result']);
-    //     }
-    //   });
+    this.ptService.timkiemPhongtro(searchTerm)
+      .then((result: string) => {
+        if (result === 'success') {
+          this.listPT = this.ptService.listPT;
+        }
+      });
   }
 
   fakeInit() {

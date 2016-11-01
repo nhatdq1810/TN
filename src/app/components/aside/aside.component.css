@@ -9,8 +9,8 @@
   margin-bottom: 20px;
 }
 
-#suggest-pt app-grid-list >>> li {
-  width: auto;
+#suggest-pt app-grid-list >>> .deals-list > li {
+  width: 100%;
 }
 
 #suggest-pt app-grid-list >>> .get-more-btn {
