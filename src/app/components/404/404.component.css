@@ -1,0 +1,52 @@
+.main {
+  min-height: 100%;
+  margin: 30px auto;
+}
+
+.main .content{
+  margin: 150px 0;
+}
+
+.main .content p {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.main .content .header {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.main .navigate-btn {
+  margin-top: 40px;
+}
+
+.main .navigate-btn .btn-modal {
+  width: 185px;
+  padding: 20px;
+  font-size: 25px;
+}
+
+.main .navigate-btn .btn-modal:last-of-type {
+  margin-left: 50px;
+}
+
+.main .navigate-btn .btn-modal .fa-arrow-left {
+  margin-right: 5px;
+}
+
+.main .navigate-btn .btn-modal .fa-arrow-right {
+  margin-left: 5px;
+}
+
+.main .suggest-pt {
+  border-left: 1px solid #dddddd;
+}
+
+.main .suggest-pt app-grid-list >>> .deals-list > li {
+  width: calc((100%/2) - 20px);
+}
+
+.main .suggest-pt app-grid-list >>> .deals-list .get-more-btn {
+  display: none;
+}
