@@ -58,10 +58,14 @@ export class PhongtroDetailComponent implements OnInit {
 
   socialShare(socialName) {
     if(socialName === 'google') {
-      let currentHref = encodeURIComponent(window.location.href);
-      console.log(window.location.host);
-      console.log(currentHref);
-      // window.location.href = 'https://plus.google.com/share?url=' + currentHref;
+      let path = window.location.href.replace(/localhost/gi, '127.0.0.1');
+      let currentHref = encodeURIComponent(path);
+      window.open('https://plus.google.com/share?url=' + currentHref, '', 'height=550,width=525,left=100,top=100,menubar=0');
+    }
+    if(socialName === 'facebook') {
+      let path = window.location.href.replace(/localhost/gi, '127.0.0.1');
+      let currentHref = encodeURIComponent(path);
+      window.open('https://www.facebook.com/sharer/sharer.php?u=' + currentHref, '', 'height=550,width=525,left=100,top=100,menubar=0');
     }
   }
 
