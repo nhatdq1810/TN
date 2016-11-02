@@ -13,8 +13,8 @@ export class AsideComponent implements OnInit {
   private currentPT: any;
 
   constructor(private ptService: PhongtroService) {
-    this.init();
-    // this.fakeInit();
+    // this.init();
+    this.fakeInit();
   }
 
   ngOnInit() {
@@ -55,6 +55,18 @@ export class AsideComponent implements OnInit {
 
   fakeInit() {
     this.deals = [
+    {
+        id: 2,
+        hinhanh: 'assets/img/index-03.jpg',
+        diachi: '123 abc P.15 Quận Gò Vấp',
+        songuoi: 2,
+        dientich: 25,
+        gioitinh: 'nam',
+        truong: 'PTIT',
+        wifi: 1,
+        ngaydang: '01/10/2016',
+        giatien: 2000000
+      },
       {
         id: 3,
         hinhanh: 'assets/img/index-03.jpg',

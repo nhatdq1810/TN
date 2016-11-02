@@ -8,7 +8,7 @@
 <app-login #modal></app-login>
 <div *ngIf="phongtro" class="phongtro-detail container">
   <div class="row">
-    <div class="col-lg-8 col-md-8 main-content">
+    <div class="col-lg-9 col-md-9 main-content">
       <div class="phongtro-title">
         <h1>{{phongtro.diachi}}</h1>
         <p class="ngay right">{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
@@ -20,7 +20,7 @@
         <div class="phongtro-social right">
           <span>Share: </span>
           <a [routerLink]="['/']"><i class="fa fa-facebook"></i></a>
-          <a [routerLink]="['https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4200%2Fphongtro%2Fdetail%2F1']"><i class="fa fa-google-plus"></i></a>
+          <a (click)="socialShare('google')"><i class="fa fa-google-plus"></i></a>
         </div>
       </div>
       <div *ngIf="phongtro.hinhanh && phongtro.hinhanh !== ''" class="phongtro-img">
@@ -157,12 +157,12 @@
             </div>
           </accordion-group>
           <accordion-group class="comments" heading="BÌNH LUẬN" [isOpen]="true">
-            <app-comments></app-comments>
+            <!-- <app-comments></app-comments> -->
           </accordion-group>
         </accordion>
       </div>
     </div>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-3 col-md-3">
       <app-aside></app-aside>
     </div>
   </div>

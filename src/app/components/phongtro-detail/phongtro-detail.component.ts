@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http';
+import { Location } from '@angular/common';
 import { PhongtroService } from '../../services/phongtro.service';
 import { UserService } from '../../services/user.service';
 import { Phongtro } from '../../models/phongtro';
@@ -21,9 +22,9 @@ export class PhongtroDetailComponent implements OnInit {
   private lng: number;
   private zoom: number = 18;
 
-  constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http) {
-    // this.fakeInit();
-    this.init();
+  constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location) {
+    this.fakeInit();
+    // this.init();
   }
 
   init() {
@@ -53,6 +54,15 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  socialShare(socialName) {
+    if(socialName === 'google') {
+      let currentHref = encodeURIComponent(window.location.href);
+      console.log(window.location.host);
+      console.log(currentHref);
+      // window.location.href = 'https://plus.google.com/share?url=' + currentHref;
+    }
   }
 
   fakeInit() {
