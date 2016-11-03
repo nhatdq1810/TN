@@ -3,6 +3,7 @@ import { Phongtro } from '../models/phongtro';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs/Rx';
 
 
 let Constants = require('../resources/constants');
@@ -13,6 +14,7 @@ export class PhongtroService {
   private _listPT: any[] = [];
   private _currentPT: any;
   private _searchTerm: any;
+  public phongtroDetailChange = new Subject();
 
   constructor(private http: Http, private router: Router) {
   }
@@ -64,6 +66,7 @@ export class PhongtroService {
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
             this._currentPT = resp;
+            this.phongtroDetailChange.next(resp);
             resolve(resp);
           } else {
             this.handleError('layPhongtro', resp.result);

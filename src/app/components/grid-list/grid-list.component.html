@@ -1,5 +1,5 @@
 <div class="row deals-block new-deals">
-  <ul class="deals-list" *ngIf="deals">
+  <ul class="deals-list" *ngIf="deals && deals.length > 0">
     <li *ngFor="let item of deals">
       <a [routerLink]="['/phongtro/detail', item.id]">
         <div class="phongtro-img">

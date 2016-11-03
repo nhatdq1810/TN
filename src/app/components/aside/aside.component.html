@@ -1,4 +1,4 @@
-<div id="suggest-pt">
+<div *ngIf="deals && deals.length > 0" id="suggest-pt">
   <h1>Phòng trọ tương tự</h1>
   <app-grid-list [deals]="deals" [searchLink]="searchLink"></app-grid-list>
 </div>

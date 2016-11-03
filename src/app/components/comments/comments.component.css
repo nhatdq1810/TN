@@ -28,12 +28,13 @@
   border-bottom: 1px solid #dddddd;
 }
 
-.comments-item .header {
-  margin-bottom: 10px;
-}
-
 .comments-item:last-of-type {
   margin-bottom: 0;
+  border: none;
+}
+
+.comments-item .header {
+  margin-bottom: 10px;
 }
 
 .comments-item .user-name {

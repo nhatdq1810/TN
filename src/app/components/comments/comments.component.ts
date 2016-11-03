@@ -28,6 +28,9 @@ export class CommentsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ptService.phongtroDetailChange.subscribe(currentPT => {
+      this.init();
+    });
   }
 
   init() {
@@ -40,6 +43,11 @@ export class CommentsComponent implements OnInit {
           }
         });
       });
+    })
+    .catch(err => {
+      console.log(err);
+      this.listCmt = [];
+      this.listUser = [];
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http';
 import { Location } from '@angular/common';
@@ -6,6 +6,9 @@ import { PhongtroService } from '../../services/phongtro.service';
 import { UserService } from '../../services/user.service';
 import { Phongtro } from '../../models/phongtro';
 import { User } from '../../models/user';
+import { AsideComponent } from '../aside/aside.component';
+import { CommentsComponent } from '../comments/comments.component';
+
 
 let Constants = require('../../resources/constants');
 
@@ -16,6 +19,8 @@ let Constants = require('../../resources/constants');
 })
 export class PhongtroDetailComponent implements OnInit {
 
+  @ViewChild('asideComponent') asideComponent: AsideComponent;
+  @ViewChild('commentsComponent') commentsComponent: CommentsComponent;
   private phongtro: Phongtro;
   private user: User;
   private lat: number;
@@ -23,8 +28,8 @@ export class PhongtroDetailComponent implements OnInit {
   private zoom: number = 18;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   init() {
@@ -54,7 +59,19 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.init();
+    });
   }
+
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     this.route.params.subscribe(() => {
+  //       this.asideComponent.init();
+  //       this.commentsComponent.init();
+  //     });
+  //   }, 5000);
+  // }
 
   socialShare(socialName) {
     if(socialName === 'google') {

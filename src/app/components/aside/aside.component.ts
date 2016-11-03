@@ -13,15 +13,17 @@ export class AsideComponent implements OnInit {
   private currentPT: any;
 
   constructor(private ptService: PhongtroService) {
-    // this.init();
-    this.fakeInit();
+    this.init();
+    // this.fakeInit();
   }
 
   ngOnInit() {
+    this.ptService.phongtroDetailChange.subscribe(currentPT => {
+      this.init();
+    });
   }
 
   init() {
-
     this.currentPT = this.ptService.currentPT;
     if(!this.currentPT.tiencoc || this.currentPT.tiencoc === 0) {
       this.currentPT.tiencoc = this.currentPT.giatien;
@@ -42,13 +44,24 @@ export class AsideComponent implements OnInit {
     };
     this.ptService.timkiemPhongtro(searchTerm)
       .then(result => {
-        if(result === 'success') {
+        if (result === 'success') {
           this.deals = this.ptService.listPT;
           this.deals.forEach((deal, index) => {
             if (deal.id === this.currentPT.id) {
               this.deals.splice(index, 1);
             }
           });
+          if(this.deals.length === 0) {
+            this.ptService.layPhongtroHot(4)
+              .then(listPT => {
+                this.deals = listPT;
+                this.deals.forEach((deal, index) => {
+                  if (deal.id === this.currentPT.id) {
+                    this.deals.splice(index, 1);
+                  }
+                });
+              });
+          }
         }
       });
   }

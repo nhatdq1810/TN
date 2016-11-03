@@ -3,6 +3,8 @@
   <div class="row transfer" *ngIf="ngh_gui && ngh_nhan && phongtro">
     <form>
       <div class="ngh-gui col-md-4">
+        <span>Mã tài khoản: </span>
+        <input class="input-modal" type="text" [(ngModel)]="id_gui" [readonly]="true" name="id_gui">
         <span>Họ tên người gửi: </span>
         <input class="input-modal" type="text" [(ngModel)]="hoten_gui" [readonly]="true" name="hoten_gui">
         <span>Số tiền: </span>
@@ -14,10 +16,10 @@
         </div>
       </div>
       <div class="ngh-nhan col-md-4">
+        <span>Mã tài khoản: </span>
+        <input class="input-modal" type="text" [(ngModel)]="id_nhan" [readonly]="true" name="id_nhan">
         <span>Họ tên người nhận: </span>
         <input class="input-modal" type="text" [(ngModel)]="hoten_nhan" [readonly]="true" name="hoten_nhan">
-        <span>Địa chỉ người nhận: </span>
-        <input class="input-modal" type="text" [(ngModel)]="diachi_nhan" [readonly]="true" name="diachi_nhan">
         <span>Số ĐT người nhận: </span>
         <input class="input-modal" type="text" [(ngModel)]="sodt_nhan" [readonly]="true" name="sodt_nhan">
       </div>

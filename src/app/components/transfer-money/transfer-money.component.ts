@@ -22,17 +22,18 @@ export class TransferMoneyComponent implements OnInit {
 
   @ViewChild('errorModal') errorModal: ModalDirective;
   private ngh_gui: Nganhang;
-  private ngh_nhan: Nganhang[];
+  private ngh_nhan: Array<Nganhang>;
   private phongtro: Phongtro;
+  private id_gui;
   private hoten_gui;
   private hoten_nhan;
   private tiencoc;
-  private diachi_nhan;
+  private id_nhan;
   private sodt_nhan;
 
   constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {
@@ -41,10 +42,11 @@ export class TransferMoneyComponent implements OnInit {
   init() {
     this.ngh_gui = this.nghService.currentNgh;
     this.phongtro = this.ptService.currentPT;
+    this.id_gui = this.ngh_gui.id;
     this.hoten_gui = this.ngh_gui.hoten;
     this.hoten_nhan = this.ngh_nhan[0].hoten;
     this.tiencoc = this.phongtro.tiencoc;
-    this.diachi_nhan = this.ngh_nhan[0].diachi;
+    this.id_nhan = this.ngh_nhan[0].id;
     this.sodt_nhan = this.ngh_nhan[0].sodt;
     this.nghService.layTkNghTheoUserID(this.phongtro.userID).then((listTk: Nganhang[]) => {
       this.ngh_nhan = listTk;
@@ -92,10 +94,11 @@ export class TransferMoneyComponent implements OnInit {
       userID: 2,
       username: 'bbb'
     }];
+    this.id_gui = this.ngh_gui.id;
     this.hoten_gui = this.ngh_gui.hoten;
     this.hoten_nhan = this.ngh_nhan[0].hoten;
     this.tiencoc = this.phongtro.tiencoc;
-    this.diachi_nhan = this.ngh_nhan[0].diachi;
+    this.id_nhan = this.ngh_nhan[0].id;
     this.sodt_nhan = this.ngh_nhan[0].sodt;
   }
 
