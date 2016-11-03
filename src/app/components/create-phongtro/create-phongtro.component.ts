@@ -22,10 +22,12 @@ export class CreatePhongtroComponent {
   private user: User;
   private complexForm: FormGroup;
   private initGioitinh: boolean;
+  private hasHinhanh: boolean;
+  private errorMsg: Array<Object>;
 
   constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
-    // this.init();
-    this.fakeInit();
+    this.init();
+    // this.fakeInit();
   }
 
   ngOnInit() {
@@ -66,6 +68,10 @@ export class CreatePhongtroComponent {
       'userID': this.user.id
     });
 
+    this.hasHinhanh = true;
+    this.errorMsg = [{
+      msg: ''
+    }];
     this.uploadEvents = new EventEmitter();
     this.previewData = null;
   }
@@ -78,20 +84,37 @@ export class CreatePhongtroComponent {
     value.tiencoc = +value.tiencoc
     value.ngaydang = currentDate;
     value.sonha = value.sonha.toLowerCase();
-    value.phuong = value.sonha.toLowerCase();
-    value.quan = value.sonha.toLowerCase();
-    value.tp = value.sonha.toLowerCase();
+    value.phuong = value.phuong.toLowerCase();
+    value.quan = value.quan.toLowerCase();
+    value.tp = value.tp.toLowerCase();
     value.diachi = value.sonha + ',phường ' + value.phuong + ', quận ' + value.quan + ', thành phố ' + value.tp;
     value.truong = value.truong.toLowerCase();
     value.nganh = value.nganh.toLowerCase();
-    console.log(value);
-    // this.ptService.themPhongtro(value).then(resp => {
-    //   this.options.data.id = resp.id;
-    //   this.startUpload();
-    //   setTimeout(() => {
-    //     this.router.navigate(['/phongtro/detail', resp.id]);
-    //   }, 3000);
-    // });
+    delete value.sonha;
+    delete value.phuong;
+    delete value.quan;
+    delete value.tp;
+    if (!this.previewData) {
+      this.hasHinhanh = false;
+      this.errorMsg = [{
+        msg: 'Bạn chưa thêm ảnh cho phòng trọ.'
+      }];
+    } else {
+      this.hasHinhanh = true;
+    }
+    if(this.hasHinhanh) {
+      this.ptService.themPhongtro(value).then(resp => {
+        this.options.data.id = resp.id;
+        this.startUpload();
+        setTimeout(() => {
+          this.router.navigate(['/phongtro/detail', resp.id]);
+        }, 3000);
+      });
+    }
+  }
+
+  closeAlert() {
+    this.errorMsg.splice(0, 1);
   }
 
   handlePreviewData(data: any): void {

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row create-phongtro-block">
-    <form *ngIf="formInfo !== 'password'" class="create-phongtro-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+    <form class="create-phongtro-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
       <div class="form-group col-md-4">
         <div ngFileDrop *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" (onFileOver)="fileOverBase($event)" [events]="uploadEvents" [ngClass]="{'file-over': hasBaseDropZoneOver}" class="drop-zone">
         </div>
@@ -8,6 +8,11 @@
         <div class="input-btn">
           <input type="file" id="hinhanh-phongtro" ngFileSelect *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
           <button *ngIf="previewData" (click)="deleteImage()" class="fa fa-times btn-modal">Xóa</button>
+        </div>
+        <div *ngIf="!hasHinhanh" class="hinhanh-error">
+          <alert *ngFor="let item of errorMsg" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert()">
+            {{item?.msg}}
+          </alert>
         </div>
       </div>
       <div class="col-md-8">
@@ -102,12 +107,12 @@
         <label>Giới tính</label>
         <div class="radio">
           <label>
-            <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh"> Nam
+            <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="true"> Nam
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="!initGioitinh"> Nữ
+            <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']"> Nữ
           </label>
         </div>
       </div>
