@@ -18,11 +18,13 @@ export class CommentsComponent implements OnInit {
   private listCmt: Array<Comment> = [];
   private listUser: Array<any> = [];
   private complexForm: FormGroup;
+  private comment: string;
 
   constructor(private fb: FormBuilder, private cmtService: CommentService, private userService: UserService, private ptService: PhongtroService) {
     this.complexForm = this.fb.group({
       'comment': ''
     });
+    this.comment = '';
     // this.fakeInit();
     this.init();
   }
@@ -61,16 +63,25 @@ export class CommentsComponent implements OnInit {
     //   userID: 1
     // };
     // this.listCmt.push(model);
-    let model = {
-      ngay: currentDate,
-      noidung: value.comment,
-      phongtroID: this.ptService.currentPT.id,
-      userID: this.userService.user.id
-    };
-    this.cmtService.themComment(model).then((result: Array<Comment>) => {
-      console.log(result);
-      this.listCmt = result;
-    });
+    if (this.userService.user) {
+      let model = {
+        ngay: currentDate,
+        noidung: value.comment,
+        phongtroID: this.ptService.currentPT.id,
+        userID: this.userService.user.id
+      };
+      this.cmtService.themComment(model).then((result: Array<Comment>) => {
+        this.listCmt = result;
+        this.listCmt.forEach(cmt => {
+          this.userService.layThongtinUserID(cmt.userID).then(user => {
+            if (!this.listUser[cmt.userID]) {
+              this.listUser[cmt.userID] = user;
+            }
+          });
+        });
+        this.comment = '';
+      });
+    }
   }
 
   fakeInit() {

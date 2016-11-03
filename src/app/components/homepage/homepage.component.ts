@@ -31,21 +31,15 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
     this.quantityNewDeals = 3;
     this.searchLink = ('/');
 
-    this.ptService.layPhongtro(1)
-      .then(pt => {
-        this.specialDeals[0] = pt;
-      });
-    this.ptService.layPhongtro(2)
-      .then(pt => {
-        this.specialDeals[1] = pt;
-      });
     this.ptService.layPhongtroHot(6)
       .then(listPT => {
         this.hotDeals = listPT;
+        this.specialDeals[0] = listPT[0];
       });
     this.ptService.layPhongtroMoi(this.quantityNewDeals)
       .then(listPT => {
         this.newDeals = listPT;
+        this.specialDeals[1] = listPT[0];
       });
   }
 

@@ -27,3 +27,7 @@
 .radio {
   margin-top: 0;
 }
+
+.list-pt app-grid-list >>> .deals-list .get-more-btn {
+  display: none;
+}

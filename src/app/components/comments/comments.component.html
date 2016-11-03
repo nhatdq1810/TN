@@ -1,7 +1,10 @@
 <div class="comments">
   <div class="comments-form">
-    <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
-      <textarea [formControl]="complexForm.controls['comment']" placeholder="Bình luận..."></textarea>
+    <div *ngIf="!userService.user" class="error">
+      Đăng nhập để bình luận
+    </div>
+    <form *ngIf="userService.user" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+      <textarea [formControl]="complexForm.controls['comment']" [(ngModel)]="comment" placeholder="Bình luận..."></textarea>
       <div class="send-button left">
         <input [disabled]="complexForm.value.comment === ''" class="btn-modal" type="submit" value="Gửi bình luận">
       </div>
@@ -12,5 +15,8 @@
       <p class="header"><span class="user-name">{{listUser[item.userID]?.hoten}}</span> -- <span class="noidung">{{item.noidung}}</span></p>
       <p class="ngay right">{{item.ngay}}</p>
     </div>
+  </div>
+  <div *ngIf="listCmt.length === 0 && userService.user" class="error">
+    Không có bình luận về phòng trọ này
   </div>
 </div>
