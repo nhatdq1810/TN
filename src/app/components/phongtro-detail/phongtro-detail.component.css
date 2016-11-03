@@ -10,13 +10,22 @@ sebm-google-map {
   margin-bottom: 20px;
 }
 
-.phongtro-detail .phongtro-social i {
-  color: #fcdd44;
+.phongtro-detail .phongtro-social {
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.phongtro-detail .phongtro-social .fa-facebook {
+  color: #365899;
+}
+
+.phongtro-detail .phongtro-social .fa-google-plus {
+  color: #c7254e;
 }
 
 .phongtro-detail .phongtro-social i:focus,
 .phongtro-detail .phongtro-social i:hover {
-  color: #c7254e;
+  font-weight: bolder;
 }
 
 .phongtro-title {
@@ -29,7 +38,7 @@ sebm-google-map {
 }
 
 .phongtro-title p {
-  margin: 10px 5px;
+  margin: 25px 5px 10px;
 }
 
 .phongtro-header {
@@ -38,6 +47,12 @@ sebm-google-map {
 
 .phongtro-header div {
   margin: 0;
+}
+
+.phongtro-header .btn-modal {
+  width: auto;
+  padding: 10px;
+  margin: 20px 0;
 }
 
 .phongtro-price strong {

@@ -5,23 +5,23 @@
     </sebm-google-map-info-window>
   </sebm-google-map-marker>
 </sebm-google-map>
-<app-login #modal></app-login>
 <div *ngIf="phongtro" class="phongtro-detail container">
   <div class="row">
     <div class="col-lg-9 col-md-9 main-content">
       <div class="phongtro-title">
         <h1>{{phongtro.diachi}}</h1>
+        <div class="phongtro-social left">
+          <span>Chia sẻ </span>
+          <a (click)="socialShare('facebook')"><i class="fa fa-facebook"></i></a>
+          <a (click)="socialShare('google')"><i class="fa fa-google-plus"></i></a>
+        </div>
         <p class="ngay right">{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
       </div>
       <div class="phongtro-header">
         <div class="phongtro-price left">
           <strong>{{phongtro.giatien | number}}</strong>
         </div>
-        <div class="phongtro-social right">
-          <span>Share: </span>
-          <a (click)="socialShare('facebook')"><i class="fa fa-facebook"></i></a>
-          <a (click)="socialShare('google')"><i class="fa fa-google-plus"></i></a>
-        </div>
+        <a *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang')">Đặt cọc ngay</a>
       </div>
       <div *ngIf="phongtro.hinhanh && phongtro.hinhanh !== ''" class="phongtro-img">
         <img [src]="phongtro.hinhanh" class="img-responsive">
@@ -150,12 +150,12 @@
               </li>
             </ul>
           </accordion-group>
-          <accordion-group *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0 && phongtro.songuoi > 0" heading="ĐẶT CỌC">
+          <!-- <accordion-group *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0 && phongtro.songuoi > 0" heading="ĐẶT CỌC">
             <div>
               <p>{{phongtro.tiencoc | number}}</p>
               <button (click)="modal.showModal('nganhang')">Đăng nhập</button>
             </div>
-          </accordion-group>
+          </accordion-group> -->
           <accordion-group class="comments" heading="BÌNH LUẬN" [isOpen]="true">
             <!-- <app-comments></app-comments> -->
           </accordion-group>
@@ -167,3 +167,4 @@
     </div>
   </div>
 </div>
+<app-login #loginModal></app-login>

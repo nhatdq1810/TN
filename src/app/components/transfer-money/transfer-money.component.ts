@@ -21,14 +21,18 @@ let Constants = require('../../resources/constants');
 export class TransferMoneyComponent implements OnInit {
 
   @ViewChild('errorModal') errorModal: ModalDirective;
-  private complexForm: FormGroup;
   private ngh_gui: Nganhang;
   private ngh_nhan: Nganhang[];
   private phongtro: Phongtro;
+  private hoten_gui;
+  private hoten_nhan;
+  private tiencoc;
+  private diachi_nhan;
+  private sodt_nhan;
 
   constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {
@@ -37,19 +41,17 @@ export class TransferMoneyComponent implements OnInit {
   init() {
     this.ngh_gui = this.nghService.currentNgh;
     this.phongtro = this.ptService.currentPT;
+    this.hoten_gui = this.ngh_gui.hoten;
+    this.hoten_nhan = this.ngh_nhan[0].hoten;
+    this.tiencoc = this.phongtro.tiencoc;
+    this.diachi_nhan = this.ngh_nhan[0].diachi;
+    this.sodt_nhan = this.ngh_nhan[0].sodt;
     this.nghService.layTkNghTheoUserID(this.phongtro.userID).then((listTk: Nganhang[]) => {
       this.ngh_nhan = listTk;
-      this.complexForm = this.fb.group({
-        'hoten_gui': new FormControl(this.ngh_gui.hoten, Validators.required),
-        'tiencoc': new FormControl(this.phongtro.tiencoc, Validators.required),
-        'hoten_nhan': new FormControl(this.ngh_nhan[0].hoten, Validators.required),
-        'diachi_nhan': new FormControl(this.ngh_nhan[0].diachi, Validators.required),
-        'sodt_nhan': new FormControl(this.ngh_nhan[0].sodt, Validators.required)
-      });
     });
   }
 
-  submitForm(value: any) {
+  submitForm() {
     let date = new Date();
     let tmpMonth = date.getMonth() + 1;
     let month = '' + tmpMonth;
@@ -64,11 +66,12 @@ export class TransferMoneyComponent implements OnInit {
       ngay: currentDate,
       tien: this.phongtro.tiencoc
     }
-    this.gdService.chuyenTien(this.phongtro.id, gd).then(resp => {
-      this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
-    }).catch(error => {
-      this.errorModal.show();
-    })
+    console.log(gd);
+    // this.gdService.chuyenTien(this.phongtro.id, gd).then(resp => {
+    //   this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
+    // }).catch(error => {
+    //   this.errorModal.show();
+    // });
   }
 
   goBack() {
@@ -89,13 +92,11 @@ export class TransferMoneyComponent implements OnInit {
       userID: 2,
       username: 'bbb'
     }];
-    this.complexForm = this.fb.group({
-      'hoten_gui': new FormControl(this.ngh_gui.hoten, Validators.required),
-      'tiencoc': new FormControl(this.phongtro.tiencoc, Validators.required),
-      'hoten_nhan': new FormControl(this.ngh_nhan[0].hoten, Validators.required),
-      'diachi_nhan': new FormControl(this.ngh_nhan[0].diachi, Validators.required),
-      'sodt_nhan': new FormControl(this.ngh_nhan[0].sodt, Validators.required)
-    });
+    this.hoten_gui = this.ngh_gui.hoten;
+    this.hoten_nhan = this.ngh_nhan[0].hoten;
+    this.tiencoc = this.phongtro.tiencoc;
+    this.diachi_nhan = this.ngh_nhan[0].diachi;
+    this.sodt_nhan = this.ngh_nhan[0].sodt;
   }
 
 }
