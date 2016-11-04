@@ -19,19 +19,16 @@
 .center-section .bounce {
   position: absolute;
   left: 0;
-  right: 0;
+  right: 20px;
+  top: 35px;
   width: 60px;
   height: 60px;
-  margin: 0 auto;
+  margin: auto;
   border: 2px solid #aaaaaa;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   border-radius: 50%;
-  animation: bounce 2s infinite;
-  -webkit-animation: bounce 2s infinite;
-  -moz-animation: bounce 2s infinite;
-  -o-animation: bounce 2s infinite;
   transition: color .2s ease-in-out, border .2s ease-in-out;
   -webkit-transition: color .2s ease-in-out, border .2s ease-in-out;
   -moz-transition: color .2s ease-in-out, border .2s ease-in-out;
@@ -44,40 +41,27 @@
 
 .center-section .bounce:hover,
 .center-section .bounce:focus {
-  animation: none;
-  -webkit-animation: none;
-  -moz-animation: none;
-  -o-animation: none;
   border: 2px solid #c7254e;
 }
 
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateX(0);
-  }
-  40% {
-    transform: translateX(30px);
-  }
-  60% {
-    transform: translateX(15px);
-  }
-}
-
 .center-section .bounce i {
-  width: 60px;
   display: block;
   text-align: center;
   color: #aaaaaa;
-  font-size: 45px;
-  line-height: 60px;
+  margin-left: 5px;
+  line-height: 55px;
 }
 
 .center-section .bounce:hover i,
 .center-section .bounce:focus i {
+  color: #c7254e;
+}
+
+.center-section .input-modal {
+  width: auto;
+  font-size: 25px;
+  margin-top: 112px;
+  margin-bottom: 0;
   color: #c7254e;
 }
 

@@ -29,11 +29,10 @@ export class TransferMoneyComponent implements OnInit {
   private hoten_nhan;
   private tiencoc;
   private id_nhan;
-  private sodt_nhan;
 
   constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {
@@ -47,7 +46,6 @@ export class TransferMoneyComponent implements OnInit {
     this.hoten_nhan = this.ngh_nhan[0].hoten;
     this.tiencoc = this.phongtro.tiencoc;
     this.id_nhan = this.ngh_nhan[0].id;
-    this.sodt_nhan = this.ngh_nhan[0].sodt;
     this.nghService.layTkNghTheoUserID(this.phongtro.userID).then((listTk: Nganhang[]) => {
       this.ngh_nhan = listTk;
     });
@@ -87,7 +85,7 @@ export class TransferMoneyComponent implements OnInit {
       cmnd: '111222333',
       diachi: '123 abc',
       hoten: 'abc',
-      id: 2,
+      id: 2248273829182,
       password: '123454',
       sodt: '0123456789',
       tien: 0,
@@ -99,7 +97,6 @@ export class TransferMoneyComponent implements OnInit {
     this.hoten_nhan = this.ngh_nhan[0].hoten;
     this.tiencoc = this.phongtro.tiencoc;
     this.id_nhan = this.ngh_nhan[0].id;
-    this.sodt_nhan = this.ngh_nhan[0].sodt;
   }
 
 }

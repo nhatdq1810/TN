@@ -81,12 +81,12 @@
         <label>Ở với chủ</label>
         <div class="radio">
           <label>
-            <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="true">Có
+            <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="initChu">Có
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']">Không
+            <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']" [checked]="!initChu">Không
           </label>
         </div>
       </div>
@@ -94,12 +94,12 @@
         <label>Wifi</label>
         <div class="radio">
           <label>
-            <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="true">Có
+            <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="initWifi">Có
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']">Không
+            <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']" [checked]="!initWifi">Không
           </label>
         </div>
       </div>
@@ -107,12 +107,12 @@
         <label>Giới tính</label>
         <div class="radio">
           <label>
-            <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="true"> Nam
+            <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh"> Nam
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']"> Nữ
+            <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="!initGioitinh"> Nữ
           </label>
         </div>
       </div>

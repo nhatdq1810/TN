@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { PhongtroService } from '../../services/phongtro.service';
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { Phongtro } from '../../models/phongtro';
 
 @Component({
   selector: 'app-phongtro-user',
@@ -10,11 +12,11 @@ import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 })
 export class PhongtroUserComponent implements OnInit {
 
-  private listPT: Array<any> = [];
+  private listPT: Array<Phongtro> = [];
   private ptXoa: any;
   @ViewChild('confirmModal') confirmModal: ModalDirective;
 
-  constructor(private userService: UserService, private ptService: PhongtroService) {
+  constructor(private userService: UserService, private ptService: PhongtroService, private router: Router) {
     // this.init();
     this.fakeInit();
   }
@@ -27,6 +29,11 @@ export class PhongtroUserComponent implements OnInit {
       .then(listPT => {
         this.listPT = listPT;
       });
+  }
+
+  editPT(pt) {
+    this.ptService.currentPT = pt;
+    this.router.navigate(['/phongtro/create', {formInfo: 'edit'}]);
   }
 
   showConfirm(pt) {
@@ -54,14 +61,20 @@ export class PhongtroUserComponent implements OnInit {
       {
         id: 1,
         hinhanh: 'assets/img/index-08.jpg',
-        diachi: '1236 abc P.15 Quận Gò Vấp',
+        diachi: '1236 abc, Phường 15, Quận Gò Vấp, Thành phố hồ chí minh',
         songuoi: 2,
         dientich: 25,
         gioitinh: 'nữ',
         truong: 'PTIT',
         wifi: 1,
         ngaydang: '01/10/2016',
-        giatien: 5000000
+        giatien: 5000000,
+        chu: 1,
+        ghichu: '',
+        khoa: '',
+        nganh: '',
+        tiencoc: 1500000,
+        userID: 1
       },
       {
         id: 2,
@@ -73,7 +86,13 @@ export class PhongtroUserComponent implements OnInit {
         truong: 'PTIT',
         wifi: 1,
         ngaydang: '01/10/2016',
-        giatien: 2000000
+        giatien: 2000000,
+        chu: 1,
+        ghichu: '',
+        khoa: '',
+        nganh: '',
+        tiencoc: 1500000,
+        userID: 1
       },
       {
         id: 3,
@@ -85,7 +104,13 @@ export class PhongtroUserComponent implements OnInit {
         truong: 'PTIT',
         wifi: 1,
         ngaydang: '01/10/2016',
-        giatien: 5000000
+        giatien: 5000000,
+        chu: 1,
+        ghichu: '',
+        khoa: '',
+        nganh: '',
+        tiencoc: 1500000,
+        userID: 1
       },
       {
         id: 4,
@@ -97,7 +122,13 @@ export class PhongtroUserComponent implements OnInit {
         truong: 'PTIT',
         wifi: 1,
         ngaydang: '01/10/2016',
-        giatien: 2000000
+        giatien: 2000000,
+        chu: 1,
+        ghichu: '',
+        khoa: '',
+        nganh: '',
+        tiencoc: 1500000,
+        userID: 1,
       },
       {
         id: 5,
@@ -109,7 +140,13 @@ export class PhongtroUserComponent implements OnInit {
         truong: 'PTIT',
         wifi: 1,
         ngaydang: '01/10/2016',
-        giatien: 5000000
+        giatien: 5000000,
+        chu: 1,
+        ghichu: '',
+        khoa: '',
+        nganh: '',
+        tiencoc: 1500000,
+        userID: 1
       },
       {
         id: 6,
@@ -121,7 +158,13 @@ export class PhongtroUserComponent implements OnInit {
         truong: 'PTIT',
         wifi: 1,
         ngaydang: '01/10/2016',
-        giatien: 2000000
+        giatien: 2000000,
+        chu: 1,
+        ghichu: '',
+        khoa: '',
+        nganh: '',
+        tiencoc: 1500000,
+        userID: 1
       },
       {
         id: 7,
@@ -133,7 +176,13 @@ export class PhongtroUserComponent implements OnInit {
         truong: 'PTIT',
         wifi: 1,
         ngaydang: '01/10/2016',
-        giatien: 5000000
+        giatien: 5000000,
+        chu: 1,
+        ghichu: '',
+        khoa: '',
+        nganh: '',
+        tiencoc: 1500000,
+        userID: 1
       }
     ];
   }

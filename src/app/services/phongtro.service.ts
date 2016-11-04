@@ -27,6 +27,10 @@ export class PhongtroService {
     return this._currentPT;
   }
 
+  set currentPT(pt) {
+    this._currentPT = pt;
+  }
+
   get searchTerm(): any {
     return this._searchTerm;
   }
