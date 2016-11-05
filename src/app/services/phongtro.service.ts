@@ -41,7 +41,6 @@ export class PhongtroService {
 
   private handleError(funcName: string, error: any): Observable<any> {
     console.error(funcName + ' has error ', error);
-    // this.router.navigate(['/404']);
     return Observable.throw(error.message || error);
   }
 
@@ -68,9 +67,9 @@ export class PhongtroService {
         .get(Constants.apiUrl + 'phongtro/' + id, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
-          if (!resp.result || resp.result !== 'fail') {
+          if (!resp.result) {
             this._currentPT = resp;
-            this.phongtroDetailChange.next(resp);
+            this.phongtroDetailChange.next(true);
             resolve(resp);
           } else {
             this.handleError('layPhongtro', resp.result);
@@ -169,6 +168,22 @@ export class PhongtroService {
           }
         },
         err => this.handleError('themPhongtro', err));
+    });
+  }
+
+  capnhatPhongtro(id, model): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(Constants.apiUrl + 'phongtro/' + id, JSON.stringify(model), { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('capnhatPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('capnhatPhongtro', err));
     });
   }
 

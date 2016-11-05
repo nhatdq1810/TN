@@ -21,10 +21,11 @@
         <div class="phongtro-price left">
           <strong>{{phongtro.giatien | number}}</strong>
         </div>
-        <div *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0 && phongtro.songuoi > 0" class="bounce">
+        {{phongtro.tiencoc}}
+        <div *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="bounce">
           <i class="fa fa-hand-o-right fa-3x"></i>
         </div>
-        <a *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang')">Đặt cọc ngay</a>
+        <a *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang')">Đặt cọc ngay</a>
       </div>
       <div *ngIf="phongtro.hinhanh && phongtro.hinhanh !== ''" class="phongtro-img">
         <img [src]="phongtro.hinhanh" class="img-responsive">

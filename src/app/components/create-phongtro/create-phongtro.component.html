@@ -1,5 +1,20 @@
 <div class="container">
   <div class="row create-phongtro-block">
+    <div *ngIf="!hasTkNgh">
+      <alert *ngFor="let item of errorMsgNgh" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert('ngh')">
+        {{item?.msg}}
+      </alert>
+    </div>
+    <div *ngIf="!hasHinhanh">
+      <alert *ngFor="let item of errorMsg" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert('hinhanh')">
+        {{item?.msg}}
+      </alert>
+    </div>
+    <div *ngIf="editSuccess">
+      <alert *ngFor="let item of successMsg" [type]="'success'" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
+        {{item?.msg}}
+      </alert>
+    </div>
     <form class="create-phongtro-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
       <div class="form-group col-md-4">
         <div ngFileDrop *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" (onFileOver)="fileOverBase($event)" [events]="uploadEvents" [ngClass]="{'file-over': hasBaseDropZoneOver}" class="drop-zone">
@@ -9,8 +24,8 @@
           <input type="file" id="hinhanh-phongtro" ngFileSelect *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
           <button *ngIf="previewData" (click)="deleteImage()" class="fa fa-times btn-modal">Xóa</button>
         </div>
-        <div *ngIf="!hasHinhanh" class="hinhanh-error">
-          <alert *ngFor="let item of errorMsg" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert()">
+        <div *ngIf="!hasHinhanh">
+          <alert *ngFor="let item of errorMsg" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert('hinhanh')">
             {{item?.msg}}
           </alert>
         </div>
@@ -63,6 +78,15 @@
         <div class="form-group col-md-6">
           <label>Tiền cọc</label>
           <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="2000000">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Tài khoản ngân hàng</label>
+          <input class="input-modal" type="text" [formControl]="complexForm.controls['nganhangID']" name="nganhangID" placeholder="TKNGH123456">
+          <div *ngIf="!hasTkNgh">
+            <alert *ngFor="let item of errorMsgNgh" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert('ngh')">
+              {{item?.msg}}
+            </alert>
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label>Trường học:</label>

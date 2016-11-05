@@ -37,7 +37,8 @@ export let fakePt: Phongtro = {
   tiencoc: 2000000,
   truong: 'học viện công nghệ bưu chính viễn thông',
   ngaydang: '01/10/2016',
-  giatien: 2000000
+  giatien: 2000000,
+  nganhangID: '12345678'
 };
 export let fakeListPt: Array<Phongtro> = [
   {
@@ -56,7 +57,8 @@ export let fakeListPt: Array<Phongtro> = [
     tiencoc: 2500000,
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
-    giatien: 2000000
+    giatien: 2000000,
+    nganhangID: '12345678'
   },
   {
     id: 13,
@@ -74,7 +76,8 @@ export let fakeListPt: Array<Phongtro> = [
     tiencoc: 2500000,
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
-    giatien: 2000000
+    giatien: 2000000,
+    nganhangID: '12345678'
   },
   {
     id: 14,
@@ -92,7 +95,8 @@ export let fakeListPt: Array<Phongtro> = [
     tiencoc: 3000000,
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
-    giatien: 2000000
+    giatien: 2000000,
+    nganhangID: '12345678'
   },
   {
     id: 15,
@@ -110,7 +114,8 @@ export let fakeListPt: Array<Phongtro> = [
     tiencoc: 2000000,
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
-    giatien: 2000000
+    giatien: 2000000,
+    nganhangID: '12345678'
   },
   {
     id: 16,
@@ -128,7 +133,8 @@ export let fakeListPt: Array<Phongtro> = [
     tiencoc: 3500000,
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
-    giatien: 2000000
+    giatien: 2000000,
+    nganhangID: '12345678'
   },
   {
     id: 17,
@@ -146,7 +152,8 @@ export let fakeListPt: Array<Phongtro> = [
     tiencoc: 2000000,
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
-    giatien: 2000000
+    giatien: 2000000,
+    nganhangID: '12345678'
   },
   {
     id: 18,
@@ -164,18 +171,18 @@ export let fakeListPt: Array<Phongtro> = [
     tiencoc: 2000000,
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
-    giatien: 2000000
+    giatien: 2000000,
+    nganhangID: '12345678'
   }
 ];
 export let fakeNgh: Nganhang = {
   cmnd: '123456789',
   diachi: '123 abc',
   hoten: 'abc',
-  id: 1,
+  id: '1',
   password: '123454',
   sodt: '0123456789',
   tien: 0,
-  userID: 1,
   username: 'abc'
 };
 

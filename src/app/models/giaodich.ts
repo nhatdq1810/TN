@@ -1,6 +1,6 @@
 export class Giaodich {
-  nganhangID_gui: number;
-  nganhangID_nhan: number;
+  nganhangID_gui: string;
+  nganhangID_nhan: string;
   ngay: string;
   tien: number;
 }

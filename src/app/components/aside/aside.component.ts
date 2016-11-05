@@ -18,8 +18,10 @@ export class AsideComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ptService.phongtroDetailChange.subscribe(currentPT => {
-      this.init();
+    this.ptService.phongtroDetailChange.subscribe(result => {
+      if(result) {
+        this.init();
+      }
     });
   }
 

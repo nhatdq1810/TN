@@ -22,7 +22,7 @@ export class TransferMoneyComponent implements OnInit {
 
   @ViewChild('errorModal') errorModal: ModalDirective;
   private ngh_gui: Nganhang;
-  private ngh_nhan: Array<Nganhang>;
+  private ngh_nhan: Nganhang;
   private phongtro: Phongtro;
   private id_gui;
   private hoten_gui;
@@ -43,11 +43,11 @@ export class TransferMoneyComponent implements OnInit {
     this.phongtro = this.ptService.currentPT;
     this.id_gui = this.ngh_gui.id;
     this.hoten_gui = this.ngh_gui.hoten;
-    this.hoten_nhan = this.ngh_nhan[0].hoten;
     this.tiencoc = this.phongtro.tiencoc;
-    this.id_nhan = this.ngh_nhan[0].id;
-    this.nghService.layTkNghTheoUserID(this.phongtro.userID).then((listTk: Nganhang[]) => {
-      this.ngh_nhan = listTk;
+    this.nghService.layThongtinNganhangTheoId(this.phongtro.nganhangID).then((tk: Nganhang) => {
+      this.ngh_nhan = tk;
+      this.id_nhan = this.ngh_nhan.id;
+      this.hoten_nhan = this.ngh_nhan.hoten;
     });
   }
 
@@ -66,7 +66,6 @@ export class TransferMoneyComponent implements OnInit {
       ngay: currentDate,
       tien: this.phongtro.tiencoc
     }
-    console.log(gd);
     this.gdService.chuyenTien(this.phongtro.id, gd).then(resp => {
       this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
     }).catch(error => {
@@ -81,22 +80,21 @@ export class TransferMoneyComponent implements OnInit {
   fakeInit() {
     this.phongtro = Constants.fakePt;
     this.ngh_gui = Constants.fakeNgh;
-    this.ngh_nhan = [{
+    this.ngh_nhan = {
       cmnd: '111222333',
       diachi: '123 abc',
       hoten: 'abc',
-      id: 2248273829182,
+      id: '2248273829182',
       password: '123454',
       sodt: '0123456789',
       tien: 0,
-      userID: 2,
       username: 'bbb'
-    }];
+    };
     this.id_gui = this.ngh_gui.id;
     this.hoten_gui = this.ngh_gui.hoten;
-    this.hoten_nhan = this.ngh_nhan[0].hoten;
+    this.hoten_nhan = this.ngh_nhan.hoten;
     this.tiencoc = this.phongtro.tiencoc;
-    this.id_nhan = this.ngh_nhan[0].id;
+    this.id_nhan = this.ngh_nhan.id;
   }
 
 }

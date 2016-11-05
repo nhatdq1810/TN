@@ -1,5 +1,5 @@
 export class Nganhang {
-  id: number;
+  id: string;
   username: string;
   password: string;
   hoten: string;
@@ -7,5 +7,4 @@ export class Nganhang {
   sodt: string;
   cmnd: string;
   tien: number;
-  userID: number;
 }

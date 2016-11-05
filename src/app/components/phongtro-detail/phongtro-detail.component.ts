@@ -36,14 +36,16 @@ export class PhongtroDetailComponent implements OnInit {
     let id: number;
     this.route.params.forEach((params: Params) => {
       id = +params['id'];
-    })
-    this.ptService.layPhongtro(id).then((pt: Phongtro) => {
-      this.phongtro = pt;
-      this.getLatLng();
-      this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
-        this.user = usr;
-      })
     });
+    if(!this.phongtro || this.phongtro.id !== id) {
+      this.ptService.layPhongtro(id).then(pt => {
+        this.phongtro = pt;
+        this.getLatLng();
+        this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
+          this.user = usr;
+        })
+      });
+    }
   }
 
   getLatLng() {
@@ -63,15 +65,6 @@ export class PhongtroDetailComponent implements OnInit {
       this.init();
     });
   }
-
-  // ngAfterViewInit() {
-  //   setTimeout(() => {
-  //     this.route.params.subscribe(() => {
-  //       this.asideComponent.init();
-  //       this.commentsComponent.init();
-  //     });
-  //   }, 5000);
-  // }
 
   socialShare(socialName) {
     if(socialName === 'google') {

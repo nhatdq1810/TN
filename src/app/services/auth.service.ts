@@ -35,7 +35,6 @@ export class AuthService {
           email = 'g-' + profile.email;
           facebook = '';
         }
-        // console.log(profile);
         if(profile.middle_name) {
           hoten = profile.family_name + ' ' + profile.middle_name + ' ' + profile.given_name;
         } else {
@@ -48,9 +47,7 @@ export class AuthService {
           password: profile.clientID,
           facebook: facebook
         };
-        // console.log(user);
         this.userService.login(user.username, user.password).then(user => {
-          console.log(user);
           this.userService.user = user;
           localStorage.setItem('id_token', result.idToken);
           localStorage.setItem('isLoggedIn', 'true');
@@ -59,7 +56,6 @@ export class AuthService {
         .catch(err => {
           if(err === 'fail') {
             this.userService.themUser(user).then(user => {
-              console.log(user);
               this.userService.user = user;
               localStorage.setItem('id_token', result.idToken);
               localStorage.setItem('isLoggedIn', 'true');

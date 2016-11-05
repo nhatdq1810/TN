@@ -42,19 +42,19 @@ export class NganhangService {
     });
   }
 
-  layTkNghTheoUserID(userID) {
+  layThongtinNganhangTheoId(id) {
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + 'nganhang/userID/' + userID, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + 'nganhang/id/' + id, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
-            this.handleError('layTkNghTheoUserID', resp.result);
+            this.handleError('layThongtinNganhangTheoId', resp.result);
             reject(resp.result);
           }
         },
-        err => this.handleError('layTkNghTheoUserID', err));
+        err => this.handleError('layThongtinNganhangTheoId', err));
     });
   }
 

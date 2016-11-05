@@ -57,13 +57,11 @@ export class PhongtroUserComponent implements OnInit {
   }
 
   showConfirm(pt) {
-    console.log(pt);
     this.ptXoa = pt;
     this.confirmModal.show();
   }
 
   xoaPT() {
-    console.log(this.ptXoa.id);
     // this.listPT.forEach((el, index) => {
     //   if (el.id === this.ptXoa.id) {
     //     this.listPT.splice(index, 1);
@@ -94,7 +92,8 @@ export class PhongtroUserComponent implements OnInit {
         khoa: '',
         nganh: '',
         tiencoc: 1500000,
-        userID: 1
+        userID: 1,
+        nganhangID: '12345678'
       },
       {
         id: 2,
@@ -112,7 +111,8 @@ export class PhongtroUserComponent implements OnInit {
         khoa: '',
         nganh: '',
         tiencoc: 1500000,
-        userID: 1
+        userID: 1,
+        nganhangID: '12345678'
       },
       {
         id: 3,
@@ -130,7 +130,8 @@ export class PhongtroUserComponent implements OnInit {
         khoa: '',
         nganh: '',
         tiencoc: 1500000,
-        userID: 1
+        userID: 1,
+        nganhangID: '12345678'
       },
       {
         id: 4,
@@ -149,6 +150,7 @@ export class PhongtroUserComponent implements OnInit {
         nganh: '',
         tiencoc: 1500000,
         userID: 1,
+        nganhangID: '12345678'
       },
       {
         id: 5,
@@ -166,7 +168,8 @@ export class PhongtroUserComponent implements OnInit {
         khoa: '',
         nganh: '',
         tiencoc: 1500000,
-        userID: 1
+        userID: 1,
+        nganhangID: '12345678'
       },
       {
         id: 6,
@@ -184,7 +187,8 @@ export class PhongtroUserComponent implements OnInit {
         khoa: '',
         nganh: '',
         tiencoc: 1500000,
-        userID: 1
+        userID: 1,
+        nganhangID: '12345678'
       },
       {
         id: 7,
@@ -202,7 +206,8 @@ export class PhongtroUserComponent implements OnInit {
         khoa: '',
         nganh: '',
         tiencoc: 1500000,
-        userID: 1
+        userID: 1,
+        nganhangID: '12345678'
       }
     ];
   }

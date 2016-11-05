@@ -13,7 +13,6 @@ export class GiaodichService {
 
   private handleError(funcName: string, error: any): Observable<any> {
     console.error(funcName + ' has error ', error);
-    // this.router.navigate(['/404']);
     return Observable.throw(error.message || error);
   }
 
