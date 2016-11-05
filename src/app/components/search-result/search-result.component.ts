@@ -39,7 +39,7 @@ export class SearchResultComponent implements OnInit {
     this.complexForm = this.fb.group({
       'giatien': 500000,
       'tiencoc': 0,
-      'dientich': 10,
+      'dientich': 5,
       'truong': '',
       'nganh': '',
       'khoa': '',
@@ -49,11 +49,11 @@ export class SearchResultComponent implements OnInit {
     });
 
     this.initGioitinh = true;
-    this.initChu = false;
+    this.initChu = true;
     this.initWifi = true;
     this.giatienValue = [500000, 5000000];
     this.tiencocValue = [0, 5000000];
-    this.dientichValue = [10, 20];
+    this.dientichValue = [5, 20];
   }
 
   init() {
@@ -113,9 +113,11 @@ export class SearchResultComponent implements OnInit {
       this.tiencocValue = [this.searchTerm.tiencoc_min, this.searchTerm.tiencoc_max];
       this.dientichValue = [this.searchTerm.dientich_min, this.searchTerm.dientich_max];
     }
-
-    if (this.listPT.length === 0) {
-      this.initListPT();
+    if(!this.listPT || this.listPT.length === 0) {
+      this.complexForm.value.giatien = [500000, 5000000];
+      this.complexForm.value.tiencoc = [0, 5000000];
+      this.complexForm.value.dientich = [5, 20];
+      this.submitForm(this.complexForm.value);
     }
   }
 
@@ -138,6 +140,11 @@ export class SearchResultComponent implements OnInit {
       .then((result: string) => {
         if (result === 'success') {
           this.listPT = this.ptService.listPT;
+        }
+      })
+      .catch(result => {
+        if(result) {
+          this.listPT = [];
         }
       });
   }

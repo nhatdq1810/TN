@@ -38,7 +38,7 @@ export class FormValidationComponent implements OnInit {
     value.dientich = [];
     value.tiencoc_min = 0;
     value.tiencoc_max = 5000000;
-    value.dientich_min = 10;
+    value.dientich_min = 5;
     value.dientich_max = 20;
     value.giatien_min = value.giatien[0];
     value.giatien_max = value.giatien[1];

@@ -31,7 +31,7 @@ export class GridListComponent implements OnInit {
         this.deals = listPT;
       });
 
-    if (this.quantityNewDeals >= 12) {
+    if (this.quantityNewDeals >= 9) {
       this.searchLink = '/search/result';
     }
   }

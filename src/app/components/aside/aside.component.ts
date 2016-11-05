@@ -33,7 +33,7 @@ export class AsideComponent implements OnInit {
       giatien_max: this.currentPT.giatien + 1000000,
       tiencoc_min: 0,
       tiencoc_max: this.currentPT.tiencoc + 1000000,
-      dientich_min: 10,
+      dientich_min: 5,
       dientich_max: this.currentPT.dientich + 5,
       truong: '',
       nganh: '',

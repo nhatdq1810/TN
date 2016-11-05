@@ -81,7 +81,6 @@ textarea {
 .border-lr-yellow {
   border-right: 1px solid rgba(252, 221, 68, 1);
   border-left: 1px solid rgba(252, 221, 68, 1);
-  ;
 }
 
 .border-r-yellow {
@@ -101,6 +100,12 @@ textarea {
   color: #aaaaaa;
 }
 
+.error-text p {
+  color: #aaaaaa;
+  font-size: 25px;
+  font-weight: 700;
+}
+
 
 /* Homepage */
 
@@ -115,7 +120,7 @@ body {
 
 /* flexslider arrows */
 
-.flexslider .flex-direction-nav a:before {
+.flexslider .flex-direction-nav a::before {
   color: #FCDD44;
 }
 

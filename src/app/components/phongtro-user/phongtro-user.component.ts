@@ -17,18 +17,38 @@ export class PhongtroUserComponent implements OnInit {
   @ViewChild('confirmModal') confirmModal: ModalDirective;
 
   constructor(private userService: UserService, private ptService: PhongtroService, private router: Router) {
-    // this.init();
-    this.fakeInit();
+    this.init();
+    // this.fakeInit();
   }
 
   ngOnInit() {
   }
 
   init() {
-    this.ptService.layPhongtroUser(this.userService.user.id)
-      .then(listPT => {
-        this.listPT = listPT;
+    if(this.userService.user) {
+      this.ptService.layPhongtroUser(this.userService.user.id)
+        .then(listPT => {
+          this.listPT = listPT;
+        })
+        .catch(err => {
+          console.error(err);
+          this.listPT = [];
+        });
+    } else {
+      this.userService.checkLoggedIn.subscribe(result => {
+        if (result) {
+          this.ptService.layPhongtroUser(this.userService.user.id)
+            .then(listPT => {
+              this.listPT = listPT;
+            })
+            .catch(err => {
+              console.error(err);
+              this.listPT = [];
+            });
+        }
       });
+    }
+
   }
 
   editPT(pt) {

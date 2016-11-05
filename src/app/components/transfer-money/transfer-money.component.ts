@@ -31,8 +31,8 @@ export class TransferMoneyComponent implements OnInit {
   private id_nhan;
 
   constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {
@@ -67,11 +67,11 @@ export class TransferMoneyComponent implements OnInit {
       tien: this.phongtro.tiencoc
     }
     console.log(gd);
-    // this.gdService.chuyenTien(this.phongtro.id, gd).then(resp => {
-    //   this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
-    // }).catch(error => {
-    //   this.errorModal.show();
-    // });
+    this.gdService.chuyenTien(this.phongtro.id, gd).then(resp => {
+      this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
+    }).catch(error => {
+      this.errorModal.show();
+    });
   }
 
   goBack() {

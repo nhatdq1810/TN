@@ -24,7 +24,7 @@
             <span>{{ dientichValue[0] | number }}</span>
             <span class="right">{{ dientichValue[1] | number }}<span *ngIf="dientichValue[1] === 20">+</span></span>
           </p>
-          <nouislider [connect]="true" [min]="10" [max]="20" [step]="1" [formControl]="complexForm.controls['dientich']" [(ngModel)]="dientichValue"></nouislider>
+          <nouislider [connect]="true" [min]="5" [max]="20" [step]="1" [formControl]="complexForm.controls['dientich']" [(ngModel)]="dientichValue"></nouislider>
         </div>
         <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['truong'].valid && complexForm.controls['truong'].touched}">
           <label>Trường học:</label>
@@ -83,7 +83,10 @@
       </div>
     </form>
   </div>
-  <div *ngIf="listPT" class="list-pt">
+  <div *ngIf="listPT && listPT.length !== 0" class="list-pt">
     <app-grid-list [deals]="listPT"></app-grid-list>
+  </div>
+  <div *ngIf="!listPT || listPT.length === 0" class="error-text">
+    <p>Không tìm thấy phòng trọ nào.</p>
   </div>
 </div>

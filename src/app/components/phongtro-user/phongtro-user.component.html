@@ -1,8 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="create-phongtro" *ngIf="listPT.length === 0">
-      <p>Bạn chưa tạo phòng trọ nào !</p>
-      <a class="btn-modal" [routerLink]="['/phongtro/create']">Tạo phòng trọ</a>
+      <div *ngIf="!this.userService.user" class="error-text">
+        <p>Đăng nhập để coi phòng trọ của bạn</p>
+      </div>
+      <div *ngIf="this.userService.user" class="listPT-error">
+        <p>Bạn chưa tạo phòng trọ nào !</p>
+        <a class="btn-modal" [routerLink]="['/phongtro/create']">Tạo phòng trọ</a>
+      </div>
     </div>
     <ul *ngIf="listPT.length !== 0">
       <li *ngFor="let item of listPT">
