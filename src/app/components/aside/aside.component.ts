@@ -27,14 +27,17 @@ export class AsideComponent implements OnInit {
 
   init() {
     this.currentPT = this.ptService.currentPT;
+    let tiencoc_max = 0;
     if(!this.currentPT.tiencoc || this.currentPT.tiencoc === 0) {
-      this.currentPT.tiencoc = this.currentPT.giatien;
+      tiencoc_max = this.currentPT.giatien;
+    } else {
+      tiencoc_max = this.currentPT.tiencoc;
     }
     let searchTerm = {
       giatien_min: 500000,
       giatien_max: this.currentPT.giatien + 1000000,
       tiencoc_min: 0,
-      tiencoc_max: this.currentPT.tiencoc + 1000000,
+      tiencoc_max: tiencoc_max + 1000000,
       dientich_min: 5,
       dientich_max: this.currentPT.dientich + 5,
       truong: '',
