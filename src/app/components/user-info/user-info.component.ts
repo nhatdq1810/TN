@@ -119,7 +119,7 @@ export class UserInfoComponent implements OnInit {
           this.editSuccess = false;
           this.hasError = true;
           this.errorMsg = [{
-            msg: 'Mật khẩu mới trống !'
+            msg: 'Mật khẩu mới không được để trống !'
           }];
           window.scrollTo(0, 0);
         } else if (value.password === value.rePassword) {
