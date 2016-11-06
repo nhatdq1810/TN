@@ -14,6 +14,8 @@ export class PhongtroUserComponent implements OnInit {
 
   private listPT: Array<Phongtro> = [];
   private ptXoa: any;
+  private successMsg: Array<Object>;
+  private xoaPTSuccess: boolean;
   @ViewChild('confirmModal') confirmModal: ModalDirective;
 
   constructor(private userService: UserService, private ptService: PhongtroService, private router: Router) {
@@ -25,6 +27,10 @@ export class PhongtroUserComponent implements OnInit {
   }
 
   init() {
+    this.successMsg = [{
+      msg: ''
+    }];
+    this.xoaPTSuccess = false;
     if(this.userService.user) {
       this.ptService.layPhongtroUser(this.userService.user.id)
         .then(listPT => {
@@ -67,11 +73,29 @@ export class PhongtroUserComponent implements OnInit {
     //     this.listPT.splice(index, 1);
     //   }
     // });
-
     this.ptService.xoaPhongtro(this.userService.user.id, this.ptXoa.id)
       .then(listPT => {
-        this.listPT = listPT;
+        if(listPT) {
+          this.listPT.forEach((pt, index) => {
+            if (pt.id === this.ptXoa.id) {
+              this.listPT.splice(index, 1);
+            }
+          });
+          this.successMsg = [{
+            msg: 'Xóa phòng trọ thành công !'
+          }];
+          this.xoaPTSuccess = true;
+          window.scrollTo(0, 0);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        this.xoaPTSuccess = false;
       });
+  }
+
+  closeAlert() {
+    this.successMsg.splice(0, 1);
   }
 
   fakeInit() {

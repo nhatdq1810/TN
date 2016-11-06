@@ -92,11 +92,4 @@ export class AuthService {
   authenticated() {
     return tokenNotExpired();
   }
-
-  logout() {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('isLoggedIn');
-    this.userService.checkLoggedIn.next(false);
-  }
-
 }

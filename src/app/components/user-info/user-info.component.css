@@ -5,7 +5,7 @@
 .container-fluid,
 .user-info-component,
 .user-info-component > div {
-  height: 100%;
+  min-height: 100%;
 }
 
 .user-info-component > div {
@@ -57,6 +57,7 @@
 .nav .btn-modal:hover a,
 .nav .btn-modal.active a {
   color: #ffffff;
+  font-weight: 700;
 }
 
 .user-info-block {

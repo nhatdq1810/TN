@@ -10,11 +10,17 @@
       </div>
     </div>
     <ul *ngIf="listPT.length !== 0">
+      <li *ngIf="xoaPTSuccess">
+        <alert *ngFor="let item of successMsg" [type]="'success'" [dismissOnTimeout]="5000" (close)="closeAlert()">
+          {{item?.msg}}
+        </alert>
+      </li>
       <li *ngFor="let item of listPT">
         <div class="phongtro-block left">
           <a [routerLink]="['/phongtro/detail', item.id]">
             <img [src]="item.hinhanh" class="left">
             <div class="phongtro-info left">
+              <p><span>Giá tiền:</span>{{item.giatien | number}}</p>
               <p><span>Địa chỉ:</span>{{item.diachi}}</p>
               <p><span>Diện tích (m<sup>2</sup>):</span>{{item.dientich}}</p>
               <p><span>Số người cần tìm:</span>{{item.songuoi}}</p>
@@ -39,10 +45,12 @@
       <div class="modal-body" *ngIf="ptXoa">
         <div class="confirm-form">
           <p class="header">Bạn thật sự muốn xóa phòng trọ này ???</p>
-          <p>{{ptXoa.diachi}}</p>
-          <p>{{ptXoa.dientich}}</p>
-          <p>{{ptXoa.songuoi}}</p>
-          <p>{{ptXoa.giatien}}</p>
+          <div class="content">
+            <p><span>Giá tiền:</span>{{ptXoa.giatien | number}}</p>
+            <p><span>Địa chỉ:</span>{{ptXoa.diachi}}</p>
+            <p><span>Diện tích (m<sup>2</sup>):</span>{{ptXoa.dientich}}</p>
+            <p><span>Số người cần tìm:</span>{{ptXoa.songuoi}}</p>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
