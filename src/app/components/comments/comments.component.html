@@ -13,7 +13,7 @@
   <div *ngIf="listUser.length > 0 && listCmt.length > 0" class="other-comments">
     <div *ngFor="let item of listCmt" class="comments-item">
       <p class="header"><span class="user-name">{{listUser[item.userID]?.hoten}}</span> -- <span class="noidung">{{item.noidung}}</span></p>
-      <p class="ngay right">{{item.ngay}}</p>
+      <p class="ngay right">{{item.ngay | date:"dd/MM/yyyy HH:mm"}}</p>
     </div>
   </div>
   <div *ngIf="listCmt.length === 0 && userService.user" class="error">

@@ -81,16 +81,9 @@
 }
 
 .btn-modal {
-  width: 155px;
+  padding: 10px;
+  width: auto;
   font-weight: 600;
-}
-
-.btn-modal.left {
-  text-align: left;
-}
-
-.btn-modal.right {
-  text-align: center;
 }
 
 .btn-modal i {

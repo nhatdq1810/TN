@@ -1,4 +1,7 @@
 <div class="container transfer-form">
+  <alert *ngIf="successMsg && successMsg !== ''" [type]="'success'">
+    {{successMsg}}
+  </alert>
   <h1 class="modal-title">Chuyển tiền</h1>
   <div class="row transfer" *ngIf="ngh_gui && ngh_nhan && phongtro">
     <form>
@@ -39,7 +42,7 @@
       </div>
       <div class="modal-footer">
         <a [routerLink]="['/phongtro/detail', phongtro.id]" class="btn-modal left"><i class="fa fa-arrow-left"></i>Về trang trước</a>
-        <a [routerLink]="['/home']" class="btn-modal right">Trang chủ</a>
+        <a [routerLink]="['/home']" class="btn-modal right">Trang chủ<i class="fa fa-arrow-right"></i></a>
       </div>
     </div>
   </div>

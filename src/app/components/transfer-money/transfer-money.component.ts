@@ -29,6 +29,7 @@ export class TransferMoneyComponent implements OnInit {
   private hoten_nhan;
   private tiencoc;
   private id_nhan;
+  private successMsg: string = '';
 
   constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
     // this.fakeInit();
@@ -62,12 +63,15 @@ export class TransferMoneyComponent implements OnInit {
 
     let gd: Giaodich = {
       nganhangID_gui: this.ngh_gui.id,
-      nganhangID_nhan: this.ngh_nhan[0].id,
+      nganhangID_nhan: this.ngh_nhan.id,
       ngay: currentDate,
       tien: this.phongtro.tiencoc
     }
     this.gdService.chuyenTien(this.phongtro.id, gd).then(resp => {
-      this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
+      this.successMsg = 'Đặt cọc thành công !';
+      setTimeout(() => {
+        this.goBack();
+      }, 5000);
     }).catch(error => {
       this.errorModal.show();
     });

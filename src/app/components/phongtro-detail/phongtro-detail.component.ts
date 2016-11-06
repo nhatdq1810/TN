@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { Location } from '@angular/common';
 import { PhongtroService } from '../../services/phongtro.service';
@@ -27,7 +27,7 @@ export class PhongtroDetailComponent implements OnInit {
   private lng: number;
   private zoom: number = 18;
 
-  constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location) {
+  constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
     // this.fakeInit();
     this.init();
   }
@@ -44,6 +44,10 @@ export class PhongtroDetailComponent implements OnInit {
         this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
           this.user = usr;
         })
+      })
+      .catch(err => {
+        console.error(err);
+        this.router.navigate(['/404']);
       });
     }
   }
