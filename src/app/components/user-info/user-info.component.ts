@@ -75,7 +75,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   submitForm(value: any) {
-    if(this.prefixEmail && this.prefixEmail !== '') {
+    if(this.prefixEmail && this.prefixEmail !== '' && value.email.split(this.prefixEmail).length === 1) {
       value.email = this.prefixEmail + value.email;
     }
     value.username = this.user.username;
@@ -96,13 +96,17 @@ export class UserInfoComponent implements OnInit {
           })
           .catch(err => {
             console.error(err);
+            this.editSuccess = false;
+            this.hasError = true;
+            window.scrollTo(0, 0);
             if (err !== 'fail') {
-              this.editSuccess = false;
-              this.hasError = true;
               this.errorMsg = [{
                 msg: err
               }];
-              window.scrollTo(0, 0);
+            } else {
+              this.errorMsg = [{
+                msg: 'Cập nhật thông tin cá nhân thất bại !'
+              }];
             }
           });
       } else {

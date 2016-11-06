@@ -11,7 +11,7 @@
       </alert>
     </div>
     <div *ngIf="editSuccess">
-      <alert *ngFor="let item of successMsg" [type]="'success'" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
+      <alert *ngFor="let item of successMsg" [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
         {{item?.msg}}
       </alert>
     </div>

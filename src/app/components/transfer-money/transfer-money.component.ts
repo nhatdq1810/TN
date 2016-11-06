@@ -71,7 +71,7 @@ export class TransferMoneyComponent implements OnInit {
       this.successMsg = 'Đặt cọc thành công !';
       setTimeout(() => {
         this.goBack();
-      }, 5000);
+      }, 3000);
     }).catch(error => {
       this.errorModal.show();
     });

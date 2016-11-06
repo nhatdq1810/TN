@@ -43,6 +43,15 @@ export class PhongtroDetailComponent implements OnInit {
         this.getLatLng();
         this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
           this.user = usr;
+          let email = this.user.email.split('f-');
+          if(email.length > 1) {
+            this.user.email = email[1];
+          } else {
+            email = this.user.email.split('g-');
+            if (email.length > 1) {
+              this.user.email = email[1];
+            }
+          }
         })
       })
       .catch(err => {

@@ -27,7 +27,7 @@
         <a *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang')">Đặt cọc ngay</a>
       </div>
       <div *ngIf="phongtro.hinhanh && phongtro.hinhanh !== ''" class="phongtro-img">
-        <img [src]="phongtro.hinhanh" class="img-responsive">
+        <img [src]="phongtro?.hinhanh" class="img-responsive">
       </div>
       <div class="phongtro-info">
         <accordion [closeOthers]="false">
@@ -153,12 +153,6 @@
               </li>
             </ul>
           </accordion-group>
-          <!-- <accordion-group *ngIf="phongtro.tiencoc && phongtro.tiencoc !== 0 && phongtro.songuoi > 0" heading="ĐẶT CỌC">
-            <div>
-              <p>{{phongtro.tiencoc | number}}</p>
-              <button (click)="modal.showModal('nganhang')">Đăng nhập</button>
-            </div>
-          </accordion-group> -->
           <accordion-group class="comments" heading="BÌNH LUẬN" [isOpen]="true">
             <app-comments #commentsComponent></app-comments>
           </accordion-group>
