@@ -3,8 +3,9 @@ import { User } from '../models/user';
 import { Phongtro } from '../models/phongtro';
 import { Nganhang } from '../models/nganhang';
 
-'use strict';
 
+
+export let patternPassword = /^(?=.*\d)(?=.*[a-zA-Z])(?!.*\s)([\w@!#$%^&/\\]){8,32}$/g;
 export let apiUrl = 'http://localhost:8080/trosv/api/';
 export let headers = new Headers({ 'Content-Type': 'application/json' });
 export let googleApiKey = 'AIzaSyA9jeLAznvDLTykLxHlDZkxe-Ewo9OSB0Y';

@@ -22,10 +22,6 @@ const appRoutes: Routes = [
     component: Error404Component
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
     path: 'search/result',
     component: SearchResultComponent
   },
@@ -34,8 +30,8 @@ const appRoutes: Routes = [
     children: [
       {
         path: 'create',
-        component: CreatePhongtroComponent
-        // canActivate: [LoggedInService]
+        component: CreatePhongtroComponent,
+        canActivate: [LoggedInService]
       },
       {
         path: 'detail/:id',
@@ -43,7 +39,8 @@ const appRoutes: Routes = [
       },
       {
         path: 'user',
-        component: PhongtroUserComponent
+        component: PhongtroUserComponent,
+        canActivate: [LoggedInService]
       }
     ]
   },
@@ -53,7 +50,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'user/info',
-    component: UserInfoComponent
+    component: UserInfoComponent,
+    canActivate: [LoggedInService]
   },
   {
     path: '',

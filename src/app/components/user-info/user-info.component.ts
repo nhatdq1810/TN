@@ -19,6 +19,7 @@ export class UserInfoComponent implements OnInit {
   private formInfo: string;
   private hasError: boolean;
   private editSuccess: boolean;
+  private errorPattern: boolean;
   private errorMsg: Array<Object>;
   private successMsg: Array<Object>;
 
@@ -31,6 +32,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   init() {
+    this.errorPattern = false;
     this.hasError = false;
     this.errorMsg = [{
       msg: ''
@@ -124,29 +126,34 @@ export class UserInfoComponent implements OnInit {
           this.hasError = false;
           delete value.oldPassword;
           delete value.rePassword;
-          this.userService.capnhatPassword(value).then(user => {
-            this.user = user;
-            this.hasError = false;
-            this.editSuccess = true;
-            this.successMsg = [{
-              msg: 'Cập nhật mật khẩu thành công !'
-            },{
-              msg: 'Bạn sẽ được đăng xuất ra ngay bây giờ ! Vui lòng đăng nhập lại'
-            }];
-            window.scrollTo(0, 0);
-            setTimeout(() => {
-              this.userService.logout();
-            }, 5000);
-          })
-          .catch(err => {
-            console.error(err);
-            this.editSuccess = false;
-            this.hasError = true;
-            this.errorMsg = [{
-              msg: 'Cập nhật mật khẩu thất bại !'
-            }];
-            window.scrollTo(0, 0);
-          })
+          if (Constants.patternPassword.test(value.password)) {
+            this.errorPattern = false;
+            this.userService.capnhatPassword(value).then(user => {
+              this.user = user;
+              this.hasError = false;
+              this.editSuccess = true;
+              this.successMsg = [{
+                msg: 'Cập nhật mật khẩu thành công !'
+              }, {
+                msg: 'Bạn sẽ được đăng xuất ra ngay bây giờ ! Vui lòng đăng nhập lại'
+              }];
+              window.scrollTo(0, 0);
+              setTimeout(() => {
+                this.userService.logout();
+              }, 5000);
+            })
+              .catch(err => {
+                console.error(err);
+                this.editSuccess = false;
+                this.hasError = true;
+                this.errorMsg = [{
+                  msg: 'Cập nhật mật khẩu thất bại !'
+                }];
+                window.scrollTo(0, 0);
+              });
+          } else {
+            this.errorPattern = true;
+          }
         } else {
           this.editSuccess = false;
           this.hasError = true;

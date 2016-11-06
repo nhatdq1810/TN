@@ -10,7 +10,7 @@
       <div class="modal-body">
         <div *ngIf="registerSuccess" class="register-success">
           <p>Chúc mừng, bạn đã đăng ký thành công !</p>
-          <span class="right">Tự động đăng nhập trong 5 giây</span>
+          <span class="right">Bạn sẽ được tự động đăng nhập</span>
         </div>
         <div *ngIf="!registerSuccess" class="register-form">
           <div class="register">
@@ -22,6 +22,9 @@
               <input class="input-modal" type="password" [formControl]="complexForm.controls['password']" name="password" placeholder="Mật khẩu">
               <alert [type]="'danger'" *ngIf="complexForm.controls['password'].hasError('required') && complexForm.controls['password'].touched">
                 Bạn chưa nhập mật khẩu.
+              </alert>
+              <alert [type]="'danger'" *ngIf="!complexForm.controls['password'].hasError('required') && errorPattern && complexForm.controls['password'].touched">
+                Mật khẩu từ 8-32 ký tự bao gồm ít nhất 1 chữ số, 1 chữ viết thường hoặc hoa, một số ký tự đặc biệt cho phép "@!#$%^&/\".
               </alert>
               <input class="input-modal" type="text" [formControl]="complexForm.controls['hoten']" name="hoten" placeholder="Họ tên">
               <alert [type]="'danger'" *ngIf="complexForm.controls['hoten'].hasError('required') && complexForm.controls['hoten'].touched">

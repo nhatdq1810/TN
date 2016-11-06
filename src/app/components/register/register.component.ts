@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ModalDirective, ModalOptions } from 'ng2-bootstrap/ng2-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+let Constants = require('../../resources/constants');
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -18,6 +20,7 @@ export class RegisterComponent implements OnInit {
   private errorMsg: Array<Object>;
   private canRegister = true;
   private registerSuccess = false;
+  private errorPattern: boolean;
 
   constructor(private userService: UserService, private authService: AuthService, private router: Router, private fb: FormBuilder) {
     this.init();
@@ -27,6 +30,7 @@ export class RegisterComponent implements OnInit {
   }
 
   init() {
+    this.errorPattern = false;
     this.modalOptions = {
       ignoreBackdropClick: true
     };
@@ -56,13 +60,15 @@ export class RegisterComponent implements OnInit {
       hoten: value.hoten,
       email: value.email
     }
-    this.userService.themUser(user)
+    if (Constants.patternPassword.test(value.password)) {
+      this.errorPattern = false;
+      this.userService.themUser(user)
       .then(resp => {
         if (resp) {
           this.registerSuccess = true;
           setTimeout(() => {
             this.closeModal();
-          }, 5000);
+          }, 3000);
         }
       })
       .catch(result => {
@@ -71,6 +77,9 @@ export class RegisterComponent implements OnInit {
           msg: result
         }];
       });
+    } else {
+      this.errorPattern = true;
+    }
   }
 
   closeAlert() {

@@ -75,6 +75,9 @@
           <alert [type]="'danger'" *ngIf="complexForm.controls['password'].hasError('required') && complexForm.controls['password'].touched">
             Bạn chưa nhập mật khẩu mới.
           </alert>
+          <alert [type]="'danger'" *ngIf="!complexForm.controls['password'].hasError('required') && errorPattern && complexForm.controls['password'].touched">
+            Mật khẩu từ 8-32 ký tự bao gồm ít nhất 1 chữ số, 1 chữ viết thường hoặc hoa, một số ký tự đặc biệt cho phép "@!#$%^&/\".
+          </alert>
         </div>
         <div class="form-group">
           <p>Xác nhận mật khẩu mới</p>

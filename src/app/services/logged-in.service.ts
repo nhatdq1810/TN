@@ -10,7 +10,7 @@ export class LoggedInService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     // state.url !== '/login' &&
-    if (!this.userService.isLoggedIn()) {
+    if (!this.userService.isLoggedIn() || !this.userService.user) {
       this.router.navigate(['/home']);
       return false;
     }
