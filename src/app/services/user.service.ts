@@ -117,7 +117,41 @@ export class UserService {
           }
         },
         err => this.handleError('themUser', err));
-    })
+    });
+  }
+
+  capnhatUser(user): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.http.put(Constants.apiUrl + 'user/' + user.username, JSON.stringify(user), { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result) {
+            this._user = resp;
+            resolve(resp);
+          } else {
+            this.handleError('capnhatUser', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('capnhatUser', err));
+    });
+  }
+
+  capnhatPassword(user): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.http.put(Constants.apiUrl + 'user/' + user.username + '/password', JSON.stringify(user), { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result) {
+            this._user = resp;
+            resolve(resp);
+          } else {
+            this.handleError('capnhatPassword', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('capnhatPassword', err));
+    });
   }
 
 }
