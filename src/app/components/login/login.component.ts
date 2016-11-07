@@ -18,8 +18,11 @@ export class LoginComponent implements OnInit {
   private modalOptions: ModalOptions;
   private loginForm: string;
   private complexForm: FormGroup;
-  private isLoggedIn = true;
+  private isLoggedIn: boolean = true;
   private alertLoggedIn: Array<Object>;
+  private hasUsernameForgot: boolean = false;
+  private alertUsernameForgot: Array<Object>;
+  private isForgot: boolean;
 
   constructor(private userService: UserService, private nghService: NganhangService, private authService: AuthService, private router: Router, private fb: FormBuilder, private http: Http) {
     this.init();
@@ -29,20 +32,29 @@ export class LoginComponent implements OnInit {
   }
 
   init() {
+    this.isForgot = false;
     this.modalOptions = {
       ignoreBackdropClick: true
     };
     this.complexForm = this.fb.group({
       'username': ['', Validators.required],
-      'password': ['', Validators.required]
+      'password': ['', Validators.required],
+      'usernameForgot': ''
     });
     this.alertLoggedIn = [{
-      msg: 'Tài khoản hoặc mật khẩu không đúng!'
+      msg: 'Tài khoản hoặc mật khẩu không đúng !'
+    }];
+    this.alertUsernameForgot = [{
+      msg: 'Tài khoản hoặc email không đúng !'
     }];
   }
 
-  closeAlert() {
-    this.alertLoggedIn.splice(0, 1);
+  closeAlert(typeMsg) {
+    if(typeMsg === 'forgot') {
+      this.alertUsernameForgot.splice(0, 1);
+    } else {
+      this.alertLoggedIn.splice(0, 1);
+    }
   }
 
   socialLogin(socialName) {
@@ -53,7 +65,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  forgotPassword(value: any) {
+    console.log(value);
+  }
+
   submitForm(value: any) {
+    delete value.usernameForgot;
     if(this.loginForm !== 'nganhang') {
       this.userService.login(value.username, value.password)
         .then(resp => {

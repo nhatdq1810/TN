@@ -5,13 +5,14 @@
         <button type="button" class="close" aria-label="Close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h2 *ngIf="loginForm !== 'nganhang'" class="modal-title">Đăng nhập</h2>
+        <h2 *ngIf="loginForm !== 'nganhang' && !isForgot" class="modal-title">Đăng nhập</h2>
         <h2 *ngIf="loginForm === 'nganhang'" class="modal-title">Tài khoản ngân hàng</h2>
+        <h2 *ngIf="loginForm !== 'nganhang' && isForgot" class="modal-title">Quên mật khẩu</h2>
       </div>
       <div class="modal-body">
         <div class="login-form">
           <div class="login">
-            <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+            <form *ngIf="!isForgot" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
               <input class="input-modal" type="text" [formControl]="complexForm.controls['username']" name="username" placeholder="Tài khoản">
               <alert [type]="'danger'" *ngIf="complexForm.controls['username'].hasError('required') && complexForm.controls['username'].touched">
                 Bạn chưa nhập tài khoản.
@@ -29,11 +30,22 @@
                 <input class="btn-modal" type="submit" value="Đăng nhập">
               </div>
             </form>
-            <div class="options" *ngIf="loginForm !== 'nganhang'">
-              <a class="forgot-password" [routerLink]="['/']">Quên mật khẩu?</a>
+            <form *ngIf="isForgot" [formGroup]="complexForm" (ngSubmit)="forgotPassword(complexForm.value)">
+              <input class="input-modal" type="text" [formControl]="complexForm.controls['usernameForgot']" name="usernameForgot" placeholder="Tài khoản hoặc Email đăng ký">
+              <div *ngIf="hasUsernameForgot">
+                <alert *ngFor="let item of alertUsernameForgot" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert('forgot')">
+                  {{item?.msg}}
+                </alert>
+              </div>
+              <div class="send-button">
+                <input class="btn-modal forgot-password-submit" type="submit" value="Quên mật khẩu">
+              </div>
+            </form>
+            <div class="options" *ngIf="loginForm !== 'nganhang' && !isForgot">
+              <a class="forgot-password" (click)="isForgot = true">Quên mật khẩu?</a>
               <a class="register btn-modal right" (click)="closeModal(); registerModal.showModal();">Đăng ký?</a>
             </div>
-            <div class="social-icons" *ngIf="loginForm !== 'nganhang'">
+            <div class="social-icons" *ngIf="loginForm !== 'nganhang' && !isForgot">
               <p>- Đăng nhập với -</p>
               <ul>
                 <li>
