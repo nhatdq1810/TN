@@ -5,7 +5,7 @@
       <form class="pt-search-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
         <div class="tm-form-inner">
           <div class="form-group">
-            <label>Khoản tiền</label>
+            <label>Giá thuê</label>
             <p class="sliderValue">
               <span>{{ sliderValue[0] | number }}</span>
               <span class="right">{{ sliderValue[1] | number }}+</span>
@@ -13,11 +13,11 @@
             <nouislider [connect]="true" [min]="500000" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['giatien']" [(ngModel)]="sliderValue"></nouislider>
           </div>
           <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['truong'].valid && complexForm.controls['truong'].touched}">
-            <label>Trường học:</label>
+            <label>Chung trường học</label>
             <input class="form-control" type="text" placeholder="Học viện công nghệ bưu chính viễn thông" [formControl]="complexForm.controls['truong']">
           </div>
           <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['nganh'].valid && complexForm.controls['nganh'].touched}">
-            <label>Ngành học</label>
+            <label>Chung ngành học</label>
             <input class="form-control" type="text" placeholder="Công nghệ thông tin" [formControl]="complexForm.controls['nganh']">
           </div>
           <div class="form-group">
@@ -34,8 +34,8 @@
             </div>
           </div>
         </div>
-        <div class="form-group tm-yellow-gradient-bg text-center">
-          <button type="submit" name="submit" [disabled]="!complexForm.valid" class="tm-yellow-btn">Tìm kiếm</button>
+        <div class="text-center">
+          <button type="submit" name="submit" [disabled]="!complexForm.valid" class="btn-modal">Tìm kiếm</button>
         </div>
       </form>
     </div>

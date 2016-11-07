@@ -53,7 +53,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label>Giá tiền</label>
+              <label>Giá thuê</label>
               <input class="input-modal" type="number" [formControl]="complexForm.controls['giatien']" name="giatien" placeholder="2000000">
               <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
                 Bạn chưa nhập giá thuê phòng trọ.
@@ -89,15 +89,15 @@
           </div>
         </div>
         <div class="form-group col-md-6">
-          <label>Trường học:</label>
+          <label>Chung trường học</label>
           <input class="input-modal" type="text" placeholder="Học viện công nghệ bưu chính viễn thông" [formControl]="complexForm.controls['truong']">
         </div>
         <div class="form-group col-md-6">
-          <label>Ngành học</label>
+          <label>Chung ngành học</label>
           <input class="input-modal" type="text" placeholder="Công nghệ thông tin" [formControl]="complexForm.controls['nganh']">
         </div>
         <div class="form-group col-md-6">
-          <label>Niên khóa</label>
+          <label>Chung niên khóa</label>
           <input class="input-modal" type="text" placeholder="2012 - 2017" [formControl]="complexForm.controls['khoa']">
         </div>
       </div>

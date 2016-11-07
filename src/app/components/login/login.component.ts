@@ -66,6 +66,9 @@ export class LoginComponent implements OnInit {
   }
 
   forgotPassword(value: any) {
+    value.username = value.usernameForgot;
+    delete value.usernameForgot;
+    delete value.password;
     console.log(value);
   }
 
