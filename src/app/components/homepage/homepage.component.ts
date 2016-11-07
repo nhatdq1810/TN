@@ -15,7 +15,7 @@ declare let $: JQueryStatic;
 export class HomepageComponent implements OnInit, AfterViewChecked{
 
   private model: string;
-  private specialDeals: any[] = [];
+  // private specialDeals: any[] = [];
   private hotDeals: any[];
   private newDeals: any[];
   private quantityNewDeals: number;
@@ -23,8 +23,8 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
   @ViewChild('flexslider') el: ElementRef;
 
   constructor(private ptService: PhongtroService, private router: Router) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   init() {
@@ -34,12 +34,12 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
     this.ptService.layPhongtroHot(6)
       .then(listPT => {
         this.hotDeals = listPT;
-        this.specialDeals[0] = listPT[0];
+        // this.specialDeals[0] = listPT[0];
       });
     this.ptService.layPhongtroMoi(this.quantityNewDeals)
       .then(listPT => {
         this.newDeals = listPT;
-        this.specialDeals[1] = listPT[0];
+        // this.specialDeals[1] = listPT[0];
       });
   }
 
@@ -64,20 +64,20 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
     this.quantityNewDeals = 3;
     this.searchLink = ('/');
 
-    this.specialDeals = [
-      {
-        id: 1,
-        hinhanh: 'assets/img/index-01.jpg',
-        diachi: '1234 abc P.15 Quận Gò Vấp',
-        giatien: 2000000
-      },
-      {
-        id: 2,
-        hinhanh: 'assets/img/index-02.jpg',
-        diachi: '1234/22 abc P.15 Quận 9',
-        giatien: 5000000
-      }
-    ];
+    // this.specialDeals = [
+    //   {
+    //     id: 1,
+    //     hinhanh: 'assets/img/index-01.jpg',
+    //     diachi: '1234 abc P.15 Quận Gò Vấp',
+    //     giatien: 2000000
+    //   },
+    //   {
+    //     id: 2,
+    //     hinhanh: 'assets/img/index-02.jpg',
+    //     diachi: '1234/22 abc P.15 Quận 9',
+    //     giatien: 5000000
+    //   }
+    // ];
     this.hotDeals = [
       {
         id: 3,

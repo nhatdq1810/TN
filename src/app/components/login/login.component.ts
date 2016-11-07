@@ -18,11 +18,12 @@ export class LoginComponent implements OnInit {
   private modalOptions: ModalOptions;
   private loginForm: string;
   private complexForm: FormGroup;
-  private isLoggedIn: boolean = true;
+  private isLoggedIn: boolean;
   private alertLoggedIn: Array<Object>;
-  private hasUsernameForgot: boolean = false;
+  private hasUsernameForgot: boolean;
   private alertUsernameForgot: Array<Object>;
   private isForgot: boolean;
+  private successForgotPasswordMsg: string;
 
   constructor(private userService: UserService, private nghService: NganhangService, private authService: AuthService, private router: Router, private fb: FormBuilder, private http: Http) {
     this.init();
@@ -32,6 +33,9 @@ export class LoginComponent implements OnInit {
   }
 
   init() {
+    this.successForgotPasswordMsg = '';
+    this.hasUsernameForgot = false;
+    this.isLoggedIn = true;
     this.isForgot = false;
     this.modalOptions = {
       ignoreBackdropClick: true
@@ -45,7 +49,7 @@ export class LoginComponent implements OnInit {
       msg: 'Tài khoản hoặc mật khẩu không đúng !'
     }];
     this.alertUsernameForgot = [{
-      msg: 'Tài khoản hoặc email không đúng !'
+      msg: 'Tài khoản hoặc Email không đúng !'
     }];
   }
 
@@ -69,7 +73,21 @@ export class LoginComponent implements OnInit {
     value.username = value.usernameForgot;
     delete value.usernameForgot;
     delete value.password;
-    console.log(value);
+    this.userService.phuchoiPassword(value)
+    .then((result: string) => {
+      this.successForgotPasswordMsg = result;
+      setTimeout(() => {
+        this.loginModal.hide();
+      }, 3000);
+    })
+    .catch(err => {
+      console.error(err);
+      this.successForgotPasswordMsg = '';
+      this.hasUsernameForgot = true;
+      this.alertUsernameForgot = [{
+        msg: 'Tài khoản hoặc Email không đúng !'
+      }];
+    })
   }
 
   submitForm(value: any) {

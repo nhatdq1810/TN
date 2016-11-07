@@ -12,10 +12,14 @@
   position: relative;
 }
 
+.tm-banner img {
+  height: 600px;
+}
+
 .tm-banner .form-validation {
   position: absolute;
   top: 50px;
-  left: 50px;
+  left: 150px;
 }
 
 .tm-banner-inner {

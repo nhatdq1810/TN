@@ -22,7 +22,7 @@
                 Bạn chưa nhập mật khẩu.
               </alert>
               <div *ngIf="!isLoggedIn">
-                <alert *ngFor="let item of alertLoggedIn" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert()">
+                <alert *ngFor="let item of alertLoggedIn" [type]="'danger'" [dismissOnTimeout]="2000" (close)="closeAlert()">
                   {{item?.msg}}
                 </alert>
               </div>
@@ -37,6 +37,9 @@
                   {{item?.msg}}
                 </alert>
               </div>
+              <alert *ngIf="successForgotPasswordMsg && successForgotPasswordMsg !== ''" [type]="'success'">
+                {{successForgotPasswordMsg}}
+              </alert>
               <div class="send-button">
                 <input class="btn-modal forgot-password-submit" type="submit" value="Quên mật khẩu">
               </div>

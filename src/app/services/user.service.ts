@@ -154,4 +154,20 @@ export class UserService {
     });
   }
 
+  phuchoiPassword(user): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(Constants.apiUrl + 'user/' + user.username + '/password', JSON.stringify(user), { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result !== 'fail') {
+            resolve(resp.result);
+          } else {
+            this.handleError('phuchoiPassword', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('phuchoiPassword', err));
+    });
+  }
+
 }
