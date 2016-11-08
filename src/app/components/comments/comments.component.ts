@@ -25,8 +25,8 @@ export class CommentsComponent implements OnInit {
       'comment': ''
     });
     this.comment = '';
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {
@@ -94,35 +94,35 @@ export class CommentsComponent implements OnInit {
       comment 1
       comment 1
       comment 1`,
-      phongtroID: this.ptService.currentPT.id,
+      phongtroID: 1,
       userID: 2
     },
     {
       id: 2,
       ngay: '2016/10/12 10:00:00',
       noidung: 'comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2',
-      phongtroID: this.ptService.currentPT.id,
+      phongtroID: 1,
       userID: 1
     },
     {
       id: 3,
       ngay: '2016/10/11 10:00:00',
       noidung: 'comment 3',
-      phongtroID: this.ptService.currentPT.id,
+      phongtroID: 1,
       userID: 4
     },
     {
       id: 4,
       ngay: '2016/10/14 10:00:00',
       noidung: 'comment 4',
-      phongtroID: this.ptService.currentPT.id,
+      phongtroID: 1,
       userID: 2
     },
     {
       id: 5,
       ngay: '2016/10/08 10:00:00',
       noidung: 'comment 5',
-      phongtroID: this.ptService.currentPT.id,
+      phongtroID: 1,
       userID: 3
     }];
 

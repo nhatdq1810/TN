@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-
+// #c7254e: red
+// #fcdd44: yellow
 
 /* CSS Resets */
 
@@ -270,14 +271,14 @@ accordion-group.panel-open .panel-title {
 }
 
 .btn-modal {
-  width: 60%;
+  width: 40%;
   padding: 10px 0;
   font-size: 16px;
   font-weight: 100;
   background-color: transparent;
   color: gray;
   border: 1px solid rgba(17, 17, 17, 0.41);
-  border-width: thin;
+  border-radius: 5px;
   cursor: pointer;
   outline: none;
   transition: 0.5s all;
@@ -289,9 +290,8 @@ accordion-group.panel-open .panel-title {
 }
 
 .btn-modal:hover {
-  background-color: #000000;
-  border: 1px solid #fcdd44;
-  color: #ffffff;
+  border: 1px solid #c7254e;
+  color: #c7254e;
 }
 
 .social-icons {
