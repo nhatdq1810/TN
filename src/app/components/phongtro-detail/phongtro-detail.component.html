@@ -9,7 +9,16 @@
   <div class="row">
     <div class="col-lg-9 col-md-9 main-content">
       <div class="phongtro-title">
-        <h1>{{phongtro.diachi}}</h1>
+        <div class="row" *ngIf="isUserPT">
+          <div class="col-lg-9 col-md-9">
+            <h1>{{phongtro.diachi}}</h1>
+          </div>
+          <div class="col-lg-3 col-md-3 btn-edit-pt">
+            <button class="btn-modal" (click)="confirmModal.show();">Xóa
+            </button>
+            <button class="btn-modal" (click)="editPT();">Chỉnh sửa</button>
+          </div>
+        </div>
         <div class="phongtro-social left">
           <span>Chia sẻ </span>
           <a (click)="socialShare('facebook')"><i class="fa fa-facebook"></i></a>
@@ -165,3 +174,36 @@
   </div>
 </div>
 <app-login #loginModal></app-login>
+<div bsModal #confirmModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="confirmModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="modal-title">Xóa phòng trọ</h2>
+      </div>
+      <div class="modal-body" *ngIf="phongtro">
+        <alert *ngIf="xoaPTSuccess" [type]="'success'">
+          Xóa phòng trọ thành công !
+        </alert>
+        <alert *ngIf="xoaPTFail" [type]="'danger'">
+          Xóa phòng trọ thất bại ! Xin hãy thử lại sau
+        </alert>
+        <div class="confirm-form">
+          <p class="header">Bạn thật sự muốn xóa phòng trọ này ???</p>
+          <div class="content">
+            <p><span>Giá tiền:</span>{{phongtro.giatien | number}}</p>
+            <p><span>Địa chỉ:</span>{{phongtro.diachi}}</p>
+            <p><span>Diện tích (m<sup>2</sup>):</span>{{phongtro.dientich}}</p>
+            <p><span>Số người cần tìm:</span>{{phongtro.songuoi}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal left" (click)="xoaPT();">Xóa phòng trọ này</button>
+        <button class="btn-modal right" (click)="confirmModal.hide();">Không</button>
+      </div>
+    </div>
+  </div>
+</div>

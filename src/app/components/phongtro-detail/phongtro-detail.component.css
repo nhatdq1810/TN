@@ -37,6 +37,21 @@ sebm-google-map {
   font-weight: 600;
 }
 
+.phongtro-title .btn-edit-pt {
+  margin-top: 10px;
+}
+
+.phongtro-title .btn-modal {
+  float: right;
+  width: auto;
+  padding: 5px 10px;
+  font-size: 15px;
+}
+
+.phongtro-title .btn-modal:last-of-type {
+  margin-right: 10px;
+}
+
 .phongtro-title p {
   margin: 25px 5px 10px;
 }
@@ -148,7 +163,7 @@ sebm-google-map {
 }
 
 .user-info .user-name strong {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .user-info .user-detail {
@@ -166,4 +181,33 @@ sebm-google-map {
 .phongtro-info .extra-info .phongtro-value {
   padding-top: 10px;
   margin: 0;
+}
+
+.confirm-form p.header {
+  text-align: center;
+  color: #c7254e;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.confirm-form .content {
+  padding: 0 20px;
+}
+
+.confirm-form .content p {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.confirm-form .content p:last-of-type {
+  margin-bottom: 0;
+}
+
+.confirm-form .content p span {
+  color: #aaaaaa;
+  margin-right: 5px;
+}
+
+.modal-footer .btn-modal {
+  width: 200px;
 }

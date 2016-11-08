@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { Location } from '@angular/common';
+import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { PhongtroService } from '../../services/phongtro.service';
 import { UserService } from '../../services/user.service';
 import { Phongtro } from '../../models/phongtro';
@@ -21,18 +22,24 @@ export class PhongtroDetailComponent implements OnInit {
 
   @ViewChild('asideComponent') asideComponent: AsideComponent;
   @ViewChild('commentsComponent') commentsComponent: CommentsComponent;
+  @ViewChild('confirmModal') confirmModal: ModalDirective;
   private phongtro: Phongtro;
   private user: User;
   private lat: number;
   private lng: number;
   private zoom: number = 18;
+  private isUserPT: boolean;
+  private xoaPTSuccess: boolean;
+  private xoaPTFail: boolean;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   init() {
+    this.xoaPTFail = false;
+    this.xoaPTSuccess = false;
     let id: number;
     this.route.params.forEach((params: Params) => {
       id = +params['id'];
@@ -41,6 +48,11 @@ export class PhongtroDetailComponent implements OnInit {
       this.ptService.layPhongtro(id).then(pt => {
         this.phongtro = pt;
         this.getLatLng();
+        if (this.userService.user.id === this.phongtro.userID) {
+          this.isUserPT = true;
+        } else {
+          this.isUserPT = false;
+        }
         this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
           this.user = usr;
           let email = this.user.email.split('f-');
@@ -92,7 +104,34 @@ export class PhongtroDetailComponent implements OnInit {
     }
   }
 
+  editPT() {
+    this.ptService.currentPT = this.phongtro;
+    this.router.navigate(['/phongtro/create', { formInfo: 'edit' }]);
+  }
+
+  xoaPT() {
+    this.ptService.xoaPhongtro(this.phongtro.userID, this.phongtro.id)
+      .then(listPT => {
+        this.xoaPTSuccess = true;
+        this.xoaPTFail = false;
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+          this.confirmModal.hide();
+        }, 2000);
+      })
+      .catch(err => {
+        console.error(err);
+        this.xoaPTSuccess = false;
+        this.xoaPTFail = true;
+        setTimeout(() => {
+          this.confirmModal.hide();
+        }, 2000);
+      });
+  }
+
   fakeInit() {
+    this.xoaPTSuccess = false;
+    this.isUserPT = true;
     this.phongtro = Constants.fakePt;
     this.user = Constants.fakeUser;
     this.getLatLng();
