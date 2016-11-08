@@ -9,11 +9,11 @@
   <div class="row">
     <div class="col-lg-9 col-md-9 main-content">
       <div class="phongtro-title">
-        <div class="row" *ngIf="isUserPT">
+        <div class="row">
           <div class="col-lg-9 col-md-9">
             <h1>{{phongtro.diachi}}</h1>
           </div>
-          <div class="col-lg-3 col-md-3 btn-edit-pt">
+          <div class="col-lg-3 col-md-3 btn-edit-pt" *ngIf="isUserPT">
             <button class="btn-modal" (click)="confirmModal.show();">Xóa
             </button>
             <button class="btn-modal" (click)="editPT();">Chỉnh sửa</button>

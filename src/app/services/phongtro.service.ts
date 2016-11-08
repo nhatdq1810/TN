@@ -23,6 +23,10 @@ export class PhongtroService {
     return this._listPT;
   }
 
+  set listPT(listPT) {
+    this._listPT = listPT;
+  }
+
   get currentPT(): any{
     return this._currentPT;
   }
@@ -133,13 +137,9 @@ export class PhongtroService {
     });
   }
 
-  timkiemPhongtro(model): Promise<any>{
-    // this._searchTerm = model;
-    // return new Promise((resolve, reject) => {
-    //   resolve('success');
-    // });
+  timkiemPhongtro(model, gioihan): Promise<any>{
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien_min}&giatien_max=${model.giatien_max}&tiencoc_min=${model.tiencoc_min}&tiencoc_max=${model.tiencoc_max}&dientich_min=${model.dientich_min}&dientich_max=${model.dientich_max}&truong=${model.truong}&nganh=${model.nganh}&khoa=${model.khoa}&gioitinh=${model.gioitinh}&wifi=${model.wifi}&chu=${model.chu}`, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + `phongtro/timkiem?giatien_min=${model.giatien_min}&giatien_max=${model.giatien_max}&tiencoc_min=${model.tiencoc_min}&tiencoc_max=${model.tiencoc_max}&dientich_min=${model.dientich_min}&dientich_max=${model.dientich_max}&truong=${model.truong}&nganh=${model.nganh}&khoa=${model.khoa}&gioitinh=${model.gioitinh}&wifi=${model.wifi}&chu=${model.chu}&gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {

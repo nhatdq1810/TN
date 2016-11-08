@@ -38,6 +38,7 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   init() {
+    this.isUserPT = false;
     this.xoaPTFail = false;
     this.xoaPTSuccess = false;
     let id: number;
@@ -48,7 +49,7 @@ export class PhongtroDetailComponent implements OnInit {
       this.ptService.layPhongtro(id).then(pt => {
         this.phongtro = pt;
         this.getLatLng();
-        if (this.userService.user.id === this.phongtro.userID) {
+        if (this.userService.user && this.userService.user.id === this.phongtro.userID) {
           this.isUserPT = true;
         } else {
           this.isUserPT = false;
@@ -88,6 +89,15 @@ export class PhongtroDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.init();
+    });
+    this.userService.checkLoggedIn.subscribe(result => {
+      if (result) {
+        if (this.userService.user && this.userService.user.id === this.phongtro.userID) {
+          this.isUserPT = true;
+        } else {
+          this.isUserPT = false;
+        }
+      }
     });
   }
 

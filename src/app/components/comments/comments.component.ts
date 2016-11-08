@@ -57,14 +57,6 @@ export class CommentsComponent implements OnInit {
 
   submitForm(value: any) {
     let currentDate = Constants.getCurrentDate();
-    // let model = {
-    //   id: 6,
-    //   ngay: currentDate,
-    //   noidung: value.comment,
-    //   phongtroID: this.ptService.currentPT.id,
-    //   userID: 1
-    // };
-    // this.listCmt.push(model);
     if (this.userService.user) {
       let model = {
         ngay: currentDate,

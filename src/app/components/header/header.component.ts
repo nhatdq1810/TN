@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { PhongtroService } from '../../services/phongtro.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   private isLoggedIn: boolean = false;
   private user: any;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private ptService: PhongtroService) {
     // this.fakeInit();
     this.init();
   }
@@ -22,6 +23,11 @@ export class HeaderComponent implements OnInit {
   init() {
     this.userService.checkLoggedIn.subscribe((value: boolean) => this.isLoggedIn = value);
     this.user = this.userService.user;
+  }
+
+  searchFull() {
+    this.ptService.searchTerm = undefined;
+    this.ptService.listPT = [];
   }
 
   logout() {

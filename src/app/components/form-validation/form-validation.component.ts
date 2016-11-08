@@ -34,22 +34,27 @@ export class FormValidationComponent implements OnInit {
   submitForm(value: any){
     value.truong.toLowerCase();
     value.nganh.toLowerCase();
-    value.tiencoc = [];
-    value.dientich = [];
     value.tiencoc_min = 0;
     value.tiencoc_max = 5000000;
     value.dientich_min = 5;
     value.dientich_max = 20;
     value.giatien_min = value.giatien[0];
     value.giatien_max = value.giatien[1];
+    delete value.giatien;
     value.khoa = '';
     value.wifi = 1;
     value.chu = 1;
-    this.ptService.timkiemPhongtro(value)
+    this.ptService.timkiemPhongtro(value, 12)
       .then((result: string) => {
         if (result === 'success') {
           this.router.navigate(['/search/result']);
         }
+      }).
+      catch(err => {
+        console.error(err);
+        this.ptService.searchTerm = undefined;
+        this.ptService.listPT = [];
+        this.router.navigate(['/search/result']);
       });
   }
 

@@ -47,7 +47,7 @@ export class AsideComponent implements OnInit {
       wifi: +(this.currentPT.wifi),
       chu: +(this.currentPT.chu)
     };
-    this.ptService.timkiemPhongtro(searchTerm)
+    this.ptService.timkiemPhongtro(searchTerm, 4)
       .then(result => {
         if (result === 'success') {
           this.deals = this.ptService.listPT;

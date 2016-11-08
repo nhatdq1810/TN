@@ -43,7 +43,7 @@ export class SearchResultComponent implements OnInit {
       'truong': '',
       'nganh': '',
       'khoa': '',
-      'gioitinh': '',
+      'gioitinh': 'nam',
       'wifi': 1,
       'chu': 1
     });
@@ -136,7 +136,7 @@ export class SearchResultComponent implements OnInit {
       wifi: +(value.wifi),
       chu: +(value.chu)
     }
-    this.ptService.timkiemPhongtro(searchTerm)
+    this.ptService.timkiemPhongtro(searchTerm, 12)
       .then((result: string) => {
         if (result === 'success') {
           this.listPT = this.ptService.listPT;
