@@ -15,7 +15,7 @@
       <p class="header"><span class="user-name">{{listUser[item.userID]?.hoten}}</span> -- <span class="noidung">{{item.noidung}}</span></p>
       <div class="phongtro-like right">
         <p class="ngay right">{{item.ngay | date:"dd/MM/yyyy HH:mm"}}</p>
-        <a><i class="fa fa-heart-o"></i>0</a>
+        <a *ngIf="userService.user && userService.user.id !== item.userID" (click)="likeCmt(item)" [ngClass]="{'active': listCmtUserLike[item.id]}"><i class="fa fa-heart-o"></i>{{item.thich}}</a>
       </div>
     </div>
   </div>
@@ -23,3 +23,5 @@
     Không có bình luận về phòng trọ này
   </div>
 </div>
+<!-- check comments user liked -> tag a has class active -->
+<!-- check user in thichComment if user liked before do not increase -->

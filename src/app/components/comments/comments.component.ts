@@ -19,6 +19,7 @@ export class CommentsComponent implements OnInit {
   private listUser: Array<any> = [];
   private complexForm: FormGroup;
   private comment: string;
+  private listCmtUserLike: Array<boolean>;
 
   constructor(private fb: FormBuilder, private cmtService: CommentService, private userService: UserService, private ptService: PhongtroService) {
     this.complexForm = this.fb.group({
@@ -40,7 +41,25 @@ export class CommentsComponent implements OnInit {
   init() {
     this.cmtService.layCommentPhongtro(this.ptService.currentPT.id).then((resp: Array<Comment>) => {
       this.listCmt = resp;
+      this.cmtService.layCommentUserThich(this.userService.user.id)
+        .then(result => {
+          let tmpListCmtUserLike = result;
+          tmpListCmtUserLike.forEach((idCmt) => {
+            this.listCmtUserLike[idCmt] = true;
+          })
+        }).catch(err => {
+          console.error(err);
+        });
       this.listCmt.forEach(cmt => {
+        this.cmtService.layLuotThichComment(cmt.id)
+          .then(result => {
+            if (result) {
+              cmt.thich = +result;
+            }
+          }).catch(err => {
+            console.error(cmt.id + ': ' + err);
+            cmt.thich = 0;
+          });
         this.userService.layThongtinUserID(cmt.userID).then(user => {
           if (!this.listUser[cmt.userID]) {
             this.listUser[cmt.userID] = user;
@@ -53,6 +72,38 @@ export class CommentsComponent implements OnInit {
       this.listCmt = [];
       this.listUser = [];
     });
+  }
+
+  likeCmt(item) {
+    if (!this.listCmtUserLike[item.id]) {
+      item.thich++;
+      this.listCmtUserLike[item.id] = true;
+      // this.cmtService.thichComment(item.id, this.userService.user.id)
+      //   .then(result => {
+      //     if (result === 'success') {
+      //       item.thich++;
+      //       this.listCmtUserLike[item.id] = true;
+      //     }
+      //   }).catch(err => {
+      //     console.error(item.id + ': ' + err);
+      //   });
+    } else {
+      if(item.thich > 0) {
+        item.thich--;
+      }
+      this.listCmtUserLike[item.id] = false;
+      // this.cmtService.boThichComment(item.id, this.userService.user.id)
+      //   .then(result => {
+      //     if (result === 'success') {
+      //       if (item.thich > 0) {
+      //         item.thich--;
+      //       }
+      //       this.listCmtUserLike[item.id] = false;
+      //     }
+      //   }).catch(err => {
+      //     console.error(err);
+      //   });
+    }
   }
 
   submitForm(value: any) {
@@ -79,69 +130,9 @@ export class CommentsComponent implements OnInit {
   }
 
   fakeInit() {
-    this.listCmt = [{
-      id: 1,
-      ngay: '2016/10/10 10:00:00',
-      noidung: `comment 1
-      comment 1
-      comment 1
-      comment 1`,
-      phongtroID: 1,
-      userID: 2
-    },
-    {
-      id: 2,
-      ngay: '2016/10/12 10:00:00',
-      noidung: 'comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2',
-      phongtroID: 1,
-      userID: 1
-    },
-    {
-      id: 3,
-      ngay: '2016/10/11 10:00:00',
-      noidung: 'comment 3',
-      phongtroID: 1,
-      userID: 4
-    },
-    {
-      id: 4,
-      ngay: '2016/10/14 10:00:00',
-      noidung: 'comment 4',
-      phongtroID: 1,
-      userID: 2
-    },
-    {
-      id: 5,
-      ngay: '2016/10/08 10:00:00',
-      noidung: 'comment 5',
-      phongtroID: 1,
-      userID: 3
-    }];
-
-    this.listUser = [{
-      id: 0,
-      hoten: 'abc'
-    },
-    {
-      id: 1,
-      hoten: 'abc1'
-    },
-    {
-      id: 2,
-      hoten: 'abc2'
-    },
-    {
-      id: 3,
-      hoten: 'abc3'
-    },
-    {
-      id: 4,
-      hoten: 'abc4'
-    },
-    {
-      id: 5,
-      hoten: 'abc5'
-    }];
+    this.listCmtUserLike = [true, false, false, true, true, false];
+    this.listCmt = Constants.fakeListCmt;
+    this.listUser = Constants.fakeListUser;
   }
 
 }

@@ -16,4 +16,6 @@ export class Phongtro {
   ghichu: string;
   userID: number;
   nganhangID: string;
+  thich: number;
+  userThich: boolean;
 }

@@ -22,7 +22,79 @@ export let fakeUser: User = {
   sodt: '0123456789',
   username: 'abcd'
 };
-export let fakePt: Phongtro = {
+export let fakeListUser: Array<User> = [{
+  id: 0,
+  hoten: 'abc',
+  diachi: '',
+  dotincay: 0,
+  email: 'a@a.com',
+  facebook: '',
+  password: '123456',
+  skype: '',
+  sodt: '',
+  username: 'abc'
+},
+{
+  id: 1,
+  hoten: 'abc1',
+  diachi: '',
+  dotincay: 0,
+  email: 'a@a.com',
+  facebook: '',
+  password: '123456',
+  skype: '',
+  sodt: '',
+  username: 'abc'
+},
+{
+  id: 2,
+  hoten: 'abc2',
+  diachi: '',
+  dotincay: 0,
+  email: 'a@a.com',
+  facebook: '',
+  password: '123456',
+  skype: '',
+  sodt: '',
+  username: 'abc'
+},
+{
+  id: 3,
+  hoten: 'abc3',
+  diachi: '',
+  dotincay: 0,
+  email: 'a@a.com',
+  facebook: '',
+  password: '123456',
+  skype: '',
+  sodt: '',
+  username: 'abc'
+},
+{
+  id: 4,
+  hoten: 'abc4',
+  diachi: '',
+  dotincay: 0,
+  email: 'a@a.com',
+  facebook: '',
+  password: '123456',
+  skype: '',
+  sodt: '',
+  username: 'abc'
+},
+{
+  id: 5,
+  hoten: 'abc5',
+  diachi: '',
+  dotincay: 0,
+  email: 'a@a.com',
+  facebook: '',
+  password: '123456',
+  skype: '',
+  sodt: '',
+  username: 'abc'
+}];
+export let fakePT: Phongtro = {
   id: 3,
   hinhanh: 'assets/img/index-03.jpg',
   diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
@@ -39,7 +111,9 @@ export let fakePt: Phongtro = {
   truong: 'học viện công nghệ bưu chính viễn thông',
   ngaydang: '01/10/2016',
   giatien: 2000000,
-  nganhangID: '12345678'
+  nganhangID: '12345678',
+  thich: 5,
+  userThich: false
 };
 export let fakeListPt: Array<Phongtro> = [
   {
@@ -59,7 +133,9 @@ export let fakeListPt: Array<Phongtro> = [
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
     giatien: 2000000,
-    nganhangID: '12345678'
+    nganhangID: '12345678',
+    thich: 3,
+    userThich: false
   },
   {
     id: 13,
@@ -78,7 +154,9 @@ export let fakeListPt: Array<Phongtro> = [
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
     giatien: 2000000,
-    nganhangID: '12345678'
+    nganhangID: '12345678',
+    thich: 3,
+    userThich: false
   },
   {
     id: 14,
@@ -97,7 +175,9 @@ export let fakeListPt: Array<Phongtro> = [
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
     giatien: 2000000,
-    nganhangID: '12345678'
+    nganhangID: '12345678',
+    thich: 3,
+    userThich: false
   },
   {
     id: 15,
@@ -116,7 +196,9 @@ export let fakeListPt: Array<Phongtro> = [
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
     giatien: 2000000,
-    nganhangID: '12345678'
+    nganhangID: '12345678',
+    thich: 3,
+    userThich: false
   },
   {
     id: 16,
@@ -135,7 +217,9 @@ export let fakeListPt: Array<Phongtro> = [
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
     giatien: 2000000,
-    nganhangID: '12345678'
+    nganhangID: '12345678',
+    thich: 3,
+    userThich: false
   },
   {
     id: 17,
@@ -154,7 +238,9 @@ export let fakeListPt: Array<Phongtro> = [
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
     giatien: 2000000,
-    nganhangID: '12345678'
+    nganhangID: '12345678',
+    thich: 3,
+    userThich: false
   },
   {
     id: 18,
@@ -173,7 +259,9 @@ export let fakeListPt: Array<Phongtro> = [
     truong: 'học viện công nghệ bưu chính viễn thông',
     ngaydang: '01/10/2016',
     giatien: 2000000,
-    nganhangID: '12345678'
+    nganhangID: '12345678',
+    thich: 3,
+    userThich: false
   }
 ];
 export let fakeNgh: Nganhang = {
@@ -186,6 +274,55 @@ export let fakeNgh: Nganhang = {
   tien: 0,
   username: 'abc'
 };
+
+export let fakeListCmt = [{
+  id: 1,
+  ngay: '2016/10/10 10:00:00',
+  noidung: `comment 1
+      comment 1
+      comment 1
+      comment 1`,
+  phongtroID: 1,
+  userID: 2,
+  thich: 1,
+  userThich: false
+},
+{
+  id: 2,
+  ngay: '2016/10/12 10:00:00',
+  noidung: 'comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2comment 2',
+  phongtroID: 1,
+  userID: 1,
+  thich: 1,
+  userThich: true
+},
+{
+  id: 3,
+  ngay: '2016/10/11 10:00:00',
+  noidung: 'comment 3',
+  phongtroID: 1,
+  userID: 4,
+  thich: 1,
+  userThich: false
+},
+{
+  id: 4,
+  ngay: '2016/10/14 10:00:00',
+  noidung: 'comment 4',
+  phongtroID: 1,
+  userID: 2,
+  thich: 1,
+  userThich: false
+},
+{
+  id: 5,
+  ngay: '2016/10/08 10:00:00',
+  noidung: 'comment 5',
+  phongtroID: 1,
+  userID: 3,
+  thich: 1,
+  userThich: false
+}];
 
 let formatDate = (value) => {
   let tmp = value;

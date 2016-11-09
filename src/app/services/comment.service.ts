@@ -47,4 +47,70 @@ export class CommentService {
     });
   }
 
+  thichComment(id, userID): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(Constants.apiUrl + 'comment/' + id + '/like/user' + userID, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result !== 'fail') {
+            resolve(resp.result);
+          } else {
+            this.handleError('thichComment', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thichComment', err));
+    });
+  }
+
+  boThichComment(id, userID): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.delete(Constants.apiUrl + 'comment/' + id + '/like/user' + userID, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result !== 'fail') {
+            resolve(resp.result);
+          } else {
+            this.handleError('boThichComment', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('boThichComment', err));
+    });
+  }
+
+  layLuotThichComment(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(Constants.apiUrl + 'comment/' + id + '/like', { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('layLuotThichComment', resp.result);
+            reject(resp.result);
+          }
+        },
+        error => this.handleError('layLuotThichComment', error));
+    });
+  }
+
+  layCommentUserThich(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(Constants.apiUrl + 'comment/like/user/' + id, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('layUserThichComment', resp.result);
+            reject(resp.result);
+          }
+        },
+        error => this.handleError('layUserThichComment', error));
+    });
+  }
+
 }

@@ -13,7 +13,7 @@
           <div class="col-lg-9 col-md-9">
             <h1>{{phongtro.diachi}}</h1>
           </div>
-          <div class="col-lg-3 col-md-3 btn-edit-pt" *ngIf="isUserPT">
+          <div class="col-lg-3 col-md-3 btn-edit-pt" *ngIf="userService.user && isUserPT">
             <button class="btn-modal" (click)="confirmModal.show();">Xóa
             </button>
             <button class="btn-modal" (click)="editPT();">Chỉnh sửa</button>
@@ -27,7 +27,7 @@
           </div>
           <div class="phongtro-like right">
             <p class="ngay right">{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
-            <a><i class="fa fa-heart-o"></i>0</a>
+            <a *ngIf="userService.user && !isUserPT" (click)="likePT()" [ngClass]="{'active': userThichPT}"><i class="fa fa-heart-o"></i>{{phongtro.thich}}</a>
           </div>
         </div>
       </div>

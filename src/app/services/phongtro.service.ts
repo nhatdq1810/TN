@@ -203,4 +203,69 @@ export class PhongtroService {
     });
   }
 
+  thichPhongtro(id, userID): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(Constants.apiUrl + 'phongtro/' + id + '/like/user' + userID, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result !== 'fail') {
+            resolve(resp.result);
+          } else {
+            this.handleError('thichPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thichPhongtro', err));
+    });
+  }
+
+  boThichPhongtro(id, userID): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.delete(Constants.apiUrl + 'phongtro/' + id + '/like/user' + userID, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result !== 'fail') {
+            resolve(resp.result);
+          } else {
+            this.handleError('boThichPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('boThichPhongtro', err));
+    });
+  }
+
+  layLuotThichPhongtro(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(Constants.apiUrl + 'phongtro/' + id + '/like', { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result !== 'fail') {
+            resolve(resp.result);
+          } else {
+            this.handleError('layLuotThichPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        error => this.handleError('layLuotThichPhongtro', error));
+    });
+  }
+
+  kiemtraUserThichPhongtro(userID, id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(Constants.apiUrl + 'phongtro/' + id + '/like/user/' + userID, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result !== 'fail') {
+            resolve(resp.result);
+          } else {
+            this.handleError('kiemtraUserThichPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('kiemtraUserThichPhongtro', err));
+    });
+  }
+
 }

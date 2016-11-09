@@ -4,4 +4,6 @@ export class Comment {
   ngay: string;
   userID: number;
   phongtroID: number;
+  thich: number;
+  userThich: boolean;
 }

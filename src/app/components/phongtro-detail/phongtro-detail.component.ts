@@ -31,6 +31,7 @@ export class PhongtroDetailComponent implements OnInit {
   private isUserPT: boolean;
   private xoaPTSuccess: boolean;
   private xoaPTFail: boolean;
+  private userThichPT: boolean;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
     this.fakeInit();
@@ -46,6 +47,15 @@ export class PhongtroDetailComponent implements OnInit {
       id = +params['id'];
     });
     if(!this.phongtro || this.phongtro.id !== id) {
+      this.ptService.layLuotThichPhongtro(id)
+        .then(result => {
+          if (result) {
+            this.phongtro.thich = +result;
+          }
+        }).catch(err => {
+          console.error(err);
+          this.phongtro.thich = 0;
+        });
       this.ptService.layPhongtro(id).then(pt => {
         this.phongtro = pt;
         this.getLatLng();
@@ -57,7 +67,7 @@ export class PhongtroDetailComponent implements OnInit {
         this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
           this.user = usr;
           let email = this.user.email.split('f-');
-          if(email.length > 1) {
+          if (email.length > 1) {
             this.user.email = email[1];
           } else {
             email = this.user.email.split('g-');
@@ -65,7 +75,20 @@ export class PhongtroDetailComponent implements OnInit {
               this.user.email = email[1];
             }
           }
-        })
+          if(!this.isUserPT) {
+            this.ptService.kiemtraUserThichPhongtro(this.user.id, this.phongtro.id)
+              .then(result => {
+                if (result === 'success') {
+                  this.userThichPT = true;
+                } else {
+                  this.userThichPT = false;
+                }
+              }).catch(err => {
+                console.error(err);
+                this.userThichPT = false;
+              });
+          }
+        });
       })
       .catch(err => {
         console.error(err);
@@ -114,6 +137,38 @@ export class PhongtroDetailComponent implements OnInit {
     }
   }
 
+  likePT() {
+    if (!this.userThichPT) {
+      this.phongtro.thich++;
+      this.userThichPT = true;
+      // this.ptService.thichPhongtro(this.phongtro.id, this.user.id)
+      //   .then(result => {
+      //     if (result === 'success') {
+      //       this.phongtro.thich++;
+      //       this.userThichPT = true;
+      //     }
+      //   }).catch(err => {
+      //     console.error(this.phongtro.id + ': ' + err);
+      //   });
+    } else {
+      if (this.phongtro.thich > 0) {
+        this.phongtro.thich--;
+      }
+      this.userThichPT = false;
+      // this.ptService.boThichPhongtro(this.phongtro.id, this.user.id)
+      //   .then(result => {
+      //     if (result === 'success') {
+      //       if (this.phongtro.thich > 0) {
+      //         this.phongtro.thich--;
+      //       }
+      //       this.userThichPT = false;
+      //     }
+      //   }).catch(err => {
+      //     console.error(err);
+      //   });
+    }
+  }
+
   editPT() {
     this.ptService.currentPT = this.phongtro;
     this.router.navigate(['/phongtro/create', { formInfo: 'edit' }]);
@@ -140,10 +195,12 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   fakeInit() {
+    this.userThichPT = true;
     this.xoaPTSuccess = false;
     this.isUserPT = true;
-    this.phongtro = Constants.fakePt;
+    this.phongtro = Constants.fakePT;
     this.user = Constants.fakeUser;
     this.getLatLng();
+    this.userService.user = this.user;
   }
 }

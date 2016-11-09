@@ -82,7 +82,7 @@ export class TransferMoneyComponent implements OnInit {
   }
 
   fakeInit() {
-    this.phongtro = Constants.fakePt;
+    this.phongtro = Constants.fakePT;
     this.ngh_gui = Constants.fakeNgh;
     this.ngh_nhan = {
       cmnd: '111222333',

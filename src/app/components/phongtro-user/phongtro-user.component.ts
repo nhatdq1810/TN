@@ -117,7 +117,9 @@ export class PhongtroUserComponent implements OnInit {
         nganh: '',
         tiencoc: 1500000,
         userID: 1,
-        nganhangID: '12345678'
+        nganhangID: '12345678',
+        thich: 2,
+        userThich: false
       },
       {
         id: 2,
@@ -136,7 +138,9 @@ export class PhongtroUserComponent implements OnInit {
         nganh: '',
         tiencoc: 1500000,
         userID: 1,
-        nganhangID: '12345678'
+        nganhangID: '12345678',
+        thich: 2,
+        userThich: false
       },
       {
         id: 3,
@@ -155,7 +159,9 @@ export class PhongtroUserComponent implements OnInit {
         nganh: '',
         tiencoc: 1500000,
         userID: 1,
-        nganhangID: '12345678'
+        nganhangID: '12345678',
+        thich: 2,
+        userThich: false
       },
       {
         id: 4,
@@ -174,7 +180,9 @@ export class PhongtroUserComponent implements OnInit {
         nganh: '',
         tiencoc: 1500000,
         userID: 1,
-        nganhangID: '12345678'
+        nganhangID: '12345678',
+        thich: 2,
+        userThich: false
       },
       {
         id: 5,
@@ -193,7 +201,9 @@ export class PhongtroUserComponent implements OnInit {
         nganh: '',
         tiencoc: 1500000,
         userID: 1,
-        nganhangID: '12345678'
+        nganhangID: '12345678',
+        thich: 2,
+        userThich: false
       },
       {
         id: 6,
@@ -212,7 +222,9 @@ export class PhongtroUserComponent implements OnInit {
         nganh: '',
         tiencoc: 1500000,
         userID: 1,
-        nganhangID: '12345678'
+        nganhangID: '12345678',
+        thich: 2,
+        userThich: false
       },
       {
         id: 7,
@@ -231,7 +243,9 @@ export class PhongtroUserComponent implements OnInit {
         nganh: '',
         tiencoc: 1500000,
         userID: 1,
-        nganhangID: '12345678'
+        nganhangID: '12345678',
+        thich: 2,
+        userThich: false
       }
     ];
   }
