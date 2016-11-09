@@ -13,8 +13,8 @@ export class AsideComponent implements OnInit {
   private currentPT: any;
 
   constructor(private ptService: PhongtroService) {
-    // this.init();
-    this.fakeInit();
+    this.init();
+    // this.fakeInit();
   }
 
   ngOnInit() {

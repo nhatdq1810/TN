@@ -49,7 +49,7 @@ export class CommentService {
 
   thichComment(id, userID): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.put(Constants.apiUrl + 'comment/' + id + '/like/user' + userID, { headers: Constants.headers })
+      this.http.put(Constants.apiUrl + 'comment/' + id + '/like/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (resp.result !== 'fail') {
@@ -65,7 +65,7 @@ export class CommentService {
 
   boThichComment(id, userID): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.delete(Constants.apiUrl + 'comment/' + id + '/like/user' + userID, { headers: Constants.headers })
+      this.http.delete(Constants.apiUrl + 'comment/' + id + '/like/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (resp.result !== 'fail') {

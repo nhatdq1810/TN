@@ -27,7 +27,7 @@
           </div>
           <div class="phongtro-like right">
             <p class="ngay right">{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
-            <a *ngIf="userService.user && !isUserPT" (click)="likePT()" [ngClass]="{'active': userThichPT}"><i class="fa fa-heart-o"></i>{{phongtro.thich}}</a>
+            <a (click)="likePT()" [ngClass]="{'active': userThichPT}"><i class="fa fa-heart-o"></i>{{phongtro.thich}}</a>
           </div>
         </div>
       </div>

@@ -26,8 +26,8 @@ export class CommentsComponent implements OnInit {
       'comment': ''
     });
     this.comment = '';
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {
@@ -36,26 +36,43 @@ export class CommentsComponent implements OnInit {
         this.init();
       }
     });
+    this.userService.checkLoggedIn.subscribe(result => {
+      if (result) {
+        this.cmtService.layCommentUserThich(this.userService.user.id)
+          .then(result => {
+            let tmpListCmtUserLike = result;
+            tmpListCmtUserLike.forEach((idCmt) => {
+              this.listCmtUserLike[idCmt] = true;
+            })
+          }).catch(err => {
+            console.error(err);
+            this.listCmtUserLike = [];
+          });
+      }
+    })
   }
 
   init() {
     this.cmtService.layCommentPhongtro(this.ptService.currentPT.id).then((resp: Array<Comment>) => {
       this.listCmt = resp;
-      this.cmtService.layCommentUserThich(this.userService.user.id)
-        .then(result => {
-          let tmpListCmtUserLike = result;
-          tmpListCmtUserLike.forEach((idCmt) => {
-            this.listCmtUserLike[idCmt] = true;
-          })
-        }).catch(err => {
-          console.error(err);
-        });
+      if (this.userService.user) {
+        this.cmtService.layCommentUserThich(this.userService.user.id)
+          .then(result => {
+            let tmpListCmtUserLike = result;
+            tmpListCmtUserLike.forEach((idCmt) => {
+              this.listCmtUserLike[idCmt] = true;
+            })
+          }).catch(err => {
+            console.error(err);
+            this.listCmtUserLike = [];
+          });
+      } else {
+        this.listCmtUserLike = [];
+      }
       this.listCmt.forEach(cmt => {
         this.cmtService.layLuotThichComment(cmt.id)
           .then(result => {
-            if (result) {
-              cmt.thich = +result;
-            }
+            cmt.thich = +result;
           }).catch(err => {
             console.error(cmt.id + ': ' + err);
             cmt.thich = 0;
@@ -75,34 +92,30 @@ export class CommentsComponent implements OnInit {
   }
 
   likeCmt(item) {
-    if (!this.listCmtUserLike[item.id]) {
-      item.thich++;
-      this.listCmtUserLike[item.id] = true;
-      // this.cmtService.thichComment(item.id, this.userService.user.id)
-      //   .then(result => {
-      //     if (result === 'success') {
-      //       item.thich++;
-      //       this.listCmtUserLike[item.id] = true;
-      //     }
-      //   }).catch(err => {
-      //     console.error(item.id + ': ' + err);
-      //   });
-    } else {
-      if(item.thich > 0) {
-        item.thich--;
+    if (this.userService.user && this.userService.user.id !== item.userID) {
+      if (!this.listCmtUserLike[item.id]) {
+        this.cmtService.thichComment(item.id, this.userService.user.id)
+          .then(result => {
+            if (result === 'success') {
+              item.thich++;
+              this.listCmtUserLike[item.id] = true;
+            }
+          }).catch(err => {
+            console.error(item.id + ': ' + err);
+          });
+      } else {
+        this.cmtService.boThichComment(item.id, this.userService.user.id)
+          .then(result => {
+            if (result === 'success') {
+              if (item.thich > 0) {
+                item.thich--;
+              }
+              this.listCmtUserLike[item.id] = false;
+            }
+          }).catch(err => {
+            console.error(err);
+          });
       }
-      this.listCmtUserLike[item.id] = false;
-      // this.cmtService.boThichComment(item.id, this.userService.user.id)
-      //   .then(result => {
-      //     if (result === 'success') {
-      //       if (item.thich > 0) {
-      //         item.thich--;
-      //       }
-      //       this.listCmtUserLike[item.id] = false;
-      //     }
-      //   }).catch(err => {
-      //     console.error(err);
-      //   });
     }
   }
 

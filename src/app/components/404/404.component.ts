@@ -10,8 +10,8 @@ export class Error404Component implements OnInit {
   private deals: Array<any>;
 
   constructor() {
-    // this.init();
-    this.fakeInit();
+    this.init();
+    // this.fakeInit();
   }
 
   ngOnInit() {

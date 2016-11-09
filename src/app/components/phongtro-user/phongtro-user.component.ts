@@ -68,11 +68,6 @@ export class PhongtroUserComponent implements OnInit {
   }
 
   xoaPT() {
-    // this.listPT.forEach((el, index) => {
-    //   if (el.id === this.ptXoa.id) {
-    //     this.listPT.splice(index, 1);
-    //   }
-    // });
     this.ptService.xoaPhongtro(this.userService.user.id, this.ptXoa.id)
       .then(listPT => {
         if(listPT) {

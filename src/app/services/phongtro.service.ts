@@ -205,7 +205,7 @@ export class PhongtroService {
 
   thichPhongtro(id, userID): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.put(Constants.apiUrl + 'phongtro/' + id + '/like/user' + userID, { headers: Constants.headers })
+      this.http.put(Constants.apiUrl + 'phongtro/' + id + '/like/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (resp.result !== 'fail') {
@@ -221,7 +221,7 @@ export class PhongtroService {
 
   boThichPhongtro(id, userID): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.delete(Constants.apiUrl + 'phongtro/' + id + '/like/user' + userID, { headers: Constants.headers })
+      this.http.delete(Constants.apiUrl + 'phongtro/' + id + '/like/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (resp.result !== 'fail') {
@@ -241,8 +241,8 @@ export class PhongtroService {
         .get(Constants.apiUrl + 'phongtro/' + id + '/like', { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
-          if (resp.result !== 'fail') {
-            resolve(resp.result);
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
           } else {
             this.handleError('layLuotThichPhongtro', resp.result);
             reject(resp.result);
@@ -252,9 +252,9 @@ export class PhongtroService {
     });
   }
 
-  kiemtraUserThichPhongtro(userID, id): Promise<any> {
+  kiemtraUserThichPhongtro(id, userID): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post(Constants.apiUrl + 'phongtro/' + id + '/like/user/' + userID, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + 'phongtro/' + id + '/like/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (resp.result !== 'fail') {

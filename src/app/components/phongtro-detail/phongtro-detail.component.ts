@@ -34,8 +34,8 @@ export class PhongtroDetailComponent implements OnInit {
   private userThichPT: boolean;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   init() {
@@ -47,23 +47,36 @@ export class PhongtroDetailComponent implements OnInit {
       id = +params['id'];
     });
     if(!this.phongtro || this.phongtro.id !== id) {
-      this.ptService.layLuotThichPhongtro(id)
-        .then(result => {
-          if (result) {
-            this.phongtro.thich = +result;
-          }
-        }).catch(err => {
-          console.error(err);
-          this.phongtro.thich = 0;
-        });
       this.ptService.layPhongtro(id).then(pt => {
         this.phongtro = pt;
         this.getLatLng();
-        if (this.userService.user && this.userService.user.id === this.phongtro.userID) {
-          this.isUserPT = true;
+        if (this.userService.user) {
+          if (this.userService.user.id === this.phongtro.userID) {
+            this.isUserPT = true;
+          } else {
+            this.isUserPT = false;
+          }
+          this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
+            .then(result => {
+              if (result === 'success') {
+                this.userThichPT = true;
+              } else {
+                this.userThichPT = false;
+              }
+            }).catch(err => {
+              console.error(err);
+              this.userThichPT = false;
+            });
         } else {
           this.isUserPT = false;
         }
+        this.ptService.layLuotThichPhongtro(id)
+          .then(result => {
+            this.phongtro.thich = +result;
+          }).catch(err => {
+            console.error(err);
+            this.phongtro.thich = 0;
+          });
         this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
           this.user = usr;
           let email = this.user.email.split('f-');
@@ -74,19 +87,6 @@ export class PhongtroDetailComponent implements OnInit {
             if (email.length > 1) {
               this.user.email = email[1];
             }
-          }
-          if(!this.isUserPT) {
-            this.ptService.kiemtraUserThichPhongtro(this.user.id, this.phongtro.id)
-              .then(result => {
-                if (result === 'success') {
-                  this.userThichPT = true;
-                } else {
-                  this.userThichPT = false;
-                }
-              }).catch(err => {
-                console.error(err);
-                this.userThichPT = false;
-              });
           }
         });
       })
@@ -115,8 +115,23 @@ export class PhongtroDetailComponent implements OnInit {
     });
     this.userService.checkLoggedIn.subscribe(result => {
       if (result) {
-        if (this.userService.user && this.userService.user.id === this.phongtro.userID) {
-          this.isUserPT = true;
+        if (this.userService.user) {
+          if (this.userService.user.id === this.phongtro.userID) {
+            this.isUserPT = true;
+          } else {
+            this.isUserPT = false;
+          }
+          this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
+            .then(result => {
+              if (result === 'success') {
+                this.userThichPT = true;
+              } else {
+                this.userThichPT = false;
+              }
+            }).catch(err => {
+              console.error(err);
+              this.userThichPT = false;
+            });
         } else {
           this.isUserPT = false;
         }
@@ -138,34 +153,30 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   likePT() {
-    if (!this.userThichPT) {
-      this.phongtro.thich++;
-      this.userThichPT = true;
-      // this.ptService.thichPhongtro(this.phongtro.id, this.user.id)
-      //   .then(result => {
-      //     if (result === 'success') {
-      //       this.phongtro.thich++;
-      //       this.userThichPT = true;
-      //     }
-      //   }).catch(err => {
-      //     console.error(this.phongtro.id + ': ' + err);
-      //   });
-    } else {
-      if (this.phongtro.thich > 0) {
-        this.phongtro.thich--;
+    if (this.userService.user && !this.isUserPT) {
+      if (!this.userThichPT) {
+        this.ptService.thichPhongtro(this.phongtro.id, this.userService.user.id)
+          .then(result => {
+            if (result === 'success') {
+              this.phongtro.thich++;
+              this.userThichPT = true;
+            }
+          }).catch(err => {
+            console.error(this.phongtro.id + ': ' + err);
+          });
+      } else {
+        this.ptService.boThichPhongtro(this.phongtro.id, this.userService.user.id)
+          .then(result => {
+            if (result === 'success') {
+              if (this.phongtro.thich > 0) {
+                this.phongtro.thich--;
+              }
+              this.userThichPT = false;
+            }
+          }).catch(err => {
+            console.error(err);
+          });
       }
-      this.userThichPT = false;
-      // this.ptService.boThichPhongtro(this.phongtro.id, this.user.id)
-      //   .then(result => {
-      //     if (result === 'success') {
-      //       if (this.phongtro.thich > 0) {
-      //         this.phongtro.thich--;
-      //       }
-      //       this.userThichPT = false;
-      //     }
-      //   }).catch(err => {
-      //     console.error(err);
-      //   });
     }
   }
 
