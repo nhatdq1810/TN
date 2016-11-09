@@ -8,8 +8,8 @@
 <div *ngIf="phongtro" class="phongtro-detail container">
   <div class="row">
     <div class="col-lg-9 col-md-9 main-content">
-      <div class="phongtro-title">
-        <div class="row">
+      <div class="phongtro-title margin-bottom">
+        <div class="row margin-bottom">
           <div class="col-lg-9 col-md-9">
             <h1>{{phongtro.diachi}}</h1>
           </div>
@@ -19,14 +19,19 @@
             <button class="btn-modal" (click)="editPT();">Chỉnh sửa</button>
           </div>
         </div>
-        <div class="phongtro-social left">
-          <span>Chia sẻ </span>
-          <a (click)="socialShare('facebook')"><i class="fa fa-facebook"></i></a>
-          <a (click)="socialShare('google')"><i class="fa fa-google-plus"></i></a>
+        <div class="social-like">
+          <div class="phongtro-social left">
+            <span>Chia sẻ</span>
+            <a><i class="fa fa-facebook"></i></a>
+            <a><i class="fa fa-google-plus"></i></a>
+          </div>
+          <div class="phongtro-like right">
+            <p class="ngay right">{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
+            <a><i class="fa fa-heart-o"></i>0</a>
+          </div>
         </div>
-        <p class="ngay right">{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
       </div>
-      <div class="phongtro-header">
+      <div class="phongtro-header margin-bottom">
         <div class="phongtro-price left">
           <strong>{{phongtro.giatien | number}}</strong>
         </div>
@@ -35,7 +40,7 @@
         </div>
         <a *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang')">Đặt cọc ngay</a>
       </div>
-      <div *ngIf="phongtro.hinhanh && phongtro.hinhanh !== ''" class="phongtro-img">
+      <div *ngIf="phongtro.hinhanh && phongtro.hinhanh !== ''" class="phongtro-img margin-bottom">
         <img [src]="phongtro?.hinhanh" class="img-responsive">
       </div>
       <div class="phongtro-info">

@@ -2,29 +2,30 @@ sebm-google-map {
   height: 400px;
 }
 
-.phongtro-detail [class*="phongtro-"] {
-  margin: 20px 0;
+.margin-bottom {
+  margin-bottom: 15px;
 }
 
 .phongtro-detail > .row {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
-.phongtro-detail .phongtro-social {
-  margin-left: 5px;
-  margin-bottom: 10px;
+.social-like {
+  overflow: hidden;
+  margin-bottom: 5px;
 }
 
-.phongtro-detail .phongtro-social .fa-facebook {
+.social-like .phongtro-social .fa-facebook {
   color: #365899;
 }
 
-.phongtro-detail .phongtro-social .fa-google-plus {
+.social-like .phongtro-social .fa-google-plus {
   color: #c7254e;
 }
 
-.phongtro-detail .phongtro-social i:focus,
-.phongtro-detail .phongtro-social i:hover {
+.social-like .phongtro-social i:focus,
+.social-like .phongtro-social i:hover {
   font-weight: bolder;
 }
 
@@ -52,17 +53,13 @@ sebm-google-map {
   margin-right: 10px;
 }
 
-.phongtro-title p {
-  margin: 25px 5px 10px;
-}
-
 .phongtro-header {
   overflow: hidden;
   position: relative;
 }
 
 .phongtro-header div {
-  margin: 0;
+  margin-top: 15px;
 }
 
 .phongtro-header .btn-modal {
@@ -76,7 +73,7 @@ sebm-google-map {
 .phongtro-header .bounce {
   position: absolute;
   right: 180px;
-  bottom: 35px;
+  bottom: 25px;
   margin: 0 auto;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
