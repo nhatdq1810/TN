@@ -27,13 +27,13 @@ export class TransferMoneyComponent implements OnInit {
   private id_gui;
   private hoten_gui;
   private hoten_nhan;
-  private tiencoc;
+  private tiencoc: number;
   private id_nhan;
   private successMsg: string = '';
 
   constructor(private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {

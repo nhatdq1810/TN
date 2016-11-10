@@ -50,8 +50,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'user/info',
-    component: UserInfoComponent,
-    canActivate: [LoggedInService]
+    component: UserInfoComponent
+    // canActivate: [LoggedInService]
   },
   {
     path: '',

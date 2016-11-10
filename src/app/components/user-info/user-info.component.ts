@@ -24,8 +24,8 @@ export class UserInfoComponent implements OnInit {
   private successMsg: Array<Object>;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {

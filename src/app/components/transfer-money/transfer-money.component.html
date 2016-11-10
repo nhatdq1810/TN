@@ -6,7 +6,7 @@
   <div class="row transfer" *ngIf="ngh_gui && ngh_nhan && phongtro">
     <form>
       <div class="ngh-gui col-md-4">
-        <span>Mã tài khoản: </span>
+        <span>Mã tài khoản gửi: </span>
         <input class="input-modal" type="text" [(ngModel)]="id_gui" [readonly]="true" name="id_gui">
         <span>Họ tên người gửi: </span>
         <input class="input-modal" type="text" [(ngModel)]="hoten_gui" [readonly]="true" name="hoten_gui">
@@ -15,10 +15,10 @@
         <div class="bounce">
           <a (click)="submitForm()"><i class="fa fa-angle-double-right fa-3x" aria-hidden="true"></i></a>
         </div>
-        <input class="input-modal" type="number" [(ngModel)]="tiencoc" [readonly]="true" name="tiencoc">
+        <input class="input-modal" type="text" [ngModel]="tiencoc | number" (ngModelChange)="tiencoc = $event" [readonly]="true" name="tiencoc">
       </div>
       <div class="ngh-nhan col-md-4">
-        <span>Mã tài khoản: </span>
+        <span>Mã tài khoản nhận: </span>
         <input class="input-modal" type="text" [(ngModel)]="id_nhan" [readonly]="true" name="id_nhan">
         <span>Họ tên người nhận: </span>
         <input class="input-modal" type="text" [(ngModel)]="hoten_nhan" [readonly]="true" name="hoten_nhan">

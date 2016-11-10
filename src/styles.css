@@ -5,12 +5,6 @@
 
 /* CSS Resets */
 
-html,
-body {
-  height: 100%;
-  // min-height: 100%;
-}
-
 ul,
 p {
   margin: 0;
@@ -109,10 +103,15 @@ textarea {
   font-weight: 700;
 }
 
+html {
+  height: 100%;
+}
+
 
 /* Homepage */
 
 body {
+  height: 100%;
   overflow-x: hidden;
 }
 
