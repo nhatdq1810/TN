@@ -1,55 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-// #c7254e: red
-// #fcdd44: yellow
 
-/* CSS Resets */
+/* #c7254e: red */
 
-ul,
-p {
-  margin: 0;
-  padding: 0;
-}
 
-ul {
-  list-style: none;
-}
+/* #fcdd44: yellow */
 
-h1,
-h2,
-h3 {
-  margin: 0;
-  padding: 0;
-}
 
-h1,
-h2,
-h3,
-a,
-p {
-  font-family: 'Open Sans', sans-serif;
-}
-
-a {
-  outline: none;
-  cursor: pointer;
-  color: #000000;
-}
-
-a:hover,
-a:focus {
-  outline: none;
-  color: #000000;
-  text-decoration: none;
-}
-
-img {
-  width: 100%;
-}
-
-textarea {
-  resize: none;
-}
+/* common class */
 
 .left {
   float: left;
@@ -103,8 +61,57 @@ textarea {
   font-weight: 700;
 }
 
+
+/* CSS Resets */
+
 html {
   height: 100%;
+}
+
+ul,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+a,
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  outline: none;
+  cursor: pointer;
+  color: #000000;
+}
+
+a:hover,
+a:focus {
+  outline: none;
+  color: #000000;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+textarea {
+  resize: none;
 }
 
 
