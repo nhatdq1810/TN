@@ -22,7 +22,6 @@ export class FormValidationComponent implements OnInit {
       'giatien': 500000,
       'truong': '',
       'nganh': '',
-      // , Validators.compose([Validators.minLength(5), Validators.maxLength(10)])],
       'gioitinh': 'nam'
     });
     this.sliderValue = [500000, 5000000];
@@ -52,7 +51,7 @@ export class FormValidationComponent implements OnInit {
       }).
       catch(err => {
         console.error(err);
-        this.ptService.searchTerm = undefined;
+        this.ptService.searchTerm = value;
         this.ptService.listPT = [];
         this.router.navigate(['/search/result']);
       });

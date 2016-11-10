@@ -34,8 +34,8 @@ export class PhongtroDetailComponent implements OnInit {
   private userThichPT: boolean;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   init() {
@@ -55,18 +55,18 @@ export class PhongtroDetailComponent implements OnInit {
             this.isUserPT = true;
           } else {
             this.isUserPT = false;
-          }
-          this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
-            .then(result => {
-              if (result === 'success') {
-                this.userThichPT = true;
-              } else {
+            this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
+              .then(result => {
+                if (result === 'success') {
+                  this.userThichPT = true;
+                } else {
+                  this.userThichPT = false;
+                }
+              }).catch(err => {
+                console.error(err);
                 this.userThichPT = false;
-              }
-            }).catch(err => {
-              console.error(err);
-              this.userThichPT = false;
-            });
+              });
+          }
         } else {
           this.isUserPT = false;
         }
@@ -120,18 +120,18 @@ export class PhongtroDetailComponent implements OnInit {
             this.isUserPT = true;
           } else {
             this.isUserPT = false;
-          }
-          this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
-            .then(result => {
-              if (result === 'success') {
-                this.userThichPT = true;
-              } else {
+            this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
+              .then(result => {
+                if (result === 'success') {
+                  this.userThichPT = true;
+                } else {
+                  this.userThichPT = false;
+                }
+              }).catch(err => {
+                console.error(err);
                 this.userThichPT = false;
-              }
-            }).catch(err => {
-              console.error(err);
-              this.userThichPT = false;
-            });
+              });
+          }
         } else {
           this.isUserPT = false;
         }
@@ -143,12 +143,12 @@ export class PhongtroDetailComponent implements OnInit {
     if(socialName === 'google') {
       let path = window.location.href.replace(/localhost/gi, '127.0.0.1');
       let currentHref = encodeURIComponent(path);
-      window.open('https://plus.google.com/share?url=' + currentHref, '', 'height=550,width=525,left=100,top=100,menubar=0');
+      window.open('https://plus.google.com/share?url=' + currentHref, '', 'height=550,width=550,left=100,top=100,menubar=0');
     }
     if(socialName === 'facebook') {
       let path = window.location.href.replace(/localhost/gi, '127.0.0.1');
       let currentHref = encodeURIComponent(path);
-      window.open('https://www.facebook.com/sharer/sharer.php?u=' + currentHref, '', 'height=550,width=525,left=100,top=100,menubar=0');
+      window.open('https://www.facebook.com/sharer/sharer.php?u=' + currentHref, '', 'height=550,width=550,left=100,top=100,menubar=0');
     }
   }
 
@@ -178,6 +178,12 @@ export class PhongtroDetailComponent implements OnInit {
           });
       }
     }
+  }
+
+  showConfirmModal(){
+    this.xoaPTSuccess = false;
+    this.xoaPTFail = false;
+    this.confirmModal.show();
   }
 
   editPT() {

@@ -58,10 +58,6 @@ sebm-google-map {
   position: relative;
 }
 
-.phongtro-header div {
-  margin-top: 15px;
-}
-
 .phongtro-header .btn-modal {
   width: auto;
   padding: 10px;
@@ -107,6 +103,10 @@ sebm-google-map {
 .phongtro-header .bounce i {
   display: block;
   color: #c7254e;
+}
+
+.phongtro-header .phongtro-price {
+  margin: 15px 0;
 }
 
 .phongtro-price strong {

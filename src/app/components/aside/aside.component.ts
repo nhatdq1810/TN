@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PhongtroService } from '../../services/phongtro.service';
 
 @Component({
@@ -12,9 +13,9 @@ export class AsideComponent implements OnInit {
   private searchLink: string = '/search/result';
   private currentPT: any;
 
-  constructor(private ptService: PhongtroService) {
-    // this.init();
-    this.fakeInit();
+  constructor(private ptService: PhongtroService, private route: ActivatedRoute) {
+    this.init();
+    // this.fakeInit();
   }
 
   ngOnInit() {
@@ -22,6 +23,9 @@ export class AsideComponent implements OnInit {
       if(result) {
         this.init();
       }
+    });
+    this.route.params.subscribe(params => {
+      this.init();
     });
   }
 
