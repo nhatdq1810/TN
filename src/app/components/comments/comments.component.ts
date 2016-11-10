@@ -26,8 +26,8 @@ export class CommentsComponent implements OnInit {
       'comment': ''
     });
     this.comment = '';
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {

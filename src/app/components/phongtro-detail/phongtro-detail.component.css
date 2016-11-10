@@ -161,6 +161,18 @@ sebm-google-map {
 
 .user-info .user-name strong {
   font-size: 25px;
+  margin-right: 10px;
+}
+
+.user-info .user-name .user-popular {
+  display: inline-block;
+  padding: 0 5px;
+  border: 1px solid #dddddd;
+}
+
+.user-info .user-name .user-popular i {
+  font-size: initial;
+  color: #c7254e;
 }
 
 .user-info .user-detail {

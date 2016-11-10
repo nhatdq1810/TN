@@ -12,7 +12,10 @@
   </div>
   <div *ngIf="listUser.length > 0 && listCmt.length > 0" class="other-comments">
     <div *ngFor="let item of listCmt" class="comments-item">
-      <p class="header"><span class="user-name">{{listUser[item.userID]?.hoten}}</span> -- <span class="noidung">{{item.noidung}}</span></p>
+      <p class="header">
+        <span class="user-name">{{listUser[item.userID]?.hoten}}</span> --
+        <span class="noidung">{{item.noidung}}</span>
+      </p>
       <div class="phongtro-like right">
         <p class="ngay right">{{item.ngay | date:"dd/MM/yyyy HH:mm"}}</p>
         <a (click)="likeCmt(item)" [ngClass]="{'active': listCmtUserLike[item.id]}"><i class="fa fa-heart-o"></i>{{item.thich}}</a>
@@ -23,5 +26,3 @@
     Không có bình luận về phòng trọ này
   </div>
 </div>
-<!-- check comments user liked -> tag a has class active -->
-<!-- check user in thichComment if user liked before do not increase -->
