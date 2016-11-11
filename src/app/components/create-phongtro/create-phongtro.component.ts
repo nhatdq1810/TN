@@ -173,23 +173,7 @@ export class CreatePhongtroComponent {
   }
 
   submitForm(value: any) {
-    let currentDate = Constants.getCurrentDate();
-
-    value.wifi = +value.wifi;
-    value.chu = +value.chu;
-    value.tiencoc = +value.tiencoc
-    value.ngaydang = currentDate;
-    value.sonha = value.sonha.toLowerCase();
-    value.phuong = value.phuong.toLowerCase();
-    value.quan = value.quan.toLowerCase();
-    value.tp = value.tp.toLowerCase();
-    value.diachi = value.sonha + ', phường ' + value.phuong + ', quận ' + value.quan + ', thành phố ' + value.tp;
-    value.truong = value.truong.toLowerCase();
-    value.nganh = value.nganh.toLowerCase();
-    delete value.sonha;
-    delete value.phuong;
-    delete value.quan;
-    delete value.tp;
+    value.tiencoc = +value.tiencoc;
     if (!this.previewData) {
       this.hasHinhanh = false;
       this.errorMsg = [{
@@ -213,6 +197,26 @@ export class CreatePhongtroComponent {
       this.hasTkNgh = true;
     }
     if(this.hasHinhanh && this.hasTkNgh) {
+      let currentDate = Constants.getCurrentDate();
+      value.wifi = +value.wifi;
+      value.chu = +value.chu;
+      value.tiencoc = +value.tiencoc
+      value.ngaydang = currentDate;
+      value.sonha = value.sonha.toLowerCase();
+      value.phuong = value.phuong.toLowerCase();
+      value.quan = value.quan.toLowerCase();
+      value.tp = value.tp.toLowerCase();
+      value.diachi = value.sonha + ', phường ' + value.phuong + ', quận ' + value.quan + ', thành phố ' + value.tp;
+      if (value.truong !== '') {
+        value.truong = value.truong.toLowerCase();
+      }
+      if (value.nganh !== '') {
+        value.nganh = value.nganh.toLowerCase();
+      }
+      delete value.sonha;
+      delete value.phuong;
+      delete value.quan;
+      delete value.tp;
       if(this.formInfo === 'edit') {
         this.ptService.capnhatPhongtro(this.ptEdit.id, value)
           .then(resp => {

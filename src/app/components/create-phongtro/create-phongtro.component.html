@@ -15,7 +15,7 @@
         {{item?.msg}}
       </alert>
     </div>
-    <form class="create-phongtro-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+    <form class="create-phongtro-form" [formGroup]="complexForm">
       <div class="form-group col-md-4">
         <div ngFileDrop *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" (onFileOver)="fileOverBase($event)" [events]="uploadEvents" [ngClass]="{'file-over': hasBaseDropZoneOver}" class="drop-zone">
         </div>
@@ -145,7 +145,7 @@
         <textarea placeholder="Tiền điện, nước, rác, ..." [formControl]="complexForm.controls['ghichu']"></textarea>
       </div>
       <div class="send-button col-md-6">
-        <input [disabled]="!complexForm.valid" class="btn-modal" type="submit" value="Tạo phòng trọ">
+        <input (click)="submitForm(complexForm.value)" [disabled]="!complexForm.valid" class="btn-modal" type="button" value="Tạo phòng trọ">
       </div>
     </form>
   </div>

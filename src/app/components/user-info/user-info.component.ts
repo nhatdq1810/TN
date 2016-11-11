@@ -75,15 +75,15 @@ export class UserInfoComponent implements OnInit {
   }
 
   submitForm(value: any) {
-    if(this.prefixEmail && this.prefixEmail !== '' && value.email.split(this.prefixEmail).length === 1) {
-      value.email = this.prefixEmail + value.email;
-    }
-    value.username = this.user.username;
 
     if(this.formInfo === 'info') {
-      delete value.oldPassword;
-      delete value.rePassword;
       if(value.email !== '' && value.hoten !== '') {
+        delete value.oldPassword;
+        delete value.rePassword;
+        if (this.prefixEmail && this.prefixEmail !== '' && value.email.split(this.prefixEmail).length === 1) {
+          value.email = this.prefixEmail + value.email;
+        }
+        value.username = this.user.username;
         this.userService.capnhatUser(value)
           .then(user => {
             this.user = user;
@@ -128,10 +128,14 @@ export class UserInfoComponent implements OnInit {
           window.scrollTo(0, 0);
         } else if (value.password === value.rePassword) {
           this.hasError = false;
-          delete value.oldPassword;
-          delete value.rePassword;
           if (Constants.patternPassword.test(value.password)) {
             this.errorPattern = false;
+            delete value.oldPassword;
+            delete value.rePassword;
+            if (this.prefixEmail && this.prefixEmail !== '' && value.email.split(this.prefixEmail).length === 1) {
+              value.email = this.prefixEmail + value.email;
+            }
+            value.username = this.user.username;
             this.userService.capnhatPassword(value).then(user => {
               this.user = user;
               this.hasError = false;
