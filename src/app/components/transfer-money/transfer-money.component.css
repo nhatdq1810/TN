@@ -1,13 +1,17 @@
 .transfer-form {
   margin-top: 30px;
-  margin-bottom: 30px;
-  min-height: calc(100% - 220px);
-  ;
+  min-height: calc(100% - 200px);
 }
 
 .transfer-form h1 {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   font-weight: 700;
+}
+
+.transfer {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #dddddd;
 }
 
 .input-modal {
@@ -15,7 +19,7 @@
   text-align: center;
   font-weight: 600;
   font-size: 20px;
-  margin: 0 auto 30px;
+  margin: 0 auto 50px;
 }
 
 .ngh-gui {
@@ -27,10 +31,9 @@
 .center-section .bounce {
   position: absolute;
   left: 0;
-  right: 20px;
-  top: 35px;
-  width: 60px;
-  height: 60px;
+  right: 0;
+  width: 100px;
+  height: 100px;
   margin: auto;
   border: 2px solid #aaaaaa;
   -webkit-border-radius: 50%;
@@ -53,11 +56,12 @@
 }
 
 .center-section .bounce i {
-  display: block;
+  position: absolute;
+  left: 5px;
+  right: 0;
   text-align: center;
   color: #aaaaaa;
-  margin-left: 5px;
-  line-height: 55px;
+  line-height: 90px;
 }
 
 .center-section .bounce:hover i,
@@ -65,12 +69,17 @@
   color: #c7254e;
 }
 
+.center-section .pt-tiencoc {
+  margin-top: 115px;
+  background: #ffffff;
+  padding: 15px;
+  border: 1px solid #dddddd;
+}
+
 .center-section .input-modal {
   width: 100%;
-  border: none;
   font-size: 36px;
-  margin-top: 112px;
-  margin-bottom: 0;
+  margin-bottom: 31px;
   color: #c7254e;
 }
 
@@ -78,6 +87,10 @@
   border: 1px solid #dddddd;
   background: #ffffff;
   padding: 15px;
+}
+
+.transfer-form app-grid-list >>> .get-more-btn {
+  display: none;
 }
 
 .send-button {

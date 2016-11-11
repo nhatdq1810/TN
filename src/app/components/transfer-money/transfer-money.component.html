@@ -2,29 +2,33 @@
   <alert *ngIf="successMsg && successMsg !== ''" [type]="'success'">
     {{successMsg}}
   </alert>
-  <h1 class="modal-title">Chuyển tiền</h1>
+  <h1 class="row">Chuyển tiền</h1>
   <div class="row transfer" *ngIf="ngh_gui && ngh_nhan && phongtro">
     <form>
       <div class="ngh-gui col-md-4">
-        <span>Mã tài khoản gửi: </span>
+        <span>Mã tài khoản gửi </span>
         <input class="input-modal" type="text" [(ngModel)]="id_gui" [readonly]="true" name="id_gui">
-        <span>Họ tên người gửi: </span>
+        <span>Họ tên người gửi </span>
         <input class="input-modal" type="text" [(ngModel)]="hoten_gui" [readonly]="true" name="hoten_gui">
       </div>
       <div class="center-section col-md-4">
         <div class="bounce">
-          <a (click)="submitForm()"><i class="fa fa-angle-double-right fa-3x" aria-hidden="true"></i></a>
+          <a (click)="submitForm()"><i class="fa fa-angle-double-right fa-5x" aria-hidden="true"></i></a>
         </div>
-        <input class="input-modal" type="text" [ngModel]="tiencoc | number" (ngModelChange)="tiencoc = $event" [readonly]="true" name="tiencoc">
+        <div class="pt-tiencoc">
+          <span>Số tiền gửi</span>
+          <input class="input-modal" type="text" [ngModel]="tiencoc | number" (ngModelChange)="tiencoc = $event" [readonly]="true" name="tiencoc">
+        </div>
       </div>
       <div class="ngh-nhan col-md-4">
-        <span>Mã tài khoản nhận: </span>
+        <span>Mã tài khoản nhận </span>
         <input class="input-modal" type="text" [(ngModel)]="id_nhan" [readonly]="true" name="id_nhan">
-        <span>Họ tên người nhận: </span>
+        <span>Họ tên người nhận </span>
         <input class="input-modal" type="text" [(ngModel)]="hoten_nhan" [readonly]="true" name="hoten_nhan">
       </div>
     </form>
   </div>
+  <app-grid-list [deals]="deals"></app-grid-list>
 </div>
 <div bsModal #errorModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" (onHidden)="goBack()">
   <div class="modal-dialog modal-md">
