@@ -115,7 +115,7 @@ export let fakePT: Phongtro = {
   thich: 5,
   userThich: false
 };
-export let fakeListPt: Array<Phongtro> = [
+export let fakeListPT: Array<Phongtro> = [
   {
     id: 12,
     hinhanh: 'assets/img/index-08.jpg',

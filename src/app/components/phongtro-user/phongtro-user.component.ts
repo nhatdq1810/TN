@@ -5,6 +5,8 @@ import { PhongtroService } from '../../services/phongtro.service';
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { Phongtro } from '../../models/phongtro';
 
+let Constants = require('../../resources/constants');
+
 @Component({
   selector: 'app-phongtro-user',
   templateUrl: './phongtro-user.component.html',
@@ -24,6 +26,11 @@ export class PhongtroUserComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.checkLoggedIn.subscribe(result => {
+      if(result) {
+        this.init();
+      }
+    })
   }
 
   init() {
@@ -94,155 +101,7 @@ export class PhongtroUserComponent implements OnInit {
   }
 
   fakeInit() {
-    this.listPT = [
-      {
-        id: 1,
-        hinhanh: 'assets/img/index-08.jpg',
-        diachi: '1236 abc, Phường 15, Quận Gò Vấp, Thành phố hồ chí minh',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nữ',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 5000000,
-        chu: 1,
-        ghichu: '',
-        khoa: '',
-        nganh: '',
-        tiencoc: 1500000,
-        userID: 1,
-        nganhangID: '12345678',
-        thich: 2,
-        userThich: false
-      },
-      {
-        id: 2,
-        hinhanh: 'assets/img/index-09.jpg',
-        diachi: '1234 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nam',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 2000000,
-        chu: 1,
-        ghichu: '',
-        khoa: '',
-        nganh: '',
-        tiencoc: 1500000,
-        userID: 1,
-        nganhangID: '12345678',
-        thich: 2,
-        userThich: false
-      },
-      {
-        id: 3,
-        hinhanh: 'assets/img/index-10.jpg',
-        diachi: '1235 abc P.4 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nữ',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 5000000,
-        chu: 1,
-        ghichu: '',
-        khoa: '',
-        nganh: '',
-        tiencoc: 1500000,
-        userID: 1,
-        nganhangID: '12345678',
-        thich: 2,
-        userThich: false
-      },
-      {
-        id: 4,
-        hinhanh: 'assets/img/index-07.jpg',
-        diachi: '123 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nữ',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 2000000,
-        chu: 1,
-        ghichu: '',
-        khoa: '',
-        nganh: '',
-        tiencoc: 1500000,
-        userID: 1,
-        nganhangID: '12345678',
-        thich: 2,
-        userThich: false
-      },
-      {
-        id: 5,
-        hinhanh: 'assets/img/index-08.jpg',
-        diachi: '1236 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nam',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 5000000,
-        chu: 1,
-        ghichu: '',
-        khoa: '',
-        nganh: '',
-        tiencoc: 1500000,
-        userID: 1,
-        nganhangID: '12345678',
-        thich: 2,
-        userThich: false
-      },
-      {
-        id: 6,
-        hinhanh: 'assets/img/index-09.jpg',
-        diachi: '1234 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nam',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 2000000,
-        chu: 1,
-        ghichu: '',
-        khoa: '',
-        nganh: '',
-        tiencoc: 1500000,
-        userID: 1,
-        nganhangID: '12345678',
-        thich: 2,
-        userThich: false
-      },
-      {
-        id: 7,
-        hinhanh: 'assets/img/index-10.jpg',
-        diachi: '1235 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nữ',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 5000000,
-        chu: 1,
-        ghichu: '',
-        khoa: '',
-        nganh: '',
-        tiencoc: 1500000,
-        userID: 1,
-        nganhangID: '12345678',
-        thich: 2,
-        userThich: false
-      }
-    ];
+    this.listPT = Constants.fakeListPT;
   }
 
 }

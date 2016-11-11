@@ -54,7 +54,7 @@ export class Error404Component implements OnInit {
   }
 
   fakeInit() {
-    this.deals = Constants.fakeListPt.splice(0, 4);
+    this.deals = Constants.fakeListPT.splice(0, 4);
   }
 
 }

@@ -146,7 +146,7 @@ export class TransferMoneyComponent implements OnInit {
   }
 
   fakeInit() {
-    this.deals = Constants.fakeListPt.splice(0, 4);
+    this.deals = Constants.fakeListPT.splice(0, 4);
     this.phongtro = Constants.fakePT;
     this.ngh_gui = Constants.fakeNgh;
     this.ngh_nhan = {
