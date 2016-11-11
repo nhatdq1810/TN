@@ -16,8 +16,6 @@ export class AsideComponent implements OnInit {
   private currentPT: any;
 
   constructor(private ptService: PhongtroService, private route: ActivatedRoute) {
-    this.init();
-    // this.fakeInit();
   }
 
   ngOnInit() {
@@ -95,7 +93,7 @@ export class AsideComponent implements OnInit {
   }
 
   fakeInit() {
-    this.deals = Constants.fakeListPt;
+    this.deals = Constants.fakeListPt.splice(0, 4);
   }
 
 }

@@ -23,12 +23,6 @@ export class CommentsComponent implements OnInit {
   private listCmtUserLike: Array<boolean>;
 
   constructor(private fb: FormBuilder, private cmtService: CommentService, private userService: UserService, private ptService: PhongtroService, private route: ActivatedRoute) {
-    this.complexForm = this.fb.group({
-      'comment': ''
-    });
-    this.comment = '';
-    // this.fakeInit();
-    this.init();
   }
 
   ngOnInit() {
@@ -38,6 +32,10 @@ export class CommentsComponent implements OnInit {
       }
     });
     this.route.params.subscribe(params => {
+      this.complexForm = this.fb.group({
+        'comment': ''
+      });
+      this.comment = '';
       this.init();
     });
     this.userService.checkLoggedIn.subscribe(result => {

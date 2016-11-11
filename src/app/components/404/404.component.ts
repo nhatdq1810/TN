@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PhongtroService } from '../../services/phongtro.service';
+
+let Constants = require('../../resources/constants');
 
 @Component({
   selector: 'app-404',
@@ -9,69 +13,48 @@ export class Error404Component implements OnInit {
 
   private deals: Array<any>;
 
-  constructor() {
-    this.init();
-    // this.fakeInit();
+  constructor(private ptService: PhongtroService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      // this.init();
+      this.fakeInit();
+    })
   }
 
   init() {
+    this.ptService.layPhongtroHot(4)
+      .then(result => {
+        this.deals = result;
+        if (this.deals.length === 0) {
+          this.ptService.layPhongtroMoi(4)
+            .then(result => {
+              this.deals = result;
+            })
+            .catch(err => {
+              console.error(err);
+            });
+        }
+      }).catch(err => {
+        console.error(err);
+        this.ptService.layPhongtroMoi(4)
+          .then(result => {
+            this.deals = result;
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      });
+  }
 
+  searchFull() {
+    this.ptService.searchTerm = undefined;
+    this.ptService.listPT = [];
   }
 
   fakeInit() {
-    this.deals = [
-      {
-        id: 2,
-        hinhanh: 'assets/img/index-03.jpg',
-        diachi: '123 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nam',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 2000000
-      },
-      {
-        id: 3,
-        hinhanh: 'assets/img/index-03.jpg',
-        diachi: '123 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nam',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 2000000
-      },
-      {
-        id: 4,
-        hinhanh: 'assets/img/index-03.jpg',
-        diachi: '123 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nam',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 2000000
-      },
-      {
-        id: 5,
-        hinhanh: 'assets/img/index-03.jpg',
-        diachi: '123 abc P.15 Quận Gò Vấp',
-        songuoi: 2,
-        dientich: 25,
-        gioitinh: 'nam',
-        truong: 'PTIT',
-        wifi: 1,
-        ngaydang: '01/10/2016',
-        giatien: 2000000
-      }
-    ];
+    this.deals = Constants.fakeListPt.splice(0, 4);
   }
 
 }
