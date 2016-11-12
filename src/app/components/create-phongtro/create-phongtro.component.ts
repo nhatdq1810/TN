@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Http } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Phongtro } from '../../models/phongtro';
 import { User } from '../../models/user';
@@ -22,9 +22,9 @@ export class CreatePhongtroComponent {
   private uploadEvents: EventEmitter<any>;
   private user: User;
   private complexForm: FormGroup;
-  private initGioitinh: boolean;
-  private initWifi: boolean;
-  private initChu: boolean;
+  private initGioitinh: string;
+  private initWifi: number;
+  private initChu: number;
   private hasHinhanh: boolean;
   private hasTkNgh: boolean;
   private editSuccess: boolean;
@@ -34,8 +34,14 @@ export class CreatePhongtroComponent {
   private errorMsgNgh: Array<Object>;
   private formInfo: string;
   private ptEdit: Phongtro;
+  private lat: number;
+  private lng: number;
+  private zoom: number = 15;
+  private addrMap: string;
+  private ptDiachi;
+  private dt;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
+  constructor(private route: ActivatedRoute, private http: Http, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
     this.init();
     // this.fakeInit();
   }
@@ -43,12 +49,84 @@ export class CreatePhongtroComponent {
   ngOnInit() {
   }
 
-  init() {
+  getLatLng(diachi) {
+    this.addrMap = diachi;
+    let url = `${Constants.geocodeUrl}${diachi},ViệtNam`;
+    this.http.get(url)
+      .map(resp => resp.json())
+      .subscribe(resp => {
+        let location = resp.results[0].geometry.location;
+        this.lat = location.lat;
+        this.lng = location.lng;
+      });
+  }
 
+  dragEnd(e: any) {
+    let placeUrl = `${Constants.placeUrl}${e.coords.lat},${e.coords.lng}`;
+    this.http.get(placeUrl)
+      .map(resp => resp.json())
+      .subscribe(resp => {
+        let tmpLocation = resp.results[0].formatted_address.toLowerCase();
+        let location = tmpLocation.split(', ');
+        let phuong, quan;
+        phuong = location[1];
+        quan = location[2];
+        if (location[1].split('phường ')[1]) {
+          phuong = location[1].split('phường ')[1];
+        }
+        if (location[2].split('quận ')[1]) {
+          quan = location[2].split('quận ')[1];
+        }
+        this.ptDiachi = {
+          sonha: location[0],
+          phuong: phuong,
+          quan: quan,
+          tp: location[3]
+        };
+      });
+  }
+
+  onChange(e: any, type: string) {
+    if (e !== '') {
+      if (type === 'sonha') {
+        this.ptDiachi.sonha = e;
+      }
+      else if (type === 'phuong') {
+        let phuong = e;
+        if (e.split('phường ')[1]) {
+          phuong = e.split('phường ')[1];
+        }
+        this.ptDiachi.phuong = phuong;
+      }
+      else if (type === 'quan') {
+        let quan = e;
+        if (e.split('quận ')[1]) {
+          quan = e.split('quận ')[1];
+        }
+        this.ptDiachi.quan = quan;
+      }
+      else {
+        this.ptDiachi.tp = e;
+      }
+      let diachi = `${this.ptDiachi.sonha}, phường ${this.ptDiachi.phuong}, quận ${this.ptDiachi.quan}, thành phố ${this.ptDiachi.tp}`;
+      this.getLatLng(diachi);
+    }
+  }
+
+  init() {
+    this.ptDiachi = {
+      sonha: '',
+      phuong: '',
+      quan: '',
+      tp: ''
+    };
+    this.dt = '';
     this.route.params.forEach((params: Params) => {
       this.formInfo = params['formInfo'];
       if (this.formInfo === 'edit') {
+        this.zoom = 17;
         this.ptEdit = this.ptService.currentPT;
+        this.getLatLng(this.ptEdit.diachi);
       }
     });
     this.user = this.userService.user;
@@ -70,6 +148,12 @@ export class CreatePhongtroComponent {
       let phuong = ptDiachi[1].split('phường ')[1];
       let quan = ptDiachi[2].split('quận ')[1];
       let tp = ptDiachi[3].split('thành phố ')[1];
+      this.ptDiachi = {
+        sonha: sonha,
+        phuong: phuong,
+        quan: quan,
+        tp: tp
+      };
       this.complexForm = this.fb.group({
         'sonha': [sonha, Validators.required],
         'phuong': [phuong, Validators.required],
@@ -90,22 +174,10 @@ export class CreatePhongtroComponent {
         'ghichu': this.ptEdit.ghichu,
         'userID': this.user.id
       });
-
-      if (this.ptEdit.gioitinh === 'nam') {
-        this.initGioitinh = true;
-      } else {
-        this.initGioitinh = false;
-      }
-      if (this.ptEdit.wifi === 1) {
-        this.initWifi = true;
-      } else {
-        this.initWifi = false;
-      }
-      if (this.ptEdit.chu === 1) {
-        this.initChu = true;
-      } else {
-        this.initChu = false;
-      }
+      this.dt = this.ptEdit.khoa;
+      this.initGioitinh = this.ptEdit.gioitinh;
+      this.initWifi = this.ptEdit.wifi;
+      this.initChu = this.ptEdit.chu;
       this.hasHinhanh = true;
       this.hasTkNgh = true;
       this.editSuccess = false;
@@ -121,7 +193,7 @@ export class CreatePhongtroComponent {
       this.uploadEvents = new EventEmitter();
       this.previewData = this.ptEdit.hinhanh;
     } else {
-
+      this.getLatLng('Hồ Chí Minh');
       this.options = {
         url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
         filterExtensions: true,
@@ -144,13 +216,12 @@ export class CreatePhongtroComponent {
         'truong': '',
         'nganh': '',
         'khoa': '',
-        'gioitinh': 'nam',
+        'gioitinh': '',
         'wifi': 1,
         'chu': 1,
         'ghichu': '',
         'userID': this.user.id
       });
-
       this.hasHinhanh = true;
       this.hasTkNgh = true;
       this.editSuccess = false;
@@ -163,9 +234,9 @@ export class CreatePhongtroComponent {
       this.successMsg = [{
         msg: ''
       }];
-      this.initGioitinh = true;
-      this.initWifi = true;
-      this.initChu = true;
+      this.initGioitinh = '';
+      this.initWifi = 1;
+      this.initChu = 1;
 
       this.uploadEvents = new EventEmitter();
       this.previewData = null;
@@ -179,7 +250,7 @@ export class CreatePhongtroComponent {
       this.errorMsg = [{
         msg: 'Bạn chưa thêm ảnh cho phòng trọ'
       }];
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 300);
     } else {
       this.hasHinhanh = true;
     }
@@ -189,7 +260,7 @@ export class CreatePhongtroComponent {
         this.errorMsgNgh = [{
           msg: 'Bạn chưa thêm tài khoản ngân hàng cho việc đặt cọc'
         }];
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 300);
       } else {
         this.hasTkNgh = true;
       }
@@ -228,7 +299,7 @@ export class CreatePhongtroComponent {
             }, {
               msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
             }];
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 300);
             setTimeout(() => {
               this.router.navigate(['/phongtro/detail', resp.id]);
             }, 5000);
@@ -242,7 +313,7 @@ export class CreatePhongtroComponent {
             }, {
               msg: 'Bạn sẽ được chuyển về trang chủ. Chúng tôi rất tiếc !'
             }];
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 300);
             setTimeout(() => {
               this.router.navigate(['/home']);
             }, 5000);
@@ -258,7 +329,7 @@ export class CreatePhongtroComponent {
             }, {
               msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
             }];
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 300);
             setTimeout(() => {
               this.router.navigate(['/phongtro/detail', resp.id]);
             }, 5000);
@@ -272,7 +343,7 @@ export class CreatePhongtroComponent {
             }, {
               msg: 'Bạn sẽ được chuyển về trang chủ. Chúng tôi rất tiếc !'
             }];
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 300);
             setTimeout(() => {
               this.router.navigate(['/home']);
             }, 5000);
@@ -309,7 +380,14 @@ export class CreatePhongtroComponent {
   }
 
   fakeInit() {
-
+    this.ptDiachi = {
+      sonha: '',
+      phuong: '',
+      quan: '',
+      tp: ''
+    };
+    this.dt = '';
+    this.getLatLng('97 Man Thiện, phường Hiệp Phú, Quận 9, Hồ Chí Minh');
     this.route.params.forEach((params: Params) => {
       this.formInfo = params['formInfo'];
       if(this.formInfo === 'edit') {
@@ -352,22 +430,10 @@ export class CreatePhongtroComponent {
         'ghichu': this.ptEdit.ghichu,
         'userID': this.user.id
       });
-
-      if(this.ptEdit.gioitinh === 'nam') {
-        this.initGioitinh = true;
-      } else {
-        this.initGioitinh = false;
-      }
-      if (this.ptEdit.wifi === 1) {
-        this.initWifi = true;
-      } else {
-        this.initWifi = false;
-      }
-      if (this.ptEdit.chu === 1) {
-        this.initChu = true;
-      } else {
-        this.initChu = false;
-      }
+      this.dt = this.ptEdit.khoa;
+      this.initGioitinh = this.ptEdit.gioitinh;
+      this.initWifi = this.ptEdit.wifi;
+      this.initChu = this.ptEdit.chu;
       this.hasHinhanh = true;
       this.hasTkNgh = true;
       this.editSuccess = false;
@@ -405,15 +471,15 @@ export class CreatePhongtroComponent {
         'truong': '',
         'nganh': '',
         'khoa': '',
-        'gioitinh': 'nam',
+        'gioitinh': '',
         'wifi': 1,
         'chu': 1,
         'ghichu': '',
         'userID': this.user.id
       });
-      this.initGioitinh = true;
-      this.initWifi = true;
-      this.initChu = true;
+      this.initGioitinh = '';
+      this.initWifi = 1;
+      this.initChu = 1;
       this.hasHinhanh = true;
       this.hasTkNgh = true;
       this.editSuccess = false;

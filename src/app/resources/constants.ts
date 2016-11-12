@@ -9,7 +9,8 @@ export let patternPassword = /^(?=.*\d)(?=.*[a-zA-Z])(?!.*\s)([\w@!#$%^&/\\]){8,
 export let apiUrl = 'http://localhost:8080/trosv/api/';
 export let headers = new Headers({ 'Content-Type': 'application/json' });
 export let googleApiKey = 'AIzaSyA9jeLAznvDLTykLxHlDZkxe-Ewo9OSB0Y';
-export let geocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
+export let geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${googleApiKey}&address=`;
+export let placeUrl = `http://maps.googleapis.com/maps/api/geocode/json?latlng=`;
 export let fakeUser: User = {
   diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
   dotincay: 1,

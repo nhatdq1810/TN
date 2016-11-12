@@ -96,7 +96,7 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   getLatLng() {
-    let url = `${Constants.geocodeUrl}${this.phongtro.diachi},ViệtNam&key=${Constants.googleApiKey}`;
+    let url = `${Constants.geocodeUrl}${this.phongtro.diachi},ViệtNam`;
 
     this.http.get(url)
       .map(resp => resp.json())

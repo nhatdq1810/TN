@@ -35,19 +35,24 @@
           <input class="form-control" type="text" placeholder="Công nghệ thông tin" [formControl]="complexForm.controls['nganh']">
         </div>
         <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['khoa'].valid && complexForm.controls['khoa'].touched}">
-          <label>Chung niên khóa</label>
-          <input class="form-control" type="text" placeholder="2012 - 2017" [formControl]="complexForm.controls['khoa']">
+          <label>Chung niên học</label>
+          <input class="form-control" type="text" placeholder="2012" [formControl]="complexForm.controls['khoa']">
         </div>
         <div class="form-group">
           <label>Ở với chủ</label>
           <div class="radio">
             <label>
-              <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="initChu">Có
+              <input type="radio" name="chu" value="-1" [formControl]="complexForm.controls['chu']" [checked]="initWifi === -1">Bất kỳ
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']" [checked]="!initChu">Không
+              <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="initChu === 1">Có
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']" [checked]="initChu === 0">Không
             </label>
           </div>
         </div>
@@ -55,12 +60,17 @@
           <label>Wifi</label>
           <div class="radio">
             <label>
-              <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="initWifi">Có
+              <input type="radio" name="wifi" value="-1" [formControl]="complexForm.controls['wifi']" [checked]="initWifi === -1">Bất kỳ
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']" [checked]="!initWifi">Không
+              <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="initWifi === 1">Có
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']" [checked]="initWifi === 0">Không
             </label>
           </div>
         </div>
@@ -68,12 +78,17 @@
           <label>Giới tính</label>
           <div class="radio">
             <label>
-              <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh"> Nam
+              <input type="radio" name="gioitinh" value="" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh === ''"> Bất kỳ
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="!initGioitinh"> Nữ
+              <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh === 'nam'"> Nam
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh === 'nữ'"> Nữ
             </label>
           </div>
         </div>

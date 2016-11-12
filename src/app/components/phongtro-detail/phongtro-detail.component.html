@@ -41,7 +41,7 @@
         <a *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang')">Đặt cọc ngay</a>
       </div>
       <div *ngIf="phongtro.hinhanh && phongtro.hinhanh !== ''" class="phongtro-img margin-bottom">
-        <img [src]="phongtro?.hinhanh" class="img-responsive">
+        <img [src]="phongtro?.hinhanh" [alt]="phongtro.diachi" class="img-responsive">
       </div>
       <div class="phongtro-info">
         <accordion [closeOthers]="false">
@@ -60,6 +60,10 @@
                 <div class="border-b-dotted">
                   <i *ngIf="phongtro.gioitinh === 'nam'" class="fa fa-mars"></i>
                   <i *ngIf="phongtro.gioitinh === 'nữ'" class="fa fa-venus"></i>
+                  <div *ngIf="phongtro.gioitinh === ''">
+                    <i class="fa fa-mars"></i>|
+                    <i class="fa fa-venus"></i>
+                  </div>
                   <p>Số lượng</p>
                 </div>
                 <div class="phongtro-value">

@@ -3,7 +3,7 @@
     <li *ngFor="let item of deals">
       <a [routerLink]="['/phongtro/detail', item.id]">
         <div class="phongtro-img">
-          <img [src]="item.hinhanh" alt="image" class="img-responsive">
+          <img [src]="item.hinhanh" [alt]="item.diachi" class="img-responsive">
         </div>
         <div class="phongtro-info border-b-dotted">
           <h3>{{item.diachi | uppercase}}</h3>
@@ -15,6 +15,10 @@
             <li>
               <i *ngIf="item.gioitinh === 'nam'" class="fa fa-mars"></i>
               <i *ngIf="item.gioitinh === 'nữ'" class="fa fa-venus"></i>
+              <div *ngIf="item.gioitinh === ''">
+                <i class="fa fa-mars"></i>|
+                <i class="fa fa-venus"></i>
+              </div>
               <span>{{item.songuoi}}</span>
             </li>
             <li>

@@ -24,7 +24,12 @@
             <label>Giới tính</label>
             <div class="radio">
               <label>
-                <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="true"> Nam
+                <input type="radio" name="gioitinh" value="" [formControl]="complexForm.controls['gioitinh']" [checked]="true">Bất kỳ
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']"> Nam
               </label>
             </div>
             <div class="radio">

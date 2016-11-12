@@ -28,6 +28,7 @@
       <form *ngIf="formInfo !== 'password'" class="user-info-form" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
         <div class="form-group margin-right">
           <p>Họ tên</p>
+          <i class="fa fa-asterisk"></i>
           <input class="input-modal" type="text" [formControl]="complexForm.controls['hoten']" name="hoten" placeholder="Họ tên">
           <alert [type]="'danger'" *ngIf="complexForm.controls['hoten'].hasError('required') && complexForm.controls['hoten'].touched">
             Bạn chưa nhập họ tên.
@@ -35,6 +36,7 @@
         </div>
         <div class="form-group">
           <p>Email</p>
+          <i class="fa fa-asterisk"></i>
           <input class="input-modal" type="email" [formControl]="complexForm.controls['email']" name="email" placeholder="Email">
           <alert [type]="'danger'" *ngIf="complexForm.controls['email'].hasError('required') && complexForm.controls['email'].touched">
             Bạn chưa nhập email.

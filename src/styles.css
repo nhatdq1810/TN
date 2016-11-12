@@ -61,6 +61,13 @@
   font-weight: 700;
 }
 
+.fa.fa-asterisk {
+  bottom: 5px;
+  position: relative;
+  color: #c7254e;
+  font-size: 10px;
+}
+
 
 /* CSS Resets */
 

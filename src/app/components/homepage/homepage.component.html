@@ -1,5 +1,5 @@
 <section class="tm-banner">
-  <img src="assets/img/banner.jpg" alt="Image" />
+  <img src="assets/img/banner.jpg" alt="banner" />
   <div class="form-validation">
     <app-form-validation></app-form-validation>
   </div>
@@ -36,6 +36,10 @@
                 <li>
                   <i *ngIf="item.gioitinh === 'nam'" class="fa fa-mars"></i>
                   <i *ngIf="item.gioitinh === 'nữ'" class="fa fa-venus"></i>
+                  <div *ngIf="item.gioitinh === ''">
+                    <i class="fa fa-mars"></i>|
+                    <i class="fa fa-venus"></i>
+                  </div>
                   <span>{{item.songuoi}}</span>
                 </li>
                 <li>

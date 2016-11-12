@@ -22,7 +22,7 @@ export class FormValidationComponent implements OnInit {
       'giatien': 500000,
       'truong': '',
       'nganh': '',
-      'gioitinh': 'nam'
+      'gioitinh': ''
     });
     this.sliderValue = [500000, 5000000];
   }
@@ -41,20 +41,11 @@ export class FormValidationComponent implements OnInit {
     value.giatien_max = value.giatien[1];
     delete value.giatien;
     value.khoa = '';
-    value.wifi = 1;
-    value.chu = 1;
-    this.ptService.timkiemPhongtro(value, 12)
-      .then((result: string) => {
-        if (result === 'success') {
-          this.router.navigate(['/search/result']);
-        }
-      }).
-      catch(err => {
-        console.error(err);
-        this.ptService.searchTerm = value;
-        this.ptService.listPT = [];
-        this.router.navigate(['/search/result']);
-      });
+    value.wifi = -1;
+    value.chu = -1;
+    this.ptService.searchTerm = value;
+    this.ptService.listPT = [];
+    this.router.navigate(['/search/result']);
   }
 
 }

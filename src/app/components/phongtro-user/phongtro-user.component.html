@@ -18,7 +18,7 @@
       <li *ngFor="let item of listPT">
         <div class="phongtro-block left">
           <a [routerLink]="['/phongtro/detail', item.id]">
-            <img [src]="item.hinhanh" class="left">
+            <img [src]="item.hinhanh" [alt]="item.diachi" class="left">
             <div class="phongtro-info left">
               <p><span>Giá tiền:</span>{{item.giatien | number}}</p>
               <p><span>Địa chỉ:</span>{{item.diachi}}</p>

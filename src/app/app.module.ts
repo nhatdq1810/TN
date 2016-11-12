@@ -12,7 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AccordionModule, ModalModule, AlertModule, DropdownModule  } from 'ng2-bootstrap/ng2-bootstrap';
+import { AccordionModule, ModalModule, AlertModule, DropdownModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { routing } from './app.routing';
 import { Nouislider } from 'ng2-nouislider';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
@@ -70,6 +70,7 @@ import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.
     ModalModule,
     AlertModule,
     DropdownModule,
+    DatepickerModule,
     AgmCoreModule.forRoot({
       apiKey: Constants.googleApiKey
     })
