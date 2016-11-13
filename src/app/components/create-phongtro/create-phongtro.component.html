@@ -61,7 +61,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label>Giá thuê</label>
+              <label>Giá thuê nguyên phòng</label>
               <i class="fa fa-asterisk"></i>
               <input class="input-modal" type="number" [formControl]="complexForm.controls['giatien']" name="giatien" placeholder="2,000,000">
               <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">

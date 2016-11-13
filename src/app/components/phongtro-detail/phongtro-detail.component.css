@@ -68,7 +68,7 @@ sebm-google-map {
 
 .phongtro-header .bounce {
   position: absolute;
-  right: 180px;
+  right: 225px;
   bottom: 25px;
   margin: 0 auto;
   -webkit-border-radius: 50%;
@@ -82,6 +82,10 @@ sebm-google-map {
   -webkit-transition: color .2s ease-in-out, border .2s ease-in-out;
   -moz-transition: color .2s ease-in-out, border .2s ease-in-out;
   -o-transition: color .2s ease-in-out, border .2s ease-in-out;
+}
+
+.phongtro-header.giatien .bounce {
+  right: 275px;
 }
 
 @keyframes bounce {

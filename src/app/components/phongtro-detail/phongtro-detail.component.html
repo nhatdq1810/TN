@@ -31,14 +31,23 @@
           </div>
         </div>
       </div>
-      <div class="phongtro-header margin-bottom">
+      <div *ngIf="phongtro.loaiPhong == 0 || phongtro.loaiPhong == 2"  class="phongtro-header margin-bottom giatien">
         <div class="phongtro-price left">
           <strong>{{phongtro.giatien | number}}</strong>
         </div>
         <div *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="bounce">
           <i class="fa fa-hand-o-right fa-3x"></i>
         </div>
-        <a *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang')">Đặt cọc ngay</a>
+        <a *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang')">Đặt cọc nguyên phòng</a>
+      </div>
+      <div *ngIf="phongtro.loaiPhong == 1 || phongtro.loaiPhong == 2"  class="phongtro-header margin-bottom">
+        <div class="phongtro-price left">
+          <strong>{{phongtro.giatienTheoNguoi | number}}</strong>
+        </div>
+        <div *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.songuoi > 0" class="bounce">
+          <i class="fa fa-hand-o-right fa-3x"></i>
+        </div>
+        <a *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang')">Đặt cọc chỗ ngay</a>
       </div>
       <div *ngIf="phongtro.hinhanh && phongtro.hinhanh !== ''" class="phongtro-img margin-bottom">
         <img [src]="phongtro?.hinhanh" [alt]="phongtro.diachi" class="img-responsive">

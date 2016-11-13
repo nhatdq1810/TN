@@ -14,11 +14,12 @@ export class SearchResultComponent implements OnInit {
 
   private listPT: any[];
   private complexForm: FormGroup;
+  private initLoaiPhong: number;
   private initGioitinh: string;
   private initChu: number;
   private initWifi: number;
   private giatienValue: number[];
-  private tiencocValue: number[];
+  private giatienTheoNguoiValue: number[];
   private dientichValue: number[];
   private searchTerm: any;
 
@@ -39,9 +40,14 @@ export class SearchResultComponent implements OnInit {
 
   initSearchTerm() {
     this.complexForm = this.fb.group({
+      'loaiPhong': 2,
       'giatien': 500000,
-      'tiencoc': 0,
+      'giatienTheoNguoi': 500000,
       'dientich': 5,
+      'duong': '',
+      'phuong': '',
+      'quan': '',
+      'tp': '',
       'truong': '',
       'nganh': '',
       'khoa': '',
@@ -50,11 +56,12 @@ export class SearchResultComponent implements OnInit {
       'chu': -1
     });
 
+    this.initLoaiPhong = 2;
     this.initGioitinh = '';
     this.initChu = -1;
     this.initWifi = -1;
     this.giatienValue = [500000, 5000000];
-    this.tiencocValue = [0, 5000000];
+    this.giatienTheoNguoiValue = [500000, 5000000];
     this.dientichValue = [5, 20];
   }
 
@@ -66,9 +73,14 @@ export class SearchResultComponent implements OnInit {
       this.initSearchTerm();
     } else {
       this.complexForm = this.fb.group({
+        'loaiPhong': this.searchTerm.loaiPhong,
         'giatien': this.searchTerm.giatien_min,
-        'tiencoc': this.searchTerm.tiencoc_min,
+        'giatienTheoNguoi': this.searchTerm.giatienTheoNguoi_min,
         'dientich': this.searchTerm.dientich_min,
+        'duong': '',
+        'phuong': '',
+        'quan': '',
+        'tp': '',
         'truong': this.searchTerm.truong,
         'nganh': this.searchTerm.nganh,
         'khoa': this.searchTerm.khoa,
@@ -77,6 +89,7 @@ export class SearchResultComponent implements OnInit {
         'chu': this.searchTerm.chu
       });
 
+      this.initLoaiPhong = this.searchTerm.loaiPhong;
       this.initGioitinh = this.searchTerm.gioitinh;
       this.initChu = this.searchTerm.chu;
       this.initWifi = this.searchTerm.wifi;
@@ -87,12 +100,6 @@ export class SearchResultComponent implements OnInit {
       if (this.searchTerm.giatien_max > 5000000) {
         this.searchTerm.giatien_max = 5000000;
       }
-      if (this.searchTerm.tiencoc_min > 5000000) {
-        this.searchTerm.tiencoc_min = 5000000;
-      }
-      if (this.searchTerm.tiencoc_max > 5000000) {
-        this.searchTerm.tiencoc_max = 5000000;
-      }
       if (this.searchTerm.dientich_min > 20) {
         this.searchTerm.dientich_min = 20;
       }
@@ -100,25 +107,55 @@ export class SearchResultComponent implements OnInit {
         this.searchTerm.dientich_max = 20;
       }
       this.giatienValue = [this.searchTerm.giatien_min, this.searchTerm.giatien_max];
-      this.tiencocValue = [this.searchTerm.tiencoc_min, this.searchTerm.tiencoc_max];
+      this.giatienTheoNguoiValue = [this.searchTerm.giatienTheoNguoi_min, this.searchTerm.giatienTheoNguoi_max];
       this.dientichValue = [this.searchTerm.dientich_min, this.searchTerm.dientich_max];
     }
     if(!this.listPT || this.listPT.length === 0) {
       this.complexForm.value.giatien = [500000, 5000000];
-      this.complexForm.value.tiencoc = [0, 5000000];
+      this.complexForm.value.giatienTheoNguoi = [0, 5000000];
       this.complexForm.value.dientich = [5, 20];
       this.submitForm(this.complexForm.value);
     }
   }
 
   submitForm(value: any) {
+    let diachi: string = '';
+    let giatien_min, giatien_max, giatienTheoNguoi_min, giatienTheoNguoi_max;
+    diachi += value.duong;
+    if (value.phuong !== '') {
+      diachi += ', phường ' + value.phuong.toLowerCase();
+    }
+    if (value.quan !== '') {
+      diachi += ', quận ' + value.quan.toLowerCase();
+    }
+    if (value.tp !== '') {
+      diachi += ', thành phố ' + value.tp.toLowerCase();
+    }
+    if(value.loaiPhong === '0') {
+      giatien_min = value.giatien[0];
+      giatien_max = value.giatien[1];
+      giatienTheoNguoi_min = 0;
+      giatienTheoNguoi_max = 5000000;
+    } else if(value.loaiPhong === '1') {
+      giatien_min = 0;
+      giatien_max = 5000000;
+      giatienTheoNguoi_min = value.giatienTheoNguoi[0];
+      giatienTheoNguoi_max = value.giatienTheoNguoi[1];
+    } else {
+      giatien_min = value.giatien[0];
+      giatien_max = value.giatien[1];
+      giatienTheoNguoi_min = value.giatienTheoNguoi[0];
+      giatienTheoNguoi_max = value.giatienTheoNguoi[1];
+    }
     let searchTerm: any = {
-      giatien_min: value.giatien[0],
-      giatien_max: value.giatien[1],
-      tiencoc_min: value.tiencoc[0],
-      tiencoc_max: value.tiencoc[1],
+      loaiPhong: +(value.loaiPhong),
+      giatien_min: giatien_min,
+      giatien_max: giatien_max,
+      giatienTheoNguoi_min: giatienTheoNguoi_min,
+      giatienTheoNguoi_max: giatienTheoNguoi_max,
       dientich_min: value.dientich[0],
       dientich_max: value.dientich[1],
+      diachi: diachi,
       truong: value.truong,
       nganh: value.nganh,
       khoa: value.khoa,
@@ -147,9 +184,14 @@ export class SearchResultComponent implements OnInit {
       this.initSearchTerm();
     } else {
       this.complexForm = this.fb.group({
+        'loaiPhong': this.searchTerm.loaiPhong,
         'giatien': this.searchTerm.giatien_min,
-        'tiencoc': 0,
+        'giatienTheoNguoi': 0,
         'dientich': 10,
+        'duong': '',
+        'phuong': '',
+        'quan': '',
+        'tp': '',
         'truong': this.searchTerm.truong,
         'nganh': this.searchTerm.nganh,
         'khoa': '',
@@ -158,9 +200,10 @@ export class SearchResultComponent implements OnInit {
         'chu': -1
       });
 
+      this.initLoaiPhong = this.searchTerm.loaiPhong;
       this.initGioitinh = this.searchTerm.gioitinh;
       this.giatienValue = [this.searchTerm.giatien_min, this.searchTerm.giatien_max];
-      this.tiencocValue = [0, 5000000];
+      this.giatienTheoNguoiValue = [0, 5000000];
       this.dientichValue = [10, 20];
     }
   }

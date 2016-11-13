@@ -8,15 +8,43 @@
   border-bottom: 1px solid rgba(17, 17, 17, 0.41);
 }
 
+.tm-form-inner {
+  margin-bottom: 30px;
+}
+
+.loai-phong.tm-form-inner {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+.loai-phong .form-group {
+  width: 100%;
+}
+
+.loai-phong ul {
+  display: inline-block;
+  margin-left: 35px;
+}
+
+.loai-phong h1 {
+  display: inline-block;
+  font-weight: 600;
+}
+
 .form-group {
   display: inline-block;
   width: calc((100%/3) - 60px);
   margin-right: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
-.form-group:last-of-type {
-  margin-bottom: 0;
+.diachi .form-group {
+  width: calc((100%/4) - 60px);
+}
+
+.radio {
+  display: inline-block;
+  margin: 0 15px 0 0;
 }
 
 .form-group > label {
@@ -26,10 +54,6 @@
 .form-group span {
   color: #c7254e;
   font-weight: 600;
-}
-
-.radio {
-  margin-top: 0;
 }
 
 .list-pt app-grid-list >>> .deals-list .get-more-btn {

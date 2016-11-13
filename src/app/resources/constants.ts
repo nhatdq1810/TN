@@ -97,6 +97,8 @@ export let fakeListUser: Array<User> = [{
 }];
 export let fakePT: Phongtro = {
   id: 3,
+  loaiPhong: 2,
+  giatienTheoNguoi: 500000,
   hinhanh: 'assets/img/index-03.jpg',
   diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
   songuoi: 2,
@@ -114,11 +116,14 @@ export let fakePT: Phongtro = {
   giatien: 2000000,
   nganhangID: '12345678',
   thich: 5,
-  userThich: false
+  userThich: false,
+  tiencocTheoNguoi: 500000
 };
 export let fakeListPT: Array<Phongtro> = [
   {
     id: 12,
+    loaiPhong: 2,
+    giatienTheoNguoi: 500000,
     hinhanh: 'assets/img/index-08.jpg',
     diachi: '1236 abc P.15 Quận Gò Vấp',
     songuoi: 2,
@@ -136,10 +141,13 @@ export let fakeListPT: Array<Phongtro> = [
     giatien: 2000000,
     nganhangID: '12345678',
     thich: 3,
-    userThich: false
+    userThich: false,
+    tiencocTheoNguoi: 500000
   },
   {
     id: 13,
+    loaiPhong: 2,
+    giatienTheoNguoi: 500000,
     hinhanh: 'assets/img/index-09.jpg',
     diachi: '1234 abc P.15 Quận Gò Vấp',
     songuoi: 2,
@@ -157,10 +165,13 @@ export let fakeListPT: Array<Phongtro> = [
     giatien: 2000000,
     nganhangID: '12345678',
     thich: 3,
-    userThich: false
+    userThich: false,
+    tiencocTheoNguoi: 500000
   },
   {
     id: 14,
+    loaiPhong: 2,
+    giatienTheoNguoi: 500000,
     hinhanh: 'assets/img/index-10.jpg',
     diachi: '1235 abc P.15 Quận Gò Vấp',
     songuoi: 2,
@@ -178,10 +189,13 @@ export let fakeListPT: Array<Phongtro> = [
     giatien: 2000000,
     nganhangID: '12345678',
     thich: 3,
-    userThich: false
+    userThich: false,
+    tiencocTheoNguoi: 500000
   },
   {
     id: 15,
+    loaiPhong: 2,
+    giatienTheoNguoi: 500000,
     hinhanh: 'assets/img/index-07.jpg',
     diachi: '123 abc P.15 Quận Gò Vấp',
     songuoi: 2,
@@ -199,10 +213,13 @@ export let fakeListPT: Array<Phongtro> = [
     giatien: 2000000,
     nganhangID: '12345678',
     thich: 3,
-    userThich: false
+    userThich: false,
+    tiencocTheoNguoi: 500000
   },
   {
     id: 16,
+    loaiPhong: 2,
+    giatienTheoNguoi: 500000,
     hinhanh: 'assets/img/index-08.jpg',
     diachi: '1236 abc P.15 Quận Gò Vấp',
     songuoi: 2,
@@ -220,10 +237,13 @@ export let fakeListPT: Array<Phongtro> = [
     giatien: 2000000,
     nganhangID: '12345678',
     thich: 3,
-    userThich: false
+    userThich: false,
+    tiencocTheoNguoi: 500000
   },
   {
     id: 17,
+    loaiPhong: 2,
+    giatienTheoNguoi: 500000,
     hinhanh: 'assets/img/index-09.jpg',
     diachi: '1234 abc P.15 Quận Gò Vấp',
     songuoi: 2,
@@ -241,10 +261,13 @@ export let fakeListPT: Array<Phongtro> = [
     giatien: 2000000,
     nganhangID: '12345678',
     thich: 3,
-    userThich: false
+    userThich: false,
+    tiencocTheoNguoi: 500000
   },
   {
     id: 18,
+    loaiPhong: 2,
+    giatienTheoNguoi: 500000,
     hinhanh: 'assets/img/index-10.jpg',
     diachi: '1235 abc P.15 Quận Gò Vấp',
     songuoi: 2,
@@ -262,7 +285,8 @@ export let fakeListPT: Array<Phongtro> = [
     giatien: 2000000,
     nganhangID: '12345678',
     thich: 3,
-    userThich: false
+    userThich: false,
+    tiencocTheoNguoi: 500000
   }
 ];
 export let fakeNgh: Nganhang = {

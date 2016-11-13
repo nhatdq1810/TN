@@ -32,7 +32,8 @@
             </li>
           </ul>
         </div>
-        <h3 class="phongtro-price">{{item.giatien | number}}</h3>
+        <h3 class="phongtro-price" *ngIf="item.loaiPhong == 0 || item.loaiPhong == 2">{{item.giatien | number}}</h3>
+        <h3 class="phongtro-price" *ngIf="item.loaiPhong == 1">{{item.giatienTheoNguoi | number}}</h3>
       </a>
     </li>
     <li class="get-more-btn">

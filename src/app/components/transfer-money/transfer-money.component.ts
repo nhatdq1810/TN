@@ -24,7 +24,6 @@ export class TransferMoneyComponent implements OnInit {
   private ngh_gui: Nganhang;
   private ngh_nhan: Nganhang;
   private phongtro: Phongtro;
-  private deals: Array<any> = [];
   private id_gui;
   private hoten_gui;
   private hoten_nhan;
@@ -61,59 +60,6 @@ export class TransferMoneyComponent implements OnInit {
     } else {
       tiencoc_max = this.phongtro.tiencoc;
     }
-    let searchTerm = {
-      giatien_min: 500000,
-      giatien_max: this.phongtro.giatien + 1000000,
-      tiencoc_min: 0,
-      tiencoc_max: tiencoc_max + 1000000,
-      dientich_min: 5,
-      dientich_max: this.phongtro.dientich + 5,
-      truong: '',
-      nganh: '',
-      khoa: '',
-      gioitinh: this.phongtro.gioitinh,
-      wifi: +(this.phongtro.wifi),
-      chu: +(this.phongtro.chu)
-    };
-    this.ptService.timkiemPhongtro(searchTerm, 4)
-      .then(result => {
-        if (result === 'success') {
-          this.deals = this.ptService.listPT;
-          this.deals.forEach((deal, index) => {
-            if (deal.id === this.phongtro.id) {
-              this.deals.splice(index, 1);
-            }
-          });
-          if (this.deals.length === 0) {
-            this.ptService.layPhongtroHot(4)
-              .then(listPT => {
-                this.deals = listPT;
-                this.deals.forEach((deal, index) => {
-                  if (deal.id === this.phongtro.id) {
-                    this.deals.splice(index, 1);
-                  }
-                });
-              })
-              .catch(err => {
-                console.error(err);
-              });
-          }
-        }
-      }).catch(err => {
-        console.error(err);
-        this.ptService.layPhongtroHot(4)
-          .then(listPT => {
-            this.deals = listPT;
-            this.deals.forEach((deal, index) => {
-              if (deal.id === this.phongtro.id) {
-                this.deals.splice(index, 1);
-              }
-            });
-          })
-          .catch(err => {
-            console.error(err);
-          });
-      });
   }
 
   submitForm() {
@@ -128,6 +74,7 @@ export class TransferMoneyComponent implements OnInit {
     let gd: Giaodich = {
       nganhangID_gui: this.ngh_gui.id,
       nganhangID_nhan: this.ngh_nhan.id,
+      phongtroID: this.phongtro.id,
       ngay: currentDate,
       tien: this.phongtro.tiencoc
     }
@@ -135,7 +82,7 @@ export class TransferMoneyComponent implements OnInit {
       this.successMsg = 'Đặt cọc thành công !';
       setTimeout(() => {
         this.goBack();
-      }, 3000);
+      }, 2000);
     }).catch(error => {
       this.errorModal.show();
     });
@@ -146,7 +93,6 @@ export class TransferMoneyComponent implements OnInit {
   }
 
   fakeInit() {
-    this.deals = Constants.fakeListPT.splice(0, 4);
     this.phongtro = Constants.fakePT;
     this.ngh_gui = Constants.fakeNgh;
     this.ngh_nhan = {
