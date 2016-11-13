@@ -22,6 +22,7 @@ export class CreatePhongtroComponent {
   private uploadEvents: EventEmitter<any>;
   private user: User;
   private complexForm: FormGroup;
+  private initLoaiPhong: number;
   private initGioitinh: string;
   private initWifi: number;
   private initChu: number;
@@ -40,18 +41,20 @@ export class CreatePhongtroComponent {
   private addrMap: string;
   private ptDiachi;
   private dt;
+  private mapInfoOpen: boolean;
 
   constructor(private route: ActivatedRoute, private http: Http, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
-    this.init();
-    // this.fakeInit();
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.init();
+    })
   }
 
   getLatLng(diachi) {
     this.addrMap = diachi;
-    let url = `${Constants.geocodeUrl}${diachi},ViệtNam`;
+    let url = `${Constants.geocodeUrl}${diachi},Việt Nam`;
     this.http.get(url)
       .map(resp => resp.json())
       .subscribe(resp => {
@@ -68,19 +71,10 @@ export class CreatePhongtroComponent {
       .subscribe(resp => {
         let tmpLocation = resp.results[0].formatted_address.toLowerCase();
         let location = tmpLocation.split(', ');
-        let phuong, quan;
-        phuong = location[1];
-        quan = location[2];
-        if (location[1].split('phường ')[1]) {
-          phuong = location[1].split('phường ')[1];
-        }
-        if (location[2].split('quận ')[1]) {
-          quan = location[2].split('quận ')[1];
-        }
         this.ptDiachi = {
           sonha: location[0],
-          phuong: phuong,
-          quan: quan,
+          phuong: location[1],
+          quan: location[2],
           tp: location[3]
         };
       });
@@ -92,28 +86,21 @@ export class CreatePhongtroComponent {
         this.ptDiachi.sonha = e;
       }
       else if (type === 'phuong') {
-        let phuong = e;
-        if (e.split('phường ')[1]) {
-          phuong = e.split('phường ')[1];
-        }
-        this.ptDiachi.phuong = phuong;
+        this.ptDiachi.phuong = e;
       }
       else if (type === 'quan') {
-        let quan = e;
-        if (e.split('quận ')[1]) {
-          quan = e.split('quận ')[1];
-        }
-        this.ptDiachi.quan = quan;
+        this.ptDiachi.quan = e;
       }
       else {
         this.ptDiachi.tp = e;
       }
-      let diachi = `${this.ptDiachi.sonha}, phường ${this.ptDiachi.phuong}, quận ${this.ptDiachi.quan}, thành phố ${this.ptDiachi.tp}`;
+      let diachi = `${this.ptDiachi.sonha}, ${this.ptDiachi.phuong}, ${this.ptDiachi.quan}, ${this.ptDiachi.tp}`;
       this.getLatLng(diachi);
     }
   }
 
   init() {
+    this.mapInfoOpen = true;
     this.ptDiachi = {
       sonha: '',
       phuong: '',
@@ -155,12 +142,15 @@ export class CreatePhongtroComponent {
         tp: tp
       };
       this.complexForm = this.fb.group({
+        'loaiPhong': this.ptEdit.loaiPhong,
         'sonha': [sonha, Validators.required],
         'phuong': [phuong, Validators.required],
         'quan': [quan, Validators.required],
         'tp': [tp, Validators.required],
-        'giatien': [this.ptEdit.giatien, Validators.required],
+        'giatien': this.ptEdit.giatien,
+        'giatienTheoNguoi': this.ptEdit.giatienTheoNguoi,
         'tiencoc': this.ptEdit.tiencoc,
+        'tiencocTheoNguoi': this.ptEdit.tiencocTheoNguoi,
         'nganhangID': this.ptEdit.nganhangID,
         'dientich': [this.ptEdit.dientich, Validators.required],
         'hinhanh': '',
@@ -175,6 +165,7 @@ export class CreatePhongtroComponent {
         'userID': this.user.id
       });
       this.dt = this.ptEdit.khoa;
+      this.initLoaiPhong = this.ptEdit.loaiPhong;
       this.initGioitinh = this.ptEdit.gioitinh;
       this.initWifi = this.ptEdit.wifi;
       this.initChu = this.ptEdit.chu;
@@ -203,12 +194,15 @@ export class CreatePhongtroComponent {
         previewUrl: true
       };
       this.complexForm = this.fb.group({
+        'loaiPhong': 2,
         'sonha': ['', Validators.required],
         'phuong': ['', Validators.required],
         'quan': ['', Validators.required],
         'tp': ['', Validators.required],
-        'giatien': ['', Validators.required],
+        'giatien': '',
+        'giatienTheoNguoi': '',
         'tiencoc': '',
+        'tiencocTheoNguoi': '',
         'nganhangID': '',
         'dientich': ['', Validators.required],
         'hinhanh': '',
@@ -234,6 +228,7 @@ export class CreatePhongtroComponent {
       this.successMsg = [{
         msg: ''
       }];
+      this.initLoaiPhong = 2;
       this.initGioitinh = '';
       this.initWifi = 1;
       this.initChu = 1;
@@ -254,7 +249,7 @@ export class CreatePhongtroComponent {
     } else {
       this.hasHinhanh = true;
     }
-    if(value.tiencoc !== 0) {
+    if (value.tiencoc !== 0 || value.tiencocTheoNguoi !== 0) {
       if(value.nganhangID === '') {
         this.hasTkNgh = false;
         this.errorMsgNgh = [{
@@ -277,13 +272,22 @@ export class CreatePhongtroComponent {
       value.phuong = value.phuong.toLowerCase();
       value.quan = value.quan.toLowerCase();
       value.tp = value.tp.toLowerCase();
-      value.diachi = value.sonha + ', phường ' + value.phuong + ', quận ' + value.quan + ', thành phố ' + value.tp;
-      if (value.truong !== '') {
-        value.truong = value.truong.toLowerCase();
+      value.truong = value.truong.toLowerCase();
+      value.nganh = value.nganh.toLowerCase();
+      let phuong, quan, tp;
+      phuong = value.phuong;
+      quan = value.quan;
+      tp = value.tp;
+      if(value.phuong.indexOf('phường') === -1) {
+        phuong = `phường ${value.phuong}`;
       }
-      if (value.nganh !== '') {
-        value.nganh = value.nganh.toLowerCase();
+      if (value.quan.indexOf('quận') === -1) {
+        quan = `quận ${value.quan}`;
       }
+      if (value.tp.indexOf('thành phố') === -1) {
+        tp = `thành phố ${value.tp}`;
+      }
+      value.diachi = value.sonha + ', ' + phuong + ', ' + quan + ', ' + tp;
       delete value.sonha;
       delete value.phuong;
       delete value.quan;
@@ -411,12 +415,15 @@ export class CreatePhongtroComponent {
       let quan = ptDiachi[2].split('quận ')[1];
       let tp = ptDiachi[3].split('thành phố ')[1];
       this.complexForm = this.fb.group({
+        'loaiPhong': this.ptEdit.loaiPhong,
         'sonha': [sonha, Validators.required],
         'phuong': [phuong, Validators.required],
         'quan': [quan, Validators.required],
         'tp': [tp, Validators.required],
-        'giatien': [this.ptEdit.giatien, Validators.required],
+        'giatien': this.ptEdit.giatien,
+        'giatienTheoNguoi': this.ptEdit.giatienTheoNguoi,
         'tiencoc': this.ptEdit.tiencoc,
+        'tiencocTheoNguoi': this.ptEdit.tiencocTheoNguoi,
         'nganhangID': this.ptEdit.nganhangID,
         'dientich': [this.ptEdit.dientich, Validators.required],
         'hinhanh': '',
@@ -431,6 +438,7 @@ export class CreatePhongtroComponent {
         'userID': this.user.id
       });
       this.dt = this.ptEdit.khoa;
+      this.initLoaiPhong = this.ptEdit.loaiPhong;
       this.initGioitinh = this.ptEdit.gioitinh;
       this.initWifi = this.ptEdit.wifi;
       this.initChu = this.ptEdit.chu;
@@ -458,12 +466,15 @@ export class CreatePhongtroComponent {
         previewUrl: true
       };
       this.complexForm = this.fb.group({
+        'loaiPhong': 2,
         'sonha': ['', Validators.required],
         'phuong': ['', Validators.required],
         'quan': ['', Validators.required],
         'tp': ['', Validators.required],
-        'giatien': ['', Validators.required],
+        'giatien': '',
+        'giatienTheoNguoi': '',
         'tiencoc': '',
+        'tiencocTheoNguoi': '',
         'nganhangID': '',
         'dientich': ['', Validators.required],
         'hinhanh': '',
@@ -477,6 +488,7 @@ export class CreatePhongtroComponent {
         'ghichu': '',
         'userID': this.user.id
       });
+      this.initLoaiPhong = 2;
       this.initGioitinh = '';
       this.initWifi = 1;
       this.initChu = 1;

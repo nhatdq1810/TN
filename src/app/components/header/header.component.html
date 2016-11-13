@@ -11,7 +11,7 @@
             <li><a [routerLink]="['/search/result']" routerLinkActive="active" (click)="searchFull();">Tìm kiếm</a></li>
             <li *ngIf="!isLoggedIn"><a (click)="registerModal.showModal();">Đăng ký</a></li>
             <li *ngIf="!isLoggedIn"><a (click)="loginModal.showModal();">Đăng nhập</a></li>
-            <li *ngIf="isLoggedIn"><a [routerLink]="['/phongtro/create']">Tạo phòng trọ</a></li>
+            <li *ngIf="isLoggedIn"><a [routerLink]="['/phongtro/create', {formInfo:'create'}]" [ngClass]="{'active': createPTActiveLink()}">Tạo phòng trọ</a></li>
             <li *ngIf="isLoggedIn">
               <div class="btn-group" dropdown keyboardNav="true">
                 <button id="single-button" type="button" class="btn btn-primary" dropdownToggle [disabled]="disabled">

@@ -34,6 +34,14 @@ export class HeaderComponent implements OnInit {
     this.userService.logout();
   }
 
+  createPTActiveLink() {
+    if(window.location.href.indexOf('formInfo=create') > -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   fakeInit() {
     this.isLoggedIn = true;
     this.user = {

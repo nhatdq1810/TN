@@ -15,10 +15,7 @@
             <li>
               <i *ngIf="item.gioitinh === 'nam'" class="fa fa-mars"></i>
               <i *ngIf="item.gioitinh === 'nữ'" class="fa fa-venus"></i>
-              <div *ngIf="item.gioitinh === ''">
-                <i class="fa fa-mars"></i>|
-                <i class="fa fa-venus"></i>
-              </div>
+              <i *ngIf="item.gioitinh === ''" class="fa fa-user-o"></i>
               <span>{{item.songuoi}}</span>
             </li>
             <li>

@@ -1,7 +1,7 @@
 <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
   <sebm-google-map-marker [markerDraggable]="true" (dragEnd)="dragEnd($event)" [latitude]="lat" [longitude]="lng">
-    <sebm-google-map-info-window [disableAutoPan]="false">
-      <strong>{{addrMap}}</strong>
+    <sebm-google-map-info-window [isOpen]="mapInfoOpen">
+      <strong>Kéo thả đến vị trí phòng trọ</strong>
     </sebm-google-map-info-window>
   </sebm-google-map-marker>
 </sebm-google-map>
@@ -23,6 +23,26 @@
       </alert>
     </div>
     <form class="create-phongtro-form" *ngIf="ptDiachi" [formGroup]="complexForm">
+      <div class="form-group col-md-12">
+        <h1>Loại phòng cho thuê</h1>
+        <ul>
+          <li class="radio">
+            <label>
+              <input type="radio" name="loaiPhong" value="2" [formControl]="complexForm.controls['loaiPhong']" [checked]="initLoaiPhong === 2"> Cả hai
+            </label>
+          </li>
+          <li class="radio">
+            <label>
+              <input type="radio" name="loaiPhong" value="0" [formControl]="complexForm.controls['loaiPhong']" [checked]="initLoaiPhong === 0"> Thuê nguyên phòng
+            </label>
+          </li>
+          <li class="radio">
+            <label>
+              <input type="radio" name="loaiPhong" value="1" [formControl]="complexForm.controls['loaiPhong']" [checked]="initLoaiPhong === 1"> Thuê từng người
+            </label>
+          </li>
+        </ul>
+      </div>
       <div class="form-group col-md-4">
         <div ngFileDrop *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" (onFileOver)="fileOverBase($event)" [events]="uploadEvents" [ngClass]="{'file-over': hasBaseDropZoneOver}" class="drop-zone">
         </div>
@@ -39,7 +59,7 @@
       </div>
       <div class="col-md-8">
         <div class="info-required">
-          <div class="form-group col-md-6">
+          <div class="col-md-6">
             <label>Địa chỉ</label>
             <i class="fa fa-asterisk"></i>
             <input class="input-modal" type="text" (ngModelChange)="onChange($event,'sonha')" [ngModel]="ptDiachi.sonha" [formControl]="complexForm.controls['sonha']" name="sonha" placeholder="Số nhà và tên đường">
@@ -60,12 +80,20 @@
             </alert>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
+            <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 0" class="form-group">
               <label>Giá thuê nguyên phòng</label>
               <i class="fa fa-asterisk"></i>
               <input class="input-modal" type="number" [formControl]="complexForm.controls['giatien']" name="giatien" placeholder="2,000,000">
               <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
                 Bạn chưa nhập giá thuê phòng trọ.
+              </alert>
+            </div>
+            <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 1" class="form-group">
+              <label>Giá thuê từng người</label>
+              <i class="fa fa-asterisk"></i>
+              <input class="input-modal" type="number" [formControl]="complexForm.controls['giatienTheoNguoi']" name="giatienTheoNguoi" placeholder="2,000,000">
+              <alert [type]="'danger'" *ngIf="">
+                Bạn chưa nhập giá thuê từng người.
               </alert>
             </div>
             <div class="form-group">
@@ -86,74 +114,90 @@
             </div>
           </div>
         </div>
-        <div class="form-group col-md-6">
-          <label>Tiền cọc</label>
-          <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="2,000,000">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Tài khoản ngân hàng</label>
-          <input class="input-modal" type="text" [formControl]="complexForm.controls['nganhangID']" name="nganhangID" placeholder="TKNGH123456">
-          <div *ngIf="!hasTkNgh">
-            <alert *ngFor="let item of errorMsgNgh" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert('ngh')">
-              {{item?.msg}}
-            </alert>
+        <div>
+          <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 0" class="form-group col-md-6">
+            <label>Tiền cọc phòng</label>
+            <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="2,000,000">
+          </div>
+          <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 1" class="form-group col-md-6">
+            <label>Tiền cọc từng người</label>
+            <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencocTheoNguoi']" name="tiencocTheoNguoi" placeholder="2,000,000">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Tài khoản ngân hàng</label>
+            <input class="input-modal" type="text" [formControl]="complexForm.controls['nganhangID']" name="nganhangID" placeholder="TKNGH123456">
+            <div *ngIf="!hasTkNgh">
+              <alert *ngFor="let item of errorMsgNgh" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert('ngh')">
+                {{item?.msg}}
+              </alert>
+            </div>
           </div>
         </div>
-        <div class="form-group col-md-6">
-          <label>Chung trường học</label>
-          <input class="input-modal" type="text" placeholder="Học viện công nghệ bưu chính viễn thông" [formControl]="complexForm.controls['truong']">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Chung ngành học</label>
-          <input class="input-modal" type="text" placeholder="Công nghệ thông tin" [formControl]="complexForm.controls['nganh']">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Chung niên học</label>
-          <input class="input-modal" type="text" placeholder="2012" [formControl]="complexForm.controls['khoa']" >
-        </div>
-      </div>
-      <div class="form-group col-md-4">
-        <label>Ở với chủ</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="initChu === 1">Có
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']" [checked]="initChu === 0">Không
-          </label>
+        <div>
+          <div class="form-group col-md-6">
+            <label>Chung trường học</label>
+            <input class="input-modal" type="text" placeholder="Học viện công nghệ bưu chính viễn thông" [formControl]="complexForm.controls['truong']">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Chung ngành học</label>
+            <input class="input-modal" type="text" placeholder="Công nghệ thông tin" [formControl]="complexForm.controls['nganh']">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Chung niên học</label>
+            <input class="input-modal" type="text" placeholder="2012" [formControl]="complexForm.controls['khoa']">
+          </div>
         </div>
       </div>
-      <div class="form-group col-md-4">
-        <label>Wifi</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="initWifi === 1">Có
-          </label>
+      <div>
+        <div class="form-group col-md-4">
+          <label>Ở với chủ</label>
+          <ul>
+            <li class="radio">
+              <label>
+                <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="initChu === 1">Có
+              </label>
+            </li>
+            <li class="radio">
+              <label>
+                <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']" [checked]="initChu === 0">Không
+              </label>
+            </li>
+          </ul>
         </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']" [checked]="initWifi === 0">Không
-          </label>
+        <div class="form-group col-md-4">
+          <label>Wifi</label>
+          <ul>
+            <li class="radio">
+              <label>
+                <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="initWifi === 1">Có
+              </label>
+            </li>
+            <li class="radio">
+              <label>
+                <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']" [checked]="initWifi === 0">Không
+              </label>
+            </li>
+          </ul>
         </div>
-      </div>
-      <div class="form-group col-md-4">
-        <label>Giới tính</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="gioitinh" value="" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh === ''"> Bất kỳ
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh === 'nam'"> Nam
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh === 'nữ'"> Nữ
-          </label>
+        <div class="form-group col-md-4">
+          <label>Giới tính</label>
+          <ul>
+            <li class="radio">
+              <label>
+                <input type="radio" name="gioitinh" value="" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh === ''"> Bất kỳ
+              </label>
+            </li>
+            <li class="radio">
+              <label>
+                <input type="radio" name="gioitinh" value="nam" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh === 'nam'"> Nam
+              </label>
+            </li>
+            <li class="radio">
+              <label>
+                <input type="radio" name="gioitinh" value="nữ" [formControl]="complexForm.controls['gioitinh']" [checked]="initGioitinh === 'nữ'"> Nữ
+              </label>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="form-group col-md-8">

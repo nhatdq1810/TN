@@ -69,11 +69,8 @@
                 <div class="border-b-dotted">
                   <i *ngIf="phongtro.gioitinh === 'nam'" class="fa fa-mars"></i>
                   <i *ngIf="phongtro.gioitinh === 'nữ'" class="fa fa-venus"></i>
-                  <div *ngIf="phongtro.gioitinh === ''">
-                    <i class="fa fa-mars"></i>|
-                    <i class="fa fa-venus"></i>
-                  </div>
-                  <p>Số lượng</p>
+                  <i *ngIf="phongtro.gioitinh === ''" class="fa fa-user-o"></i>
+                  <p>Số lượng {{phongtro.gioitinh}}</p>
                 </div>
                 <div class="phongtro-value">
                   <strong>{{phongtro.songuoi}}</strong>
