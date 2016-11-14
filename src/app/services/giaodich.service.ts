@@ -16,9 +16,9 @@ export class GiaodichService {
     return Observable.throw(error.message || error);
   }
 
-  chuyenTien(phongtroID, model) {
+  chuyenTien(model) {
     return new Promise((resolve, reject) => {
-      this.http.post(Constants.apiUrl + `giaodich/phongtro/${phongtroID}/chuyenTien`, JSON.stringify(model), { headers: Constants.headers })
+      this.http.post(Constants.apiUrl + `giaodich/phongtro/chuyenTien`, JSON.stringify(model), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {

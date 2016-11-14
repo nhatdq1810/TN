@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('loginModal') loginModal: ModalDirective;
   private modalOptions: ModalOptions;
   private loginForm: string;
+  private typeTiencoc: number;
   private complexForm: FormGroup;
   private isLoggedIn: boolean;
   private alertLoggedIn: Array<Object>;
@@ -115,7 +116,7 @@ export class LoginComponent implements OnInit {
         .then(resp => {
           if (resp) {
             this.closeModal();
-            this.router.navigate(['/transfer']);
+            this.router.navigate(['/transfer', { typeTiencoc : this.typeTiencoc}]);
           } else {
             this.isLoggedIn = false;
           }
@@ -130,8 +131,11 @@ export class LoginComponent implements OnInit {
     this.loginModal.hide();
   }
 
-  showModal(loginForm: string) {
+  showModal(loginForm: string, typeTiencoc: number) {
     this.loginForm = loginForm;
+    if(this.loginForm === 'nganhang') {
+      this.typeTiencoc = typeTiencoc;
+    }
     this.init();
     this.loginModal.show();
   }

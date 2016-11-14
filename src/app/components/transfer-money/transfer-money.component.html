@@ -1,32 +1,50 @@
 <div class="container transfer-form">
-  <alert *ngIf="successMsg && successMsg !== ''" [type]="'success'">
-    {{successMsg}}
-  </alert>
-  <h1 class="row">Chuyển tiền</h1>
-  <div class="row transfer" *ngIf="ngh_gui && ngh_nhan && phongtro">
-    <form>
+  <div class="row">
+    <alert *ngIf="successMsg && successMsg !== ''" [type]="'success'">
+      {{successMsg}}
+    </alert>
+    <h1>Đặt cọc phòng trọ</h1>
+    <div class="transfer" *ngIf="ngh_gui && ngh_nhan">
       <div class="ngh-gui col-md-4">
-        <span>Mã tài khoản gửi </span>
-        <input class="input-modal" type="text" [(ngModel)]="id_gui" [readonly]="true" name="id_gui">
-        <span>Họ tên người gửi </span>
-        <input class="input-modal" type="text" [(ngModel)]="hoten_gui" [readonly]="true" name="hoten_gui">
-      </div>
-      <div class="center-section col-md-4">
-        <div class="bounce">
-          <a (click)="submitForm()"><i class="fa fa-angle-double-right fa-5x" aria-hidden="true"></i></a>
-        </div>
-        <div class="pt-tiencoc">
-          <span>Số tiền gửi</span>
-          <input class="input-modal" type="text" [ngModel]="tiencoc | number" (ngModelChange)="tiencoc = $event" [readonly]="true" name="tiencoc">
+        <h2>Thông tin bên gửi</h2>
+        <div>
+          <label>Mã tài khoản gửi </label>
+          <input class="input-modal" type="text" [(ngModel)]="ngh_gui.id" [readonly]="true" name="ngh_gui.id">
+          <label>Họ tên người gửi </label>
+          <input class="input-modal" type="text" [(ngModel)]="ngh_gui.hoten" [readonly]="true" name="ngh_gui.hoten">
         </div>
       </div>
       <div class="ngh-nhan col-md-4">
-        <span>Mã tài khoản nhận </span>
-        <input class="input-modal" type="text" [(ngModel)]="id_nhan" [readonly]="true" name="id_nhan">
-        <span>Họ tên người nhận </span>
-        <input class="input-modal" type="text" [(ngModel)]="hoten_nhan" [readonly]="true" name="hoten_nhan">
+        <h2>Thông tin bên nhận</h2>
+        <div>
+          <label>Mã tài khoản nhận </label>
+          <input class="input-modal" type="text" [(ngModel)]="ngh_nhan.id" [readonly]="true" name="ngh_nhan.id">
+          <label>Họ tên người nhận </label>
+          <input class="input-modal" type="text" [(ngModel)]="ngh_nhan.hoten" [readonly]="true" name="ngh_nhan.hoten">
+        </div>
       </div>
-    </form>
+    </div>
+    <div class="phongtro" *ngIf="phongtro">
+      <h2>Thông tin phòng trọ</h2>
+      <div class="col-lg-8 col-md-8">
+        <label>Địa chỉ</label>
+        <input class="input-modal" type="text" [(ngModel)]="phongtro.diachi" [readonly]="true" name="phongtro.diachi">
+        <label>Diện tích</label>
+        <input class="input-modal" type="text" [(ngModel)]="phongtro.dientich" [readonly]="true" name="phongtro.dientich">
+        <label>Số tiền đặt cọc</label>
+        <input *ngIf="typeTiencoc === 0" class="input-modal tiencoc" type="text" [ngModel]="phongtro.tiencoc | number" (ngModelChange)="phongtro.tiencoc = $event" [readonly]="true" name="tiencoc">
+        <input *ngIf="typeTiencoc === 1" class="input-modal tiencoc" type="text" [ngModel]="phongtro.tiencocTheoNguoi | number" (ngModelChange)="phongtro.tiencocTheoNguoi = $event" [readonly]="true" name="tiencocTheoNguoi">
+      </div>
+      <div class="col-md-4">
+        <label>Ngày đặt cọc</label>
+        <input class="input-modal" type="text" [ngModel]="ngay | date:'dd/MM/yyyy'" [readonly]="true" name="ngay">
+        <div class="bounce">
+          <a (click)="submitForm()">
+            <i class="fa fa-angle-double-right fa-3x" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div bsModal #errorModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" (onHidden)="goBack()">

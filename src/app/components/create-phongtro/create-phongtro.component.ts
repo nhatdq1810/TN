@@ -47,8 +47,8 @@ export class CreatePhongtroComponent {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // this.init();
-      this.fakeInit();
+      this.init();
+      // this.fakeInit();
     })
   }
 
@@ -364,69 +364,68 @@ export class CreatePhongtroComponent {
       delete value.phuong;
       delete value.quan;
       delete value.tp;
-      console.log(value);
       if(this.formInfo === 'edit') {
-        // this.ptService.capnhatPhongtro(this.ptEdit.id, value)
-        //   .then(resp => {
-        //     this.editSuccess = true;
-        //     this.options.data.id = this.ptEdit.id;
-        //     this.startUpload();
-        //     this.typeEditSuccess = 'success';
-        //     this.successMsg = [{
-        //       msg: 'Cập nhật phòng trọ thành công !'
-        //     }, {
-        //       msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
-        //     }];
-        //     window.scrollTo(0, 300);
-        //     setTimeout(() => {
-        //       this.router.navigate(['/phongtro/detail', resp.id]);
-        //     }, 5000);
-        //   })
-        //   .catch(err => {
-        //     console.error(err);
-        //     this.editSuccess = true;
-        //     this.typeEditSuccess = 'danger';
-        //     this.errorMsgNgh = [{
-        //       msg: 'Cập nhật phòng trọ thất bại ! Có sự cố xảy ra'
-        //     }, {
-        //       msg: 'Bạn sẽ được chuyển về trang chủ. Chúng tôi rất tiếc !'
-        //     }];
-        //     window.scrollTo(0, 300);
-        //     setTimeout(() => {
-        //       this.router.navigate(['/home']);
-        //     }, 5000);
-        //   });
+        this.ptService.capnhatPhongtro(this.ptEdit.id, value)
+          .then(resp => {
+            this.editSuccess = true;
+            this.options.data.id = this.ptEdit.id;
+            this.startUpload();
+            this.typeEditSuccess = 'success';
+            this.successMsg = [{
+              msg: 'Cập nhật phòng trọ thành công !'
+            }, {
+              msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
+            }];
+            window.scrollTo(0, 300);
+            setTimeout(() => {
+              this.router.navigate(['/phongtro/detail', resp.id]);
+            }, 5000);
+          })
+          .catch(err => {
+            console.error(err);
+            this.editSuccess = true;
+            this.typeEditSuccess = 'danger';
+            this.errorMsgNgh = [{
+              msg: 'Cập nhật phòng trọ thất bại ! Có sự cố xảy ra'
+            }, {
+              msg: 'Bạn sẽ được chuyển về trang chủ. Chúng tôi rất tiếc !'
+            }];
+            window.scrollTo(0, 300);
+            setTimeout(() => {
+              this.router.navigate(['/home']);
+            }, 5000);
+          });
       } else {
-        // this.ptService.themPhongtro(value)
-        //   .then(resp => {
-        //     this.editSuccess = true;
-        //     this.options.data.id = resp.id;
-        //     this.startUpload();
-        //     this.typeEditSuccess = 'success';
-        //     this.successMsg = [{
-        //       msg: 'Tạo phòng trọ thành công'
-        //     }, {
-        //       msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
-        //     }];
-        //     window.scrollTo(0, 300);
-        //     setTimeout(() => {
-        //       this.router.navigate(['/phongtro/detail', resp.id]);
-        //     }, 5000);
-        //   })
-        //   .catch(err => {
-        //     console.error(err);
-        //     this.editSuccess = true;
-        //     this.typeEditSuccess = 'danger';
-        //     this.errorMsgNgh = [{
-        //       msg: 'Thêm phòng trọ thất bại ! Có sự cố xảy ra'
-        //     }, {
-        //       msg: 'Bạn sẽ được chuyển về trang chủ. Chúng tôi rất tiếc !'
-        //     }];
-        //     window.scrollTo(0, 300);
-        //     setTimeout(() => {
-        //       this.router.navigate(['/home']);
-        //     }, 5000);
-        //   });
+        this.ptService.themPhongtro(value)
+          .then(resp => {
+            this.editSuccess = true;
+            this.options.data.id = resp.id;
+            this.startUpload();
+            this.typeEditSuccess = 'success';
+            this.successMsg = [{
+              msg: 'Tạo phòng trọ thành công'
+            }, {
+              msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
+            }];
+            window.scrollTo(0, 300);
+            setTimeout(() => {
+              this.router.navigate(['/phongtro/detail', resp.id]);
+            }, 5000);
+          })
+          .catch(err => {
+            console.error(err);
+            this.editSuccess = true;
+            this.typeEditSuccess = 'danger';
+            this.errorMsgNgh = [{
+              msg: 'Thêm phòng trọ thất bại ! Có sự cố xảy ra'
+            }, {
+              msg: 'Bạn sẽ được chuyển về trang chủ. Chúng tôi rất tiếc !'
+            }];
+            window.scrollTo(0, 300);
+            setTimeout(() => {
+              this.router.navigate(['/home']);
+            }, 5000);
+          });
       }
     }
   }

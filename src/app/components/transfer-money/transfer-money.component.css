@@ -1,6 +1,6 @@
 .transfer-form {
   margin-top: 30px;
-  min-height: calc(100% - 200px);
+  min-height: calc(100% - 170px);
 }
 
 .transfer-form h1 {
@@ -8,18 +8,37 @@
   font-weight: 700;
 }
 
+.transfer-form label {
+  color: #aaaaaa;
+}
+
+.transfer,
+.phongtro {
+  overflow: hidden;
+}
+
 .transfer {
-  padding-bottom: 30px;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #dddddd;
+  margin-bottom: 10px;
 }
 
 .input-modal {
-  display: block;
-  text-align: center;
+  font-size: 18px;
+}
+
+.input-modal.tiencoc {
+  color: #c7254e;
   font-weight: 600;
-  font-size: 20px;
-  margin: 0 auto 50px;
+}
+
+.phongtro {
+  border: 1px solid #dddddd;
+  background: #ffffff;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.phongtro h2 {
+  margin-bottom: 20px;
 }
 
 .ngh-gui {
@@ -28,13 +47,18 @@
   padding: 15px;
 }
 
-.center-section .bounce {
+.ngh-gui h2 {
+  margin-bottom: 20px;
+}
+
+.bounce {
   position: absolute;
   left: 0;
   right: 0;
-  width: 100px;
-  height: 100px;
+  top: 130px;
   margin: auto;
+  width: 80px;
+  height: 80px;
   border: 2px solid #aaaaaa;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -46,40 +70,22 @@
   -o-transition: color .2s ease-in-out, border .2s ease-in-out;
 }
 
-.center-section .bounce a {
-  display: block;
-}
-
-.center-section .bounce:hover,
-.center-section .bounce:focus {
+.bounce:hover,
+.bounce:focus {
   border: 2px solid #c7254e;
 }
 
-.center-section .bounce i {
+.bounce i {
   position: absolute;
   left: 5px;
   right: 0;
   text-align: center;
   color: #aaaaaa;
-  line-height: 90px;
+  line-height: 75px;
 }
 
-.center-section .bounce:hover i,
-.center-section .bounce:focus i {
-  color: #c7254e;
-}
-
-.center-section .pt-tiencoc {
-  margin-top: 115px;
-  background: #ffffff;
-  padding: 15px;
-  border: 1px solid #dddddd;
-}
-
-.center-section .input-modal {
-  width: 100%;
-  font-size: 36px;
-  margin-bottom: 31px;
+.bounce:hover i,
+.bounce:focus i {
   color: #c7254e;
 }
 
@@ -89,13 +95,8 @@
   padding: 15px;
 }
 
-.transfer-form app-grid-list >>> .get-more-btn {
-  display: none;
-}
-
-.send-button {
-  text-align: center;
-  margin-top: 30px;
+.ngh-nhan h2 {
+  margin-bottom: 20px;
 }
 
 .error-form p {
