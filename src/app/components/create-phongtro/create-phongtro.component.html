@@ -1,6 +1,6 @@
 <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
   <sebm-google-map-marker [markerDraggable]="true" (dragEnd)="dragEnd($event)" [latitude]="lat" [longitude]="lng">
-    <sebm-google-map-info-window [isOpen]="mapInfoOpen">
+    <sebm-google-map-info-window [isOpen]="true">
       <strong>Kéo thả đến vị trí phòng trọ</strong>
     </sebm-google-map-info-window>
   </sebm-google-map-marker>
@@ -23,7 +23,7 @@
       </alert>
     </div>
     <form class="create-phongtro-form" *ngIf="ptDiachi" [formGroup]="complexForm">
-      <div class="form-group col-md-12">
+      <div class="form-group loai-phong">
         <h1>Loại phòng cho thuê</h1>
         <ul>
           <li class="radio">
@@ -87,11 +87,21 @@
               <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
                 Bạn chưa nhập giá thuê phòng trọ.
               </alert>
+              <div *ngIf="!hasGiatien">
+                <alert *ngFor="let item of successMsg" [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
+                  {{item?.msg}}
+                </alert>
+              </div>
             </div>
             <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 1" class="form-group">
               <label>Giá thuê từng người</label>
               <i class="fa fa-asterisk"></i>
               <input class="input-modal" type="number" [formControl]="complexForm.controls['giatienTheoNguoi']" name="giatienTheoNguoi" placeholder="2,000,000">
+              <div *ngIf="!hasGiatien">
+                <alert *ngFor="let item of successMsg" [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
+                  {{item?.msg}}
+                </alert>
+              </div>
               <alert [type]="'danger'" *ngIf="">
                 Bạn chưa nhập giá thuê từng người.
               </alert>
@@ -114,7 +124,7 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="left">
           <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 0" class="form-group col-md-6">
             <label>Tiền cọc phòng</label>
             <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="2,000,000">
@@ -133,7 +143,7 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="left">
           <div class="form-group col-md-6">
             <label>Chung trường học</label>
             <input class="input-modal" type="text" placeholder="Học viện công nghệ bưu chính viễn thông" [formControl]="complexForm.controls['truong']">

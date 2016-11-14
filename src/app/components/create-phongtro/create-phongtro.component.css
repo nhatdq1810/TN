@@ -26,6 +26,27 @@ sebm-google-map strong {
   height: 200px;
 }
 
+.form-group.loai-phong {
+  padding-bottom: 30px;
+  margin: 0 15px 30px;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+.form-group.loai-phong h1 {
+  display: inline-block;
+  margin-right: 55px;
+  font-weight: 600;
+}
+
+.form-group.loai-phong ul {
+  display: inline-block;
+}
+
+.create-phongtro-block .radio {
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+
 .info-required {
   overflow: hidden;
 }
