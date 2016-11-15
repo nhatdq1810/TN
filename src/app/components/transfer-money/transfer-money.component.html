@@ -7,7 +7,6 @@
     <div class="transfer" *ngIf="ngh_gui && ngh_nhan">
       <div class="ngh-gui col-md-6">
         <h2>Thông tin bên gửi</h2>
-        <input type="text" class="input-modal" name="test" id="test" [ngModel]="tien | number" (ngModelChange)="changeTien($event);" placeholder="2,000,000">
         <label>Mã tài khoản gửi </label>
         <input class="input-modal" type="text" [(ngModel)]="ngh_gui.id" [readonly]="true" name="ngh_gui.id">
         <label>Họ tên người gửi </label>

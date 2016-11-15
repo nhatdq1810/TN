@@ -27,6 +27,8 @@ export class CreatePhongtroComponent {
   private initWifi: number;
   private initChu: number;
   private hasGiatien: boolean;
+  private hasDientich: boolean;
+  private hasSonguoi: boolean;
   private hasHinhanh: boolean;
   private hasTkNgh: boolean;
   private editSuccess: boolean;
@@ -48,8 +50,8 @@ export class CreatePhongtroComponent {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // this.init();
-      this.fakeInit();
+      this.init();
+      // this.fakeInit();
     })
   }
 
@@ -118,6 +120,22 @@ export class CreatePhongtroComponent {
     if (!this.user) {
       this.router.navigate(['/home']);
     }
+    this.hasGiatien = true;
+    this.hasDientich = true;
+    this.hasSonguoi = true;
+    this.hasHinhanh = true;
+    this.hasTkNgh = true;
+    this.editSuccess = false;
+    this.errorMsg = [{
+      msg: ''
+    }];
+    this.errorMsgNgh = [{
+      msg: ''
+    }];
+    this.successMsg = [{
+      msg: ''
+    }];
+    this.uploadEvents = new EventEmitter();
 
     if (this.ptEdit && this.formInfo === 'edit') {
       this.options = {
@@ -174,20 +192,7 @@ export class CreatePhongtroComponent {
       this.initGioitinh = this.ptEdit.gioitinh;
       this.initWifi = this.ptEdit.wifi;
       this.initChu = this.ptEdit.chu;
-      this.hasGiatien = true;
-      this.hasHinhanh = true;
-      this.hasTkNgh = true;
-      this.editSuccess = false;
-      this.errorMsg = [{
-        msg: ''
-      }];
-      this.errorMsgNgh = [{
-        msg: ''
-      }];
-      this.successMsg = [{
-        msg: ''
-      }];
-      this.uploadEvents = new EventEmitter();
+
       this.previewData = this.ptEdit.hinhanh;
     } else {
       this.getLatLng('Hồ Chí Minh');
@@ -222,25 +227,20 @@ export class CreatePhongtroComponent {
         'ghichu': '',
         'userID': this.user.id
       });
-      this.hasGiatien = true;
-      this.hasHinhanh = true;
-      this.hasTkNgh = true;
-      this.editSuccess = false;
-      this.errorMsg = [{
-        msg: ''
-      }];
-      this.errorMsgNgh = [{
-        msg: ''
-      }];
-      this.successMsg = [{
-        msg: ''
-      }];
+      this.formValue = {
+        giatien: 0,
+        giatienTheoNguoi: 0,
+        tiencoc: 0,
+        tiencocTheoNguoi: 0,
+        dientich: 0,
+        songuoi: 0
+      };
+
       this.initLoaiPhong = 2;
       this.initGioitinh = '';
       this.initWifi = 1;
       this.initChu = 1;
 
-      this.uploadEvents = new EventEmitter();
       this.previewData = null;
     }
   }
@@ -251,6 +251,8 @@ export class CreatePhongtroComponent {
     value.giatien = +this.formValue.giatien;
     value.tiencocTheoNguoi = +this.formValue.tiencocTheoNguoi;
     value.giatienTheoNguoi = +this.formValue.giatienTheoNguoi;
+    value.dientich = +this.formValue.dientich;
+    value.songuoi = +this.formValue.songuoi;
     if (!this.previewData) {
       this.hasHinhanh = false;
       this.errorMsg = [{
@@ -263,15 +265,16 @@ export class CreatePhongtroComponent {
     if (value.loaiPhong === 2) {
       if(value.giatien === 0 && value.giatienTheoNguoi === 0) {
         this.hasGiatien = false;
+        this.hasDientich = true;
+        this.hasSonguoi = true;
         this.editSuccess = true;
         this.typeEditSuccess = 'danger';
         this.successMsg = [{
-          msg: 'Bạn phải nhập giá thuê phòng trọ hoặc giá thuê từng người'
+          msg: 'Bạn phải nhập giá thuê nguyên phòng hoặc giá thuê từng người'
         }];
         window.scrollTo(0, 300);
       } else {
         this.hasGiatien = true;
-        this.editSuccess = false;
       }
       if (value.tiencoc !== 0 || value.tiencocTheoNguoi !== 0) {
         if (value.nganhangID === '') {
@@ -290,6 +293,8 @@ export class CreatePhongtroComponent {
       value.giatien = 0;
       if(value.giatienTheoNguoi === 0) {
         this.hasGiatien = false;
+        this.hasDientich = true;
+        this.hasSonguoi = true;
         this.editSuccess = true;
         this.typeEditSuccess = 'danger';
         this.successMsg = [{
@@ -298,7 +303,6 @@ export class CreatePhongtroComponent {
         window.scrollTo(0, 300);
       } else {
         this.hasGiatien = true;
-        this.editSuccess = false;
       }
       value.tiencoc = 0;
       if (value.tiencocTheoNguoi !== 0) {
@@ -318,15 +322,16 @@ export class CreatePhongtroComponent {
       value.giatienTheoNguoi = 0;
       if (value.giatien === 0) {
         this.hasGiatien = false;
+        this.hasDientich = true;
+        this.hasSonguoi = true;
         this.editSuccess = true;
         this.typeEditSuccess = 'danger';
         this.successMsg = [{
-          msg: 'Bạn phải nhập giá thuê từng người'
+          msg: 'Bạn phải nhập giá thuê nguyên phòng'
         }];
         window.scrollTo(0, 300);
       } else {
         this.hasGiatien = true;
-        this.editSuccess = false;
       }
       value.tiencocTheoNguoi = 0;
       if (value.tiencoc !== 0) {
@@ -343,7 +348,33 @@ export class CreatePhongtroComponent {
         this.hasTkNgh = true;
       }
     }
-    if(this.hasHinhanh && this.hasTkNgh && this.hasGiatien) {
+    if(value.dientich === 0) {
+      this.hasDientich = false;
+      this.hasGiatien = true;
+      this.hasSonguoi = true;
+      this.editSuccess = true;
+      this.typeEditSuccess = 'danger';
+      this.successMsg = [{
+        msg: 'Bạn phải nhập diện tích'
+      }];
+      window.scrollTo(0, 300);
+    } else {
+      this.hasDientich = true;
+    }
+    if(value.songuoi === 0) {
+      this.hasSonguoi = false;
+      this.hasDientich = true;
+      this.hasGiatien = true;
+      this.editSuccess = true;
+      this.typeEditSuccess = 'danger';
+      this.successMsg = [{
+        msg: 'Bạn phải nhập số người cần tìm'
+      }];
+      window.scrollTo(0, 300);
+    } else {
+      this.hasSonguoi = true;
+    }
+    if(this.hasHinhanh && this.hasTkNgh && this.hasGiatien && this.hasDientich && this.hasSonguoi) {
       let currentDate = Constants.getCurrentDate();
       value.wifi = +value.wifi;
       value.chu = +value.chu;
@@ -404,36 +435,36 @@ export class CreatePhongtroComponent {
             }, 5000);
           });
       } else {
-        // this.ptService.themPhongtro(value)
-        //   .then(resp => {
-        //     this.editSuccess = true;
-        //     this.options.data.id = resp.id;
-        //     this.startUpload();
-        //     this.typeEditSuccess = 'success';
-        //     this.successMsg = [{
-        //       msg: 'Tạo phòng trọ thành công'
-        //     }, {
-        //       msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
-        //     }];
-        //     window.scrollTo(0, 300);
-        //     setTimeout(() => {
-        //       this.router.navigate(['/phongtro/detail', resp.id]);
-        //     }, 5000);
-        //   })
-        //   .catch(err => {
-        //     console.error(err);
-        //     this.editSuccess = true;
-        //     this.typeEditSuccess = 'danger';
-        //     this.errorMsgNgh = [{
-        //       msg: 'Thêm phòng trọ thất bại ! Có sự cố xảy ra'
-        //     }, {
-        //       msg: 'Bạn sẽ được chuyển về trang chủ. Chúng tôi rất tiếc !'
-        //     }];
-        //     window.scrollTo(0, 300);
-        //     setTimeout(() => {
-        //       this.router.navigate(['/home']);
-        //     }, 5000);
-        //   });
+        this.ptService.themPhongtro(value)
+          .then(resp => {
+            this.editSuccess = true;
+            this.options.data.id = resp.id;
+            this.startUpload();
+            this.typeEditSuccess = 'success';
+            this.successMsg = [{
+              msg: 'Tạo phòng trọ thành công'
+            }, {
+              msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
+            }];
+            window.scrollTo(0, 300);
+            setTimeout(() => {
+              this.router.navigate(['/phongtro/detail', resp.id]);
+            }, 5000);
+          })
+          .catch(err => {
+            console.error(err);
+            this.editSuccess = true;
+            this.typeEditSuccess = 'danger';
+            this.errorMsgNgh = [{
+              msg: 'Thêm phòng trọ thất bại ! Có sự cố xảy ra'
+            }, {
+              msg: 'Bạn sẽ được chuyển về trang chủ. Chúng tôi rất tiếc !'
+            }];
+            window.scrollTo(0, 300);
+            setTimeout(() => {
+              this.router.navigate(['/home']);
+            }, 5000);
+          });
       }
     }
   }

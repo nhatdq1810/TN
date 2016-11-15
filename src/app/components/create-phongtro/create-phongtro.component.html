@@ -85,7 +85,7 @@
               <i class="fa fa-asterisk"></i>
               <input class="input-modal" type="text" [formControl]="complexForm.controls['giatien']" [ngModel]="formValue.giatien | number" (ngModelChange)="changeTien($event, 'giatien');" name="giatien" placeholder="2,000,000">
               <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
-                Bạn chưa nhập giá thuê phòng trọ.
+                Bạn chưa nhập giá thuê nguyên phòng.
               </alert>
               <div *ngIf="!hasGiatien">
                 <alert *ngFor="let item of successMsg" [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
@@ -113,6 +113,11 @@
               <alert [type]="'danger'" *ngIf="complexForm.controls['dientich'].hasError('required') && complexForm.controls['dientich'].touched">
                 Bạn chưa nhập diện tích phòng trọ.
               </alert>
+              <div *ngIf="!hasDientich">
+                <alert *ngFor="let item of successMsg" [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
+                  {{item?.msg}}
+                </alert>
+              </div>
             </div>
             <div class="form-group">
               <label>Số người cần tìm</label>
@@ -121,6 +126,11 @@
               <alert [type]="'danger'" *ngIf="complexForm.controls['songuoi'].hasError('required') && complexForm.controls['songuoi'].touched">
                 Bạn chưa nhập số lượng người cần tìm.
               </alert>
+              <div *ngIf="!hasSonguoi">
+                <alert *ngFor="let item of successMsg" [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
+                  {{item?.msg}}
+                </alert>
+              </div>
             </div>
           </div>
         </div>

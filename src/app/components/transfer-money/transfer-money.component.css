@@ -1,12 +1,3 @@
-.transfer-form .test label {
-  position: relative;
-  left: 10px;
-  top: 10px;
-  font-size: 16px;
-  color: #000000;
-  font-weight: normal;
-}
-
 .transfer-form {
   margin-top: 30px;
   min-height: calc(100% - 170px);
