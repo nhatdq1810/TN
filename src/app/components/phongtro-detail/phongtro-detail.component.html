@@ -31,18 +31,24 @@
           </div>
         </div>
       </div>
-      <div *ngIf="phongtro.loaiPhong == 0 || phongtro.loaiPhong == 2"  class="phongtro-header margin-bottom giatien">
-        <div class="phongtro-price left">
-          <strong>{{phongtro.giatien | number}}</strong>
+      <div *ngIf="phongtro.loaiPhong == 0 || phongtro.loaiPhong == 2" class="phongtro-header margin-bottom giatien">
+        <div class="phongtro-price-block left">
+          <label>nguyên phòng</label>
+          <div class="phongtro-price left">
+            <strong>{{phongtro.giatien | number}}</strong>
+          </div>
         </div>
         <div *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="bounce">
           <i class="fa fa-hand-o-right fa-3x"></i>
         </div>
         <a *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 0)">Đặt cọc nguyên phòng</a>
       </div>
-      <div *ngIf="phongtro.loaiPhong == 1 || phongtro.loaiPhong == 2"  class="phongtro-header margin-bottom">
-        <div class="phongtro-price left">
-          <strong>{{phongtro.giatienTheoNguoi | number}}</strong>
+      <div *ngIf="phongtro.loaiPhong == 1 || phongtro.loaiPhong == 2" class="phongtro-header margin-bottom">
+        <div class="phongtro-price-block left">
+          <label>từng người</label>
+          <div class="phongtro-price left">
+            <strong>{{phongtro.giatienTheoNguoi | number}}</strong>
+          </div>
         </div>
         <div *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.songuoi > 0" class="bounce">
           <i class="fa fa-hand-o-right fa-3x"></i>

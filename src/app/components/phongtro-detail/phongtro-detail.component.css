@@ -69,7 +69,7 @@ sebm-google-map {
 .phongtro-header .bounce {
   position: absolute;
   right: 225px;
-  bottom: 25px;
+  bottom: 30px;
   margin: 0 auto;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -109,16 +109,35 @@ sebm-google-map {
   color: #c7254e;
 }
 
-.phongtro-header .phongtro-price {
-  margin: 15px 0;
+.phongtro-price-block {
+  position: relative;
+  padding: 25px 20px 10px;
+  border: 1px solid #d6d6d6;
+  background: #ffffff;
+}
+
+.phongtro-price-block label {
+  position: absolute;
+  right: -5px;
+  top: 5px;
+  background: #c7254e;
+  color: white;
+  padding: 0 5px;
+  margin: 0;
+}
+
+.phongtro-price-block label:after {
+  content: " ";
+  border-top: 5px solid #c7254e;
+  bottom: -5px;
+  position: absolute;
+  right: 0;
+  border-right: 5px solid #f6f6f6;
 }
 
 .phongtro-price strong {
-  border: 1px solid #d6d6d6;
-  background: #ffffff;
   font-size: 40px;
   color: #c7254e;
-  padding: 20px;
 }
 
 .phongtro-social a {
