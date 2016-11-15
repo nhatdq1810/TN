@@ -41,14 +41,15 @@ export class CreatePhongtroComponent {
   private lng: number;
   private zoom: number = 15;
   private ptDiachi;
+  private formValue;
 
   constructor(private route: ActivatedRoute, private http: Http, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.init();
-      // this.fakeInit();
+      // this.init();
+      this.fakeInit();
     })
   }
 
@@ -144,14 +145,14 @@ export class CreatePhongtroComponent {
         'phuong': [phuong, Validators.required],
         'quan': [quan, Validators.required],
         'tp': [tp, Validators.required],
-        'giatien': this.ptEdit.giatien,
-        'giatienTheoNguoi': this.ptEdit.giatienTheoNguoi,
+        'giatien': [this.ptEdit.giatien, Validators.required],
+        'giatienTheoNguoi': [this.ptEdit.giatienTheoNguoi, Validators.required],
         'tiencoc': this.ptEdit.tiencoc,
         'tiencocTheoNguoi': this.ptEdit.tiencocTheoNguoi,
-        'nganhangID': this.ptEdit.nganhangID,
         'dientich': [this.ptEdit.dientich, Validators.required],
-        'hinhanh': '',
         'songuoi': [this.ptEdit.songuoi, Validators.required],
+        'nganhangID': this.ptEdit.nganhangID,
+        'hinhanh': '',
         'truong': this.ptEdit.truong,
         'nganh': this.ptEdit.nganh,
         'khoa': this.ptEdit.khoa,
@@ -161,6 +162,14 @@ export class CreatePhongtroComponent {
         'ghichu': this.ptEdit.ghichu,
         'userID': this.user.id
       });
+      this.formValue = {
+        giatien: this.ptEdit.giatien,
+        giatienTheoNguoi: this.ptEdit.giatienTheoNguoi,
+        tiencoc: this.ptEdit.tiencoc,
+        tiencocTheoNguoi: this.ptEdit.tiencocTheoNguoi,
+        dientich: this.ptEdit.dientich,
+        songuoi: this.ptEdit.songuoi
+      };
       this.initLoaiPhong = this.ptEdit.loaiPhong;
       this.initGioitinh = this.ptEdit.gioitinh;
       this.initWifi = this.ptEdit.wifi;
@@ -196,14 +205,14 @@ export class CreatePhongtroComponent {
         'phuong': ['', Validators.required],
         'quan': ['', Validators.required],
         'tp': ['', Validators.required],
-        'giatien': '',
-        'giatienTheoNguoi': '',
-        'tiencoc': '',
-        'tiencocTheoNguoi': '',
+        'giatien': [0, Validators.required],
+        'giatienTheoNguoi': [0, Validators.required],
+        'tiencoc': 0,
+        'tiencocTheoNguoi': 0,
+        'dientich': [0, Validators.required],
+        'songuoi': [0, Validators.required],
         'nganhangID': '',
-        'dientich': ['', Validators.required],
         'hinhanh': '',
-        'songuoi': ['', Validators.required],
         'truong': '',
         'nganh': '',
         'khoa': '',
@@ -238,10 +247,10 @@ export class CreatePhongtroComponent {
 
   submitForm(value: any) {
     value.loaiPhong = +value.loaiPhong;
-    value.tiencoc = +value.tiencoc;
-    value.giatien = +value.giatien;
-    value.tiencocTheoNguoi = +value.tiencocTheoNguoi;
-    value.giatienTheoNguoi = +value.giatienTheoNguoi;
+    value.tiencoc = +this.formValue.tiencoc;
+    value.giatien = +this.formValue.giatien;
+    value.tiencocTheoNguoi = +this.formValue.tiencocTheoNguoi;
+    value.giatienTheoNguoi = +this.formValue.giatienTheoNguoi;
     if (!this.previewData) {
       this.hasHinhanh = false;
       this.errorMsg = [{
@@ -338,7 +347,6 @@ export class CreatePhongtroComponent {
       let currentDate = Constants.getCurrentDate();
       value.wifi = +value.wifi;
       value.chu = +value.chu;
-      value.tiencoc = +value.tiencoc
       value.ngaydang = currentDate;
       value.sonha = value.sonha.toLowerCase();
       value.phuong = value.phuong.toLowerCase();
@@ -396,36 +404,36 @@ export class CreatePhongtroComponent {
             }, 5000);
           });
       } else {
-        this.ptService.themPhongtro(value)
-          .then(resp => {
-            this.editSuccess = true;
-            this.options.data.id = resp.id;
-            this.startUpload();
-            this.typeEditSuccess = 'success';
-            this.successMsg = [{
-              msg: 'Tạo phòng trọ thành công'
-            }, {
-              msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
-            }];
-            window.scrollTo(0, 300);
-            setTimeout(() => {
-              this.router.navigate(['/phongtro/detail', resp.id]);
-            }, 5000);
-          })
-          .catch(err => {
-            console.error(err);
-            this.editSuccess = true;
-            this.typeEditSuccess = 'danger';
-            this.errorMsgNgh = [{
-              msg: 'Thêm phòng trọ thất bại ! Có sự cố xảy ra'
-            }, {
-              msg: 'Bạn sẽ được chuyển về trang chủ. Chúng tôi rất tiếc !'
-            }];
-            window.scrollTo(0, 300);
-            setTimeout(() => {
-              this.router.navigate(['/home']);
-            }, 5000);
-          });
+        // this.ptService.themPhongtro(value)
+        //   .then(resp => {
+        //     this.editSuccess = true;
+        //     this.options.data.id = resp.id;
+        //     this.startUpload();
+        //     this.typeEditSuccess = 'success';
+        //     this.successMsg = [{
+        //       msg: 'Tạo phòng trọ thành công'
+        //     }, {
+        //       msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
+        //     }];
+        //     window.scrollTo(0, 300);
+        //     setTimeout(() => {
+        //       this.router.navigate(['/phongtro/detail', resp.id]);
+        //     }, 5000);
+        //   })
+        //   .catch(err => {
+        //     console.error(err);
+        //     this.editSuccess = true;
+        //     this.typeEditSuccess = 'danger';
+        //     this.errorMsgNgh = [{
+        //       msg: 'Thêm phòng trọ thất bại ! Có sự cố xảy ra'
+        //     }, {
+        //       msg: 'Bạn sẽ được chuyển về trang chủ. Chúng tôi rất tiếc !'
+        //     }];
+        //     window.scrollTo(0, 300);
+        //     setTimeout(() => {
+        //       this.router.navigate(['/home']);
+        //     }, 5000);
+        //   });
       }
     }
   }
@@ -457,7 +465,30 @@ export class CreatePhongtroComponent {
     this.hasBaseDropZoneOver = false;
   }
 
+  changeTien(e: any, type: string) {
+    if (e === '' || e === null) {
+      this.formValue[type] = 0;
+    } else {
+      for (var i = 0; i < e.length; ++i) {
+        if (e[i] === ',') {
+          e = e.slice(0, i) + e.slice(i + 1, e.length);
+        }
+      }
+      if (!isNaN(e)) {
+        this.formValue[type] = e;
+      }
+    }
+  }
+
   fakeInit() {
+    this.formValue = {
+      giatien: 1000000,
+      giatienTheoNguoi: 0,
+      tiencoc: 0,
+      tiencocTheoNguoi: 0,
+      dientich: 0,
+      songuoi: 0
+    };
     this.ptDiachi = {
       sonha: '',
       phuong: '',
@@ -493,14 +524,14 @@ export class CreatePhongtroComponent {
         'phuong': [phuong, Validators.required],
         'quan': [quan, Validators.required],
         'tp': [tp, Validators.required],
-        'giatien': this.ptEdit.giatien,
-        'giatienTheoNguoi': this.ptEdit.giatienTheoNguoi,
+        'giatien': [this.ptEdit.giatien, Validators.required],
+        'giatienTheoNguoi': [this.ptEdit.giatienTheoNguoi, Validators.required],
         'tiencoc': this.ptEdit.tiencoc,
         'tiencocTheoNguoi': this.ptEdit.tiencocTheoNguoi,
-        'nganhangID': this.ptEdit.nganhangID,
         'dientich': [this.ptEdit.dientich, Validators.required],
-        'hinhanh': '',
         'songuoi': [this.ptEdit.songuoi, Validators.required],
+        'nganhangID': this.ptEdit.nganhangID,
+        'hinhanh': '',
         'truong': this.ptEdit.truong,
         'nganh': this.ptEdit.nganh,
         'khoa': this.ptEdit.khoa,
@@ -544,14 +575,14 @@ export class CreatePhongtroComponent {
         'phuong': ['', Validators.required],
         'quan': ['', Validators.required],
         'tp': ['', Validators.required],
-        'giatien': '',
-        'giatienTheoNguoi': '',
-        'tiencoc': '',
-        'tiencocTheoNguoi': '',
+        'giatien': [0, Validators.required],
+        'giatienTheoNguoi': [0, Validators.required],
+        'tiencoc': 0,
+        'tiencocTheoNguoi': 0,
+        'dientich': [0, Validators.required],
+        'songuoi': [0, Validators.required],
         'nganhangID': '',
-        'dientich': ['', Validators.required],
         'hinhanh': '',
-        'songuoi': ['', Validators.required],
         'truong': '',
         'nganh': '',
         'khoa': '',

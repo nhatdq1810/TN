@@ -28,7 +28,6 @@ export class TransferMoneyComponent implements OnInit {
   private successMsg: string = '';
   private ngay;
   private tien;
-  private hasLabel: boolean;
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
     this.fakeInit();
@@ -84,25 +83,22 @@ export class TransferMoneyComponent implements OnInit {
     this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
   }
 
-  changeLabel() {
-    this.hasLabel = !this.hasLabel;
-  }
-
   changeTien(e: any) {
     if (e === '') {
       this.tien = 0;
     } else {
       for (var i = 0; i < e.length; ++i) {
-        if(e[i] === ',') {
+        if (e[i] === ',') {
           e = e.slice(0, i) + e.slice(i + 1, e.length);
         }
       }
-      this.tien = e;
+      if(!isNaN(e)) {
+        this.tien = e;
+      }
     }
   }
 
   fakeInit() {
-    this.hasLabel = false;
     this.tien = 0;
     this.typeTiencoc = 0;
     this.ngay = Constants.getCurrentDate();

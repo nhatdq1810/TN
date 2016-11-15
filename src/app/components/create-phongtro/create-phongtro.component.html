@@ -83,7 +83,7 @@
             <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 0" class="form-group">
               <label>Giá thuê nguyên phòng</label>
               <i class="fa fa-asterisk"></i>
-              <input class="input-modal" type="number" [formControl]="complexForm.controls['giatien']" name="giatien" placeholder="2,000,000">
+              <input class="input-modal" type="text" [formControl]="complexForm.controls['giatien']" [ngModel]="formValue.giatien | number" (ngModelChange)="changeTien($event, 'giatien');" name="giatien" placeholder="2,000,000">
               <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
                 Bạn chưa nhập giá thuê phòng trọ.
               </alert>
@@ -96,20 +96,20 @@
             <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 1" class="form-group">
               <label>Giá thuê từng người</label>
               <i class="fa fa-asterisk"></i>
-              <input class="input-modal" type="number" [formControl]="complexForm.controls['giatienTheoNguoi']" name="giatienTheoNguoi" placeholder="2,000,000">
+              <input class="input-modal" type="text" [ngModel]="formValue.giatienTheoNguoi | number" (ngModelChange)="changeTien($event, 'giatienTheoNguoi');" [formControl]="complexForm.controls['giatienTheoNguoi']" name="giatienTheoNguoi" placeholder="2,000,000">
               <div *ngIf="!hasGiatien">
                 <alert *ngFor="let item of successMsg" [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
                   {{item?.msg}}
                 </alert>
               </div>
-              <alert [type]="'danger'" *ngIf="">
+              <alert [type]="'danger'" *ngIf="complexForm.controls['giatienTheoNguoi'].hasError('required') && complexForm.controls['giatienTheoNguoi'].touched">
                 Bạn chưa nhập giá thuê từng người.
               </alert>
             </div>
             <div class="form-group">
               <label>Diện tích (m<sup>2</sup>)</label>
               <i class="fa fa-asterisk"></i>
-              <input class="input-modal" type="number" [formControl]="complexForm.controls['dientich']" name="dientich" placeholder="20">
+              <input class="input-modal" type="text" [ngModel]="formValue.dientich | number" (ngModelChange)="changeTien($event, 'dientich');" [formControl]="complexForm.controls['dientich']" name="dientich" placeholder="20">
               <alert [type]="'danger'" *ngIf="complexForm.controls['dientich'].hasError('required') && complexForm.controls['dientich'].touched">
                 Bạn chưa nhập diện tích phòng trọ.
               </alert>
@@ -117,7 +117,7 @@
             <div class="form-group">
               <label>Số người cần tìm</label>
               <i class="fa fa-asterisk"></i>
-              <input class="input-modal" type="number" [formControl]="complexForm.controls['songuoi']" name="songuoi" placeholder="1">
+              <input class="input-modal" type="text" [ngModel]="formValue.songuoi | number" (ngModelChange)="changeTien($event, 'songuoi');" [formControl]="complexForm.controls['songuoi']" name="songuoi" placeholder="1">
               <alert [type]="'danger'" *ngIf="complexForm.controls['songuoi'].hasError('required') && complexForm.controls['songuoi'].touched">
                 Bạn chưa nhập số lượng người cần tìm.
               </alert>
@@ -127,11 +127,11 @@
         <div class="left">
           <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 0" class="form-group col-md-6">
             <label>Tiền cọc phòng</label>
-            <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="2,000,000">
+            <input class="input-modal" type="text" [ngModel]="formValue.tiencoc | number" (ngModelChange)="changeTien($event, 'tiencoc');" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="2,000,000">
           </div>
           <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 1" class="form-group col-md-6">
             <label>Tiền cọc từng người</label>
-            <input class="input-modal" type="number" [formControl]="complexForm.controls['tiencocTheoNguoi']" name="tiencocTheoNguoi" placeholder="2,000,000">
+            <input class="input-modal" type="text" [ngModel]="formValue.tiencocTheoNguoi | number" (ngModelChange)="changeTien($event, 'tiencocTheoNguoi');" [formControl]="complexForm.controls['tiencocTheoNguoi']" name="tiencocTheoNguoi" placeholder="2,000,000">
           </div>
           <div class="form-group col-md-6">
             <label>Tài khoản ngân hàng</label>
