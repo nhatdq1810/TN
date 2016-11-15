@@ -7,6 +7,7 @@
     <div class="transfer" *ngIf="ngh_gui && ngh_nhan">
       <div class="ngh-gui col-md-6">
         <h2>Thông tin bên gửi</h2>
+        <input type="text" class="input-modal" name="test" id="test" [ngModel]="tien | number" (ngModelChange)="changeTien($event);" placeholder="2,000,000">
         <label>Mã tài khoản gửi </label>
         <input class="input-modal" type="text" [(ngModel)]="ngh_gui.id" [readonly]="true" name="ngh_gui.id">
         <label>Họ tên người gửi </label>
@@ -33,15 +34,15 @@
       <div class="col-lg-8 col-md-8">
         <label>Địa chỉ</label>
         <input class="input-modal" type="text" [(ngModel)]="phongtro.diachi" [readonly]="true" name="phongtro.diachi">
-        <label>Diện tích</label>
+        <label>Diện tích (m<sup>2</sup>)</label>
         <input class="input-modal" type="text" [(ngModel)]="phongtro.dientich" [readonly]="true" name="phongtro.dientich">
+        <label>Ngày đặt cọc</label>
+        <input class="input-modal" type="text" [ngModel]="ngay | date:'dd/MM/yyyy'" [readonly]="true" name="ngay">
+      </div>
+      <div class="col-md-4">
         <label>Số tiền đặt cọc</label>
         <input *ngIf="typeTiencoc === 0" class="input-modal tiencoc" type="text" [ngModel]="phongtro.tiencoc | number" (ngModelChange)="phongtro.tiencoc = $event" [readonly]="true" name="tiencoc">
         <input *ngIf="typeTiencoc === 1" class="input-modal tiencoc" type="text" [ngModel]="phongtro.tiencocTheoNguoi | number" (ngModelChange)="phongtro.tiencocTheoNguoi = $event" [readonly]="true" name="tiencocTheoNguoi">
-      </div>
-      <div class="col-md-4">
-        <label>Ngày đặt cọc</label>
-        <input class="input-modal" type="text" [ngModel]="ngay | date:'dd/MM/yyyy'" [readonly]="true" name="ngay">
         <div class="bounce">
           <a (click)="submitForm()">
             <i class="fa fa-angle-double-right fa-3x" aria-hidden="true"></i>
