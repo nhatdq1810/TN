@@ -14,6 +14,9 @@ export class PhongtroService {
   private _listPT: any[] = [];
   private _currentPT: any;
   private _searchTerm: any;
+  private _listTruong: any[] = [];
+  private _listNganh: any[] = [];
+  private _listKhoa: any[] = [];
   public phongtroDetailChange = new Subject();
 
   constructor(private http: Http, private router: Router) {
@@ -25,6 +28,18 @@ export class PhongtroService {
 
   set listPT(listPT) {
     this._listPT = listPT;
+  }
+
+  get listTruong(): any[] {
+    return this._listTruong;
+  }
+
+  get listNganh(): any[] {
+    return this._listNganh;
+  }
+
+  get listKhoa(): any[] {
+    return this._listKhoa;
   }
 
   get currentPT(): any{
@@ -134,6 +149,33 @@ export class PhongtroService {
           }
         },
         error => this.handleError('layPhongtroMoi', error));
+    });
+  }
+
+  layDulieuTimkiemPhongtro(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `phongtro/dulieu/timkiem`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resp.forEach((pt) => {
+              if (pt.truong !== '' && this.listTruong.indexOf(pt.truong) < 0) {
+                this.listTruong.push(pt.truong);
+              }
+              if (pt.nganh !== '' && this.listNganh.indexOf(pt.nganh) < 0) {
+                this.listNganh.push(pt.nganh);
+              }
+              if (pt.khoa !== '' && this.listKhoa.indexOf(pt.khoa) < 0) {
+                this.listKhoa.push(pt.khoa);
+              }
+            });
+            resolve('success');
+          } else {
+            this.handleError('layDulieuTimkiemPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        error => this.handleError('layDulieuTimkiemPhongtro', error));
     });
   }
 

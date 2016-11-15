@@ -24,6 +24,14 @@ export class FormValidationComponent implements OnInit {
       'gioitinh': ''
     });
     this.sliderValue = [500000, 5000000];
+    this.ptService.layDulieuTimkiemPhongtro()
+    .then(result => {
+      if(result === 'success') {
+        console.log(this.ptService.listTruong);
+        console.log(this.ptService.listNganh);
+        console.log(this.ptService.listKhoa);
+      }
+    })
   }
 
   ngOnInit(){
