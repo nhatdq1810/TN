@@ -5,23 +5,27 @@
     </alert>
     <h1>Đặt cọc phòng trọ</h1>
     <div class="transfer" *ngIf="ngh_gui && ngh_nhan">
-      <div class="ngh-gui col-md-4">
+      <div class="ngh-gui col-md-6">
         <h2>Thông tin bên gửi</h2>
-        <div>
-          <label>Mã tài khoản gửi </label>
-          <input class="input-modal" type="text" [(ngModel)]="ngh_gui.id" [readonly]="true" name="ngh_gui.id">
-          <label>Họ tên người gửi </label>
-          <input class="input-modal" type="text" [(ngModel)]="ngh_gui.hoten" [readonly]="true" name="ngh_gui.hoten">
-        </div>
+        <label>Mã tài khoản gửi </label>
+        <input class="input-modal" type="text" [(ngModel)]="ngh_gui.id" [readonly]="true" name="ngh_gui.id">
+        <label>Họ tên người gửi </label>
+        <input class="input-modal" type="text" [(ngModel)]="ngh_gui.hoten" [readonly]="true" name="ngh_gui.hoten">
+        <label>Địa chỉ</label>
+        <input class="input-modal" type="text" [(ngModel)]="ngh_gui.diachi" [readonly]="true" name="ngh_gui.diachi">
+        <label>Điện thoại</label>
+        <input class="input-modal" type="text" [(ngModel)]="ngh_gui.sodt" [readonly]="true" name="ngh_gui.sodt">
       </div>
-      <div class="ngh-nhan col-md-4">
+      <div class="ngh-nhan col-md-6">
         <h2>Thông tin bên nhận</h2>
-        <div>
-          <label>Mã tài khoản nhận </label>
-          <input class="input-modal" type="text" [(ngModel)]="ngh_nhan.id" [readonly]="true" name="ngh_nhan.id">
-          <label>Họ tên người nhận </label>
-          <input class="input-modal" type="text" [(ngModel)]="ngh_nhan.hoten" [readonly]="true" name="ngh_nhan.hoten">
-        </div>
+        <label>Mã tài khoản nhận </label>
+        <input class="input-modal" type="text" [(ngModel)]="ngh_nhan.id" [readonly]="true" name="ngh_nhan.id">
+        <label>Họ tên người nhận </label>
+        <input class="input-modal" type="text" [(ngModel)]="ngh_nhan.hoten" [readonly]="true" name="ngh_nhan.hoten">
+        <label>Địa chỉ</label>
+        <input class="input-modal" type="text" [(ngModel)]="ngh_nhan.diachi" [readonly]="true" name="ngh_nhan.diachi">
+        <label>Điện thoại</label>
+        <input class="input-modal" type="text" [(ngModel)]="ngh_nhan.sodt" [readonly]="true" name="ngh_nhan.sodt">
       </div>
     </div>
     <div class="phongtro" *ngIf="phongtro">
