@@ -44,14 +44,20 @@ export class CreatePhongtroComponent {
   private zoom: number = 15;
   private ptDiachi;
   private formValue;
+  private listTruong;
+  private truong;
+  private listNganh;
+  private nganh;
+  private listKhoa;
+  private Khoa;
 
   constructor(private route: ActivatedRoute, private http: Http, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.init();
-      // this.fakeInit();
+      // this.init();
+      this.fakeInit();
     })
   }
 
@@ -102,6 +108,9 @@ export class CreatePhongtroComponent {
   }
 
   init() {
+    this.listTruong = this.ptService.listTruong;
+    this.listNganh = this.ptService.listNganh;
+    this.listKhoa = this.ptService.listKhoa;
     this.ptDiachi = {
       sonha: '',
       phuong: '',
@@ -512,6 +521,9 @@ export class CreatePhongtroComponent {
   }
 
   fakeInit() {
+    this.listTruong = ['hvcnbcvt', 'học viện cn bc-vt', 'đại học hoa sen', 'ueh', 'ptit'];
+    this.listNganh = ['viễn thông', 'cntt', 'qtkd', 'kế toán'];
+    this.listKhoa = ['2012', '2013', '2010'];
     this.formValue = {
       giatien: 1000000,
       giatienTheoNguoi: 0,
