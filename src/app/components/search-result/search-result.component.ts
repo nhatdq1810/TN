@@ -22,10 +22,16 @@ export class SearchResultComponent implements OnInit {
   private giatienTheoNguoiValue: number[];
   private dientichValue: number[];
   private searchTerm: any;
+  private listTruong;
+  private truong;
+  private listNganh;
+  private nganh;
+  private listKhoa;
+  private Khoa;
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {
@@ -66,6 +72,9 @@ export class SearchResultComponent implements OnInit {
   }
 
   init() {
+    this.listTruong = this.ptService.listTruong;
+    this.listNganh = this.ptService.listNganh;
+    this.listKhoa = this.ptService.listKhoa;
     this.listPT = this.ptService.listPT;
     this.searchTerm = this.ptService.searchTerm;
 
@@ -177,6 +186,9 @@ export class SearchResultComponent implements OnInit {
   }
 
   fakeInit() {
+    this.listTruong = ['hvcnbcvt', 'học viện cn bc-vt', 'đại học hoa sen', 'ueh', 'ptit'];
+    this.listNganh = ['viễn thông', 'cntt', 'qtkd', 'kế toán'];
+    this.listKhoa = ['2012', '2013', '2010'];
     this.searchTerm = this.ptService.searchTerm;
     this.listPT = Constants.fakeListPT;
 
