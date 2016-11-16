@@ -15,6 +15,10 @@ export class FormValidationComponent implements OnInit {
 
   private complexForm: FormGroup;
   private sliderValue: number[];
+  private listTruong;
+  private truong;
+  private listNganh;
+  private nganh;
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService, private router: Router) {
     this.complexForm = this.fb.group({
@@ -24,14 +28,14 @@ export class FormValidationComponent implements OnInit {
       'gioitinh': ''
     });
     this.sliderValue = [500000, 5000000];
+    // this.fakeInit();
     this.ptService.layDulieuTimkiemPhongtro()
-    .then(result => {
-      if(result === 'success') {
-        console.log(this.ptService.listTruong);
-        console.log(this.ptService.listNganh);
-        console.log(this.ptService.listKhoa);
-      }
-    })
+      .then(result => {
+        if (result === 'success') {
+          this.listTruong = this.ptService.listTruong;
+          this.listNganh = this.ptService.listNganh;
+        }
+      });
   }
 
   ngOnInit(){
@@ -54,6 +58,11 @@ export class FormValidationComponent implements OnInit {
     this.ptService.searchTerm = value;
     this.ptService.listPT = [];
     this.router.navigate(['/search/result']);
+  }
+
+  fakeInit() {
+    this.listTruong = ['hvcnbcvt', 'học viện cn bc-vt', 'đại học hoa sen', 'ueh', 'ptit'];
+    this.listNganh = ['viễn thông', 'cntt', 'qtkd', 'kế toán'];
   }
 
 }
