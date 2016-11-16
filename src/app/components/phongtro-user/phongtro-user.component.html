@@ -20,7 +20,8 @@
           <a [routerLink]="['/phongtro/detail', item.id]">
             <img [src]="item.hinhanh" [alt]="item.diachi" class="left">
             <div class="phongtro-info left">
-              <p><span>Giá tiền:</span>{{item.giatien | number}}</p>
+              <p *ngIf="item.giatien > 0"><span>Giá tiền:</span>{{item.giatien | number}}</p>
+              <p *ngIf="item.giatien <= 0"><span>Giá tiền:</span>{{item.giatienTheoNguoi | number}}</p>
               <p><span>Địa chỉ:</span>{{item.diachi}}</p>
               <p><span>Diện tích (m<sup>2</sup>):</span>{{item.dientich}}</p>
               <p><span>Số người cần tìm:</span>{{item.songuoi}}</p>
@@ -46,7 +47,8 @@
         <div class="confirm-form">
           <p class="header">Bạn thật sự muốn xóa phòng trọ này ???</p>
           <div class="content">
-            <p><span>Giá tiền:</span>{{ptXoa.giatien | number}}</p>
+            <p *ngIf="ptXoa.giatien > 0"><span>Giá tiền:</span>{{ptXoa.giatien | number}}</p>
+            <p *ngIf="ptXoa.giatien <= 0"><span>Giá tiền:</span>{{ptXoa.giatienTheoNguoi | number}}</p>
             <p><span>Địa chỉ:</span>{{ptXoa.diachi}}</p>
             <p><span>Diện tích (m<sup>2</sup>):</span>{{ptXoa.dientich}}</p>
             <p><span>Số người cần tìm:</span>{{ptXoa.songuoi}}</p>

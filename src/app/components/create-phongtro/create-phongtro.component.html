@@ -1,10 +1,17 @@
 <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
   <sebm-google-map-marker [markerDraggable]="true" (dragEnd)="dragEnd($event)" [latitude]="lat" [longitude]="lng">
-    <sebm-google-map-info-window [isOpen]="true">
+  </sebm-google-map-marker>
+  <sebm-google-map-info-window [latitude]="latInfoWindow" [longitude]="lng" [disableAutoPan]="true" [isOpen]="true">
+    <strong>Kéo thả đến vị trí phòng trọ</strong>
+  </sebm-google-map-info-window>
+</sebm-google-map>
+<!-- <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
+  <sebm-google-map-marker [markerDraggable]="true" (dragEnd)="dragEnd($event)" [latitude]="lat" [longitude]="lng">
+    <sebm-google-map-info-window [disableAutoPan]="true" [isOpen]="true">
       <strong>Kéo thả đến vị trí phòng trọ</strong>
     </sebm-google-map-info-window>
   </sebm-google-map-marker>
-</sebm-google-map>
+</sebm-google-map> -->
 <div class="container">
   <div class="row create-phongtro-block">
     <div *ngIf="!hasTkNgh">

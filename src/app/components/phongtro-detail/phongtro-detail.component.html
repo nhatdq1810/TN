@@ -1,6 +1,6 @@
 <sebm-google-map *ngIf="phongtro" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
   <sebm-google-map-marker [latitude]="lat" [longitude]="lng">
-    <sebm-google-map-info-window [disableAutoPan]="false">
+    <sebm-google-map-info-window [disableAutoPan]="true">
       <strong>{{phongtro.diachi}}</strong>
     </sebm-google-map-info-window>
   </sebm-google-map-marker>

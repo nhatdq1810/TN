@@ -30,8 +30,8 @@ export class SearchResultComponent implements OnInit {
   private Khoa;
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {
@@ -72,9 +72,14 @@ export class SearchResultComponent implements OnInit {
   }
 
   init() {
-    this.listTruong = this.ptService.listTruong;
-    this.listNganh = this.ptService.listNganh;
-    this.listKhoa = this.ptService.listKhoa;
+    this.ptService.layDulieuTimkiemPhongtro()
+      .then(result => {
+        if (result === 'success') {
+          this.listTruong = this.ptService.listTruong;
+          this.listNganh = this.ptService.listNganh;
+          this.listKhoa = this.ptService.listKhoa;
+        }
+      });
     this.listPT = this.ptService.listPT;
     this.searchTerm = this.ptService.searchTerm;
 

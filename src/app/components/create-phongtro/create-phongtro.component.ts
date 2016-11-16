@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -14,7 +14,7 @@ let Constants = require('../../resources/constants');
   templateUrl: './create-phongtro.component.html',
   styleUrls: ['./create-phongtro.component.css']
 })
-export class CreatePhongtroComponent {
+export class CreatePhongtroComponent implements OnInit {
 
   private hasBaseDropZoneOver: boolean = false;
   private options: any;
@@ -40,25 +40,26 @@ export class CreatePhongtroComponent {
   private formInfo: string;
   private ptEdit: Phongtro;
   private lat: number;
+  private latInfoWindow: number;
   private lng: number;
-  private zoom: number = 15;
+  private zoom: number = 18;
   private ptDiachi;
   private formValue;
   private listTruong;
-  private truong;
+  private truong: string;
   private listNganh;
-  private nganh;
+  private nganh: string;
   private listKhoa;
-  private Khoa;
+  private khoa: string;
 
   constructor(private route: ActivatedRoute, private http: Http, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // this.init();
-      this.fakeInit();
-    })
+      this.init();
+      // this.fakeInit();
+    });
   }
 
   getLatLng(diachi) {
@@ -68,6 +69,8 @@ export class CreatePhongtroComponent {
       .subscribe(resp => {
         let location = resp.results[0].geometry.location;
         this.lat = location.lat;
+        this.latInfoWindow = this.lat + 0.0002;
+
         this.lng = location.lng;
       });
   }
@@ -108,9 +111,14 @@ export class CreatePhongtroComponent {
   }
 
   init() {
-    this.listTruong = this.ptService.listTruong;
-    this.listNganh = this.ptService.listNganh;
-    this.listKhoa = this.ptService.listKhoa;
+    this.ptService.layDulieuTimkiemPhongtro()
+      .then(result => {
+        if (result === 'success') {
+          this.listTruong = this.ptService.listTruong;
+          this.listNganh = this.ptService.listNganh;
+          this.listKhoa = this.ptService.listKhoa;
+        }
+      });
     this.ptDiachi = {
       sonha: '',
       phuong: '',
@@ -120,7 +128,6 @@ export class CreatePhongtroComponent {
     this.route.params.forEach((params: Params) => {
       this.formInfo = params['formInfo'];
       if (this.formInfo === 'edit') {
-        this.zoom = 17;
         this.ptEdit = this.ptService.currentPT;
         this.getLatLng(this.ptEdit.diachi);
       }
@@ -392,8 +399,21 @@ export class CreatePhongtroComponent {
       value.phuong = value.phuong.toLowerCase();
       value.quan = value.quan.toLowerCase();
       value.tp = value.tp.toLowerCase();
-      value.truong = value.truong.toLowerCase();
-      value.nganh = value.nganh.toLowerCase();
+      if(this.truong === undefined) {
+        value.truong = '';
+      } else {
+        value.truong = this.truong.toLowerCase();
+      }
+      if(this.nganh === undefined) {
+        value.nganh = '';
+      } else {
+        value.nganh = this.nganh.toLowerCase();
+      }
+      if(this.khoa === undefined) {
+        value.khoa = '';
+      } else {
+        value.khoa = this.khoa;
+      }
       let phuong, quan, tp;
       phuong = value.phuong;
       quan = value.quan;
