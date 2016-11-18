@@ -16,9 +16,9 @@ export class FormValidationComponent implements OnInit {
   private complexForm: FormGroup;
   private sliderValue: number[];
   private listTruong;
-  private truong;
+  private truong = '';
   private listNganh;
-  private nganh;
+  private nganh = '';
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService, private router: Router) {
     this.complexForm = this.fb.group({
@@ -42,8 +42,8 @@ export class FormValidationComponent implements OnInit {
   }
 
   submitForm(value: any){
-    value.truong.toLowerCase();
-    value.nganh.toLowerCase();
+    value.truong = this.truong.toLowerCase();
+    value.nganh = this.nganh.toLowerCase();
     value.dientich_min = 5;
     value.dientich_max = 20;
     value.giatien_min = value.giatien[0];

@@ -23,11 +23,11 @@ export class SearchResultComponent implements OnInit {
   private dientichValue: number[];
   private searchTerm: any;
   private listTruong;
-  private truong;
+  private truong = '';
   private listNganh;
-  private nganh;
+  private nganh = '';
   private listKhoa;
-  private Khoa;
+  private khoa = '';
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService) {
     // this.fakeInit();
@@ -102,7 +102,9 @@ export class SearchResultComponent implements OnInit {
         'wifi': this.searchTerm.wifi,
         'chu': this.searchTerm.chu
       });
-
+      this.truong = this.searchTerm.truong;
+      this.nganh = this.searchTerm.nganh;
+      this.khoa = this.searchTerm.khoa;
       this.initLoaiPhong = this.searchTerm.loaiPhong;
       this.initGioitinh = this.searchTerm.gioitinh;
       this.initChu = this.searchTerm.chu;
@@ -145,14 +147,16 @@ export class SearchResultComponent implements OnInit {
     if (value.tp !== '') {
       diachi += ', thành phố ' + value.tp.toLowerCase();
     }
-    if(value.loaiPhong === '0') {
+
+    value.loaiPhong = +value.loaiPhong;
+    if(value.loaiPhong === 0) {
       giatien_min = value.giatien[0];
       giatien_max = value.giatien[1];
       giatienTheoNguoi_min = 0;
-      giatienTheoNguoi_max = 5000000;
-    } else if(value.loaiPhong === '1') {
+      giatienTheoNguoi_max = 0;
+    } else if(value.loaiPhong === 1) {
       giatien_min = 0;
-      giatien_max = 5000000;
+      giatien_max = 0;
       giatienTheoNguoi_min = value.giatienTheoNguoi[0];
       giatienTheoNguoi_max = value.giatienTheoNguoi[1];
     } else {
@@ -161,8 +165,12 @@ export class SearchResultComponent implements OnInit {
       giatienTheoNguoi_min = value.giatienTheoNguoi[0];
       giatienTheoNguoi_max = value.giatienTheoNguoi[1];
     }
+
+    value.truong = this.truong;
+    value.nganh = this.nganh;
+    value.khoa = this.khoa;
     let searchTerm: any = {
-      loaiPhong: +(value.loaiPhong),
+      loaiPhong: value.loaiPhong,
       giatien_min: giatien_min,
       giatien_max: giatien_max,
       giatienTheoNguoi_min: giatienTheoNguoi_min,
@@ -177,6 +185,7 @@ export class SearchResultComponent implements OnInit {
       wifi: +(value.wifi),
       chu: +(value.chu)
     }
+    console.log(value);
     this.ptService.timkiemPhongtro(searchTerm, 12)
       .then((result: string) => {
         if (result === 'success') {

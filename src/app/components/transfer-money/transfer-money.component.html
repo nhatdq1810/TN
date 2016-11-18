@@ -3,7 +3,8 @@
     <alert *ngIf="successMsg && successMsg !== ''" [type]="'success'">
       {{successMsg}}
     </alert>
-    <h1>Đặt cọc phòng trọ</h1>
+    <h1 *ngIf="typeTiencoc === 0">Đặt cọc nguyên phòng</h1>
+    <h1 *ngIf="typeTiencoc === 1">Đặt cọc một người</h1>
     <div class="transfer" *ngIf="ngh_gui && ngh_nhan">
       <div class="ngh-gui col-md-6">
         <h2>Thông tin bên gửi</h2>

@@ -40,17 +40,17 @@ export class CreatePhongtroComponent implements OnInit {
   private formInfo: string;
   private ptEdit: Phongtro;
   private lat: number;
-  private latInfoWindow: number;
+  private infoWindowOpen: boolean;
   private lng: number;
   private zoom: number = 18;
   private ptDiachi;
   private formValue;
   private listTruong;
-  private truong: string;
+  private truong: string = '';
   private listNganh;
-  private nganh: string;
+  private nganh: string = '';
   private listKhoa;
-  private khoa: string;
+  private khoa: string = '';
 
   constructor(private route: ActivatedRoute, private http: Http, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
   }
@@ -69,13 +69,15 @@ export class CreatePhongtroComponent implements OnInit {
       .subscribe(resp => {
         let location = resp.results[0].geometry.location;
         this.lat = location.lat;
-        this.latInfoWindow = this.lat + 0.0002;
-
         this.lng = location.lng;
+        this.infoWindowOpen = true;
       });
   }
 
   dragEnd(e: any) {
+    if(!this.infoWindowOpen) {
+      this.infoWindowOpen = false;
+    }
     let placeUrl = `${Constants.placeUrl}${e.coords.lat},${e.coords.lng}`;
     this.http.get(placeUrl)
       .map(resp => resp.json())
@@ -111,6 +113,7 @@ export class CreatePhongtroComponent implements OnInit {
   }
 
   init() {
+    this.infoWindowOpen = false;
     this.ptService.layDulieuTimkiemPhongtro()
       .then(result => {
         if (result === 'success') {
@@ -196,6 +199,9 @@ export class CreatePhongtroComponent implements OnInit {
         'ghichu': this.ptEdit.ghichu,
         'userID': this.user.id
       });
+      this.truong = this.ptEdit.truong;
+      this.nganh = this.ptEdit.nganh;
+      this.khoa = this.ptEdit.khoa;
       this.formValue = {
         giatien: this.ptEdit.giatien,
         giatienTheoNguoi: this.ptEdit.giatienTheoNguoi,
@@ -251,7 +257,6 @@ export class CreatePhongtroComponent implements OnInit {
         dientich: 0,
         songuoi: 0
       };
-
       this.initLoaiPhong = 2;
       this.initGioitinh = '';
       this.initWifi = 1;
@@ -277,6 +282,32 @@ export class CreatePhongtroComponent implements OnInit {
       window.scrollTo(0, 300);
     } else {
       this.hasHinhanh = true;
+    }
+    if (value.songuoi === 0) {
+      this.hasSonguoi = false;
+      this.hasDientich = true;
+      this.hasGiatien = true;
+      this.editSuccess = true;
+      this.typeEditSuccess = 'danger';
+      this.successMsg = [{
+        msg: 'Bạn phải nhập số người cần tìm'
+      }];
+      window.scrollTo(0, 300);
+    } else {
+      this.hasSonguoi = true;
+    }
+    if (value.dientich === 0) {
+      this.hasDientich = false;
+      this.hasGiatien = true;
+      this.hasSonguoi = true;
+      this.editSuccess = true;
+      this.typeEditSuccess = 'danger';
+      this.successMsg = [{
+        msg: 'Bạn phải nhập diện tích'
+      }];
+      window.scrollTo(0, 300);
+    } else {
+      this.hasDientich = true;
     }
     if (value.loaiPhong === 2) {
       if(value.giatien === 0 && value.giatienTheoNguoi === 0) {
@@ -364,32 +395,7 @@ export class CreatePhongtroComponent implements OnInit {
         this.hasTkNgh = true;
       }
     }
-    if(value.dientich === 0) {
-      this.hasDientich = false;
-      this.hasGiatien = true;
-      this.hasSonguoi = true;
-      this.editSuccess = true;
-      this.typeEditSuccess = 'danger';
-      this.successMsg = [{
-        msg: 'Bạn phải nhập diện tích'
-      }];
-      window.scrollTo(0, 300);
-    } else {
-      this.hasDientich = true;
-    }
-    if(value.songuoi === 0) {
-      this.hasSonguoi = false;
-      this.hasDientich = true;
-      this.hasGiatien = true;
-      this.editSuccess = true;
-      this.typeEditSuccess = 'danger';
-      this.successMsg = [{
-        msg: 'Bạn phải nhập số người cần tìm'
-      }];
-      window.scrollTo(0, 300);
-    } else {
-      this.hasSonguoi = true;
-    }
+
     if(this.hasHinhanh && this.hasTkNgh && this.hasGiatien && this.hasDientich && this.hasSonguoi) {
       let currentDate = Constants.getCurrentDate();
       value.wifi = +value.wifi;
@@ -399,21 +405,9 @@ export class CreatePhongtroComponent implements OnInit {
       value.phuong = value.phuong.toLowerCase();
       value.quan = value.quan.toLowerCase();
       value.tp = value.tp.toLowerCase();
-      if(this.truong === undefined) {
-        value.truong = '';
-      } else {
-        value.truong = this.truong.toLowerCase();
-      }
-      if(this.nganh === undefined) {
-        value.nganh = '';
-      } else {
-        value.nganh = this.nganh.toLowerCase();
-      }
-      if(this.khoa === undefined) {
-        value.khoa = '';
-      } else {
-        value.khoa = this.khoa;
-      }
+      value.truong = this.truong.toLowerCase();
+      value.nganh = this.nganh.toLowerCase();
+      value.khoa = this.khoa;
       let phuong, quan, tp;
       phuong = value.phuong;
       quan = value.quan;
