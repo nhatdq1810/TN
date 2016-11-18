@@ -441,7 +441,7 @@ export class CreatePhongtroComponent implements OnInit {
             window.scrollTo(0, 300);
             setTimeout(() => {
               this.router.navigate(['/phongtro/detail', resp.id]);
-            }, 5000);
+            }, 3000);
           })
           .catch(err => {
             console.error(err);
@@ -455,7 +455,7 @@ export class CreatePhongtroComponent implements OnInit {
             window.scrollTo(0, 300);
             setTimeout(() => {
               this.router.navigate(['/home']);
-            }, 5000);
+            }, 3000);
           });
       } else {
         this.ptService.themPhongtro(value)
@@ -472,7 +472,7 @@ export class CreatePhongtroComponent implements OnInit {
             window.scrollTo(0, 300);
             setTimeout(() => {
               this.router.navigate(['/phongtro/detail', resp.id]);
-            }, 5000);
+            }, 3000);
           })
           .catch(err => {
             console.error(err);
@@ -486,7 +486,7 @@ export class CreatePhongtroComponent implements OnInit {
             window.scrollTo(0, 300);
             setTimeout(() => {
               this.router.navigate(['/home']);
-            }, 5000);
+            }, 3000);
           });
       }
     }
