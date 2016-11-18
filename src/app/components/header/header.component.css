@@ -7,15 +7,14 @@
 }
 
 .tm-site-name-container {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 5px;
+  padding-bottom: 15px;
 }
 
 .tm-site-name {
   position: relative;
-  color: #FCDD44;
-  font-size: 27px;
-  font-weight: 600;
+  display: block;
+  width: 90px;
 }
 
 .tm-site-name:after {
@@ -24,22 +23,16 @@
   left: 0;
   bottom: -10px;
   width: 0;
-  height: 5px;
-  background-color: #FF720B;
+  height: 3px;
+  // background-color: #FF720B;
+  background-color: #f9ee44;
   content: "";
   transition: width 0.2s;
 }
 
-.tm-site-name:hover {
-  color: #FF720B;
-}
-
-.tm-site-name:hover:after {
+.tm-site-name:hover:after,
+.tm-site-name.active:after {
   width: 100%;
-}
-
-.mobile-menu-icon {
-  display: none;
 }
 
 .tm-nav {
