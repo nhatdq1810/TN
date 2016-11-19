@@ -18,6 +18,7 @@ import { Nouislider } from 'ng2-nouislider';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { ImageCropperComponent } from 'ng2-img-cropper';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
@@ -58,7 +59,8 @@ import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.
     RegisterComponent,
     GridListComponent,
     UserInfoComponent,
-    PhongtroUserComponent
+    PhongtroUserComponent,
+    ImageCropperComponent
   ],
   imports: [
     BrowserModule,

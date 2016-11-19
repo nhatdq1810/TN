@@ -1,7 +1,9 @@
-import { Component, OnInit, AfterViewInit, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
+import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { Phongtro } from '../../models/phongtro';
 import { User } from '../../models/user';
 import { PhongtroService } from '../../services/phongtro.service';
@@ -16,6 +18,8 @@ let Constants = require('../../resources/constants');
 })
 export class CreatePhongtroComponent implements OnInit {
 
+  @ViewChild('cropImage') cropImage: ModalDirective;
+  @ViewChild('cropper') cropper: ImageCropperComponent;
   private hasBaseDropZoneOver: boolean = false;
   private options: any;
   private previewData: any;
@@ -51,6 +55,8 @@ export class CreatePhongtroComponent implements OnInit {
   private nganh: string = '';
   private listKhoa;
   private khoa: string = '';
+  private data1: any;
+  private cropperSettings1: CropperSettings;
 
   constructor(private route: ActivatedRoute, private http: Http, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
   }
@@ -113,6 +119,25 @@ export class CreatePhongtroComponent implements OnInit {
   }
 
   init() {
+    this.cropperSettings1 = new CropperSettings();
+    this.cropperSettings1.width = 360;
+    this.cropperSettings1.height = 200;
+
+    this.cropperSettings1.croppedWidth = 360;
+    this.cropperSettings1.croppedHeight = 200;
+
+    this.cropperSettings1.canvasWidth = 360;
+    this.cropperSettings1.canvasHeight = 200;
+
+    this.cropperSettings1.minWidth = 360;
+    this.cropperSettings1.minHeight = 200;
+
+    this.cropperSettings1.rounded = false;
+
+    this.cropperSettings1.cropperDrawSettings.strokeColor = '#fcdd44';
+    this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
+
+    this.data1 = {};
     this.infoWindowOpen = false;
     this.ptService.layDulieuTimkiemPhongtro()
       .then(result => {
@@ -502,8 +527,28 @@ export class CreatePhongtroComponent implements OnInit {
     }
   }
 
+  fileChangeListener($event) {
+    let image: any = new Image();
+    let file: File = $event.target.files[0];
+    let myReader: FileReader = new FileReader();
+    let that = this;
+    myReader.onloadend = function(loadEvent: any) {
+      image.src = loadEvent.target.result;
+      that.cropper.setImage(image);
+
+    };
+
+    myReader.readAsDataURL(file);
+  }
+
+  cropDone() {
+    this.previewData = this.data1.image;
+    this.cropImage.hide();
+  }
+
   handlePreviewData(data: any): void {
     this.previewData = data;
+    this.cropImage.show();
   }
 
   startUpload() {

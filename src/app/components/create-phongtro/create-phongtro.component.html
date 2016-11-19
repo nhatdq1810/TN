@@ -49,7 +49,7 @@
         </div>
         <img *ngIf="previewData" [src]="previewData" alt="Preview Data" class="img-preview">
         <div class="input-btn">
-          <input type="file" id="hinhanh-phongtro" ngFileSelect *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
+          <input type="file" id="hinhanh-phongtro" ngFileSelect *ngIf="!previewData" [options]="options" (change)="fileChangeListener($event)" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
           <button *ngIf="previewData" (click)="deleteImage()" class="fa fa-times btn-modal">Xóa</button>
         </div>
         <div *ngIf="!hasHinhanh">
@@ -229,5 +229,23 @@
         <input (click)="submitForm(complexForm.value)" [disabled]="!complexForm.valid" class="btn-modal" type="button" value="Tạo phòng trọ">
       </div>
     </form>
+  </div>
+</div>
+<div bsModal #cropImage="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="logout-form">
+          <img-cropper #cropper [image]="data1" [settings]="cropperSettings1"></img-cropper>
+          <span class="result" *ngIf="data1.image">
+            <img [src]="data1.image" [width]="cropperSettings1.croppedWidth" [height]="cropperSettings1.croppedHeight">
+          </span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal left" (click)="cropDone();">Đồng ý</button>
+        <button class="btn-modal right" (click)="cropImage.hide();">Hủy bỏ</button>
+      </div>
+    </div>
   </div>
 </div>
