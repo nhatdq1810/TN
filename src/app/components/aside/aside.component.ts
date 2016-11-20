@@ -33,9 +33,9 @@ export class AsideComponent implements OnInit {
     this.currentPT = this.ptService.currentPT;
     let searchTerm = {
       loaiPhong: this.currentPT.loaiPhong,
-      giatien_min: 0,
+      giatien_min: 500000,
       giatien_max: this.currentPT.giatien + 1000000,
-      giatienTheoNguoi_min: 0,
+      giatienTheoNguoi_min: 500000,
       giatienTheoNguoi_max: this.currentPT.giatienTheoNguoi + 1000000,
       dientich_min: 5,
       dientich_max: this.currentPT.dientich + 5,

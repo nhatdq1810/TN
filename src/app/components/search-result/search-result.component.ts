@@ -128,7 +128,7 @@ export class SearchResultComponent implements OnInit {
     }
     if(!this.listPT || this.listPT.length === 0) {
       this.complexForm.value.giatien = [500000, 5000000];
-      this.complexForm.value.giatienTheoNguoi = [0, 5000000];
+      this.complexForm.value.giatienTheoNguoi = [500000, 5000000];
       this.complexForm.value.dientich = [5, 20];
       this.submitForm(this.complexForm.value);
     }
@@ -136,7 +136,10 @@ export class SearchResultComponent implements OnInit {
 
   submitForm(value: any) {
     let diachi: string = '';
-    let giatien_min, giatien_max, giatienTheoNguoi_min, giatienTheoNguoi_max;
+    let giatien_min = 0;
+    let giatien_max = 0;
+    let giatienTheoNguoi_min = 0;
+    let giatienTheoNguoi_max = 0;
     diachi += value.duong;
     if (value.phuong !== '') {
       diachi += ', phường ' + value.phuong.toLowerCase();
@@ -152,11 +155,7 @@ export class SearchResultComponent implements OnInit {
     if(value.loaiPhong === 0) {
       giatien_min = value.giatien[0];
       giatien_max = value.giatien[1];
-      giatienTheoNguoi_min = 0;
-      giatienTheoNguoi_max = 0;
     } else if(value.loaiPhong === 1) {
-      giatien_min = 0;
-      giatien_max = 0;
       giatienTheoNguoi_min = value.giatienTheoNguoi[0];
       giatienTheoNguoi_max = value.giatienTheoNguoi[1];
     } else {
@@ -185,7 +184,6 @@ export class SearchResultComponent implements OnInit {
       wifi: +(value.wifi),
       chu: +(value.chu)
     }
-    console.log(value);
     this.ptService.timkiemPhongtro(searchTerm, 12)
       .then((result: string) => {
         if (result === 'success') {
