@@ -56,12 +56,19 @@ sebm-google-map strong {
   margin-bottom: 10px;
 }
 
-.fa.fa-times::before {
+.input-btn .fa.btn-modal::before {
   padding-right: 5px;
 }
 
-.fa.fa-times.btn-modal {
+.input-btn .fa.btn-modal {
   font-size: 20px;
+}
+
+.input-btn .fa.fa-crosshairs.btn-modal {
+  width: 170px;
+}
+
+.input-btn .fa.fa-times.btn-modal {
   width: 80px;
 }
 

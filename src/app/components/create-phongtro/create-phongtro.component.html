@@ -18,7 +18,17 @@
         {{item?.msg}}
       </alert>
     </div>
-    <div *ngIf="editSuccess">
+    <div *ngIf="editSuccess && successMsg[0] && typeEditSuccess === 'danger'">
+      <alert [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
+        {{successMsg[0].msg}}
+      </alert>
+    </div>
+    <div *ngIf="editSuccess && successMsg[1] && typeEditSuccess === 'danger'">
+      <alert [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
+        {{successMsg[1].msg}}
+      </alert>
+    </div>
+    <div *ngIf="editSuccess && typeEditSuccess !== 'danger'">
       <alert *ngFor="let item of successMsg" [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
         {{item?.msg}}
       </alert>
@@ -50,6 +60,7 @@
         <img *ngIf="previewData" [src]="previewData" alt="Preview Data" class="img-preview">
         <div class="input-btn">
           <input type="file" id="hinhanh-phongtro" ngFileSelect *ngIf="!previewData" [options]="options" (change)="fileChangeListener($event)" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
+          <button *ngIf="previewData" (click)="cropImage.show();" class="fa fa-crosshairs btn-modal">Chỉnh sửa ảnh</button>
           <button *ngIf="previewData" (click)="deleteImage()" class="fa fa-times btn-modal">Xóa</button>
         </div>
         <div *ngIf="!hasHinhanh">
@@ -84,23 +95,23 @@
             <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 0" class="form-group">
               <label>Giá thuê nguyên phòng</label>
               <i class="fa fa-asterisk"></i>
-              <input class="input-modal" type="text" [formControl]="complexForm.controls['giatien']" [ngModel]="formValue.giatien | number" (ngModelChange)="changeTien($event, 'giatien');" name="giatien" placeholder="2,000,000">
+              <input class="input-modal" type="text" [formControl]="complexForm.controls['giatien']" [ngModel]="formValue.giatien | number" (ngModelChange)="changeTien($event, 'giatien');" name="giatien" placeholder="Ví dụ: 2,000,000">
               <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
                 Bạn chưa nhập giá thuê nguyên phòng.
               </alert>
-              <div *ngIf="!hasGiatien">
-                <alert *ngFor="let item of successMsg" [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
-                  {{item?.msg}}
+              <div *ngIf="!hasGiatien  && successMsg[0]">
+                <alert [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
+                  {{successMsg[0].msg}}
                 </alert>
               </div>
             </div>
             <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 1" class="form-group">
               <label>Giá thuê từng người</label>
               <i class="fa fa-asterisk"></i>
-              <input class="input-modal" type="text" [ngModel]="formValue.giatienTheoNguoi | number" (ngModelChange)="changeTien($event, 'giatienTheoNguoi');" [formControl]="complexForm.controls['giatienTheoNguoi']" name="giatienTheoNguoi" placeholder="2,000,000">
-              <div *ngIf="!hasGiatien">
-                <alert *ngFor="let item of successMsg" [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
-                  {{item?.msg}}
+              <input class="input-modal" type="text" [ngModel]="formValue.giatienTheoNguoi | number" (ngModelChange)="changeTien($event, 'giatienTheoNguoi');" [formControl]="complexForm.controls['giatienTheoNguoi']" name="giatienTheoNguoi" placeholder="Ví dụ: 2,000,000">
+              <div *ngIf="!hasGiatien && successMsg[1]">
+                <alert [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
+                  {{successMsg[1].msg}}
                 </alert>
               </div>
               <alert [type]="'danger'" *ngIf="complexForm.controls['giatienTheoNguoi'].hasError('required') && complexForm.controls['giatienTheoNguoi'].touched">
@@ -110,7 +121,7 @@
             <div class="form-group">
               <label>Diện tích (m<sup>2</sup>)</label>
               <i class="fa fa-asterisk"></i>
-              <input class="input-modal" type="text" [ngModel]="formValue.dientich | number" (ngModelChange)="changeTien($event, 'dientich');" [formControl]="complexForm.controls['dientich']" name="dientich" placeholder="20">
+              <input class="input-modal" type="text" [ngModel]="formValue.dientich | number" (ngModelChange)="changeTien($event, 'dientich');" [formControl]="complexForm.controls['dientich']" name="dientich" placeholder="Ví dụ: 20">
               <alert [type]="'danger'" *ngIf="complexForm.controls['dientich'].hasError('required') && complexForm.controls['dientich'].touched">
                 Bạn chưa nhập diện tích phòng trọ.
               </alert>
@@ -123,7 +134,7 @@
             <div class="form-group">
               <label>Số người cần tìm</label>
               <i class="fa fa-asterisk"></i>
-              <input class="input-modal" type="text" [ngModel]="formValue.songuoi | number" (ngModelChange)="changeTien($event, 'songuoi');" [formControl]="complexForm.controls['songuoi']" name="songuoi" placeholder="1">
+              <input class="input-modal" type="text" [ngModel]="formValue.songuoi | number" (ngModelChange)="changeTien($event, 'songuoi');" [formControl]="complexForm.controls['songuoi']" name="songuoi" placeholder="Ví dụ: 1">
               <alert [type]="'danger'" *ngIf="complexForm.controls['songuoi'].hasError('required') && complexForm.controls['songuoi'].touched">
                 Bạn chưa nhập số lượng người cần tìm.
               </alert>
@@ -138,15 +149,15 @@
         <div class="left">
           <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 0" class="form-group col-md-6">
             <label>Tiền cọc phòng</label>
-            <input class="input-modal" type="text" [ngModel]="formValue.tiencoc | number" (ngModelChange)="changeTien($event, 'tiencoc');" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="2,000,000">
+            <input class="input-modal" type="text" [ngModel]="formValue.tiencoc | number" (ngModelChange)="changeTien($event, 'tiencoc');" [formControl]="complexForm.controls['tiencoc']" name="tiencoc" placeholder="Ví dụ: 2,000,000">
           </div>
           <div *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 1" class="form-group col-md-6">
             <label>Tiền cọc từng người</label>
-            <input class="input-modal" type="text" [ngModel]="formValue.tiencocTheoNguoi | number" (ngModelChange)="changeTien($event, 'tiencocTheoNguoi');" [formControl]="complexForm.controls['tiencocTheoNguoi']" name="tiencocTheoNguoi" placeholder="2,000,000">
+            <input class="input-modal" type="text" [ngModel]="formValue.tiencocTheoNguoi | number" (ngModelChange)="changeTien($event, 'tiencocTheoNguoi');" [formControl]="complexForm.controls['tiencocTheoNguoi']" name="tiencocTheoNguoi" placeholder="Ví dụ: 2,000,000">
           </div>
           <div class="form-group col-md-6">
             <label>Tài khoản ngân hàng</label>
-            <input class="input-modal" type="text" [formControl]="complexForm.controls['nganhangID']" name="nganhangID" placeholder="TKNGH123456">
+            <input class="input-modal" type="text" [formControl]="complexForm.controls['nganhangID']" name="nganhangID" placeholder="Ví dụ: TKNGH123456">
             <div *ngIf="!hasTkNgh">
               <alert *ngFor="let item of errorMsgNgh" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert('ngh')">
                 {{item?.msg}}
@@ -157,15 +168,15 @@
         <div class="left">
           <div class="form-group col-md-6">
             <label>Chung trường học</label>
-            <input class="input-modal" type="text" [(ngModel)]="truong" [typeahead]="listTruong" placeholder="Học viện công nghệ bưu chính viễn thông" [formControl]="complexForm.controls['truong']">
+            <input class="input-modal" type="text" [(ngModel)]="truong" [typeahead]="listTruong" placeholder="Ví dụ: Học viện CN Bưu chính Viễn thông" [formControl]="complexForm.controls['truong']">
           </div>
           <div class="form-group col-md-6">
             <label>Chung ngành học</label>
-            <input class="input-modal" type="text" [(ngModel)]="nganh" [typeahead]="listNganh" placeholder="Công nghệ thông tin" [formControl]="complexForm.controls['nganh']">
+            <input class="input-modal" type="text" [(ngModel)]="nganh" [typeahead]="listNganh" placeholder="Ví dụ: Công nghệ thông tin" [formControl]="complexForm.controls['nganh']">
           </div>
           <div class="form-group col-md-6">
             <label>Chung niên học</label>
-            <input class="input-modal" type="text" [(ngModel)]="khoa" [typeahead]="listKhoa" placeholder="2012" [formControl]="complexForm.controls['khoa']">
+            <input class="input-modal" type="text" [(ngModel)]="khoa" [typeahead]="listKhoa" placeholder="Ví dụ: 2012" [formControl]="complexForm.controls['khoa']">
           </div>
         </div>
       </div>
@@ -232,14 +243,11 @@
   </div>
 </div>
 <div bsModal #cropImage="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-md">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <div class="logout-form">
+        <div class="cropImage-form">
           <img-cropper #cropper [image]="data1" [settings]="cropperSettings1"></img-cropper>
-          <span class="result" *ngIf="data1.image">
-            <img [src]="data1.image" [width]="cropperSettings1.croppedWidth" [height]="cropperSettings1.croppedHeight">
-          </span>
         </div>
       </div>
       <div class="modal-footer">

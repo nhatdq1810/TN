@@ -120,19 +120,17 @@ export class CreatePhongtroComponent implements OnInit {
 
   init() {
     this.cropperSettings1 = new CropperSettings();
-    this.cropperSettings1.width = 360;
-    this.cropperSettings1.height = 200;
+    this.cropperSettings1.width = 850;
+    this.cropperSettings1.height = 450;
 
-    this.cropperSettings1.croppedWidth = 360;
-    this.cropperSettings1.croppedHeight = 200;
+    this.cropperSettings1.canvasWidth = 868;
+    this.cropperSettings1.canvasHeight = 450;
 
-    this.cropperSettings1.canvasWidth = 360;
-    this.cropperSettings1.canvasHeight = 200;
-
-    this.cropperSettings1.minWidth = 360;
-    this.cropperSettings1.minHeight = 200;
+    this.cropperSettings1.minWidth = 850;
+    this.cropperSettings1.minHeight = 450;
 
     this.cropperSettings1.rounded = false;
+    this.cropperSettings1.noFileInput = true;
 
     this.cropperSettings1.cropperDrawSettings.strokeColor = '#fcdd44';
     this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
@@ -241,6 +239,7 @@ export class CreatePhongtroComponent implements OnInit {
       this.initChu = this.ptEdit.chu;
 
       this.previewData = this.ptEdit.hinhanh;
+      this.fileChangeListener(this.ptEdit.hinhanh);
     } else {
       this.getLatLng('Hồ Chí Minh');
       this.options = {
@@ -335,15 +334,26 @@ export class CreatePhongtroComponent implements OnInit {
       this.hasDientich = true;
     }
     if (value.loaiPhong === 2) {
-      if(value.giatien === 0 && value.giatienTheoNguoi === 0) {
+      if(value.giatien === 0 || value.giatienTheoNguoi === 0) {
         this.hasGiatien = false;
         this.hasDientich = true;
         this.hasSonguoi = true;
         this.editSuccess = true;
         this.typeEditSuccess = 'danger';
-        this.successMsg = [{
-          msg: 'Bạn phải nhập giá thuê nguyên phòng hoặc giá thuê từng người'
-        }];
+        if(value.giatien === 0) {
+          this.successMsg[0] = {
+            msg: 'Bạn phải nhập giá thuê nguyên phòng'
+          };
+        } else {
+          this.successMsg[0] = undefined;
+        }
+        if(value.giatienTheoNguoi === 0) {
+          this.successMsg[1] = {
+            msg: 'Bạn phải nhập giá thuê từng người'
+          }
+        } else {
+          this.successMsg[1] = undefined;
+        }
         window.scrollTo(0, 300);
       } else {
         this.hasGiatien = true;
@@ -527,18 +537,22 @@ export class CreatePhongtroComponent implements OnInit {
     }
   }
 
-  fileChangeListener($event) {
+  fileChangeListener($event: any) {
     let image: any = new Image();
-    let file: File = $event.target.files[0];
-    let myReader: FileReader = new FileReader();
-    let that = this;
-    myReader.onloadend = function(loadEvent: any) {
-      image.src = loadEvent.target.result;
-      that.cropper.setImage(image);
-
-    };
-
-    myReader.readAsDataURL(file);
+    if($event.target) {
+      let file: File = $event.target.files[0];
+      let myReader: FileReader = new FileReader();
+      let that = this;
+      myReader.onloadend = function(loadEvent: any) {
+        image.src = loadEvent.target.result;
+        that.cropper.setImage(image);
+      };
+      myReader.readAsDataURL(file);
+    } else {
+      image.crossOrigin = "Anonymous";
+      image.src = $event;
+      this.cropper.setImage(image);
+    }
   }
 
   cropDone() {
@@ -547,6 +561,7 @@ export class CreatePhongtroComponent implements OnInit {
   }
 
   handlePreviewData(data: any): void {
+    console.log(data);
     this.previewData = data;
     this.cropImage.show();
   }

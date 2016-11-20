@@ -37,6 +37,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { GridListComponent } from './components/grid-list/grid-list.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.
     GridListComponent,
     UserInfoComponent,
     PhongtroUserComponent,
-    ImageCropperComponent
+    ImageCropperComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
