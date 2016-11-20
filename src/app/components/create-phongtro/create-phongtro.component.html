@@ -55,6 +55,7 @@
         </ul>
       </div>
       <div class="form-group col-md-4">
+      {{response}}
         <div ngFileDrop *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" (onFileOver)="fileOverBase($event)" [events]="uploadEvents" [ngClass]="{'file-over': hasBaseDropZoneOver}" class="drop-zone">
         </div>
         <img *ngIf="previewData" [src]="previewData" alt="Preview Data" class="img-preview">
@@ -186,12 +187,12 @@
           <ul>
             <li class="radio">
               <label>
-                <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="initChu === 1">Có
+                <input type="radio" name="chu" value="1" [formControl]="complexForm.controls['chu']" [checked]="initChu == 1">Có
               </label>
             </li>
             <li class="radio">
               <label>
-                <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']" [checked]="initChu === 0">Không
+                <input type="radio" name="chu" value="0" [formControl]="complexForm.controls['chu']" [checked]="initChu == 0">Không
               </label>
             </li>
           </ul>
@@ -201,12 +202,12 @@
           <ul>
             <li class="radio">
               <label>
-                <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="initWifi === 1">Có
+                <input type="radio" name="wifi" value="1" [formControl]="complexForm.controls['wifi']" [checked]="initWifi == 1">Có
               </label>
             </li>
             <li class="radio">
               <label>
-                <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']" [checked]="initWifi === 0">Không
+                <input type="radio" name="wifi" value="0" [formControl]="complexForm.controls['wifi']" [checked]="initWifi == 0">Không
               </label>
             </li>
           </ul>

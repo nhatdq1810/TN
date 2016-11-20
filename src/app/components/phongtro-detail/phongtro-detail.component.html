@@ -55,7 +55,7 @@
         </div>
         <a *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 1)">Đặt cọc chỗ ngay</a>
       </div>
-      <div *ngIf="phongtro.hinhanh && phongtro.hinhanh !== ''" class="phongtro-img margin-bottom">
+      <div class="phongtro-img margin-bottom">
         <img [src]="phongtro?.hinhanh" [alt]="phongtro.diachi" class="img-responsive">
       </div>
       <div class="phongtro-info">

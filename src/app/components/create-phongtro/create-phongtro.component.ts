@@ -502,12 +502,14 @@ export class CreatePhongtroComponent implements OnInit {
             this.successMsg = [{
               msg: 'Tạo phòng trọ thành công'
             }, {
-              msg: 'Bạn sẽ được chuyển tới phòng trọ này !'
+              msg: 'Phòng trọ được đưa vào danh sách chờ phê duyệt'
+            }, {
+              msg: 'Chúng tôi sẽ thông báo đến bạn sau 1 ngày'
             }];
             window.scrollTo(0, 300);
             setTimeout(() => {
-              this.router.navigate(['/phongtro/detail', resp.id]);
-            }, 3000);
+              this.router.navigate(['/phongtro/user']);
+            }, 5000);
           })
           .catch(err => {
             console.error(err);
@@ -556,12 +558,12 @@ export class CreatePhongtroComponent implements OnInit {
   }
 
   cropDone() {
+    console.log(this.data1);
     this.previewData = this.data1.image;
     this.cropImage.hide();
   }
 
   handlePreviewData(data: any): void {
-    console.log(data);
     this.previewData = data;
     this.cropImage.show();
   }
