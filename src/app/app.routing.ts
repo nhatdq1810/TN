@@ -11,8 +11,13 @@ import { PhongtroDetailComponent } from './components/phongtro-detail/phongtro-d
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const appRoutes: Routes = [
+  {
+    path: 'admin',
+    component: AdminComponent
+  },
   {
     path: 'home',
     component: HomepageComponent
