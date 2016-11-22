@@ -1,44 +1,77 @@
-<div class="left-side sticky-left-side" style="overflow: hidden; outline: none;" tabindex="5000">
-  <!--logo and iconic logo start-->
-  <div class="logo">
-    <h1><a href="index.html">Easy <span>Admin</span></a></h1>
+<div class="main-container">
+  <div class="left nav-left-side" tabindex="5000">
+    <!--logo and iconic logo start-->
+    <div class="logo">
+      <h1><a>troSV</a></h1>
+    </div>
+    <!--logo and iconic logo end-->
+    <div class="left-side-inner">
+      <!--sidebar nav start-->
+      <ul class="nav nav-pills nav-stacked">
+        <li [ngClass]="{'active': isLiActive[i]}" *ngFor="let item of listLi, let i = index" (click)="activeLi(i)">
+          <a>
+            <i [class]="item.i"></i>
+            <span>{{item.span}}</span>
+          </a>
+        </li>
+      </ul>
+      <!--sidebar nav end-->
+    </div>
   </div>
-  <!--logo and iconic logo end-->
-  <div class="left-side-inner">
-    <!--sidebar nav start-->
-    <ul class="nav nav-pills nav-stacked custom-nav">
-      <li class="active"><a href="index.html"><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a></li>
-      <li class="menu-list">
-        <a href="#"><i class="lnr lnr-cog"></i>
-                <span>Components</span></a>
-        <ul class="sub-menu-list">
-          <li><a href="grids.html">Grids</a> </li>
-          <li><a href="widgets.html">Widgets</a></li>
-        </ul>
-      </li>
-      <li class=""><a href="forms.html"><i class="lnr lnr-spell-check"></i> <span>Forms</span></a></li>
-      <li class=""><a href="tables.html"><i class="lnr lnr-menu"></i> <span>Tables</span></a></li>
-      <li class="menu-list"><a href="#"><i class="lnr lnr-envelope"></i> <span>MailBox</span></a>
-        <ul class="sub-menu-list">
-          <li><a href="inbox.html">Inbox</a> </li>
-          <li><a href="compose-mail.html">Compose Mail</a></li>
-        </ul>
-      </li>
-      <li class="menu-list"><a href="#"><i class="lnr lnr-indent-increase"></i> <span>Menu Levels</span></a>
-        <ul class="sub-menu-list">
-          <li><a href="charts.html">Basic Charts</a> </li>
-        </ul>
-      </li>
-      <li><a href="codes.html"><i class="lnr lnr-pencil"></i> <span>Typography</span></a></li>
-      <li><a href="media.html"><i class="lnr lnr-select"></i> <span>Media Css</span></a></li>
-      <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>Pages</span></a>
-        <ul class="sub-menu-list">
-          <li><a href="sign-in.html">Sign In</a> </li>
-          <li><a href="sign-up.html">Sign Up</a></li>
-          <li><a href="blank_page.html">Blank Page</a></li>
-        </ul>
-      </li>
-    </ul>
-    <!--sidebar nav end-->
+  <div class="left nav-top">
+  </div>
+  <div class="page-content">
+    <div class="main-content">
+      <div class="custom-table">
+        <div class="table-header">
+          <h2>Phòng trọ chờ phê duyệt</h2>
+        </div>
+        <div class="table-content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Ngày đăng</th>
+                <th colspan="3">Địa chỉ</th>
+                <th>Giá tiền nguyên phòng</th>
+                <th>Giá tiền từng người</th>
+                <th>Tiền cọc nguyên phòng</th>
+                <th>Tiền cọc từng người</th>
+                <th>Số người cần tìm</th>
+                <th>Diện tích (m<sup>2</sup>)</th>
+                <th>Chấp thuận</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of listPhongtroNotChecked, let i = index">
+                <th>{{item.id}}</th>
+                <td>{{item.ngaydang}}</td>
+                <td colspan="3">{{item.diachi}}</td>
+                <td>{{item.giatien | number}}</td>
+                <td>{{item.giatienTheoNguoi | number}}</td>
+                <td>{{item.tiencoc | number}}</td>
+                <td>{{item.tiencocTheoNguoi | number}}</td>
+                <td>{{item.songuoi}}</td>
+                <td>{{item.dientich}}</td>
+                <td>
+                  <input type="checkbox" name="acceptPT" value="1" [(ngModel)]="listPTAccept[i]">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="check-all right">
+            <span>Chọn tất cả</span>
+            <input type="checkbox" (click)="checkAll()">
+          </div>
+          <pagination [totalItems]="listPhongtroNotChecked.length" [itemsPerPage]="5" [(ngModel)]="currentPage"></pagination>
+          <input type="button" class="btn-modal left" (click)="submit()" name="submit" value="Cập nhật">
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<!-- <li class="menu-list"><a href="#"><i class="fa fa-indent-increase"></i> <span>Menu Levels</span></a>
+  <ul class="sub-menu-list">
+    <li><a href="charts.html">Basic Charts</a> </li>
+  </ul>
+</li>-->

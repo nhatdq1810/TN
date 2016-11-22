@@ -12,7 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AccordionModule, ModalModule, AlertModule, DropdownModule, DatepickerModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { AccordionModule, ModalModule, AlertModule, DropdownModule, DatepickerModule, TypeaheadModule, PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { routing } from './app.routing';
 import { Nouislider } from 'ng2-nouislider';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
@@ -76,6 +76,7 @@ import { AdminComponent } from './components/admin/admin.component';
     DropdownModule,
     DatepickerModule,
     TypeaheadModule,
+    PaginationModule,
     AgmCoreModule.forRoot({
       apiKey: Constants.googleApiKey
     })

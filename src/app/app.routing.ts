@@ -15,12 +15,12 @@ import { AdminComponent } from './components/admin/admin.component';
 
 const appRoutes: Routes = [
   {
-    path: 'admin',
-    component: AdminComponent
-  },
-  {
     path: 'home',
     component: HomepageComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent
   },
   {
     path: '404',

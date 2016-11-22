@@ -21,8 +21,8 @@ export class PhongtroUserComponent implements OnInit {
   @ViewChild('confirmModal') confirmModal: ModalDirective;
 
   constructor(private userService: UserService, private ptService: PhongtroService, private router: Router) {
-    this.init();
-    // this.fakeInit();
+    // this.init();
+    this.fakeInit();
   }
 
   ngOnInit() {
