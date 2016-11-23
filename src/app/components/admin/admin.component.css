@@ -43,7 +43,6 @@
 .main-container .nav-top {
   width: calc(100% - 230px);
   height: 80px;
-  margin-bottom: 10px;
   background: #ededed;
   border-bottom: 1px solid #d9dee4;
 }
@@ -88,7 +87,12 @@
   overflow: auto;
 }
 
-.custom-table .table-content tr:hover {
+.custom-table .table-content tbody tr {
+  cursor: pointer;
+}
+
+.custom-table .table-content tr:hover,
+.custom-table .table-content tr.active {
   background: #f5f5f5;
 }
 

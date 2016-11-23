@@ -85,11 +85,6 @@ export class AdminComponent implements OnInit {
     this.listPhongtroNotChecked = Constants.fakeListPT;
     for (let i = 0; i < this.listPhongtroNotChecked.length; ++i) {
       this.listPTAccept[i] = false;
-      // Constants.fakeListUser.forEach((value, index) => {
-      //   if (this.listPhongtroNotChecked[i].userID === value.id) {
-      //     this.listUser[value.id] = value;
-      //   }
-      // });
     }
   }
 

@@ -100,9 +100,14 @@ p {
   font-family: 'Open Sans', sans-serif;
 }
 
+a,
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+
 a {
   outline: none;
-  cursor: pointer;
   color: #000000;
 }
 
