@@ -54,16 +54,15 @@
                 <td>{{item.songuoi}}</td>
                 <td>{{item.dientich}}</td>
                 <td>
-                  <input type="checkbox" name="acceptPT" value="1" [(ngModel)]="listPTAccept[i]">
+                  <input type="checkbox" name="acceptPT" value="1" [ngModel]="listPTAccept[i]" (ngModelChange)="updateCheckAll($event, i)">
                 </td>
               </tr>
             </tbody>
           </table>
           <div class="check-all right">
             <span>Chọn tất cả</span>
-            <input type="checkbox" (click)="checkAll()">
+            <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllPT">
           </div>
-          <pagination [totalItems]="listPhongtroNotChecked.length" [itemsPerPage]="5" [(ngModel)]="currentPage"></pagination>
           <input type="button" class="btn-modal left" (click)="submit()" name="submit" value="Cập nhật">
         </div>
       </div>

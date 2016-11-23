@@ -14,7 +14,7 @@ export class AdminComponent implements OnInit {
   private listPTAccept: Array<boolean> = [];
   private listUser: Array<any> = [];
   private listPhongtroNotChecked: Array<any> = [];
-  private currentPage: number = 1;
+  private checkAllPT: boolean;
 
   constructor() {
     this.listLi = [{
@@ -44,6 +44,7 @@ export class AdminComponent implements OnInit {
         this.isLiActive[i] = false;
       }
     }
+    this.checkAllPT = false;
     this.fakeInit();
   }
 
@@ -58,6 +59,13 @@ export class AdminComponent implements OnInit {
         this.isLiActive[i] = false;
       }
     }
+  }
+
+  updateCheckAll(event, index) {
+    this.listPTAccept[index] = event;
+    this.checkAllPT = this.listPTAccept.every((value) => {
+      return value === true;
+    });
   }
 
   checkAll() {
@@ -75,7 +83,7 @@ export class AdminComponent implements OnInit {
 
   fakeInit() {
     this.listPhongtroNotChecked = Constants.fakeListPT;
-    for (var i = 0; i < this.listPhongtroNotChecked.length; ++i) {
+    for (let i = 0; i < this.listPhongtroNotChecked.length; ++i) {
       this.listPTAccept[i] = false;
       // Constants.fakeListUser.forEach((value, index) => {
       //   if (this.listPhongtroNotChecked[i].userID === value.id) {
