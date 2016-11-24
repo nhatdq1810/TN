@@ -19,6 +19,7 @@ import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { ImageCropperComponent } from 'ng2-img-cropper';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
@@ -38,6 +39,7 @@ import { GridListComponent } from './components/grid-list/grid-list.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { StatisticsComponent } from './components/admin/statistics/statistics.component';
 
 
 @NgModule({
@@ -62,7 +64,8 @@ import { AdminComponent } from './components/admin/admin.component';
     UserInfoComponent,
     PhongtroUserComponent,
     ImageCropperComponent,
-    AdminComponent
+    AdminComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ import { AdminComponent } from './components/admin/admin.component';
     DatepickerModule,
     TypeaheadModule,
     PaginationModule,
+    ChartsModule,
     AgmCoreModule.forRoot({
       apiKey: Constants.googleApiKey
     })

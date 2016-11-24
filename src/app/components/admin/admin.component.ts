@@ -15,27 +15,33 @@ export class AdminComponent implements OnInit {
   private listUser: Array<any> = [];
   private listPhongtroNotChecked: Array<any> = [];
   private checkAllPT: boolean;
+  private statusPage: string;
 
   constructor() {
     this.listLi = [{
-      'i': 'fa fa-power-switch',
-      'span': 'Dashboard'
+      'a': 'home',
+      'i': 'fa fa-tachometer',
+      'span': 'Trang chủ'
     },
     {
-      'i': 'fa fa-spell-check',
-      'span': 'Forms'
+      'a': 'user',
+      'i': 'fa fa-users',
+      'span': 'Quản lý user'
     },
     {
-      'i': 'fa fa-menu',
-      'span': 'Tables'
+      'a': 'pt',
+      'i': 'fa fa-home',
+      'span': 'Quản lý phòng trọ'
     },
     {
-      'i': 'fa fa-pencil',
-      'span': 'Typography'
+      'a': 'statistics',
+      'i': 'fa fa-bar-chart',
+      'span': 'Thống kê'
     },
     {
-      'i': 'fa fa-select',
-      'span': 'Media Css'
+      'a': 'email',
+      'i': 'fa fa-envelope-o',
+      'span': 'Email'
     }];
     for (let i = 0; i < this.listLi.length; ++i) {
       if(i === 0) {
@@ -45,6 +51,7 @@ export class AdminComponent implements OnInit {
       }
     }
     this.checkAllPT = false;
+    this.statusPage = 'home';
     this.fakeInit();
   }
 

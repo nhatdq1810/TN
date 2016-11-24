@@ -1,10 +1,22 @@
+.green {
+  color: #1abb9c;
+}
+
+.red {
+  color: #c7254e;
+}
+
+.margin-bottom {
+  margin-bottom: 30px;
+}
+
 .main-container,
 .main-container > div {
   height: 100%;
 }
 
 .main-container {
-  overflow: hidden;
+  color: #73879c;
 }
 
 .nav-left-side {
@@ -15,14 +27,21 @@
 .nav-left-side .logo {
   margin: 15px 10px 100px;
   height: 50px;
+  text-align: center;
+  color: #fcdd44;
+  border: 1px solid #dddddd;
 }
 
 .nav-left-side .nav-pills>li {
   transition: border .3s ease-in-out;
 }
 
+.nav-left-side .nav-pills>li i {
+  margin-right: 10px;
+}
+
 .nav-left-side .nav-pills>li.active {
-  border-right: 5px solid #fcdd44;
+  border-left: 15px solid #fcdd44;
 }
 
 .nav-left-side .nav-pills>li>a {
@@ -49,14 +68,39 @@
 
 .page-content {
   margin-left: 230px;
-  padding: 10px 20px 0;
+  padding: 0 20px;
+}
+
+.statistics {
+  width: 100%;
+}
+
+.statistics .count {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.statistics .tile-stats-count:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 65px;
+  border-left: 2px solid #ADB2B5;
+  margin-top: 10px;
+}
+
+.statistics .tile-stats-count {
+  text-align: center;
+}
+
+.statistics .tile-stats-count:first-of-type:before {
+  border-left: none;
 }
 
 .custom-table {
   padding: 10px 15px;
   background: #ffffff;
   border: 1px solid #e6e9ed;
-  color: #73879c;
 }
 
 .custom-table .table-header {
@@ -82,7 +126,7 @@
 }
 
 .custom-table .table-content tbody {
-  height: 200px;
+  height: 190px;
   display: block;
   overflow: auto;
 }
