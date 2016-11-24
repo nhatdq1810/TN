@@ -10,10 +10,12 @@ let Constants = require('../../../resources/constants');
 export class StatisticsComponent implements OnInit {
 
   private datasetsUsers;
-  private labels;
-  private datasetsPT;
+  private labelsNewUsers;
+  private labelsUsers;
+  private datasetsNewUsers;
   private options;
   private chartColors;
+  private listUser;
 
   constructor() {
     this.options = {
@@ -34,10 +36,12 @@ export class StatisticsComponent implements OnInit {
       pointHoverRadius: 10
     }];
     let currentMonth = Constants.getCurrentDate().split('/')[1];
-    this.labels = [];
-    for (var i = 0; i<6; ++i) {
-      this.labels.push(`tháng ${currentMonth - 5 + i}`);
+    this.labelsNewUsers = [];
+    for (let i = 0; i<6; ++i) {
+      this.labelsNewUsers.push(`tháng ${currentMonth - 5 + i}`);
     }
+    this.labelsUsers = ['Số lượt đăng ký mới', 'Tổng số'];
+
     this.fakeInit();
   }
 
@@ -45,14 +49,14 @@ export class StatisticsComponent implements OnInit {
   }
 
   fakeInit() {
+    this.datasetsNewUsers = [{
+      label: 'Số lượt đăng ký mới',
+      data: [12, 9, 3, 5, 2, 10]
+    }];
     this.datasetsUsers = [{
-      label: 'Số lượt đăng ký user',
-      data: [12, 19, 3, 5, 2, 3]
+      data: [10, 21]
     }];
-    this.datasetsPT = [{
-      label: 'Số lượt tạo phòng trọ',
-      data: [2, 19, 23, 5, 0, 3]
-    }];
+    this.listUser = Constants.fakeListUser;
   }
 
 }

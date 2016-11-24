@@ -26,13 +26,13 @@ export let fakeUser: User = {
 export let fakeListUser: Array<User> = [{
   id: 0,
   hoten: 'abc',
-  diachi: '',
+  diachi: '8888/12313 hdsjak, phường 15, quận gò vấp, thành phố hồ chí minh',
   dotincay: 0,
   email: 'a@a.com',
   facebook: '',
   password: '123456',
   skype: '',
-  sodt: '',
+  sodt: '0123456789',
   username: 'abc'
 },
 {
@@ -43,7 +43,7 @@ export let fakeListUser: Array<User> = [{
   email: 'a@a.com',
   facebook: '',
   password: '123456',
-  skype: '',
+  skype: 'sdfdfdfdfdfdfdfdfdfdfdfdfdf',
   sodt: '',
   username: 'abc'
 },
@@ -65,7 +65,7 @@ export let fakeListUser: Array<User> = [{
   diachi: '',
   dotincay: 0,
   email: 'a@a.com',
-  facebook: '',
+  facebook: 'asdfghkl',
   password: '123456',
   skype: '',
   sodt: '',

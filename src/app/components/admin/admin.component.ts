@@ -34,11 +34,6 @@ export class AdminComponent implements OnInit {
       'span': 'Quản lý phòng trọ'
     },
     {
-      'a': 'statistics',
-      'i': 'fa fa-bar-chart',
-      'span': 'Thống kê'
-    },
-    {
       'a': 'email',
       'i': 'fa fa-envelope-o',
       'span': 'Email'

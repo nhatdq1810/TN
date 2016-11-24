@@ -18,10 +18,10 @@
       <!--sidebar nav end-->
     </div>
   </div>
-  <div class="left nav-top margin-bottom">
+  <div class="left nav-top margin-bottom-30">
   </div>
   <div *ngIf="statusPage === 'home'" class="page-content">
-    <div class="left row statistics margin-bottom">
+    <div class="left row statistics margin-bottom-30">
       <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
         <span class="count-top"><i class="fa fa-user"></i> Tổng số tài khoản</span>
         <div class="count red">2500</div>
@@ -88,7 +88,7 @@
       </div>
     </div>
   </div>
-  <app-statistics *ngIf="statusPage === 'statistics'"></app-statistics>
+  <app-statistics *ngIf="statusPage === 'user'"></app-statistics>
 </div>
 <!-- <li class="menu-list"><a href="#"><i class="fa fa-indent-increase"></i> <span>Menu Levels</span></a>
   <ul class="sub-menu-list">

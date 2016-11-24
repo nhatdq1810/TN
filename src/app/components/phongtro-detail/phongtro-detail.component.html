@@ -8,8 +8,8 @@
 <div *ngIf="phongtro" class="phongtro-detail container">
   <div class="row">
     <div class="col-lg-9 col-md-9 main-content">
-      <div class="phongtro-title margin-bottom">
-        <div class="row margin-bottom">
+      <div class="phongtro-title margin-bottom-15">
+        <div class="row margin-bottom-15">
           <div class="col-lg-9 col-md-9">
             <h1>{{phongtro.diachi}}</h1>
           </div>
@@ -31,7 +31,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="phongtro.giatien > 0" class="phongtro-header margin-bottom giatien">
+      <div *ngIf="phongtro.giatien > 0" class="phongtro-header margin-bottom-15 giatien">
         <div class="phongtro-price-block left">
           <label>nguyên phòng</label>
           <div class="phongtro-price left">
@@ -43,7 +43,7 @@
         </div>
         <a *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 0)">Đặt cọc nguyên phòng</a>
       </div>
-      <div *ngIf="phongtro.giatienTheoNguoi > 0" class="phongtro-header margin-bottom">
+      <div *ngIf="phongtro.giatienTheoNguoi > 0" class="phongtro-header margin-bottom-15">
         <div class="phongtro-price-block left">
           <label>từng người</label>
           <div class="phongtro-price left">
@@ -55,7 +55,7 @@
         </div>
         <a *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 1)">Đặt cọc chỗ ngay</a>
       </div>
-      <div class="phongtro-img margin-bottom">
+      <div class="phongtro-img margin-bottom-15">
         <img [src]="phongtro?.hinhanh" [alt]="phongtro.diachi" class="img-responsive">
       </div>
       <div class="phongtro-info">
