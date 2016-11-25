@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 let Constants = require('../../../resources/constants');
 
 @Component({
-  selector: 'app-statistics',
-  templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.css']
+  selector: 'app-list-user',
+  templateUrl: './list-user.component.html',
+  styleUrls: ['./list-user.component.css']
 })
-export class StatisticsComponent implements OnInit {
+export class ListUserComponent implements OnInit {
 
   private datasetsUsers;
   private labelsNewUsers;
@@ -40,7 +40,7 @@ export class StatisticsComponent implements OnInit {
     for (let i = 0; i<6; ++i) {
       this.labelsNewUsers.push(`tháng ${currentMonth - 5 + i}`);
     }
-    this.labelsUsers = ['Số lượt đăng ký mới', 'Số lượt đăng ký cũ'];
+    this.labelsUsers = ['User mới', 'User cũ'];
 
     this.fakeInit();
   }
@@ -50,7 +50,7 @@ export class StatisticsComponent implements OnInit {
 
   fakeInit() {
     this.datasetsNewUsers = [{
-      label: 'Số lượt đăng ký mới',
+      label: 'User mới',
       data: [12, 9, 3, 5, 2, 10]
     }];
     this.datasetsUsers = [{

@@ -1,5 +1,5 @@
 <div class="main-container">
-  <div class="left nav-left-side" tabindex="5000">
+  <div class="nav-left-side" tabindex="5000">
     <!--logo and iconic logo start-->
     <div class="logo">
       <h1>troSV</h1>
@@ -15,7 +15,7 @@
             <span *ngIf="item.li && item.li.length > 0" class="fa fa-chevron-down right"></span>
           </a>
           <ul *ngIf="item.li && item.li.length > 0" class="nav child-menu">
-            <li *ngFor="let itemLi of item.li"><a>{{itemLi}}</a></li>
+            <li [ngClass]="{'active': isChildLiActive[index]}" *ngFor="let itemLi of item.li, let index = index"><a>{{itemLi}}</a></li>
           </ul>
         </li>
       </ul>
@@ -48,57 +48,42 @@
           <span class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>12% </i> so với tháng trước</span>
         </div>
       </div>
-      <div class="left custom-table">
-        <div class="table-header">
-          <h2>Phòng trọ chờ phê duyệt</h2>
+      <div class="row margin-bottom-30">
+        <div class="chart col-lg-4 col-md-4">
+          <canvas baseChart [datasets]="datasetsUsers" [labels]="labelsUsers" [chartType]="'doughnut'">
+          </canvas>
         </div>
-        <div class="table-content">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Username</th>
-                <th>Ngày đăng</th>
-                <th colspan="3">Địa chỉ</th>
-                <th>Giá tiền nguyên phòng</th>
-                <th>Giá tiền từng người</th>
-                <th>Tiền cọc nguyên phòng</th>
-                <th>Tiền cọc từng người</th>
-                <th>Số người cần tìm</th>
-                <th>Diện tích (m<sup>2</sup>)</th>
-                <th>Chấp thuận</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr (click)="updateCheckAll(!listPTAccept[i], i)" [ngClass]="{'active': listPTAccept[i]}" *ngFor="let item of listPhongtroNotChecked, let i = index">
-                <th>{{item.id}}</th>
-                <td>{{item.ngaydang}}</td>
-                <td colspan="3">{{item.diachi}}</td>
-                <td>{{item.giatien | number}}</td>
-                <td>{{item.giatienTheoNguoi | number}}</td>
-                <td>{{item.tiencoc | number}}</td>
-                <td>{{item.tiencocTheoNguoi | number}}</td>
-                <td>{{item.songuoi}}</td>
-                <td>{{item.dientich}}</td>
-                <td>
-                  <input type="checkbox" name="acceptPT" value="1" [ngModel]="listPTAccept[i]" (ngModelChange)="updateCheckAll($event, i)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="check-all right">
-            <span>Chọn tất cả</span>
-            <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllPT">
-          </div>
-          <input type="button" class="btn-modal left" (click)="submit()" name="submit" value="Cập nhật">
+        <div class="chart col-lg-8 col-md-8">
+          <canvas baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [options]="options" [chartType]="'bar'">
+          </canvas>
+        </div>
+      </div>
+      <div class="row margin-bottom-30">
+        <div class="chart col-lg-4 col-md-4">
+          <canvas baseChart [datasets]="datasetsUsers" [labels]="labelsUsers" [chartType]="'doughnut'">
+          </canvas>
+        </div>
+        <div class="chart col-lg-4 col-md-4">
+          <canvas baseChart [datasets]="datasetsUsers" [labels]="labelsUsers" [chartType]="'doughnut'">
+          </canvas>
+        </div>
+        <div class="chart col-lg-4 col-md-4">
+          <canvas baseChart [datasets]="datasetsUsers" [labels]="labelsUsers" [chartType]="'doughnut'">
+          </canvas>
+        </div>
+      </div>
+      <div class="row margin-bottom-30">
+        <div class="chart col-lg-6 col-md-6">
+          <canvas baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [options]="options" [chartType]="'bar'">
+          </canvas>
+        </div>
+        <div class="chart col-lg-6 col-md-6">
+          <canvas baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [options]="options" [chartType]="'bar'">
+          </canvas>
         </div>
       </div>
     </div>
-    <app-statistics *ngIf="statusPage === 'user'"></app-statistics>
+    <app-list-user *ngIf="statusPage === 'user'"></app-list-user>
+    <app-pt-not-checked *ngIf="statusPage === 'pt-not-checked'"></app-pt-not-checked>
   </div>
 </div>
-<!-- <li class="menu-list"><a href="#"><i class="fa fa-indent-increase"></i> <span>Menu Levels</span></a>
-  <ul class="sub-menu-list">
-    <li><a href="charts.html">Basic Charts</a> </li>
-  </ul>
-</li>-->

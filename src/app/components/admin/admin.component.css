@@ -6,21 +6,20 @@
   color: #c7254e;
 }
 
-.main-container,
-.main-container .nav-left-side {
+.main-container {
+  color: #73879c;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.main-container {
   height: 100%;
 }
 
 .main-container > div {
-  display: inline-block;
-}
-
-.main-container .right-content {
-  width: calc(100% - 230px);
-}
-
-.main-container {
-  color: #73879c;
+  display: table-cell;
+  vertical-align: top;
 }
 
 .nav-left-side {
@@ -111,6 +110,10 @@
 
 .page-content {
   padding: 0 20px;
+}
+
+.page-content .chart canvas {
+  background: #ffffff;
 }
 
 .statistics {

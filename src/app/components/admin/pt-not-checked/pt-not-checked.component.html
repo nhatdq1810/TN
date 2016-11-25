@@ -1,0 +1,47 @@
+<div class="page-content">
+  <div class="custom-table">
+    <div class="table-header">
+      <h2>Phòng trọ chờ phê duyệt</h2>
+    </div>
+    <div class="table-content">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Ngày đăng</th>
+            <th colspan="3">Địa chỉ</th>
+            <th>Giá tiền nguyên phòng</th>
+            <th>Giá tiền từng người</th>
+            <th>Tiền cọc nguyên phòng</th>
+            <th>Tiền cọc từng người</th>
+            <th>Số người cần tìm</th>
+            <th>Diện tích (m<sup>2</sup>)</th>
+            <th>Chấp thuận</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr (click)="updateCheckAll(!listPTAccept[i], i)" [ngClass]="{'active': listPTAccept[i]}" *ngFor="let item of listPhongtroNotChecked, let i = index">
+            <th>{{item.id}}</th>
+            <td>{{item.ngaydang}}</td>
+            <td colspan="3">{{item.diachi}}</td>
+            <td>{{item.giatien | number}}</td>
+            <td>{{item.giatienTheoNguoi | number}}</td>
+            <td>{{item.tiencoc | number}}</td>
+            <td>{{item.tiencocTheoNguoi | number}}</td>
+            <td>{{item.songuoi}}</td>
+            <td>{{item.dientich}}</td>
+            <td>
+              <input type="checkbox" name="acceptPT" value="1" [ngModel]="listPTAccept[i]" (ngModelChange)="updateCheckAll($event, i)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="check-all right">
+        <span>Chọn tất cả</span>
+        <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllPT">
+      </div>
+      <input type="button" class="btn-modal left" (click)="submit()" name="submit" value="Cập nhật">
+    </div>
+  </div>
+</div>

@@ -11,13 +11,16 @@ declare let $: JQueryStatic;
 export class AdminComponent implements OnInit {
 
   private isLiActive: Array<boolean> = [];
+  private isChildLiActive: Array<boolean> = [];
   private listLi: Array<any> = [];
-  private listPTAccept: Array<boolean> = [];
-  private listUser: Array<any> = [];
-  private listPhongtroNotChecked: Array<any> = [];
-  private checkAllPT: boolean;
   private statusPage: string;
   @ViewChild('navigation') navigation: ElementRef;
+  private datasetsUsers;
+  private labelsNewUsers;
+  private labelsUsers;
+  private datasetsNewUsers;
+  private options;
+  private chartColors;
 
   constructor() {
     this.listLi = [{
@@ -32,7 +35,7 @@ export class AdminComponent implements OnInit {
       'li': ['Phòng chờ duyệt', 'Phòng đã duyệt']
     },
     {
-      'a': 'pt',
+      'a': 'pt-not-checked',
       'i': 'fa fa-home',
       'span': 'Quản lý phòng trọ',
       'li': ['Phòng chờ duyệt','Phòng đã duyệt']
@@ -49,12 +52,57 @@ export class AdminComponent implements OnInit {
         this.isLiActive[i] = false;
       }
     }
-    this.checkAllPT = false;
     this.statusPage = 'home';
-    this.fakeInit();
+    this.initChart();
   }
 
   ngOnInit() {
+  }
+
+  initChart() {
+    this.options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    };
+    this.chartColors = [{
+      borderWidth: '0.5',
+      borderColor: '#c72',
+      pointBackgroundColor: '#c7254e',
+      pointHoverBackgroundColor: 'transparent',
+      pointBorderColor: '#c7254e',
+      pointHoverRadius: 10
+    }];
+    let currentMonth = Constants.getCurrentDate().split('/')[1];
+    this.labelsNewUsers = [];
+    for (let i = 0; i < 6; ++i) {
+      this.labelsNewUsers.push(`tháng ${currentMonth - 5 + i}`);
+    }
+    this.labelsUsers = ['User mới', 'User cũ'];
+    this.datasetsNewUsers = [{
+      label: 'User mới',
+      data: [12, 9, 3, 5, 2, 10]
+    }];
+    this.datasetsUsers = [{
+      data: [10, 21]
+    }];
+  }
+
+  initChildLiActive(index) {
+    let thisLi = $(this.navigation.nativeElement).children('li').eq(index);
+    if (thisLi.has('.nav.child-menu')) {
+      for (let i = 0; i < thisLi.children('.nav.child-menu').children('li').length; ++i) {
+        if (i === 0) {
+          this.isChildLiActive[i] = true;
+        } else {
+          this.isChildLiActive[i] = false;
+        }
+      }
+    }
   }
 
   slideDown(index) {
@@ -62,6 +110,7 @@ export class AdminComponent implements OnInit {
     if (thisLi.has('.nav.child-menu')) {
       $(this.navigation.nativeElement).children('li').not(`:eq(${index})`).children('.nav.child-menu').slideUp(300);
       thisLi.children('.nav.child-menu').slideToggle(300);
+      this.initChildLiActive(index);
     }
   }
 
@@ -74,32 +123,4 @@ export class AdminComponent implements OnInit {
       }
     }
   }
-
-  updateCheckAll(event, index) {
-    this.listPTAccept[index] = event;
-    this.checkAllPT = this.listPTAccept.every((value) => {
-      return value === true;
-    });
-  }
-
-  checkAll() {
-    let valueSet = !this.listPTAccept.every((value) => {
-      return value === true;
-    });
-    this.listPTAccept.forEach((value, index) => {
-      this.listPTAccept[index] = valueSet;
-    })
-  }
-
-  submit() {
-    console.log(this.listPTAccept);
-  }
-
-  fakeInit() {
-    this.listPhongtroNotChecked = Constants.fakeListPT;
-    for (let i = 0; i < this.listPhongtroNotChecked.length; ++i) {
-      this.listPTAccept[i] = false;
-    }
-  }
-
 }

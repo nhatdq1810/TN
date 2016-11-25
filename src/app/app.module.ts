@@ -39,7 +39,9 @@ import { GridListComponent } from './components/grid-list/grid-list.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { StatisticsComponent } from './components/admin/statistics/statistics.component';
+import { PtNotCheckedComponent } from './components/admin/pt-not-checked/pt-not-checked.component';
+import { PtCheckedComponent } from './components/admin/pt-checked/pt-checked.component';
+import { ListUserComponent } from './components/admin/list-user/list-user.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { StatisticsComponent } from './components/admin/statistics/statistics.co
     PhongtroUserComponent,
     ImageCropperComponent,
     AdminComponent,
-    StatisticsComponent
+    PtNotCheckedComponent,
+    PtCheckedComponent,
+    ListUserComponent
   ],
   imports: [
     BrowserModule,

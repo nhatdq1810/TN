@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { StatisticsComponent } from './statistics.component';
+import { PtNotCheckedComponent } from './pt-not-checked.component';
 
-describe('Component: Statistics', () => {
+describe('Component: PtNotChecked', () => {
   it('should create an instance', () => {
-    let component = new StatisticsComponent();
+    let component = new PtNotCheckedComponent();
     expect(component).toBeTruthy();
   });
 });
