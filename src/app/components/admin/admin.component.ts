@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 let Constants = require('../../resources/constants');
+declare let $: JQueryStatic;
 
 @Component({
   selector: 'app-admin',
@@ -16,6 +17,7 @@ export class AdminComponent implements OnInit {
   private listPhongtroNotChecked: Array<any> = [];
   private checkAllPT: boolean;
   private statusPage: string;
+  @ViewChild('navigation') navigation: ElementRef;
 
   constructor() {
     this.listLi = [{
@@ -26,12 +28,14 @@ export class AdminComponent implements OnInit {
     {
       'a': 'user',
       'i': 'fa fa-users',
-      'span': 'Quản lý user'
+      'span': 'Quản lý user',
+      'li': ['Phòng chờ duyệt', 'Phòng đã duyệt']
     },
     {
       'a': 'pt',
       'i': 'fa fa-home',
-      'span': 'Quản lý phòng trọ'
+      'span': 'Quản lý phòng trọ',
+      'li': ['Phòng chờ duyệt','Phòng đã duyệt']
     },
     {
       'a': 'email',
@@ -51,6 +55,14 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  slideDown(index) {
+    let thisLi = $(this.navigation.nativeElement).children('li').eq(index);
+    if (thisLi.has('.nav.child-menu')) {
+      $(this.navigation.nativeElement).children('li').not(`:eq(${index})`).children('.nav.child-menu').slideUp(300);
+      thisLi.children('.nav.child-menu').slideToggle(300);
+    }
   }
 
   activeLi(index: number) {

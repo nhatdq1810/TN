@@ -40,7 +40,7 @@ export class StatisticsComponent implements OnInit {
     for (let i = 0; i<6; ++i) {
       this.labelsNewUsers.push(`tháng ${currentMonth - 5 + i}`);
     }
-    this.labelsUsers = ['Số lượt đăng ký mới', 'Tổng số'];
+    this.labelsUsers = ['Số lượt đăng ký mới', 'Số lượt đăng ký cũ'];
 
     this.fakeInit();
   }

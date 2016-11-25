@@ -7,8 +7,16 @@
 }
 
 .main-container,
-.main-container > div {
+.main-container .nav-left-side {
   height: 100%;
+}
+
+.main-container > div {
+  display: inline-block;
+}
+
+.main-container .right-content {
+  width: calc(100% - 230px);
 }
 
 .main-container {
@@ -37,11 +45,14 @@
 }
 
 .nav-left-side .nav-pills>li.active {
-  border-left: 15px solid #fcdd44;
+  border-right: 5px solid #fcdd44;
 }
 
-.nav-left-side .nav-pills>li>a {
+.nav-left-side .nav-pills li a {
   color: #e7e7e7;
+}
+
+.nav-left-side .nav-pills > li > a {
   border-radius: 0;
   padding: 20px 15px;
   font-weight: 20px;
@@ -55,15 +66,50 @@
   box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
 }
 
+.nav-pills .child-menu {
+  display: none;
+}
+
+.nav-pills .child-menu li {
+  padding-left: 35px;
+}
+
+.nav-pills .child-menu li:before {
+  background: #425668;
+  bottom: auto;
+  content: "";
+  height: 8px;
+  left: 23px;
+  margin-top: 15px;
+  position: absolute;
+  right: auto;
+  width: 8px;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.nav-pills .child-menu li:after {
+  border-left: 1px solid #425668;
+  bottom: 0;
+  content: "";
+  left: 27px;
+  position: absolute;
+  top: 0;
+}
+
+.nav-pills .child-menu li a:focus,
+.nav-pills .child-menu li a:hover,
+.nav-pills .child-menu li.active a {
+  background: rgba(255, 255, 255, 0.06);
+}
+
 .main-container .nav-top {
-  width: calc(100% - 230px);
   height: 80px;
   background: #ededed;
   border-bottom: 1px solid #d9dee4;
 }
 
 .page-content {
-  margin-left: 230px;
   padding: 0 20px;
 }
 

@@ -7,88 +7,95 @@
     <!--logo and iconic logo end-->
     <div class="left-side-inner">
       <!--sidebar nav start-->
-      <ul class="nav nav-pills nav-stacked">
+      <ul #navigation class="nav nav-pills nav-stacked">
         <li [ngClass]="{'active': isLiActive[i]}" *ngFor="let item of listLi, let i = index" (click)="activeLi(i)">
-          <a (click)="statusPage = item.a">
+          <a (click)="statusPage = item.a; slideDown(i);">
             <i [class]="item.i"></i>
             <span>{{item.span}}</span>
+            <span *ngIf="item.li && item.li.length > 0" class="fa fa-chevron-down right"></span>
           </a>
+          <ul *ngIf="item.li && item.li.length > 0" class="nav child-menu">
+            <li *ngFor="let itemLi of item.li"><a>{{itemLi}}</a></li>
+          </ul>
         </li>
       </ul>
       <!--sidebar nav end-->
     </div>
   </div>
-  <div class="left nav-top margin-bottom-30">
-  </div>
-  <div *ngIf="statusPage === 'home'" class="page-content">
-    <div class="left row statistics margin-bottom-30">
-      <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
-        <span class="count-top"><i class="fa fa-user"></i> Tổng số tài khoản</span>
-        <div class="count red">2500</div>
-        <span class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> so với tháng trước</span>
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
-        <span class="count-top"><i class="fa fa-user"></i> Số tài khoản đăng ký mới</span>
-        <div class="count red">4,567</div>
-        <span class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> so với tháng trước</span>
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
-        <span class="count-top"><i class="fa fa-user"></i> Tổng số phòng trọ</span>
-        <div class="count green">2,500</div>
-        <span class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>12% </i> so với tháng trước</span>
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
-        <span class="count-top"><i class="fa fa-user"></i> Số phòng trọ đăng ký mới</span>
-        <div class="count green">4,567</div>
-        <span class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>12% </i> so với tháng trước</span>
-      </div>
+  <div class="right-content">
+    <div class="nav-top margin-bottom-30">
     </div>
-    <div class="left custom-table">
-      <div class="table-header">
-        <h2>Phòng trọ chờ phê duyệt</h2>
-      </div>
-      <div class="table-content">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Ngày đăng</th>
-              <th colspan="3">Địa chỉ</th>
-              <th>Giá tiền nguyên phòng</th>
-              <th>Giá tiền từng người</th>
-              <th>Tiền cọc nguyên phòng</th>
-              <th>Tiền cọc từng người</th>
-              <th>Số người cần tìm</th>
-              <th>Diện tích (m<sup>2</sup>)</th>
-              <th>Chấp thuận</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr (click)="updateCheckAll(!listPTAccept[i], i)" [ngClass]="{'active': listPTAccept[i]}" *ngFor="let item of listPhongtroNotChecked, let i = index">
-              <th>{{item.id}}</th>
-              <td>{{item.ngaydang}}</td>
-              <td colspan="3">{{item.diachi}}</td>
-              <td>{{item.giatien | number}}</td>
-              <td>{{item.giatienTheoNguoi | number}}</td>
-              <td>{{item.tiencoc | number}}</td>
-              <td>{{item.tiencocTheoNguoi | number}}</td>
-              <td>{{item.songuoi}}</td>
-              <td>{{item.dientich}}</td>
-              <td>
-                <input type="checkbox" name="acceptPT" value="1" [ngModel]="listPTAccept[i]" (ngModelChange)="updateCheckAll($event, i)">
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="check-all right">
-          <span>Chọn tất cả</span>
-          <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllPT">
+    <div *ngIf="statusPage === 'home'" class="page-content">
+      <div class="row statistics margin-bottom-30">
+        <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
+          <span class="count-top"><i class="fa fa-user"></i> Tổng số tài khoản</span>
+          <div class="count red">2500</div>
+          <span class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> so với tháng trước</span>
         </div>
-        <input type="button" class="btn-modal left" (click)="submit()" name="submit" value="Cập nhật">
+        <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
+          <span class="count-top"><i class="fa fa-user"></i> Số tài khoản đăng ký mới</span>
+          <div class="count red">4,567</div>
+          <span class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> so với tháng trước</span>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
+          <span class="count-top"><i class="fa fa-user"></i> Tổng số phòng trọ</span>
+          <div class="count green">2,500</div>
+          <span class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>12% </i> so với tháng trước</span>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
+          <span class="count-top"><i class="fa fa-user"></i> Số phòng trọ đăng ký mới</span>
+          <div class="count green">4,567</div>
+          <span class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>12% </i> so với tháng trước</span>
+        </div>
+      </div>
+      <div class="left custom-table">
+        <div class="table-header">
+          <h2>Phòng trọ chờ phê duyệt</h2>
+        </div>
+        <div class="table-content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Ngày đăng</th>
+                <th colspan="3">Địa chỉ</th>
+                <th>Giá tiền nguyên phòng</th>
+                <th>Giá tiền từng người</th>
+                <th>Tiền cọc nguyên phòng</th>
+                <th>Tiền cọc từng người</th>
+                <th>Số người cần tìm</th>
+                <th>Diện tích (m<sup>2</sup>)</th>
+                <th>Chấp thuận</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr (click)="updateCheckAll(!listPTAccept[i], i)" [ngClass]="{'active': listPTAccept[i]}" *ngFor="let item of listPhongtroNotChecked, let i = index">
+                <th>{{item.id}}</th>
+                <td>{{item.ngaydang}}</td>
+                <td colspan="3">{{item.diachi}}</td>
+                <td>{{item.giatien | number}}</td>
+                <td>{{item.giatienTheoNguoi | number}}</td>
+                <td>{{item.tiencoc | number}}</td>
+                <td>{{item.tiencocTheoNguoi | number}}</td>
+                <td>{{item.songuoi}}</td>
+                <td>{{item.dientich}}</td>
+                <td>
+                  <input type="checkbox" name="acceptPT" value="1" [ngModel]="listPTAccept[i]" (ngModelChange)="updateCheckAll($event, i)">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="check-all right">
+            <span>Chọn tất cả</span>
+            <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllPT">
+          </div>
+          <input type="button" class="btn-modal left" (click)="submit()" name="submit" value="Cập nhật">
+        </div>
       </div>
     </div>
+    <app-statistics *ngIf="statusPage === 'user'"></app-statistics>
   </div>
-  <app-statistics *ngIf="statusPage === 'user'"></app-statistics>
 </div>
 <!-- <li class="menu-list"><a href="#"><i class="fa fa-indent-increase"></i> <span>Menu Levels</span></a>
   <ul class="sub-menu-list">
