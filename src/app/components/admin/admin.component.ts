@@ -12,6 +12,18 @@ declare let $: JQueryStatic;
 })
 export class AdminComponent implements OnInit {
 
+  private totalUser: number;
+  private totalPT: number;
+  private newUser: number;
+  private newPT: number;
+  private percentTotalUser: number;
+  private percentTotalPT: number;
+  private percentNewUser: number;
+  private percentNewPT: number;
+  private isTotalUserIncrease: boolean;
+  private isTotalPTIncrease: boolean;
+  private isNewUserIncrease: boolean;
+  private isNewPTIncrease: boolean;
   private isLiActive: Array<boolean> = [];
   private isChildLiActive: Array<boolean> = [];
   private listLi: Array<any> = [];
@@ -20,9 +32,11 @@ export class AdminComponent implements OnInit {
   private datasetsUsers: Array<any> = [];
   private datasetsNewUsers: Array<any> = [];
   private datasetsPT: Array<any> = [];
+  private datasetsNewPT: Array<any> = [];
   private labelsNewUsers: Array<any> = [];
   private labelsUsers: Array<any> = [];
   private labelsPT: Array<any> = [];
+  private labelsNewPT: Array<any> = [];
   private options;
   private chartColors;
 
@@ -63,6 +77,46 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
   }
 
+  private calcPercent(newValue, oldValue, type) {
+    let percent: number, checkIncrease: boolean;
+    if (type === 'total pt') {
+      console.log(newValue);
+      console.log(oldValue);
+    }
+    if (oldValue === 0) {
+      checkIncrease = true;
+      if(newValue === 0) {
+        percent = 0;
+      } else {
+        percent = 100;
+      }
+    } else {
+      percent = newValue / oldValue;
+      if(percent > 1) {
+        checkIncrease = true;
+        percent -= 1;
+      } else {
+        checkIncrease = false;
+        percent = 1 - percent;
+      }
+      percent *= 100;
+      percent = +(percent.toFixed(2));
+    }
+    if (type === 'total user') {
+      this.isTotalUserIncrease = checkIncrease;
+    }
+    if (type === 'total pt') {
+      this.isTotalPTIncrease = checkIncrease;
+    }
+    if (type === 'new user') {
+      this.isNewUserIncrease = checkIncrease;
+    }
+    if (type === 'new pt') {
+      this.isNewPTIncrease = checkIncrease;
+    }
+    return percent;
+  }
+
   initChart() {
     this.options = {
       scales: {
@@ -81,10 +135,11 @@ export class AdminComponent implements OnInit {
       pointBorderColor: '#c7254e',
       pointHoverRadius: 10
     }];
+
     let currentMonth = Constants.getCurrentDate().split('/')[1];
     this.userService.thongkeUserTheoThang(currentMonth - 5, currentMonth)
       .then(resp => {
-        this.datasetsNewUsers = [{ label: 'User mới (người)', data: [] }];
+        this.datasetsNewUsers = [{ label: 'User mới trong tháng (người)', data: [] }];
         for (let i = 0; i < 6; ++i) {
           let tmpMonth = currentMonth - 5 + i;
           this.labelsNewUsers.push(`tháng ${tmpMonth}`);
@@ -92,34 +147,67 @@ export class AdminComponent implements OnInit {
             this.datasetsNewUsers[0].data[i] = resp[tmpMonth];
           } else {
             this.datasetsNewUsers[0].data[i] = 0;
+            resp[tmpMonth] = 0;
           }
         }
+        this.newUser = resp[currentMonth];
+        this.percentNewUser = this.calcPercent(this.newUser, resp[currentMonth - 1], 'new user');
       })
       .catch(err => {
         console.error(err);
       });
-    this.userService.thongkeUserMoiTrenTongso(currentMonth)
+    for (let i = 0; i < 4; i++) {
+      this.userService.thongkeUserMoiTrenTongso(currentMonth - i)
+        .then(resp => {
+          if (i === 0) {
+            this.totalUser = resp['new'] + resp['old'];
+            this.percentTotalUser = this.calcPercent(this.totalUser, resp['old'], 'total user');
+          }
+          this.labelsUsers[i] = [`User mới tháng ${currentMonth - i} (%)`, 'User cũ các tháng trước (%)'];
+          let newUserPercent = +((resp['new'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
+          let oldUserPercent = +((resp['old'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
+          this.datasetsUsers[i] = [{ data: [newUserPercent, oldUserPercent] }];
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+
+    this.ptService.thongkePTTheoThang(currentMonth - 5, currentMonth)
       .then(resp => {
-        this.labelsUsers = ['User mới tháng ' + currentMonth + ' (%)', 'User cũ' + ' (%)'];
-        let newUserPercent = +((resp['new'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
-        let oldUserPercent = +((resp['old'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
-        this.datasetsUsers = [{ data: [newUserPercent, oldUserPercent] }];
+        this.datasetsNewPT = [{ label: 'PT mới (người)', data: [] }];
+        for (let i = 0; i < 6; ++i) {
+          let tmpMonth = currentMonth - 5 + i;
+          this.labelsNewPT.push(`tháng ${tmpMonth}`);
+          if (resp[tmpMonth]) {
+            this.datasetsNewPT[0].data[i] = resp[tmpMonth];
+          } else {
+            this.datasetsNewPT[0].data[i] = 0;
+            resp[tmpMonth] = 0;
+          }
+        }
+        this.newPT = resp[currentMonth];
+        this.percentNewPT = this.calcPercent(this.newPT, resp[currentMonth - 1], 'new user');
       })
       .catch(err => {
         console.error(err);
       });
-      for (let i = 0; i < 3; i++) {
-        this.ptService.thongkePTMoiTrenTongso(currentMonth - i)
-          .then(resp => {
-            this.labelsPT[i] = ['Phòng trọ mới tháng ' + (currentMonth - i) + ' (%)', 'Phòng trọ cũ' + ' (%)'];
-            let newPTPercent = +((resp['new'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
-            let oldPTPercent = +((resp['old'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
-            this.datasetsPT[i] = [{ data: [newPTPercent, oldPTPercent] }];
-          })
-          .catch(err => {
-            console.error(err);
-          });
-      }
+    for (let i = 0; i < 4; i++) {
+      this.ptService.thongkePTMoiTrenTongso(currentMonth - i)
+        .then(resp => {
+          if (i === 0) {
+            this.totalPT = resp['new'] + resp['old'];
+            this.percentTotalPT = this.calcPercent(this.totalPT, resp['old'], 'total pt');
+          }
+          this.labelsPT[i] = [`Phòng trọ mới tháng ${currentMonth - i} (%)`, 'Phòng trọ cũ các tháng trước (%)'];
+          let newPTPercent = +((resp['new'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
+          let oldPTPercent = +((resp['old'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
+          this.datasetsPT[i] = [{ data: [newPTPercent, oldPTPercent] }];
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
   }
 
   initChildLiActive(index) {

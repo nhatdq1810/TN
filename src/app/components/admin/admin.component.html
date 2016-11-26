@@ -29,28 +29,36 @@
       <div class="row statistics margin-bottom-30">
         <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
           <span class="count-top"><i class="fa fa-user"></i> Tổng số user</span>
-          <div class="count red">2500</div>
-          <span class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> so với tháng trước</span>
+          <div *ngIf="isTotalUserIncrease" class="count green">{{totalUser}}</div>
+          <div *ngIf="!isTotalUserIncrease" class="count red">{{totalUser}}</div>
+          <span *ngIf="isTotalUserIncrease" class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>{{percentTotalUser}}% </i> so với tháng trước</span>
+          <span *ngIf="!isTotalUserIncrease" class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>{{percentTotalUser}}% </i> so với tháng trước</span>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
           <span class="count-top"><i class="fa fa-user"></i> Số user đăng ký mới</span>
-          <div class="count red">4,567</div>
-          <span class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> so với tháng trước</span>
+          <div *ngIf="isNewUserIncrease" class="count green">{{newUser}}</div>
+          <div *ngIf="!isNewUserIncrease" class="count red">{{newUser}}</div>
+          <span *ngIf="isNewUserIncrease" class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>{{percentNewUser}}% </i> so với tháng trước</span>
+          <span *ngIf="!isNewUserIncrease" class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>{{percentNewUser}}% </i> so với tháng trước</span>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
           <span class="count-top"><i class="fa fa-user"></i> Tổng số phòng trọ</span>
-          <div class="count green">2,500</div>
-          <span class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>12% </i> so với tháng trước</span>
+          <div *ngIf="isTotalPTIncrease" class="count green">{{totalPT}}</div>
+          <div *ngIf="!isTotalPTIncrease" class="count red">{{totalPT}}</div>
+          <span *ngIf="isTotalPTIncrease" class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>{{percentTotalPT}}% </i> so với tháng trước</span>
+          <span *ngIf="!isTotalPTIncrease" class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>{{percentTotalPT}}% </i> so với tháng trước</span>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6 tile-stats-count">
           <span class="count-top"><i class="fa fa-user"></i> Số phòng trọ đăng ký mới</span>
-          <div class="count green">4,567</div>
-          <span class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>12% </i> so với tháng trước</span>
+          <div *ngIf="isNewPTIncrease" class="count green">{{newPT}}</div>
+          <div *ngIf="!isNewPTIncrease" class="count red">{{newPT}}</div>
+          <span *ngIf="isNewPTIncrease" class="count-bottom"><i class="green"><i class="fa fa-sort-asc"></i>{{percentNewPT}}% </i> so với tháng trước</span>
+          <span *ngIf="!isNewPTIncrease" class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>{{percentNewPT}}% </i> so với tháng trước</span>
         </div>
       </div>
-      <div *ngIf="datasetsUsers.length > 0 && datasetsNewUsers.length > 0" class="row margin-bottom-30">
+      <div *ngIf="datasetsUsers[0] && datasetsNewUsers.length > 0" class="row margin-bottom-30">
         <div class="chart col-lg-4 col-md-4">
-          <canvas baseChart [datasets]="datasetsUsers" [labels]="labelsUsers" [chartType]="'doughnut'">
+          <canvas baseChart [datasets]="datasetsUsers[0]" [labels]="labelsUsers[0]" [chartType]="'doughnut'">
           </canvas>
         </div>
         <div class="chart col-lg-8 col-md-8">
@@ -58,11 +66,21 @@
           </canvas>
         </div>
       </div>
-      <div *ngIf="datasetsPT[0] && datasetsPT[1] && datasetsPT[2]" class="row margin-bottom-30">
+      <div *ngIf="datasetsUsers[3] && datasetsUsers[1] && datasetsUsers[2]" class="row margin-bottom-30">
         <div class="chart col-lg-4 col-md-4">
-          <canvas baseChart [datasets]="datasetsPT[0]" [labels]="labelsPT[0]" [chartType]="'doughnut'">
+          <canvas baseChart [datasets]="datasetsUsers[1]" [labels]="labelsUsers[1]" [chartType]="'doughnut'">
           </canvas>
         </div>
+        <div class="chart col-lg-4 col-md-4">
+          <canvas baseChart [datasets]="datasetsUsers[2]" [labels]="labelsUsers[2]" [chartType]="'doughnut'">
+          </canvas>
+        </div>
+        <div class="chart col-lg-4 col-md-4">
+          <canvas baseChart [datasets]="datasetsUsers[3]" [labels]="labelsUsers[3]" [chartType]="'doughnut'">
+          </canvas>
+        </div>
+      </div>
+      <div *ngIf="datasetsPT[3] && datasetsPT[1] && datasetsPT[2]" class="row margin-bottom-30">
         <div class="chart col-lg-4 col-md-4">
           <canvas baseChart [datasets]="datasetsPT[1]" [labels]="labelsPT[1]" [chartType]="'doughnut'">
           </canvas>
@@ -71,8 +89,12 @@
           <canvas baseChart [datasets]="datasetsPT[2]" [labels]="labelsPT[2]" [chartType]="'doughnut'">
           </canvas>
         </div>
+        <div class="chart col-lg-4 col-md-4">
+          <canvas baseChart [datasets]="datasetsPT[3]" [labels]="labelsPT[3]" [chartType]="'doughnut'">
+          </canvas>
+        </div>
       </div>
-      <div *ngIf="datasetsUsers.length > 0 && datasetsNewUsers.length > 0" class="row margin-bottom-30">
+      <!-- <div *ngIf="datasetsUsers[0] && datasetsNewUsers.length > 0" class="row margin-bottom-30">
         <div class="chart col-lg-6 col-md-6">
           <canvas baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [options]="options" [chartType]="'bar'">
           </canvas>
@@ -81,7 +103,7 @@
           <canvas baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [options]="options" [chartType]="'bar'">
           </canvas>
         </div>
-      </div>
+      </div> -->
     </div>
     <app-list-user *ngIf="statusPage === 'user'"></app-list-user>
     <app-pt-not-checked *ngIf="statusPage === 'pt-not-checked'"></app-pt-not-checked>

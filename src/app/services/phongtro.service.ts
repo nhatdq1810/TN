@@ -310,6 +310,22 @@ export class PhongtroService {
     });
   }
 
+  thongkePTTheoThang(thangBD, thangKT) {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + 'phongtro/thongkePTTheoThang/' + thangBD + '/' + thangKT, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkePTTheoThang', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkePTTheoThang', err));
+    });
+  }
+
   thongkePTMoiTrenTongso(thang) {
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'phongtro/thongkePTMoiTrenTongso/' + thang, { headers: Constants.headers })
