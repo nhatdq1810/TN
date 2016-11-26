@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { PhongtroService } from '../../services/phongtro.service';
 
 let Constants = require('../../resources/constants');
 declare let $: JQueryStatic;
@@ -15,14 +17,16 @@ export class AdminComponent implements OnInit {
   private listLi: Array<any> = [];
   private statusPage: string;
   @ViewChild('navigation') navigation: ElementRef;
-  private datasetsUsers;
-  private labelsNewUsers;
-  private labelsUsers;
-  private datasetsNewUsers;
+  private datasetsUsers: Array<any> = [];
+  private datasetsNewUsers: Array<any> = [];
+  private datasetsPT: Array<any> = [];
+  private labelsNewUsers: Array<any> = [];
+  private labelsUsers: Array<any> = [];
+  private labelsPT: Array<any> = [];
   private options;
   private chartColors;
 
-  constructor() {
+  constructor(private userService: UserService, private ptService: PhongtroService) {
     this.listLi = [{
       'a': 'home',
       'i': 'fa fa-tachometer',
@@ -78,18 +82,44 @@ export class AdminComponent implements OnInit {
       pointHoverRadius: 10
     }];
     let currentMonth = Constants.getCurrentDate().split('/')[1];
-    this.labelsNewUsers = [];
-    for (let i = 0; i < 6; ++i) {
-      this.labelsNewUsers.push(`tháng ${currentMonth - 5 + i}`);
-    }
-    this.labelsUsers = ['User mới', 'User cũ'];
-    this.datasetsNewUsers = [{
-      label: 'User mới',
-      data: [12, 9, 3, 5, 2, 10]
-    }];
-    this.datasetsUsers = [{
-      data: [10, 21]
-    }];
+    this.userService.thongkeUserTheoThang(currentMonth - 5, currentMonth)
+      .then(resp => {
+        this.datasetsNewUsers = [{ label: 'User mới (người)', data: [] }];
+        for (let i = 0; i < 6; ++i) {
+          let tmpMonth = currentMonth - 5 + i;
+          this.labelsNewUsers.push(`tháng ${tmpMonth}`);
+          if(resp[tmpMonth]) {
+            this.datasetsNewUsers[0].data[i] = resp[tmpMonth];
+          } else {
+            this.datasetsNewUsers[0].data[i] = 0;
+          }
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    this.userService.thongkeUserMoiTrenTongso(currentMonth)
+      .then(resp => {
+        this.labelsUsers = ['User mới tháng ' + currentMonth + ' (%)', 'User cũ' + ' (%)'];
+        let newUserPercent = +((resp['new'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
+        let oldUserPercent = +((resp['old'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
+        this.datasetsUsers = [{ data: [newUserPercent, oldUserPercent] }];
+      })
+      .catch(err => {
+        console.error(err);
+      });
+      for (let i = 0; i < 3; i++) {
+        this.ptService.thongkePTMoiTrenTongso(currentMonth - i)
+          .then(resp => {
+            this.labelsPT[i] = ['Phòng trọ mới tháng ' + (currentMonth - i) + ' (%)', 'Phòng trọ cũ' + ' (%)'];
+            let newPTPercent = +((resp['new'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
+            let oldPTPercent = +((resp['old'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
+            this.datasetsPT[i] = [{ data: [newPTPercent, oldPTPercent] }];
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      }
   }
 
   initChildLiActive(index) {

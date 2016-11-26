@@ -21,7 +21,8 @@ export let fakeUser: User = {
   id: 3,
   password: '123456',
   sodt: '0123456789',
-  username: 'abcd'
+  username: 'abcd',
+  ngayDK: '10/10/2016'
 };
 export let fakeListUser: Array<User> = [{
   id: 0,
@@ -33,7 +34,8 @@ export let fakeListUser: Array<User> = [{
   password: '123456',
   skype: '',
   sodt: '0123456789',
-  username: 'abc'
+  username: 'abc',
+  ngayDK: '10/10/2016'
 },
 {
   id: 1,
@@ -45,7 +47,8 @@ export let fakeListUser: Array<User> = [{
   password: '123456',
   skype: 'sdfdfdfdfdfdfdfdfdfdfdfdfdf',
   sodt: '',
-  username: 'abc'
+  username: 'abc',
+  ngayDK: '10/10/2016'
 },
 {
   id: 2,
@@ -57,7 +60,8 @@ export let fakeListUser: Array<User> = [{
   password: '123456',
   skype: '',
   sodt: '',
-  username: 'abc'
+  username: 'abc',
+  ngayDK: '10/10/2016'
 },
 {
   id: 3,
@@ -69,7 +73,8 @@ export let fakeListUser: Array<User> = [{
   password: '123456',
   skype: '',
   sodt: '',
-  username: 'abc'
+  username: 'abc',
+  ngayDK: '10/10/2016'
 },
 {
   id: 4,
@@ -81,7 +86,8 @@ export let fakeListUser: Array<User> = [{
   password: '123456',
   skype: '',
   sodt: '',
-  username: 'abc'
+  username: 'abc',
+  ngayDK: '10/10/2016'
 },
 {
   id: 5,
@@ -93,7 +99,8 @@ export let fakeListUser: Array<User> = [{
   password: '123456',
   skype: '',
   sodt: '',
-  username: 'abc'
+  username: 'abc',
+  ngayDK: '10/10/2016'
 }];
 export let fakePT: Phongtro = {
   id: 3,

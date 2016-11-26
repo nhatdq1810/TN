@@ -170,4 +170,36 @@ export class UserService {
     });
   }
 
+  thongkeUserTheoThang(thangBD, thangKT) {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + 'user/thongkeUserTheoThang/' + thangBD + '/' + thangKT, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkeUserTheoThang', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkeUserTheoThang', err));
+    });
+  }
+
+  thongkeUserMoiTrenTongso(thang) {
+    return new Promise((resolve, reject) => {
+          this.http.get(Constants.apiUrl + 'user/thongkeUserMoiTrenTongso/' + thang, { headers: Constants.headers })
+            .map((resp: Response) => resp.json())
+            .subscribe(resp => {
+              if (!resp.result || resp.result !== 'fail') {
+                resolve(resp);
+              } else {
+                this.handleError('thongkeUserMoiTrenTongso', resp.result);
+                reject(resp.result);
+              }
+            },
+            err => this.handleError('thongkeUserMoiTrenTongso', err));
+        });
+  }
+
 }

@@ -5,7 +5,6 @@ import { CommentService } from '../../services/comment.service';
 import { UserService } from '../../services/user.service';
 import { PhongtroService } from '../../services/phongtro.service';
 import { Comment } from '../../models/comment';
-import { User } from '../../models/user';
 
 let Constants = require('../../resources/constants');
 

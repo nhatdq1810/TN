@@ -9,4 +9,5 @@ export class User {
   skype: string;
   facebook: string;
   dotincay: number;
+  ngayDK: string;
 }
