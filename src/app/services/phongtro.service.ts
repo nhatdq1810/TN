@@ -63,10 +63,10 @@ export class PhongtroService {
     return Observable.throw(error.message || error);
   }
 
-  layTatcaPhongtro(): Promise<any>{
+  layTatcaPhongtro(duyet): Promise<any>{
     return new Promise((resolve, reject) => {
       this.http
-        .get(Constants.apiUrl + 'phongtro/tatca', { headers: Constants.headers })
+        .get(Constants.apiUrl + 'phongtro/tatca/' + duyet, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {

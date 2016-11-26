@@ -476,6 +476,10 @@ accordion-group.panel-open .panel-title {
   text-align: center;
 }
 
+.custom-table .table-content td .btn-modal {
+  width: 100%;
+}
+
 .custom-table .table-content .check-all {
   margin-right: 38px;
   border: 1px solid #cccccc;

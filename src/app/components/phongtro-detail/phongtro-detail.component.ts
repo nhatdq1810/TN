@@ -36,6 +36,36 @@ export class PhongtroDetailComponent implements OnInit {
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
   }
 
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.init();
+    });
+    this.userService.checkLoggedIn.subscribe(result => {
+      if (result) {
+        if (this.userService.user) {
+          if (this.userService.user.id === this.phongtro.userID) {
+            this.isUserPT = true;
+          } else {
+            this.isUserPT = false;
+            this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
+              .then(result => {
+                if (result === 'success') {
+                  this.userThichPT = true;
+                } else {
+                  this.userThichPT = false;
+                }
+              }).catch(err => {
+                console.error(err);
+                this.userThichPT = false;
+              });
+          }
+        } else {
+          this.isUserPT = false;
+        }
+      }
+    });
+  }
+
   init() {
     this.isUserPT = false;
     this.xoaPTFail = false;
@@ -44,9 +74,12 @@ export class PhongtroDetailComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       id = +params['id'];
     });
-    if(!this.phongtro || this.phongtro.id !== id) {
+    if (!this.phongtro || this.phongtro.id !== id) {
       this.ptService.layPhongtro(id).then(pt => {
         this.phongtro = pt;
+        if(+this.phongtro.duyet === 0 || +this.phongtro.an === 1) {
+          this.router.navigate(['404']);
+        }
         this.getLatLng();
         if (this.userService.user) {
           if (this.userService.user.id === this.phongtro.userID) {
@@ -88,10 +121,10 @@ export class PhongtroDetailComponent implements OnInit {
           }
         });
       })
-      .catch(err => {
-        console.error(err);
-        this.router.navigate(['/404']);
-      });
+        .catch(err => {
+          console.error(err);
+          this.router.navigate(['/404']);
+        });
     }
   }
 
@@ -105,36 +138,6 @@ export class PhongtroDetailComponent implements OnInit {
         this.lat = location.lat;
         this.lng = location.lng;
       });
-  }
-
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.init();
-    });
-    this.userService.checkLoggedIn.subscribe(result => {
-      if (result) {
-        if (this.userService.user) {
-          if (this.userService.user.id === this.phongtro.userID) {
-            this.isUserPT = true;
-          } else {
-            this.isUserPT = false;
-            this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
-              .then(result => {
-                if (result === 'success') {
-                  this.userThichPT = true;
-                } else {
-                  this.userThichPT = false;
-                }
-              }).catch(err => {
-                console.error(err);
-                this.userThichPT = false;
-              });
-          }
-        } else {
-          this.isUserPT = false;
-        }
-      }
-    });
   }
 
   socialShare(socialName) {

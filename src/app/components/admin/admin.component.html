@@ -8,14 +8,16 @@
     <div class="left-side-inner">
       <!--sidebar nav start-->
       <ul #navigation class="nav nav-pills nav-stacked">
-        <li [ngClass]="{'active': isLiActive[i]}" *ngFor="let item of listLi, let i = index" (click)="activeLi(i)">
-          <a (click)="statusPage = item.a; slideDown(i);">
+        <li [ngClass]="{'active': isLiActive[i]}" *ngFor="let item of listLi, let i = index" (click)="statusPage = item.statusPage; activeLi($event, i, 'parent'); slideDown(i);">
+          <a>
             <i [class]="item.i"></i>
             <span>{{item.span}}</span>
-            <span *ngIf="item.li && item.li.length > 0" class="fa fa-chevron-down right"></span>
+            <span *ngIf="item.li" class="fa fa-chevron-down right"></span>
           </a>
-          <ul *ngIf="item.li && item.li.length > 0" class="nav child-menu">
-            <li [ngClass]="{'active': isChildLiActive[index]}" *ngFor="let itemLi of item.li, let index = index"><a>{{itemLi}}</a></li>
+          <ul *ngIf="item.li" class="nav child-menu">
+            <li [ngClass]="{'active': isChildLiActive[index]}" *ngFor="let itemLi of item.li, let index = index" (click)="statusPage = itemLi.statusPage; activeLi($event, index, 'child', i)">
+              <a>{{itemLi.content}}</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -56,7 +58,7 @@
           <span *ngIf="!isNewPTIncrease" class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>{{percentNewPT}}% </i> so với tháng trước</span>
         </div>
       </div>
-      <div *ngIf="datasetsUsers[0] && datasetsNewUsers.length > 0" class="row margin-bottom-30">
+      <div *ngIf="datasetsUsers[0] && datasetsNewUsers" class="row margin-bottom-30">
         <div class="chart col-lg-4 col-md-4">
           <canvas baseChart [datasets]="datasetsUsers[0]" [labels]="labelsUsers[0]" [chartType]="'doughnut'">
           </canvas>
@@ -80,6 +82,16 @@
           </canvas>
         </div>
       </div>
+      <div *ngIf="datasetsPT[0] && datasetsNewPT" class="row margin-bottom-30">
+        <div class="chart col-lg-8 col-md-8">
+          <canvas baseChart [datasets]="datasetsNewPT" [labels]="labelsNewPT" [options]="options" [chartType]="'bar'">
+          </canvas>
+        </div>
+        <div class="chart col-lg-4 col-md-4">
+          <canvas baseChart [datasets]="datasetsPT[0]" [labels]="labelsPT[0]" [chartType]="'doughnut'">
+          </canvas>
+        </div>
+      </div>
       <div *ngIf="datasetsPT[3] && datasetsPT[1] && datasetsPT[2]" class="row margin-bottom-30">
         <div class="chart col-lg-4 col-md-4">
           <canvas baseChart [datasets]="datasetsPT[1]" [labels]="labelsPT[1]" [chartType]="'doughnut'">
@@ -94,7 +106,7 @@
           </canvas>
         </div>
       </div>
-      <!-- <div *ngIf="datasetsUsers[0] && datasetsNewUsers.length > 0" class="row margin-bottom-30">
+      <!-- <div *ngIf="datasetsUsers[0] && datasetsNewUsers" class="row margin-bottom-30">
         <div class="chart col-lg-6 col-md-6">
           <canvas baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [options]="options" [chartType]="'bar'">
           </canvas>
@@ -107,5 +119,6 @@
     </div>
     <app-list-user *ngIf="statusPage === 'user'"></app-list-user>
     <app-pt-not-checked *ngIf="statusPage === 'pt-not-checked'"></app-pt-not-checked>
+    <app-pt-checked *ngIf="statusPage === 'pt-checked'"></app-pt-checked>
   </div>
 </div>

@@ -17,6 +17,8 @@ export class Phongtro {
   wifi: number;
   chu: number;
   ghichu: string;
+  duyet: number;
+  an: number;
   userID: number;
   nganhangID: string;
   thich: number;

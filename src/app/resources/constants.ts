@@ -124,7 +124,9 @@ export let fakePT: Phongtro = {
   nganhangID: '12345678',
   thich: 5,
   userThich: false,
-  tiencocTheoNguoi: 500000
+  tiencocTheoNguoi: 500000,
+  duyet: 1,
+  an: 0
 };
 export let fakeListPT: Array<Phongtro> = [
   {
@@ -149,7 +151,9 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000
+    tiencocTheoNguoi: 500000,
+    duyet: 1,
+    an: 0
   },
   {
     id: 13,
@@ -173,7 +177,9 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000
+    tiencocTheoNguoi: 500000,
+    duyet: 1,
+    an: 0
   },
   {
     id: 14,
@@ -197,7 +203,9 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000
+    tiencocTheoNguoi: 500000,
+    duyet: 1,
+    an: 0
   },
   {
     id: 15,
@@ -221,7 +229,9 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000
+    tiencocTheoNguoi: 500000,
+    duyet: 1,
+    an: 0
   },
   {
     id: 16,
@@ -245,7 +255,9 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000
+    tiencocTheoNguoi: 500000,
+    duyet: 1,
+    an: 0
   },
   {
     id: 17,
@@ -269,7 +281,9 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000
+    tiencocTheoNguoi: 500000,
+    duyet: 1,
+    an: 0
   },
   {
     id: 18,
@@ -293,7 +307,9 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000
+    tiencocTheoNguoi: 500000,
+    duyet: 1,
+    an: 0
   }
 ];
 export let fakeNgh: Nganhang = {
