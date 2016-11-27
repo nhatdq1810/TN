@@ -342,4 +342,36 @@ export class PhongtroService {
     });
   }
 
+  xetduyetPT(id, duyet): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(Constants.apiUrl + `phongtro/${id}/duyet/${duyet}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('xetduyetPT', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('xetduyetPT', err));
+    });
+  }
+
+  anPT(id, an) {
+    return new Promise((resolve, reject) => {
+      this.http.put(Constants.apiUrl + `phongtro/${id}/an/${an}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('anPT', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('anPT', err));
+    });
+  }
+
 }
