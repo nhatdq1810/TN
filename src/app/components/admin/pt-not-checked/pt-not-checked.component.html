@@ -2,6 +2,7 @@
   <div class="custom-table">
     <div class="table-header">
       <h2 class="left">Phòng trọ chờ phê duyệt</h2>
+      <input type="button" class="btn-modal left" (click)="addUser()" name="submit" value="Thêm user">
       <a class="right" [ngClass]="{'active' : isDelete}" (click)="wantDelete()"><i class="fa fa-trash-o"></i></a>
       <div class="search-bar right">
         <label for="search-input">

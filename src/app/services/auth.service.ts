@@ -27,12 +27,12 @@ export class AuthService {
       this.auth0.getProfile(result.idToken, (err, profile) => {
         let username, hoten, email, facebook;
         if (profile.identities[0].connection === 'facebook') {
-          username = 'f-' + profile.nickname;
-          email = 'f-' + profile.email;
+          username = 'fb-' + profile.nickname;
+          email = 'fb-' + profile.email;
           facebook = profile.link;
         } else {
-          username = 'g-' + profile.nickname;
-          email = 'g-' + profile.email;
+          username = 'gg-' + profile.nickname;
+          email = 'gg-' + profile.email;
           facebook = '';
         }
         if(profile.middle_name) {

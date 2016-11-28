@@ -18,6 +18,7 @@ export class PtCheckedComponent implements OnInit {
   private listPTNotAcceptView: Array<boolean> = [];
   private checkAllPT: boolean;
   private searchTerm: string;
+  private listPTDeleteView: Array<any> = [];
   private isDelete: boolean;
 
   constructor(private ptService: PhongtroService, private userService: UserService) {
@@ -36,15 +37,10 @@ export class PtCheckedComponent implements OnInit {
         this.listPTCheckedView = resp;
         this.listPTCheckedView.forEach((pt, index) => {
           this.listPTNotAcceptView[index] = false;
+          this.listPTDeleteView[index] = false;
           this.userService.layThongtinUserID(pt.userID)
             .then(resp => {
               if (!this.listUser[pt.userID]) {
-                if(resp.username.indexOf('f-') > -1) {
-                  resp.username = resp.username.split('f-')[1];
-                }
-                if (resp.username.indexOf('g-') > -1) {
-                  resp.username = resp.username.split('g-')[1];
-                }
                 this.listUser[pt.userID] = resp;
               }
             })
@@ -62,15 +58,15 @@ export class PtCheckedComponent implements OnInit {
   wantDelete() {
     this.isDelete = !this.isDelete;
     this.checkAllPT = false;
-    // if (this.isDelete) {
-    //   for (let i = 0; i < this.listPhongtroNotChecked.length; ++i) {
-    //     this.listPTAccept[i] = false;
-    //   }
-    // } else {
-    //   for (let i = 0; i < this.listPhongtroNotChecked.length; ++i) {
-    //     this.listPTDelete[i] = false;
-    //   }
-    // }
+    if (this.isDelete) {
+      for (let i = 0; i < this.listPTChecked.length; ++i) {
+        this.listPTNotAcceptView[i] = false;
+      }
+    } else {
+      for (let i = 0; i < this.listPTChecked.length; ++i) {
+        this.listPTDeleteView[i] = false;
+      }
+    }
   }
 
   searchPT(term: string) {
@@ -94,7 +90,14 @@ export class PtCheckedComponent implements OnInit {
 
   updateCheckAll(event, index, pt) {
     this.listPTNotAcceptView[index] = event;
-    this.listPTNotAccept[pt.id] = event;
+    if(event) {
+      if(this.listPTNotAccept.indexOf(pt.id) === -1) {
+        this.listPTNotAccept.push(pt.id);
+      }
+    } else {
+      let index = this.listPTNotAccept.indexOf(pt.id);
+      this.listPTNotAccept.splice(index, 1);
+    }
     this.checkAllPT = this.listPTNotAcceptView.every((value) => {
       return value === true;
     });
@@ -110,41 +113,20 @@ export class PtCheckedComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.listPTNotAccept);
-    // if(this.listPTChecked.length === this.listPTCheckedView.length) {
-    //   this.listPTCheckedView = [];
-    //   for (let i = 0; i < this.listPTNotAcceptView.length; i++) {
-    //     if (!this.listPTNotAcceptView[i]) {
-    //       this.listPTCheckedView.push(this.listPTChecked[i]);
-    //     } else {
-    //       this.listPTNotAcceptView[i] = false;
-    //     }
-    //   }
-    //   this.listPTChecked = this.listPTCheckedView;
-    // } else {
-          // for (let j = 0; j < this.listPTChecked.length; j++) {
-          //   if (this.listPTChecked[j].id === this.listPTCheckedView[i].id) {
-          //     this.listPTChecked.splice(j, 1);
-          //     this.listPTNotAcceptView[i] = false;
-          //     break;
-          //   }
-          // }
-      for (let i = 0; i < this.listPTChecked.length; i++) {
-        this.listPTNotAcceptView[i] = false;
-        if (this.listPTNotAccept[i]) {
-          this.ptService.xetduyetPT(i, 0)
-            .then(resp => {
-              this.listPTChecked = resp;
-              this.listPTCheckedView = resp;
-              this.listPTNotAccept[i] = false;
-            })
-            .catch(err => {
-              console.error(`pt ${i}:`);
-              console.error(err);
-            });
+    this.ptService.xetduyetPT(this.listPTNotAccept, 0)
+      .then(resp => {
+        this.listPTChecked = resp;
+        this.listPTCheckedView = resp;
+        this.listPTNotAccept = [];
+        this.listPTNotAcceptView = [];
+        this.checkAllPT = false;
+        for (let i = 0; i < this.listPTChecked.length; i++) {
+          this.listPTNotAcceptView.push(false);
         }
-      }
-    // }
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   fakeInit() {

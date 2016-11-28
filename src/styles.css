@@ -72,6 +72,7 @@
   word-wrap: break-word;
 }
 
+
 /* CSS Resets */
 
 html {
@@ -397,37 +398,6 @@ accordion-group.panel-open .panel-title {
   color: #c7254e;
 }
 
-@media screen and (max-width: 1199px) {
-  .tm-banner-title {
-    font-size: 50px;
-  }
-  .tm-banner-subtitle {
-    font-size: 30px;
-  }
-  .tm-home-section-1 {
-    top: -20px;
-  }
-  .tm-home-box-1 {
-    width: 300px;
-    height: 388px;
-  }
-  .hotel-search-form .form-group {
-    margin-bottom: 18px;
-  }
-  .tm-home-box-2-description {
-    padding-bottom: 15px;
-  }
-  .tm-home-box-2-description.box-3 {
-    width: 185px;
-  }
-  .flexslider.flexslider-about .slides img {
-    max-width: 450px;
-  }
-  .flexslider.flexslider-about .slides img {
-    width: 450px;
-  }
-}
-
 
 /* table */
 
@@ -442,6 +412,11 @@ accordion-group.panel-open .panel-title {
   margin-bottom: 15px;
   padding: 0 5px 15px;
   overflow: hidden;
+}
+
+.custom-table .table-header .btn-modal {
+  width: 10%;
+  margin-left: 30px;
 }
 
 .custom-table .table-content {
@@ -469,7 +444,7 @@ accordion-group.panel-open .panel-title {
   margin: 0;
 }
 
-.custom-table .table-content tbody tr td{
+.custom-table .table-content tbody tr td {
   word-wrap: break-word;
 }
 
@@ -561,6 +536,37 @@ accordion-group.panel-open .panel-title {
   border-radius: 10px;
   background: #e3e3e3;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 1199px) {
+  .tm-banner-title {
+    font-size: 50px;
+  }
+  .tm-banner-subtitle {
+    font-size: 30px;
+  }
+  .tm-home-section-1 {
+    top: -20px;
+  }
+  .tm-home-box-1 {
+    width: 300px;
+    height: 388px;
+  }
+  .hotel-search-form .form-group {
+    margin-bottom: 18px;
+  }
+  .tm-home-box-2-description {
+    padding-bottom: 15px;
+  }
+  .tm-home-box-2-description.box-3 {
+    width: 185px;
+  }
+  .flexslider.flexslider-about .slides img {
+    max-width: 450px;
+  }
+  .flexslider.flexslider-about .slides img {
+    width: 450px;
+  }
 }
 
 @media screen and (max-width: 1199px) and (min-width: 992px) {

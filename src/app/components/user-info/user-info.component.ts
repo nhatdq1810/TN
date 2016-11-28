@@ -46,18 +46,18 @@ export class UserInfoComponent implements OnInit {
     });
     this.user = this.userService.user;
     let email;
-    let tmpEmail = this.user.email.split('f-');
+    let tmpEmail = this.user.email.split('fb-');
     if (tmpEmail.length === 1) {
-      tmpEmail = this.user.email.split('g-');
+      tmpEmail = this.user.email.split('gg-');
       if (tmpEmail.length === 1) {
         this.prefixEmail = '';
         email = this.user.email;
       } else {
-        this.prefixEmail = 'g-';
+        this.prefixEmail = 'gg-';
         email = tmpEmail[1];
       }
     } else {
-      this.prefixEmail = 'f-';
+      this.prefixEmail = 'fb-';
       email = tmpEmail[1];
     }
 

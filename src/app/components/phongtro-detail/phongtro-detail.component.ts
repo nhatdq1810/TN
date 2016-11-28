@@ -110,11 +110,11 @@ export class PhongtroDetailComponent implements OnInit {
           });
         this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
           this.user = usr;
-          let email = this.user.email.split('f-');
+          let email = this.user.email.split('fb-');
           if (email.length > 1) {
             this.user.email = email[1];
           } else {
-            email = this.user.email.split('g-');
+            email = this.user.email.split('gg-');
             if (email.length > 1) {
               this.user.email = email[1];
             }
