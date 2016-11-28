@@ -56,7 +56,8 @@
         <span>Chọn tất cả</span>
         <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllPT">
       </div>
-      <input type="button" class="btn-modal right" (click)="submit()" name="submit" value="Xác nhận">
+      <input *ngIf="!isDelete" type="button" class="btn-modal right" (click)="submit()" name="submit" value="Xác nhận">
+      <input *ngIf="isDelete" type="button" class="btn-modal right" (click)="deletePT()" name="submit" value="Xóa">
     </div>
   </div>
 </div>
