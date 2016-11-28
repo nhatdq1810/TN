@@ -68,6 +68,9 @@
   font-size: 10px;
 }
 
+.break-word {
+  word-wrap: break-word;
+}
 
 /* CSS Resets */
 
@@ -438,17 +441,12 @@ accordion-group.panel-open .panel-title {
   border-bottom: 2px solid #e6e9ed;
   margin-bottom: 15px;
   padding: 0 5px 15px;
+  overflow: hidden;
 }
 
 .custom-table .table-content {
   overflow: hidden;
 }
-
-
-/*
-.custom-table .table-content table thead {
-  width: calc( 100% - 1em);
-} */
 
 .custom-table .table-content thead,
 .custom-table .table-content tbody tr {
@@ -457,8 +455,12 @@ accordion-group.panel-open .panel-title {
   table-layout: fixed;
 }
 
+.custom-table .table-content tr .index {
+  width: 50px;
+}
+
 .custom-table .table-content tbody {
-  height: 300px;
+  max-height: 300px;
   display: block;
   overflow: auto;
 }
@@ -467,8 +469,12 @@ accordion-group.panel-open .panel-title {
   margin: 0;
 }
 
-.custom-table .table-content tr:hover,
-.custom-table .table-content tr.active {
+.custom-table .table-content tbody tr td{
+  word-wrap: break-word;
+}
+
+.custom-table .table-content tbody tr:hover,
+.custom-table .table-content tbody tr.active {
   background: #f5f5f5;
 }
 
@@ -482,7 +488,6 @@ accordion-group.panel-open .panel-title {
 }
 
 .custom-table .table-content .check-all {
-  /* margin-right: 38px; */
   border: 1px solid #cccccc;
   background: #f5f5f5;
   padding: 10px;
@@ -494,6 +499,48 @@ accordion-group.panel-open .panel-title {
 
 .custom-table .table-content .btn-modal {
   width: 10%;
+}
+
+
+/* search bar */
+
+.custom-table .table-header .search-bar {
+  position: relative;
+  margin-top: 10px;
+}
+
+.custom-table .table-header .search-bar label {
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  margin: 0;
+}
+
+.custom-table .table-header .search-bar input {
+  width: 175px;
+  padding: 5px 10px;
+  padding-left: 33px;
+  transition: width .5s ease-in-out;
+}
+
+.custom-table .table-header .search-bar input:focus {
+  width: 400px;
+}
+
+
+/* delete button */
+
+.custom-table .table-header a {
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+  border: 1px solid #cccccc;
+  padding: 2px 15px;
+}
+
+.custom-table .table-header a:hover,
+.custom-table .table-header a.active {
+  background: #f5f5f5;
 }
 
 
@@ -512,12 +559,8 @@ accordion-group.panel-open .panel-title {
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  background: #c7254e;
+  background: #e3e3e3;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-}
-
-::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(255, 0, 0, 0.4);
 }
 
 @media screen and (max-width: 1199px) and (min-width: 992px) {

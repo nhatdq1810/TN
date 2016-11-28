@@ -9,7 +9,7 @@ let Constants = require('../../../resources/constants');
 })
 export class PtNotCheckedComponent implements OnInit {
 
-  private listPhongtroNotChecked: Array<any> = [];
+  private listPTNotChecked: Array<any> = [];
   private listPTAccept: Array<boolean> = [];
   private listPTDelete: Array<boolean> = [];
   private checkAllPT: boolean;
@@ -31,11 +31,11 @@ export class PtNotCheckedComponent implements OnInit {
     this.isDelete = !this.isDelete;
     this.checkAllPT = false;
     if(this.isDelete) {
-      for (let i = 0; i < this.listPhongtroNotChecked.length; ++i) {
+      for (let i = 0; i < this.listPTNotChecked.length; ++i) {
         this.listPTAccept[i] = false;
       }
     } else {
-      for (let i = 0; i < this.listPhongtroNotChecked.length; ++i) {
+      for (let i = 0; i < this.listPTNotChecked.length; ++i) {
         this.listPTDelete[i] = false;
       }
     }
@@ -81,8 +81,8 @@ export class PtNotCheckedComponent implements OnInit {
   fakeInit() {
     this.checkAllPT = false;
     this.isDelete = false;
-    this.listPhongtroNotChecked = Constants.fakeListPT;
-    for (let i = 0; i < this.listPhongtroNotChecked.length; ++i) {
+    this.listPTNotChecked = Constants.fakeListPT;
+    for (let i = 0; i < this.listPTNotChecked.length; ++i) {
       this.listPTAccept[i] = false;
       this.listPTDelete[i] = false;
     }

@@ -1,7 +1,3 @@
-.break-word {
-  word-wrap: break-word;
-}
-
 .error {
   color: #aaaaaa;
   font-size: 25px;
@@ -11,32 +7,6 @@
 
 .page-content {
   padding: 0 20px;
-}
-
-.page-content .table-header {
-  overflow: hidden;
-}
-
-.page-content .table-header .search-bar {
-  position: relative;
-}
-
-.page-content .table-header .search-bar label {
-  position: absolute;
-  left: 10px;
-  top: 12px;
-  margin: 0;
-}
-
-.page-content .table-header .search-bar input {
-  width: 175px;
-  padding: 10px;
-  padding-left: 33px;
-  transition: width .5s ease-in-out;
-}
-
-.page-content .table-header .search-bar input:focus {
-  width: 400px;
 }
 
 sebm-google-map {

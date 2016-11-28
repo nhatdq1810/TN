@@ -2,6 +2,7 @@
   <div class="custom-table margin-bottom-30">
     <div class="table-header">
       <h2 class="left">Phòng trọ đã phê duyệt</h2>
+      <a class="right" [ngClass]="{'active' : isDelete}" (click)="wantDelete()"><i class="fa fa-trash-o"></i></a>
       <div class="search-bar right">
         <label for="search-input">
           <i class="fa fa-search"></i>
@@ -9,14 +10,16 @@
         <input type="text" id="search-input" name="search" [ngModel]="searchTerm" (ngModelChange)="searchPT($event)" placeholder="Tìm kiếm phòng trọ theo username, địa chỉ,...">
       </div>
     </div>
-    <div *ngIf="!listPhongtroCheckedView || listPhongtroCheckedView.length === 0">
+    <div *ngIf="!listPTCheckedView || listPTCheckedView.length === 0">
       <p class="error">Không có phòng trọ nào</p>
     </div>
-    <div *ngIf="listPhongtroCheckedView.length > 0 && listUser.length > 0" class="table-content">
+    <div *ngIf="listPTCheckedView.length > 0 && listUser.length > 0" class="table-content">
       <table class="table">
         <thead>
           <tr>
-            <th>Hủy chấp thuận</th>
+            <th class="index">Xóa</th>
+            <th class="index">Hủy chấp thuận</th>
+            <th class="index">#</th>
             <th>Username</th>
             <th>Ngày đăng</th>
             <th colspan="3">Địa chỉ</th>
@@ -29,13 +32,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr [ngClass]="{'active': listPTNotAcceptView[i]}" *ngFor="let item of listPhongtroCheckedView, let i = index">
-            <td>
+          <tr [ngClass]="{'active': listPTNotAcceptView[i]}" *ngFor="let item of listPTCheckedView, let i = index">
+            <td *ngIf="isDelete" class="index">
+              <input type="checkbox" name="deletePT" value="1" [ngModel]="listPTDelete[i]" (ngModelChange)="updateCheckAll($event, i, 'delete')">
+            </td>
+            <td *ngIf="!isDelete" class="index">
               <input type="checkbox" name="acceptPT" [ngModel]="listPTNotAcceptView[i]" (ngModelChange)="updateCheckAll($event, i, item)">
             </td>
-            <th class="break-word">{{listUser[item.userID]?.username}}</th>
+            <th class="index">{{item.id}}</th>>
+            <td>{{listUser[item.userID]?.username}}</td>
             <td>{{item.ngaydang | date:'dd/MM/yyyy'}}</td>
-            <td colspan="3" class="break-word">{{item.diachi}}</td>
+            <td colspan="3">{{item.diachi}}</td>
             <td>{{item.giatien | number}}</td>
             <td>{{item.giatienTheoNguoi | number}}</td>
             <td>{{item.tiencoc | number}}</td>

@@ -3,14 +3,23 @@
     <div class="table-header">
       <h2 class="left">Phòng trọ chờ phê duyệt</h2>
       <a class="right" [ngClass]="{'active' : isDelete}" (click)="wantDelete()"><i class="fa fa-trash-o"></i></a>
+      <div class="search-bar right">
+        <label for="search-input">
+          <i class="fa fa-search"></i>
+        </label>
+        <input type="text" id="search-input" name="search" [ngModel]="searchTerm" (ngModelChange)="searchPT($event)" placeholder="Tìm kiếm phòng trọ theo username, địa chỉ,...">
+      </div>
     </div>
-    <div class="table-content">
+    <div *ngIf="!listPTNotChecked || listPTNotChecked.length === 0">
+      <p class="error">Không có phòng trọ nào</p>
+    </div>
+    <div *ngIf="listPTNotChecked.length > 0" class="table-content">
       <table class="table">
         <thead>
           <tr>
-            <th *ngIf="isDelete">Xóa</th>
-            <th *ngIf="!isDelete">Chấp thuận</th>
-            <th>#</th>
+            <th *ngIf="isDelete" class="index">Xóa</th>
+            <th *ngIf="!isDelete" class="index">Chấp thuận</th>
+            <th class="index">#</th>
             <!-- <th>Username</th> -->
             <th>Ngày đăng</th>
             <th colspan="3">Địa chỉ</th>
@@ -23,14 +32,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr [ngClass]="{'active': listPTAccept[i] || listPTDelete[i]}" *ngFor="let item of listPhongtroNotChecked, let i = index">
-            <td *ngIf="isDelete">
+          <tr [ngClass]="{'active': listPTAccept[i] || listPTDelete[i]}" *ngFor="let item of listPTNotChecked, let i = index">
+            <td *ngIf="isDelete" class="index">
               <input type="checkbox" name="deletePT" value="1" [ngModel]="listPTDelete[i]" (ngModelChange)="updateCheckAll($event, i, 'delete')">
             </td>
-            <td *ngIf="!isDelete">
+            <td *ngIf="!isDelete" class="index">
               <input type="checkbox" name="acceptPT" value="1" [ngModel]="listPTAccept[i]" (ngModelChange)="updateCheckAll($event, i, 'accept')">
             </td>
-            <th>{{item.id}}</th>
+            <th class="index">{{item.id}}</th>
             <td>{{item.ngaydang}}</td>
             <td colspan="3">{{item.diachi}}</td>
             <td>{{item.giatien | number}}</td>
