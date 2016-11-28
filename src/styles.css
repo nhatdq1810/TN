@@ -443,6 +443,8 @@ accordion-group.panel-open .panel-title {
 .custom-table .table-content {
   overflow: hidden;
 }
+
+
 /*
 .custom-table .table-content table thead {
   width: calc( 100% - 1em);
@@ -459,10 +461,6 @@ accordion-group.panel-open .panel-title {
   height: 300px;
   display: block;
   overflow: auto;
-}
-
-.custom-table .table-content tbody tr {
-  cursor: pointer;
 }
 
 .custom-table .table-content input[type="checkbox"] {

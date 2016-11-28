@@ -1,3 +1,20 @@
 .page-content {
   padding: 0 20px;
 }
+
+.table-header {
+  overflow: hidden;
+}
+
+.table-header a {
+  margin-right: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+  border: 1px solid #cccccc;
+  padding: 0 15px;
+}
+
+.table-header a:hover,
+.table-header a.active {
+  background: #f5f5f5;
+}
