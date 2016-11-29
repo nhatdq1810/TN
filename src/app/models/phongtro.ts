@@ -5,7 +5,7 @@ export class Phongtro {
   giatien: number;
   giatienTheoNguoi: number;
   ngaydang: string;
-  songuoi: number;
+  sophong: number;
   gioitinh: string;
   hinhanh: string;
   dientich: number;

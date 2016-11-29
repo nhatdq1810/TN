@@ -210,7 +210,7 @@ export class CreatePhongtroComponent implements OnInit {
         'tiencoc': this.ptEdit.tiencoc,
         'tiencocTheoNguoi': this.ptEdit.tiencocTheoNguoi,
         'dientich': [this.ptEdit.dientich, Validators.required],
-        'songuoi': [this.ptEdit.songuoi, Validators.required],
+        'sophong': [this.ptEdit.sophong, Validators.required],
         'nganhangID': this.ptEdit.nganhangID,
         'hinhanh': '',
         'truong': this.ptEdit.truong,
@@ -231,7 +231,7 @@ export class CreatePhongtroComponent implements OnInit {
         tiencoc: this.ptEdit.tiencoc,
         tiencocTheoNguoi: this.ptEdit.tiencocTheoNguoi,
         dientich: this.ptEdit.dientich,
-        songuoi: this.ptEdit.songuoi
+        sophong: this.ptEdit.sophong
       };
       this.initLoaiPhong = this.ptEdit.loaiPhong;
       this.initGioitinh = this.ptEdit.gioitinh;
@@ -261,7 +261,7 @@ export class CreatePhongtroComponent implements OnInit {
         'tiencoc': 0,
         'tiencocTheoNguoi': 0,
         'dientich': [0, Validators.required],
-        'songuoi': [0, Validators.required],
+        'sophong': [0, Validators.required],
         'nganhangID': '',
         'hinhanh': '',
         'truong': '',
@@ -279,7 +279,7 @@ export class CreatePhongtroComponent implements OnInit {
         tiencoc: 0,
         tiencocTheoNguoi: 0,
         dientich: 0,
-        songuoi: 0
+        sophong: 0
       };
       this.initLoaiPhong = 2;
       this.initGioitinh = '';
@@ -297,7 +297,7 @@ export class CreatePhongtroComponent implements OnInit {
     value.tiencocTheoNguoi = +this.formValue.tiencocTheoNguoi;
     value.giatienTheoNguoi = +this.formValue.giatienTheoNguoi;
     value.dientich = +this.formValue.dientich;
-    value.songuoi = +this.formValue.songuoi;
+    value.sophong = +this.formValue.sophong;
     if (!this.previewData) {
       this.hasHinhanh = false;
       this.errorMsg = [{
@@ -307,7 +307,7 @@ export class CreatePhongtroComponent implements OnInit {
     } else {
       this.hasHinhanh = true;
     }
-    if (value.songuoi === 0) {
+    if (value.sophong === 0) {
       this.hasSonguoi = false;
       this.hasDientich = true;
       this.hasGiatien = true;
@@ -606,7 +606,7 @@ export class CreatePhongtroComponent implements OnInit {
       tiencoc: 0,
       tiencocTheoNguoi: 0,
       dientich: 0,
-      songuoi: 0
+      sophong: 0
     };
     this.ptDiachi = {
       sonha: '',
@@ -648,7 +648,7 @@ export class CreatePhongtroComponent implements OnInit {
         'tiencoc': this.ptEdit.tiencoc,
         'tiencocTheoNguoi': this.ptEdit.tiencocTheoNguoi,
         'dientich': [this.ptEdit.dientich, Validators.required],
-        'songuoi': [this.ptEdit.songuoi, Validators.required],
+        'sophong': [this.ptEdit.sophong, Validators.required],
         'nganhangID': this.ptEdit.nganhangID,
         'hinhanh': '',
         'truong': this.ptEdit.truong,
@@ -699,7 +699,7 @@ export class CreatePhongtroComponent implements OnInit {
         'tiencoc': 0,
         'tiencocTheoNguoi': 0,
         'dientich': [0, Validators.required],
-        'songuoi': [0, Validators.required],
+        'sophong': [0, Validators.required],
         'nganhangID': '',
         'hinhanh': '',
         'truong': '',

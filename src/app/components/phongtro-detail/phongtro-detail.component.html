@@ -38,10 +38,10 @@
             <strong>{{phongtro.giatien | number}}</strong>
           </div>
         </div>
-        <div *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="bounce">
+        <div *ngIf="phongtro.tiencoc > 0 && phongtro.sophong > 0" class="bounce">
           <i class="fa fa-hand-o-right fa-3x"></i>
         </div>
-        <a *ngIf="phongtro.tiencoc > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 0)">Đặt cọc nguyên phòng</a>
+        <a *ngIf="phongtro.tiencoc > 0 && phongtro.sophong > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 0)">Đặt cọc nguyên phòng</a>
       </div>
       <div *ngIf="phongtro.giatienTheoNguoi > 0" class="phongtro-header margin-bottom-15">
         <div class="phongtro-price-block left">
@@ -50,10 +50,10 @@
             <strong>{{phongtro.giatienTheoNguoi | number}}</strong>
           </div>
         </div>
-        <div *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.songuoi > 0" class="bounce">
+        <div *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.sophong > 0" class="bounce">
           <i class="fa fa-hand-o-right fa-3x"></i>
         </div>
-        <a *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.songuoi > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 1)">Đặt cọc chỗ ngay</a>
+        <a *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.sophong > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 1)">Đặt cọc chỗ ngay</a>
       </div>
       <div class="phongtro-img margin-bottom-15">
         <img [src]="phongtro?.hinhanh" [alt]="phongtro.diachi" class="img-responsive">
@@ -79,7 +79,7 @@
                   <p>Số lượng {{phongtro.gioitinh}}</p>
                 </div>
                 <div class="phongtro-value">
-                  <strong>{{phongtro.songuoi}}</strong>
+                  <strong>{{phongtro.sophong}}</strong>
                 </div>
               </li>
               <li *ngIf="phongtro.truong && phongtro.truong !== ''">
@@ -140,7 +140,7 @@
               </li>
             </ul>
           </accordion-group>
-          <accordion-group *ngIf="user && phongtro.songuoi > 0" heading="LIÊN HỆ" class="user-info" [isOpen]="true">
+          <accordion-group *ngIf="user && phongtro.sophong > 0" heading="LIÊN HỆ" class="user-info" [isOpen]="true">
             <div class="row user-name">
               <strong>{{user.hoten | uppercase}}</strong>
               <div class="user-popular">
@@ -221,7 +221,7 @@
             <p><span>Giá tiền:</span>{{phongtro.giatien | number}}</p>
             <p><span>Địa chỉ:</span>{{phongtro.diachi}}</p>
             <p><span>Diện tích (m<sup>2</sup>):</span>{{phongtro.dientich}}</p>
-            <p><span>Số người cần tìm:</span>{{phongtro.songuoi}}</p>
+            <p><span>Số người cần tìm:</span>{{phongtro.sophong}}</p>
           </div>
         </div>
       </div>
