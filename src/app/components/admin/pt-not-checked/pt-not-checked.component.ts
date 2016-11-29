@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DetailPopupComponent } from '../detail-popup/detail-popup.component';
 
 let Constants = require('../../../resources/constants');
 
@@ -9,11 +10,13 @@ let Constants = require('../../../resources/constants');
 })
 export class PtNotCheckedComponent implements OnInit {
 
+  @ViewChild('detailPopup') detailPopup: DetailPopupComponent;
   private listPTNotChecked: Array<any> = [];
   private listPTAccept: Array<boolean> = [];
   private listPTDelete: Array<boolean> = [];
   private checkAllPT: boolean;
   private isDelete: boolean;
+  private selectedPT: any;
 
   constructor() {
     this.fakeInit();
@@ -25,6 +28,11 @@ export class PtNotCheckedComponent implements OnInit {
   init() {
     this.checkAllPT = false;
     this.isDelete = false;
+  }
+
+  showDetailItem(item) {
+    this.selectedPT = item;
+    this.detailPopup.showPopup();
   }
 
   wantDelete() {

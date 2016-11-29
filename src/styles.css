@@ -440,12 +440,12 @@ accordion-group.panel-open .panel-title {
   overflow: auto;
 }
 
-.custom-table .table-content input[type="checkbox"] {
-  margin: 0;
+.custom-table .table-content tbody tr {
+  cursor: pointer;
 }
 
-.custom-table .table-content tbody tr td {
-  word-wrap: break-word;
+.custom-table .table-content input[type="checkbox"] {
+  margin: 0;
 }
 
 .custom-table .table-content tbody tr:hover,

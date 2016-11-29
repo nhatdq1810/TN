@@ -18,14 +18,11 @@
             <th *ngIf="isDelete" class="index">
               Xóa
             </th>
-            <th class="index">#</th>
             <th>Username</th>
             <th colspan="2">Họ tên</th>
             <th>Email</th>
             <th colspan="3">Địa chỉ</th>
             <th>Số điện thoại</th>
-            <th>Facebook</th>
-            <th>Skype</th>
             <th>Độ tin cậy</th>
           </tr>
         </thead>
@@ -34,14 +31,11 @@
             <td *ngIf="isDelete" class="index">
               <input type="checkbox" name="deleteUser" value="1" [ngModel]="listUserDeleteView[i]" (ngModelChange)="updateCheckAll($event, i, item)">
             </td>
-            <th class="index">{{item.id}}</th>
-            <td>{{item.username}}</td>
+            <td class="break-word">{{item.username}}</td>
             <td colspan="2">{{item.hoten}}</td>
-            <td>{{item.email}}</td>
-            <td colspan="3">{{item.diachi}}</td>
+            <td class="break-word">{{item.email}}</td>
+            <td colspan="3" class="break-word">{{item.diachi}}</td>
             <td>{{item.sodt}}</td>
-            <td>{{item.facebook}}</td>
-            <td>{{item.skype}}</td>
             <td>{{item.dotincay}}</td>
           </tr>
         </tbody>

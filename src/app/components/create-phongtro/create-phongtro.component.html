@@ -55,7 +55,6 @@
         </ul>
       </div>
       <div class="form-group col-md-4">
-      {{response}}
         <div ngFileDrop *ngIf="!previewData" [options]="options" (onPreviewData)="handlePreviewData($event)" (onFileOver)="fileOverBase($event)" [events]="uploadEvents" [ngClass]="{'file-over': hasBaseDropZoneOver}" class="drop-zone">
         </div>
         <img *ngIf="previewData" [src]="previewData" alt="Preview Data" class="img-preview">

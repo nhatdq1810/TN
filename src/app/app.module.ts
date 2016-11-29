@@ -21,6 +21,8 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { ImageCropperComponent } from 'ng2-img-cropper';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
+import { LoopObjectPipe } from './pipes/loop-object.pipe';
+
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -42,6 +44,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { PtNotCheckedComponent } from './components/admin/pt-not-checked/pt-not-checked.component';
 import { PtCheckedComponent } from './components/admin/pt-checked/pt-checked.component';
 import { ListUserComponent } from './components/admin/list-user/list-user.component';
+import { DetailPopupComponent } from './components/admin/detail-popup/detail-popup.component';
 
 
 @NgModule({
@@ -69,7 +72,9 @@ import { ListUserComponent } from './components/admin/list-user/list-user.compon
     AdminComponent,
     PtNotCheckedComponent,
     PtCheckedComponent,
-    ListUserComponent
+    ListUserComponent,
+    DetailPopupComponent,
+    LoopObjectPipe
   ],
   imports: [
     BrowserModule,
