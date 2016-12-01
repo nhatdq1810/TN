@@ -18,9 +18,7 @@ export class ListUserComponent implements OnInit {
   private listUser: Array<any> = [];
   private listUserView: Array<any> = [];
   private checkAllUser: boolean;
-  private isDelete: boolean;
-  private listUserDelete: Array<any> = [];
-  private listUserDeleteView: Array<boolean> = [];
+  private listUserDelete: Array<boolean> = [];
 
   constructor() {
     this.options = {
@@ -53,12 +51,8 @@ export class ListUserComponent implements OnInit {
   ngOnInit() {
   }
 
-  wantDelete() {
-    this.isDelete = !this.isDelete;
-    this.checkAllUser = false;
-    for (let i = 0; i < this.listUser.length; ++i) {
-        this.listUserDeleteView[i] = false;
-    }
+  deleteUser() {
+    console.log(this.listUserDelete)
   }
 
   searchUser(term: string) {
@@ -79,23 +73,18 @@ export class ListUserComponent implements OnInit {
   }
 
   updateCheckAll(event, index, user) {
-    this.listUserDeleteView[index] = event;
-    this.listUserDelete[user.id] = event;
-    console.log(event);
-    this.checkAllUser = this.listUserDeleteView.every((value) => {
-      console.log(value);
+    this.listUserDelete[index] = event;
+    this.checkAllUser = this.listUserDelete.every((value) => {
       return value === true;
     });
-    console.log(this.checkAllUser);
-    console.log(this.listUserDeleteView);
   }
 
   checkAll() {
-    let valueSet = !this.listUserDeleteView.every((value) => {
+    let valueSet = !this.listUserDelete.every((value) => {
       return value === true;
     });
-    this.listUserDeleteView.forEach((value, index) => {
-      this.listUserDeleteView[index] = valueSet;
+    this.listUserDelete.forEach((value, index) => {
+      this.listUserDelete[index] = valueSet;
     })
   }
 
@@ -111,7 +100,6 @@ export class ListUserComponent implements OnInit {
     this.listUserView = Constants.fakeListUser;
     for (var i = 0; i < this.listUser.length; ++i) {
       this.listUserDelete[i] = false;
-      this.listUserDeleteView[i] = false;
     }
   }
 

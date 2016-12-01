@@ -45,6 +45,7 @@ import { PtNotCheckedComponent } from './components/admin/pt-not-checked/pt-not-
 import { PtAcceptComponent } from './components/admin/pt-accept/pt-accept.component';
 import { PtNotAcceptComponent } from './components/admin/pt-not-accept/pt-not-accept.component';
 import { ListUserComponent } from './components/admin/list-user/list-user.component';
+import { ListGdComponent } from './components/admin/list-gd/list-gd.component';
 import { DetailPopupComponent } from './components/admin/detail-popup/detail-popup.component';
 
 
@@ -75,6 +76,7 @@ import { DetailPopupComponent } from './components/admin/detail-popup/detail-pop
     PtAcceptComponent,
     PtNotAcceptComponent,
     ListUserComponent,
+    ListGdComponent,
     DetailPopupComponent,
     LoopObjectPipe
   ],

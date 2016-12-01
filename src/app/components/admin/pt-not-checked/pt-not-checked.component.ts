@@ -12,10 +12,8 @@ export class PtNotCheckedComponent implements OnInit {
 
   @ViewChild('detailPopup') detailPopup: DetailPopupComponent;
   private listPTNotChecked: Array<any> = [];
-  private listPTAccept: Array<boolean> = [];
-  private listPTDelete: Array<boolean> = [];
+  private listPTCheckbox: Array<boolean> = [];
   private checkAllPT: boolean;
-  private isDelete: boolean;
   private selectedPT: any;
 
   constructor() {
@@ -27,7 +25,6 @@ export class PtNotCheckedComponent implements OnInit {
 
   init() {
     this.checkAllPT = false;
-    this.isDelete = false;
   }
 
   showDetailItem(item) {
@@ -35,64 +32,41 @@ export class PtNotCheckedComponent implements OnInit {
     this.detailPopup.showPopup();
   }
 
-  wantDelete() {
-    this.isDelete = !this.isDelete;
-    this.checkAllPT = false;
-    if(this.isDelete) {
-      for (let i = 0; i < this.listPTNotChecked.length; ++i) {
-        this.listPTAccept[i] = false;
-      }
-    } else {
-      for (let i = 0; i < this.listPTNotChecked.length; ++i) {
-        this.listPTDelete[i] = false;
-      }
-    }
+  deletePT() {
+    console.log(this.listPTCheckbox);
   }
 
   updateCheckAll(event, index, type) {
     if(type === 'accept') {
-      this.listPTAccept[index] = event;
-      this.checkAllPT = this.listPTAccept.every((value) => {
-        return value === true;
-      });
-    } else {
-      this.listPTDelete[index] = event;
-      this.checkAllPT = this.listPTDelete.every((value) => {
+      this.listPTCheckbox[index] = event;
+      this.checkAllPT = this.listPTCheckbox.every((value) => {
         return value === true;
       });
     }
   }
 
   checkAll() {
-    if(this.isDelete) {
-      let valueSet = !this.listPTDelete.every((value) => {
-        return value === true;
-      });
-      this.listPTDelete.forEach((value, index) => {
-        this.listPTDelete[index] = valueSet;
-      });
-    } else {
-      let valueSet = !this.listPTAccept.every((value) => {
-        return value === true;
-      });
-      this.listPTAccept.forEach((value, index) => {
-        this.listPTAccept[index] = valueSet;
-      });
-    }
+    let valueSet = !this.listPTCheckbox.every((value) => {
+      return value === true;
+    });
+    this.listPTCheckbox.forEach((value, index) => {
+      this.listPTCheckbox[index] = valueSet;
+    });
   }
 
-  submit() {
-    console.log(this.listPTDelete);
-    console.log(this.listPTAccept);
+  acceptPT() {
+    console.log(this.listPTCheckbox);
+  }
+
+  denyPT() {
+    console.log(this.listPTCheckbox);
   }
 
   fakeInit() {
     this.checkAllPT = false;
-    this.isDelete = false;
     this.listPTNotChecked = Constants.fakeListPT;
     for (let i = 0; i < this.listPTNotChecked.length; ++i) {
-      this.listPTAccept[i] = false;
-      this.listPTDelete[i] = false;
+      this.listPTCheckbox[i] = false;
     }
   }
 

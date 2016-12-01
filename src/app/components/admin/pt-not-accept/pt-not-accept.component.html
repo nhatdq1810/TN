@@ -1,9 +1,9 @@
 <div class="page-content">
   <div class="custom-table margin-bottom-30">
     <div class="table-header">
-      <h2 class="left">Phòng trọ đã phê duyệt</h2>
-      <input type="button" class="btn-modal left" (click)="addUser()" name="submit" value="Thêm user">
-      <a class="right" [ngClass]="{'active' : isDelete}" (click)="wantDelete()"><i class="fa fa-trash-o"></i></a>
+      <h2 class="left">Phòng trọ không duyệt</h2>
+      <input type="button" class="btn-modal left" (click)="addUser()" name="submit" value="Thêm phòng trọ">
+      <a class="right" (click)="deletePT()"><i class="fa fa-trash-o"></i></a>
       <div class="search-bar right">
         <label for="search-input">
           <i class="fa fa-search"></i>
@@ -18,8 +18,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th class="index" *ngIf="isDelete">Xóa</th>
-            <th class="index" *ngIf="!isDelete">Hủy chấp thuận</th>
+            <th class="index"></th>
             <th>Username</th>
             <th>Ngày đăng</th>
             <th colspan="3">Địa chỉ</th>
@@ -33,10 +32,7 @@
         </thead>
         <tbody>
           <tr [ngClass]="{'active': listPTNotAcceptView[i]}" *ngFor="let item of listPTCheckedView, let i = index">
-            <td *ngIf="isDelete" class="index">
-              <input type="checkbox" name="deletePT" value="1" [ngModel]="listPTDeleteView[i]" (ngModelChange)="updateCheckAll($event, i, 'delete')">
-            </td>
-            <td *ngIf="!isDelete" class="index">
+            <td class="index">
               <input type="checkbox" name="acceptPT" [ngModel]="listPTNotAcceptView[i]" (ngModelChange)="updateCheckAll($event, i, item)">
             </td>
             <td>{{listUser[item.userID]?.username}}</td>
@@ -55,8 +51,7 @@
         <span>Chọn tất cả</span>
         <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllPT">
       </div>
-      <input *ngIf="!isDelete" type="button" class="btn-modal right" (click)="submit()" name="submit" value="Cập nhật">
-      <input *ngIf="isDelete" type="button" class="btn-modal right" (click)="deletePT()" name="submit" value="Xóa">
+      <input type="button" class="btn-modal right" (click)="acceptPT()" name="submit" value="Duyệt">
     </div>
   </div>
 </div>

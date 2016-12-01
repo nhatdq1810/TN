@@ -1,9 +1,9 @@
 <div class="page-content">
   <div class="custom-table">
     <div class="table-header">
-      <h2 class="left">Phòng trọ chờ phê duyệt</h2>
-      <input type="button" class="btn-modal left" (click)="addUser()" name="submit" value="Thêm user">
-      <a class="right" [ngClass]="{'active' : isDelete}" (click)="wantDelete()"><i class="fa fa-trash-o"></i></a>
+      <h2 class="left">Phòng trọ chờ duyệt</h2>
+      <input type="button" class="btn-modal left" (click)="addUser()" name="submit" value="Thêm phòng trọ">
+      <a class="right" (click)="deletePT()"><i class="fa fa-trash-o"></i></a>
       <div class="search-bar right">
         <label for="search-input">
           <i class="fa fa-search"></i>
@@ -18,8 +18,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th *ngIf="isDelete" class="index">Xóa</th>
-            <th *ngIf="!isDelete" class="index">Chấp thuận</th>
+            <th class="index"></th>
             <!-- <th>Username</th> -->
             <th>Ngày đăng</th>
             <th colspan="3" class="break-word">Địa chỉ</th>
@@ -29,12 +28,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr (click)="showDetailItem(item)" [ngClass]="{'active': listPTAccept[i] || listPTDelete[i]}" *ngFor="let item of listPTNotChecked, let i = index">
-            <td *ngIf="isDelete" class="index">
-              <input type="checkbox" name="deletePT" value="1" [ngModel]="listPTDelete[i]" (ngModelChange)="updateCheckAll($event, i, 'delete')">
-            </td>
-            <td *ngIf="!isDelete" class="index">
-              <input type="checkbox" name="acceptPT" value="1" [ngModel]="listPTAccept[i]" (ngModelChange)="updateCheckAll($event, i, 'accept')">
+          <tr (click)="showDetailItem(item)" [ngClass]="{'active': listPTCheckbox[i]}" *ngFor="let item of listPTNotChecked, let i = index">
+            <td class="index" (click)="$event.stopPropagation();">
+              <input type="checkbox" name="acceptPT" value="1" [ngModel]="listPTCheckbox[i]" (ngModelChange)="updateCheckAll($event, i, 'accept')">
             </td>
             <td>{{item.ngaydang}}</td>
             <td colspan="3">{{item.diachi}}</td>
@@ -51,8 +47,8 @@
         <span>Chọn tất cả</span>
         <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllPT">
       </div>
-      <input *ngIf="!isDelete" type="button" class="btn-modal right" (click)="submit()" name="submit" value="Cập nhật">
-      <input *ngIf="isDelete" type="button" class="btn-modal right" (click)="deletePT()" name="submit" value="Xóa">
+      <input type="button" class="btn-modal right deny-btn" (click)="denyPT()" name="submit" value="Không chấp nhận">
+      <input type="button" class="btn-modal right" (click)="acceptPT()" name="submit" value="Duyệt">
     </div>
   </div>
 </div>

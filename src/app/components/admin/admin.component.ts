@@ -47,31 +47,43 @@ export class AdminComponent implements OnInit {
       'span': 'Trang chủ'
     },
     {
-      'statusPage': 'user',
-      'i': 'fa fa-users',
-      'span': 'Quản lý user'
-    },
-    {
       'statusPage': 'pt-not-checked',
-      'i': 'fa fa-home',
+      'i': 'fa fa-bed',
       'span': 'Quản lý phòng trọ',
       'li': [{
-        'content': 'Phòng chờ duyệt',
+        'content': 'Chờ duyệt',
         'statusPage': 'pt-not-checked'
       },
       {
-        'content': 'Phòng đã duyệt',
+        'content': 'Đã duyệt',
         'statusPage': 'pt-accept'
       },
       {
-        'content': 'Phòng không duyệt',
+        'content': 'Không duyệt',
         'statusPage': 'pt-not-accept'
+      },
+      {
+        'content': 'Thống kê',
+        'statusPage': 'statistics'
       }]
     },
     {
-      'statusPage': 'email',
-      'i': 'fa fa-envelope-o',
-      'span': 'Email'
+      'statusPage': 'user',
+      'i': 'fa fa-users',
+      'span': 'Quản lý user',
+      'li': [{
+        'content': 'Danh sách user',
+        'statusPage': 'user'
+      },
+      {
+        'content': 'Thống kê',
+        'statusPage': 'statistics'
+      }]
+    },
+    {
+      'statusPage': 'gd',
+      'i': 'fa fa-bar-chart-o',
+      'span': 'Thống kê giao dịch'
     }];
     for (let i = 0; i < this.listLi.length; ++i) {
       if(i === 0) {
@@ -238,7 +250,7 @@ export class AdminComponent implements OnInit {
     let thisLi = $(this.navigation.nativeElement).children('li').eq(index);
     if (thisLi.has('.nav.child-menu')) {
       $(this.navigation.nativeElement).children('li').not(`:eq(${index})`).children('.nav.child-menu').slideUp(300);
-      thisLi.children('.nav.child-menu').slideToggle(300);
+      thisLi.children('.nav.child-menu').slideToggle(500);
       this.initChildLiActive(index);
     }
   }

@@ -3,7 +3,7 @@
     <div class="table-header">
       <h2 class="left">Danh sách user</h2>
       <input type="button" class="btn-modal left" (click)="addUser()" name="submit" value="Thêm user">
-      <a class="right" [ngClass]="{'active' : isDelete}" (click)="wantDelete()"><i class="fa fa-trash-o"></i></a>
+      <a class="right" (click)="deleteUser()"><i class="fa fa-trash-o"></i></a>
       <div class="search-bar right">
         <label for="search-input">
           <i class="fa fa-search"></i>
@@ -15,9 +15,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th *ngIf="isDelete" class="index">
-              Xóa
-            </th>
+            <th class="index"></th>
             <th>Username</th>
             <th colspan="2">Họ tên</th>
             <th>Email</th>
@@ -27,9 +25,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr [ngClass]="{'active': listUserDeleteView[i]}" *ngFor="let item of listUserView, let i = index">
-            <td *ngIf="isDelete" class="index">
-              <input type="checkbox" name="deleteUser" value="1" [ngModel]="listUserDeleteView[i]" (ngModelChange)="updateCheckAll($event, i, item)">
+          <tr [ngClass]="{'active': listUserDelete[i]}" *ngFor="let item of listUserView, let i = index">
+            <td class="index">
+              <input type="checkbox" name="deleteUser" value="1" [ngModel]="listUserDelete[i]" (ngModelChange)="updateCheckAll($event, i, item)">
             </td>
             <td class="break-word">{{item.username}}</td>
             <td colspan="2">{{item.hoten}}</td>
@@ -40,11 +38,10 @@
           </tr>
         </tbody>
       </table>
-      <div *ngIf="isDelete" class="check-all left">
+      <div class="check-all left">
         <span>Chọn tất cả</span>
         <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllUser">
       </div>
-      <input *ngIf="isDelete" type="button" class="btn-modal right" (click)="deleteUser()" name="submit" value="Xóa">
     </div>
   </div>
 </div>

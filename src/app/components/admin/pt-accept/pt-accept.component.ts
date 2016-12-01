@@ -18,8 +18,6 @@ export class PtAcceptComponent implements OnInit {
   private listPTNotAcceptView: Array<boolean> = [];
   private checkAllPT: boolean;
   private searchTerm: string;
-  private listPTDeleteView: Array<any> = [];
-  private isDelete: boolean;
 
   constructor(private ptService: PhongtroService, private userService: UserService) {
     // this.init();
@@ -37,7 +35,6 @@ export class PtAcceptComponent implements OnInit {
         this.listPTCheckedView = resp;
         this.listPTCheckedView.forEach((pt, index) => {
           this.listPTNotAcceptView[index] = false;
-          this.listPTDeleteView[index] = false;
           this.userService.layThongtinUserID(pt.userID)
             .then(resp => {
               if (!this.listUser[pt.userID]) {
@@ -55,18 +52,7 @@ export class PtAcceptComponent implements OnInit {
       });
   }
 
-  wantDelete() {
-    this.isDelete = !this.isDelete;
-    this.checkAllPT = false;
-    if (this.isDelete) {
-      for (let i = 0; i < this.listPTChecked.length; ++i) {
-        this.listPTNotAcceptView[i] = false;
-      }
-    } else {
-      for (let i = 0; i < this.listPTChecked.length; ++i) {
-        this.listPTDeleteView[i] = false;
-      }
-    }
+  deletePT() {
   }
 
   searchPT(term: string) {
@@ -112,7 +98,7 @@ export class PtAcceptComponent implements OnInit {
     })
   }
 
-  submit() {
+  denyPT() {
     this.ptService.xetduyetPT(this.listPTNotAccept, 0)
       .then(resp => {
         this.listPTChecked = resp;

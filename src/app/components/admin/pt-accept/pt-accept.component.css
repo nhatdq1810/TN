@@ -12,3 +12,7 @@
 sebm-google-map {
   height: 300px;
 }
+
+.custom-table .table-header .btn-modal {
+  width: 15%;
+}

@@ -35,15 +35,12 @@
   border: 1px solid #dddddd;
 }
 
-.nav-left-side .nav-pills>li {
-  transition: border .3s ease-in-out;
-}
-
-.nav-left-side .nav-pills>li i {
+.nav-left-side .nav-pills > li i {
   margin-right: 10px;
+  font-size: 18px;
 }
 
-.nav-left-side .nav-pills>li.active {
+.nav-left-side .nav-pills > li.active {
   border-right: 5px solid #fcdd44;
 }
 
@@ -57,9 +54,9 @@
   font-weight: 20px;
 }
 
-.nav-left-side .nav-pills>li>a:focus,
-.nav-left-side .nav-pills>li>a:hover,
-.nav-left-side .nav-pills>li.active>a {
+.nav-left-side .nav-pills > li:focus > a,
+.nav-left-side .nav-pills > li:hover > a,
+.nav-left-side .nav-pills > li.active > a {
   text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
   background: linear-gradient(#334556, #2C4257), #2a3f54;
   box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
@@ -96,10 +93,14 @@
   top: 0;
 }
 
-.nav-pills .child-menu li a:focus,
-.nav-pills .child-menu li a:hover,
-.nav-pills .child-menu li.active a {
+.nav-pills .child-menu li:focus,
+.nav-pills .child-menu li:hover,
+.nav-pills .child-menu li.active {
   background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-pills .child-menu li:hover a {
+  background: transparent;
 }
 
 .main-container .nav-top {

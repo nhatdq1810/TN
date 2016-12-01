@@ -26,6 +26,89 @@
   </div>
   <div class="right-content">
     <div class="nav-top margin-bottom-30">
+      <ul class="nav navbar-nav navbar-right">
+        <li role="presentation" class="dropdown">
+          <a href="" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-envelope-o"></i>
+            <span class="badge bg-green">6</span>
+          </a>
+          <ul id="menu1" class="dropdown-menu list-unstyled msg-list" role="menu">
+            <li>
+              <a>
+                <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
+                <span>
+                          <span>John Smith</span>
+                <span class="time">3 mins ago</span>
+                </span>
+                <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
+                <span>
+                          <span>John Smith</span>
+                <span class="time">3 mins ago</span>
+                </span>
+                <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
+                <span>
+                          <span>John Smith</span>
+                <span class="time">3 mins ago</span>
+                </span>
+                <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
+                <span>
+                          <span>John Smith</span>
+                <span class="time">3 mins ago</span>
+                </span>
+                <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+              </a>
+            </li>
+            <li>
+              <div class="text-center">
+                <a>
+                  <strong>See All Alerts</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="">
+          <a href="" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-user-circle-o"></i>
+            Hi Admin!
+            <span class="fa fa-angle-down"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-usermenu pull-right">
+            <li><a href=""> Profile</a></li>
+            <li>
+              <a href="">
+                <span class="badge bg-red pull-right">50%</span>
+                <span>Settings</span>
+              </a>
+            </li>
+            <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
     <div *ngIf="statusPage === 'home'" class="page-content">
       <div class="row statistics margin-bottom-30">
@@ -118,6 +201,7 @@
       </div> -->
     </div>
     <app-list-user *ngIf="statusPage === 'user'"></app-list-user>
+    <app-list-gd *ngIf="statusPage === 'gd'"></app-list-gd>
     <app-pt-not-checked *ngIf="statusPage === 'pt-not-checked'"></app-pt-not-checked>
     <app-pt-accept *ngIf="statusPage === 'pt-accept'"></app-pt-accept>
     <app-pt-not-accept *ngIf="statusPage === 'pt-not-accept'"></app-pt-not-accept>
