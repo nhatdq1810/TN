@@ -38,6 +38,7 @@ export class PhongtroDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
+      // this.fakeInit();
       this.init();
     });
     this.userService.checkLoggedIn.subscribe(result => {

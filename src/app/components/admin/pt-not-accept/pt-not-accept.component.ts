@@ -5,11 +5,11 @@ import { UserService } from '../../../services/user.service';
 let Constants = require('../../../resources/constants');
 
 @Component({
-  selector: 'app-pt-checked',
-  templateUrl: './pt-checked.component.html',
-  styleUrls: ['./pt-checked.component.css']
+  selector: 'app-pt-not-accept',
+  templateUrl: './pt-not-accept.component.html',
+  styleUrls: ['./pt-not-accept.component.css']
 })
-export class PtCheckedComponent implements OnInit {
+export class PtNotAcceptComponent implements OnInit {
 
   private listPTChecked: Array<any> = [];
   private listPTCheckedView: Array<any> = [];
@@ -22,8 +22,8 @@ export class PtCheckedComponent implements OnInit {
   private isDelete: boolean;
 
   constructor(private ptService: PhongtroService, private userService: UserService) {
-    this.init();
-    // this.fakeInit();
+    // this.init();
+    this.fakeInit();
   }
 
   ngOnInit() {

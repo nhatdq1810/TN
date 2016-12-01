@@ -13,8 +13,8 @@ export class HeaderComponent implements OnInit {
   private user: any;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {

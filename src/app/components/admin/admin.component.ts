@@ -61,7 +61,11 @@ export class AdminComponent implements OnInit {
       },
       {
         'content': 'Phòng đã duyệt',
-        'statusPage': 'pt-checked'
+        'statusPage': 'pt-accept'
+      },
+      {
+        'content': 'Phòng không duyệt',
+        'statusPage': 'pt-not-accept'
       }]
     },
     {

@@ -42,7 +42,8 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { PtNotCheckedComponent } from './components/admin/pt-not-checked/pt-not-checked.component';
-import { PtCheckedComponent } from './components/admin/pt-checked/pt-checked.component';
+import { PtAcceptComponent } from './components/admin/pt-accept/pt-accept.component';
+import { PtNotAcceptComponent } from './components/admin/pt-not-accept/pt-not-accept.component';
 import { ListUserComponent } from './components/admin/list-user/list-user.component';
 import { DetailPopupComponent } from './components/admin/detail-popup/detail-popup.component';
 
@@ -71,7 +72,8 @@ import { DetailPopupComponent } from './components/admin/detail-popup/detail-pop
     ImageCropperComponent,
     AdminComponent,
     PtNotCheckedComponent,
-    PtCheckedComponent,
+    PtAcceptComponent,
+    PtNotAcceptComponent,
     ListUserComponent,
     DetailPopupComponent,
     LoopObjectPipe

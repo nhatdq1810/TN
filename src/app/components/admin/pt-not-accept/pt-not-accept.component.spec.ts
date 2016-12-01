@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { PtCheckedComponent } from './pt-checked.component';
+import { PtNotAcceptComponent } from './pt-not-accept.component';
 
-describe('Component: PtChecked', () => {
+describe('Component: PtNotAccept', () => {
   it('should create an instance', () => {
-    let component = new PtCheckedComponent();
+    let component = new PtNotAcceptComponent();
     expect(component).toBeTruthy();
   });
 });

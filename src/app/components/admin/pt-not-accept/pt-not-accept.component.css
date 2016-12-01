@@ -1,0 +1,14 @@
+.error {
+  color: #aaaaaa;
+  font-size: 25px;
+  font-weight: 700;
+  padding: 0 5px;
+}
+
+.page-content {
+  padding: 0 20px;
+}
+
+sebm-google-map {
+  height: 300px;
+}
