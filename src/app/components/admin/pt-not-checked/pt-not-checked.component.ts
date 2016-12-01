@@ -17,7 +17,8 @@ export class PtNotCheckedComponent implements OnInit {
   private selectedPT: any;
 
   constructor() {
-    this.fakeInit();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {

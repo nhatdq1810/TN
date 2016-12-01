@@ -63,8 +63,8 @@ export class CreatePhongtroComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // this.init();
-      this.fakeInit();
+      this.init();
+      // this.fakeInit();
     });
   }
 

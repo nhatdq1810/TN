@@ -30,8 +30,8 @@ export class SearchResultComponent implements OnInit {
   private khoa = '';
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {

@@ -45,7 +45,7 @@ export class ListUserComponent implements OnInit {
     }
     this.labelsUsers = ['User mới', 'User cũ'];
 
-    this.fakeInit();
+    // this.fakeInit();
   }
 
   ngOnInit() {

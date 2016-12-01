@@ -18,8 +18,8 @@ export class Error404Component implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // this.init();
-      this.fakeInit();
+      this.init();
+      // this.fakeInit();
     })
   }
 

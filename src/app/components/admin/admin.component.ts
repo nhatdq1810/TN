@@ -114,7 +114,7 @@ export class AdminComponent implements OnInit {
         percent = 100;
       } else {
         percent = newValue / oldValue;
-        if (percent > 1) {
+        if (percent >= 1) {
           checkIncrease = true;
           percent -= 1;
         } else {

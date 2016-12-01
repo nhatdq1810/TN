@@ -132,7 +132,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Số người cần tìm</label>
+              <label>Số phòng còn trống</label>
               <i class="fa fa-asterisk"></i>
               <input class="input-modal" type="text" [ngModel]="formValue.sophong | number" (ngModelChange)="changeTien($event, 'sophong');" [formControl]="complexForm.controls['sophong']" name="sophong" placeholder="Ví dụ: 1">
               <alert [type]="'danger'" *ngIf="complexForm.controls['sophong'].hasError('required') && complexForm.controls['sophong'].touched">

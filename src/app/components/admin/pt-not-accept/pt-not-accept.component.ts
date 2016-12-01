@@ -20,8 +20,8 @@ export class PtNotAcceptComponent implements OnInit {
   private searchTerm: string;
 
   constructor(private ptService: PhongtroService, private userService: UserService) {
-    // this.init();
-    this.fakeInit();
+    this.init();
+    // this.fakeInit();
   }
 
   ngOnInit() {

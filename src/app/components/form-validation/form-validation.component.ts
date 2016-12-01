@@ -28,7 +28,7 @@ export class FormValidationComponent implements OnInit {
       'gioitinh': ''
     });
     this.sliderValue = [500000, 5000000];
-    this.fakeInit();
+    // this.fakeInit();
     this.ptService.layDulieuTimkiemPhongtro()
       .then(result => {
         if (result === 'success') {

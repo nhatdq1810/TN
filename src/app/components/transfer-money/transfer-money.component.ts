@@ -29,8 +29,8 @@ export class TransferMoneyComponent implements OnInit {
   private ngay;
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {
