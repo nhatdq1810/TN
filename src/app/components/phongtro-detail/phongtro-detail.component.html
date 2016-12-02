@@ -1,3 +1,6 @@
+<div *ngIf="!isPTValid" class="error">
+  <h1>Phòng trọ chưa được kiểm duyệt</h1>
+</div>
 <sebm-google-map *ngIf="phongtro" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
   <sebm-google-map-marker [latitude]="lat" [longitude]="lng">
     <sebm-google-map-info-window [disableAutoPan]="true">
@@ -10,10 +13,7 @@
     <div class="col-lg-9 col-md-9 main-content">
       <div class="phongtro-title margin-bottom-15">
         <div class="row margin-bottom-15">
-          <div *ngIf="!isPTValid" class="col-lg-9 col-md-9 error">
-            <h1>Phòng trọ chưa được kiểm duyệt</h1>
-          </div>
-          <div *ngIf="isValid" class="col-lg-9 col-md-9">
+          <div class="col-lg-9 col-md-9">
             <h1>{{phongtro.diachi}}</h1>
           </div>
           <div class="col-lg-3 col-md-3 btn-edit-pt" *ngIf="userService.user && isUserPT">
@@ -41,10 +41,12 @@
             <strong>{{phongtro.giatien | number}}</strong>
           </div>
         </div>
-        <div *ngIf="phongtro.tiencoc > 0 && phongtro.sophong > 0" class="bounce">
-          <i class="fa fa-hand-o-right fa-3x"></i>
+        <div *ngIf="!isUserPT && isValid">
+          <div *ngIf="phongtro.tiencoc > 0 && phongtro.sophong > 0" class="bounce">
+            <i class="fa fa-hand-o-right fa-3x"></i>
+          </div>
+          <a *ngIf="phongtro.tiencoc > 0 && phongtro.sophong > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 0)">Đặt cọc nguyên phòng</a>
         </div>
-        <a *ngIf="phongtro.tiencoc > 0 && phongtro.sophong > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 0)">Đặt cọc nguyên phòng</a>
       </div>
       <div *ngIf="phongtro.giatienTheoNguoi > 0" class="phongtro-header margin-bottom-15">
         <div class="phongtro-price-block left">
@@ -53,10 +55,12 @@
             <strong>{{phongtro.giatienTheoNguoi | number}}</strong>
           </div>
         </div>
-        <div *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.sophong > 0" class="bounce">
-          <i class="fa fa-hand-o-right fa-3x"></i>
+        <div *ngIf="!isUserPT && isValid">
+          <div *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.sophong > 0" class="bounce">
+            <i class="fa fa-hand-o-right fa-3x"></i>
+          </div>
+          <a *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.sophong > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 1)">Đặt cọc chỗ ngay</a>
         </div>
-        <a *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.sophong > 0" class="btn-modal right" (click)="loginModal.showModal('nganhang', 1)">Đặt cọc chỗ ngay</a>
       </div>
       <div class="phongtro-img margin-bottom-15">
         <img [src]="phongtro?.hinhanh" [alt]="phongtro.diachi" class="img-responsive">

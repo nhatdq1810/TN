@@ -8,7 +8,22 @@ sebm-google-map {
 }
 
 .error {
-  color: #aaaaaa;
+  z-index: 200;
+  position: absolute;
+  top: 80px;
+  height: 400px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.error h1 {
+  color: #ffffff;
+  margin-top: 150px;
+  font-size: 60px;
 }
 
 .social-like {
