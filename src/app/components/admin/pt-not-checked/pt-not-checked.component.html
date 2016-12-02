@@ -11,15 +11,15 @@
         <input type="text" id="search-input" name="search" [ngModel]="searchTerm" (ngModelChange)="searchPT($event)" placeholder="Tìm kiếm phòng trọ theo username, địa chỉ,...">
       </div>
     </div>
-    <div *ngIf="!listPTNotChecked || listPTNotChecked.length === 0">
+    <div *ngIf="!listPTNotCheckedView || listPTNotCheckedView.length === 0">
       <p class="error">Không tìm thấy phòng trọ</p>
     </div>
-    <div *ngIf="listPTNotChecked.length > 0" class="table-content">
+    <div *ngIf="listPTNotCheckedView.length > 0" class="table-content">
       <table class="table">
         <thead>
           <tr>
             <th class="index"></th>
-            <!-- <th>Username</th> -->
+            <th>Username</th>
             <th>Ngày đăng</th>
             <th colspan="3" class="break-word">Địa chỉ</th>
             <th>Giá tiền</th>
@@ -28,10 +28,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr (click)="showDetailItem(item)" [ngClass]="{'active': listPTCheckbox[i]}" *ngFor="let item of listPTNotChecked, let i = index">
+          <tr (click)="showDetailItem(item)" [ngClass]="{'active': listPTCheckboxView[item.id]}" *ngFor="let item of listPTNotCheckedView">
             <td class="index" (click)="$event.stopPropagation();">
-              <input type="checkbox" name="acceptPT" value="1" [ngModel]="listPTCheckbox[i]" (ngModelChange)="updateCheckAll($event, i, 'accept')">
+              <input type="checkbox" name="acceptPT" value="1" [ngModel]="listPTCheckboxView[item.id]" (ngModelChange)="updateCheckAll($event, item)">
             </td>
+            <td>{{listUser[item.userID]?.username}}</td>
             <td>{{item.ngaydang}}</td>
             <td colspan="3">{{item.diachi}}</td>
             <td>

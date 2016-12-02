@@ -44,7 +44,7 @@ export class PtAcceptComponent implements OnInit {
             .catch(err => {
               console.error(err);
               this.listUser[pt.userID] = 'Không xác định';
-            })
+            });
         });
       })
       .catch(err => {
@@ -95,7 +95,7 @@ export class PtAcceptComponent implements OnInit {
     });
     this.listPTNotAcceptView.forEach((value, index) => {
       this.listPTNotAcceptView[index] = valueSet;
-    })
+    });
   }
 
   denyPT() {

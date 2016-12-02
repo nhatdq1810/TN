@@ -97,7 +97,7 @@
           <span *ngIf="!isNewPTIncrease" class="count-bottom"><i class="red"><i class="fa fa-sort-desc"></i>{{percentNewPT}}% </i> so với tháng trước</span>
         </div>
       </div>
-      <div *ngIf="datasetsUsers[0] && datasetsNewUsers" class="row margin-bottom-30">
+      <div *ngIf="datasetsUsers[0] && datasetsNewUsers && datasetsUsers[0].length > 0 && datasetsNewUsers.length > 0" class="row margin-bottom-30">
         <div class="chart col-lg-4 col-md-4">
           <canvas baseChart [datasets]="datasetsUsers[0]" [labels]="labelsUsers[0]" [chartType]="'doughnut'">
           </canvas>
@@ -107,7 +107,7 @@
           </canvas>
         </div>
       </div>
-      <div *ngIf="datasetsUsers[3] && datasetsUsers[1] && datasetsUsers[2]" class="row margin-bottom-30">
+      <div *ngIf="datasetsUsers[3] && datasetsUsers[1] && datasetsUsers[2] && datasetsUsers[3].length > 0 && datasetsUsers[1].length > 0 && datasetsUsers[2].length > 0" class="row margin-bottom-30">
         <div class="chart col-lg-4 col-md-4">
           <canvas baseChart [datasets]="datasetsUsers[1]" [labels]="labelsUsers[1]" [chartType]="'doughnut'">
           </canvas>
@@ -121,7 +121,7 @@
           </canvas>
         </div>
       </div>
-      <div *ngIf="datasetsPT[0] && datasetsNewPT" class="row margin-bottom-30">
+      <div *ngIf="datasetsPT[0] && datasetsNewPT && datasetsPT[0].length > 0 && datasetsNewPT.length > 0" class="row margin-bottom-30">
         <div class="chart col-lg-8 col-md-8">
           <canvas baseChart [datasets]="datasetsNewPT" [labels]="labelsNewPT" [options]="options" [chartType]="'bar'">
           </canvas>
@@ -131,7 +131,7 @@
           </canvas>
         </div>
       </div>
-      <div *ngIf="datasetsPT[3] && datasetsPT[1] && datasetsPT[2]" class="row margin-bottom-30">
+      <div *ngIf="datasetsPT[3] && datasetsPT[1] && datasetsPT[2] && datasetsPT[3].length > 0 && datasetsPT[1].length > 0 && datasetsPT[2].length > 0" class="row margin-bottom-30">
         <div class="chart col-lg-4 col-md-4">
           <canvas baseChart [datasets]="datasetsPT[1]" [labels]="labelsPT[1]" [chartType]="'doughnut'">
           </canvas>

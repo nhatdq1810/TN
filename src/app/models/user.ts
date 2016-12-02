@@ -1,5 +1,6 @@
 export class User {
   id: number;
+  loai: string;
   username: string;
   password: string;
   hoten: string;

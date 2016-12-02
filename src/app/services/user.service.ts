@@ -31,13 +31,13 @@ export class UserService {
     this._user = user;
   }
 
-  login(username, password) {
+  login(username, password, loai) {
     let data = {
       username: username,
       password: password
     };
     return new Promise((resolve, reject) => {
-      this.http.post(Constants.apiUrl + 'user/login', JSON.stringify(data), { headers: Constants.headers })
+      this.http.post(Constants.apiUrl + `user/login/${loai}`, JSON.stringify(data), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {

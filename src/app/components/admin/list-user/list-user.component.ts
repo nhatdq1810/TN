@@ -98,7 +98,7 @@ export class ListUserComponent implements OnInit {
     }];
     this.listUser = Constants.fakeListUser;
     this.listUserView = Constants.fakeListUser;
-    for (var i = 0; i < this.listUser.length; ++i) {
+    for (let i = 0; i < this.listUser.length; ++i) {
       this.listUserDelete[i] = false;
     }
   }

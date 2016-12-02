@@ -7,7 +7,7 @@ export class LoopObjectPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
     let listItem = [];
-    for (var key in value) {
+    for (let key in value) {
       listItem.push({
         key: key,
         value: value[key]

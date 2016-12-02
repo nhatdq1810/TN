@@ -585,7 +585,7 @@ export class CreatePhongtroComponent implements OnInit {
     if (e === '' || e === null) {
       this.formValue[type] = 0;
     } else {
-      for (var i = 0; i < e.length; ++i) {
+      for (let i = 0; i < e.length; ++i) {
         if (e[i] === ',') {
           e = e.slice(0, i) + e.slice(i + 1, e.length);
         }

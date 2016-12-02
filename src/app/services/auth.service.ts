@@ -47,7 +47,7 @@ export class AuthService {
           password: profile.clientID,
           facebook: facebook
         };
-        this.userService.login(user.username, user.password).then(user => {
+        this.userService.login(user.username, user.password, 'user').then(user => {
           this.userService.user = user;
           localStorage.setItem('id_token', result.idToken);
           localStorage.setItem('isLoggedIn', 'true');
