@@ -150,6 +150,12 @@ textarea {
   margin-bottom: 5px;
 }
 
+button[disabled],
+html input[disabled],
+[disabled="true"] {
+  cursor: not-allowed;
+}
+
 
 /* Homepage */
 

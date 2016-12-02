@@ -123,17 +123,23 @@ export class PtNotCheckedComponent implements OnInit {
 
   deletePT() {
     console.log(this.listPTCheckbox);
-    this.toastr.success('Đã xóa phòng trọ', 'Thành công !');
+    if(this.listPTCheckbox.length > 0) {
+      this.toastr.success('Đã xóa phòng trọ', 'Thành công !');
+    }
   }
 
   acceptPT() {
     console.log(this.listPTCheckbox);
-    this.toastr.success('Đã duyệt phòng trọ', 'Thành công !');
+    if (this.listPTCheckbox.length > 0) {
+      this.toastr.success('Đã duyệt phòng trọ', 'Thành công !');
+    }
   }
 
   denyPT() {
     console.log(this.listPTCheckbox);
-    this.toastr.success('Đã hủy chấp nhận phòng trọ', 'Thành công !');
+    if (this.listPTCheckbox.length > 0) {
+      this.toastr.success('Đã hủy chấp nhận phòng trọ', 'Thành công !');
+    }
   }
 
   fakeInit() {
