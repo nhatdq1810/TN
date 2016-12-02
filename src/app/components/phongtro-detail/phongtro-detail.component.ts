@@ -32,37 +32,19 @@ export class PhongtroDetailComponent implements OnInit {
   private xoaPTSuccess: boolean;
   private xoaPTFail: boolean;
   private userThichPT: boolean;
+  private isValid: boolean;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // this.fakeInit();
-      this.init();
+      this.fakeInit();
+      // this.init();
     });
     this.userService.checkLoggedIn.subscribe(result => {
       if (result) {
-        if (this.userService.user) {
-          if (this.userService.user.id === this.phongtro.userID) {
-            this.isUserPT = true;
-          } else {
-            this.isUserPT = false;
-            this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
-              .then(result => {
-                if (result === 'success') {
-                  this.userThichPT = true;
-                } else {
-                  this.userThichPT = false;
-                }
-              }).catch(err => {
-                console.error(err);
-                this.userThichPT = false;
-              });
-          }
-        } else {
-          this.isUserPT = false;
-        }
+        this.initUserPT();
       }
     });
   }
@@ -76,56 +58,66 @@ export class PhongtroDetailComponent implements OnInit {
       id = +params['id'];
     });
     if (!this.phongtro || this.phongtro.id !== id) {
-      this.ptService.layPhongtro(id).then(pt => {
-        this.phongtro = pt;
-        if(+this.phongtro.duyet === 0 || +this.phongtro.an === 1) {
-          this.router.navigate(['404']);
-        }
-        this.getLatLng();
-        if (this.userService.user) {
-          if (this.userService.user.id === this.phongtro.userID) {
-            this.isUserPT = true;
-          } else {
-            this.isUserPT = false;
-            this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
-              .then(result => {
-                if (result === 'success') {
-                  this.userThichPT = true;
-                } else {
-                  this.userThichPT = false;
-                }
-              }).catch(err => {
-                console.error(err);
-                this.userThichPT = false;
-              });
-          }
-        } else {
-          this.isUserPT = false;
-        }
-        this.ptService.layLuotThichPhongtro(id)
-          .then(result => {
-            this.phongtro.thich = +result;
-          }).catch(err => {
-            console.error(err);
-            this.phongtro.thich = 0;
-          });
-        this.userService.layThongtinUserID(this.phongtro.userID).then((usr: User) => {
-          this.user = usr;
-          let email = this.user.email.split('fb-');
-          if (email.length > 1) {
-            this.user.email = email[1];
-          } else {
-            email = this.user.email.split('gg-');
-            if (email.length > 1) {
-              this.user.email = email[1];
+      this.ptService.layPhongtro(id)
+        .then(pt => {
+          this.phongtro = pt;
+          this.getLatLng();
+          this.initUserPT();
+          this.isValid = true;
+          if (+this.phongtro.duyet === 0 || +this.phongtro.an === 1) {
+            this.isValid = false;
+            if (!this.isUserPT) {
+              this.router.navigate(['404']);
             }
           }
-        });
-      })
+          this.ptService.layLuotThichPhongtro(id)
+            .then(result => {
+              this.phongtro.thich = +result;
+            }).catch(err => {
+              console.error(err);
+              this.phongtro.thich = 0;
+            });
+          this.userService.layThongtinUserID(this.phongtro.userID)
+            .then((usr: User) => {
+              this.user = usr;
+              let email = this.user.email.split('fb-');
+              if (email.length > 1) {
+                this.user.email = email[1];
+              } else {
+                email = this.user.email.split('gg-');
+                if (email.length > 1) {
+                  this.user.email = email[1];
+                }
+              }
+            });
+        })
         .catch(err => {
           console.error(err);
           this.router.navigate(['/404']);
         });
+    }
+  }
+
+  initUserPT() {
+    if (this.userService.user) {
+      if (this.userService.user.id === this.phongtro.userID) {
+        this.isUserPT = true;
+      } else {
+        this.isUserPT = false;
+        this.ptService.kiemtraUserThichPhongtro(this.phongtro.id, this.userService.user.id)
+          .then(result => {
+            if (result === 'success') {
+              this.userThichPT = true;
+            } else {
+              this.userThichPT = false;
+            }
+          }).catch(err => {
+            console.error(err);
+            this.userThichPT = false;
+          });
+      }
+    } else {
+      this.isUserPT = false;
     }
   }
 
@@ -214,6 +206,7 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   fakeInit() {
+    this.isValid = false;
     this.userThichPT = true;
     this.xoaPTSuccess = false;
     this.isUserPT = true;

@@ -10,7 +10,10 @@
     <div class="col-lg-9 col-md-9 main-content">
       <div class="phongtro-title margin-bottom-15">
         <div class="row margin-bottom-15">
-          <div class="col-lg-9 col-md-9">
+          <div *ngIf="!isPTValid" class="col-lg-9 col-md-9 error">
+            <h1>Phòng trọ chưa được kiểm duyệt</h1>
+          </div>
+          <div *ngIf="isValid" class="col-lg-9 col-md-9">
             <h1>{{phongtro.diachi}}</h1>
           </div>
           <div class="col-lg-3 col-md-3 btn-edit-pt" *ngIf="userService.user && isUserPT">
@@ -20,14 +23,14 @@
           </div>
         </div>
         <div class="social-like">
-          <div class="phongtro-social left">
+          <div *ngIf="isPTValid" class="phongtro-social left">
             <span>Chia sẻ</span>
             <a (click)="socialShare('facebook')"><i class="fa fa-facebook"></i></a>
             <a (click)="socialShare('google')"><i class="fa fa-google-plus"></i></a>
           </div>
           <div class="phongtro-like right">
             <p class="ngay right">{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
-            <a (click)="likePT()" [ngClass]="{'active': userThichPT}"><i class="fa fa-heart-o"></i>{{phongtro.thich}}</a>
+            <a *ngIf="isValid" (click)="likePT()" [ngClass]="{'active': userThichPT}"><i class="fa fa-heart-o"></i>{{phongtro.thich}}</a>
           </div>
         </div>
       </div>
@@ -187,14 +190,14 @@
               </li>
             </ul>
           </accordion-group>
-          <accordion-group class="comments" heading="BÌNH LUẬN" [isOpen]="true">
-            <app-comments #commentsComponent></app-comments>
+          <accordion-group *ngIf="isValid" class="comments" heading="BÌNH LUẬN" [isOpen]="true">
+            <!-- <app-comments #commentsComponent></app-comments> -->
           </accordion-group>
         </accordion>
       </div>
     </div>
     <div class="col-lg-3 col-md-3">
-      <app-aside #asideComponent></app-aside>
+      <!-- <app-aside #asideComponent></app-aside> -->
     </div>
   </div>
 </div>

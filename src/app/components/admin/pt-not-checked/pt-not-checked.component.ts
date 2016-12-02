@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DetailPopupComponent } from '../detail-popup/detail-popup.component';
 
 let Constants = require('../../../resources/constants');

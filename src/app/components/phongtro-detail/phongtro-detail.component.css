@@ -7,6 +7,10 @@ sebm-google-map {
   margin-top: 15px;
 }
 
+.error {
+  color: #aaaaaa;
+}
+
 .social-like {
   overflow: hidden;
   margin-bottom: 5px;
