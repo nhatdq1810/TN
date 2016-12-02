@@ -29,56 +29,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li role="presentation" class="dropdown">
           <a href="" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-envelope-o"></i>
+            <i class="fa fa-newspaper-o"></i>
             <span class="badge bg-green">6</span>
           </a>
           <ul id="menu1" class="dropdown-menu list-unstyled msg-list" role="menu">
             <li>
               <a>
-                <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
-                <span>
-                          <span>John Smith</span>
-                <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
-                <span>
-                          <span>John Smith</span>
-                <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
-                <span>
-                          <span>John Smith</span>
-                <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
-                <span>
-                          <span>John Smith</span>
-                <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
+              Test
               </a>
             </li>
             <li>
@@ -93,8 +50,7 @@
         </li>
         <li class="">
           <a href="" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-user-circle-o"></i>
-            Hi Admin
+            <i class="fa fa-user-circle-o"></i> Hi Admin
             <span class="fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -189,21 +145,13 @@
           </canvas>
         </div>
       </div>
-      <!-- <div *ngIf="datasetsUsers[0] && datasetsNewUsers" class="row margin-bottom-30">
-        <div class="chart col-lg-6 col-md-6">
-          <canvas baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [options]="options" [chartType]="'bar'">
-          </canvas>
-        </div>
-        <div class="chart col-lg-6 col-md-6">
-          <canvas baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [options]="options" [chartType]="'bar'">
-          </canvas>
-        </div>
-      </div> -->
     </div>
     <app-list-user *ngIf="statusPage === 'user'"></app-list-user>
     <app-list-gd *ngIf="statusPage === 'gd'"></app-list-gd>
     <app-pt-not-checked *ngIf="statusPage === 'pt-not-checked'"></app-pt-not-checked>
     <app-pt-accept *ngIf="statusPage === 'pt-accept'"></app-pt-accept>
     <app-pt-not-accept *ngIf="statusPage === 'pt-not-accept'"></app-pt-not-accept>
+    <app-statistic-pt *ngIf="statusPage === 'statistic-pt'"></app-statistic-pt>
+    <app-statistic-user *ngIf="statusPage === 'statistic-user'"></app-statistic-user>
   </div>
 </div>

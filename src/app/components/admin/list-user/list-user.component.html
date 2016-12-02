@@ -11,7 +11,10 @@
         <input type="text" id="search-input" name="search" [ngModel]="searchTerm" (ngModelChange)="searchUser($event)" placeholder="Tìm kiếm user theo username, họ tên,...">
       </div>
     </div>
-    <div class="table-content">
+    <div *ngIf="!listUserView || listUserView.length === 0">
+      <p class="error">Không tìm thấy user</p>
+    </div>
+    <div *ngIf="listUserView.length > 0" class="table-content">
       <table class="table">
         <thead>
           <tr>

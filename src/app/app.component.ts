@@ -10,7 +10,7 @@ export class AppComponent {
   private viewContainerRef: ViewContainerRef;
   private admin: boolean;
 
-  public constructor(viewContainerRef: ViewContainerRef){
+  public constructor(viewContainerRef: ViewContainerRef) {
     this.viewContainerRef = viewContainerRef;
     if(window.location.href.indexOf('admin') > -1) {
       this.admin = true;

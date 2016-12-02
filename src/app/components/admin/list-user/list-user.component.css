@@ -14,3 +14,10 @@
 .custom-table .table-header .search-bar input:focus {
   padding-right: 10px;
 }
+
+.error {
+  color: #aaaaaa;
+  font-size: 25px;
+  font-weight: 700;
+  padding: 0 5px;
+}

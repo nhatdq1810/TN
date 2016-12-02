@@ -19,6 +19,7 @@
         "../node_modules/font-awesome/css/font-awesome.min.css",
         "../node_modules/flexslider/flexslider.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
         "styles.css"
       ],
       "scripts": [
@@ -28,7 +29,8 @@
         "../node_modules/moment/min/moment.min.js",
         "../node_modules/auth0/min/auth0-7.3.0.min.js",
         "../node_modules/chart.js/dist/Chart.bundle.min.js",
-        "../node_modules/chart.js/dist/Chart.min.js"
+        "../node_modules/chart.js/dist/Chart.min.js",
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

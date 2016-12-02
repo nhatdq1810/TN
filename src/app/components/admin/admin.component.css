@@ -140,6 +140,21 @@
   padding: 0;
 }
 
+.main-container .nav-top .navbar-nav > li > .dropdown-menu.msg-list {
+  width: 300px;
+  padding: 5px;
+}
+
+.main-container .nav-top .navbar-nav > li > .dropdown-menu.msg-list li {
+  margin-bottom: 5px;
+}
+
+.main-container .nav-top .navbar-nav > li > .dropdown-menu.msg-list li:last-of-type {
+  padding: 10px;
+  background: #f7f7f7;
+  margin-bottom: 0;
+}
+
 .main-container .nav-top .navbar-nav .dropdown-menu > li > a {
   padding: 12px 20px;
 }

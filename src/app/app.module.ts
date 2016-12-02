@@ -20,6 +20,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { ImageCropperComponent } from 'ng2-img-cropper';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 import { LoopObjectPipe } from './pipes/loop-object.pipe';
 
@@ -47,6 +48,12 @@ import { PtNotAcceptComponent } from './components/admin/pt-not-accept/pt-not-ac
 import { ListUserComponent } from './components/admin/list-user/list-user.component';
 import { ListGdComponent } from './components/admin/list-gd/list-gd.component';
 import { DetailPopupComponent } from './components/admin/detail-popup/detail-popup.component';
+import { StatisticPtComponent } from './components/admin/statistic-pt/statistic-pt.component';
+import { StatisticUserComponent } from './components/admin/statistic-user/statistic-user.component';
+
+let toastOptions: ToastOptions = new ToastOptions({
+  newestOnTop: true
+});
 
 
 @NgModule({
@@ -78,6 +85,8 @@ import { DetailPopupComponent } from './components/admin/detail-popup/detail-pop
     ListUserComponent,
     ListGdComponent,
     DetailPopupComponent,
+    StatisticUserComponent,
+    StatisticPtComponent,
     LoopObjectPipe
   ],
   imports: [
@@ -94,6 +103,7 @@ import { DetailPopupComponent } from './components/admin/detail-popup/detail-pop
     TypeaheadModule,
     PaginationModule,
     ChartsModule,
+    ToastModule.forRoot(toastOptions),
     AgmCoreModule.forRoot({
       apiKey: Constants.googleApiKey
     })

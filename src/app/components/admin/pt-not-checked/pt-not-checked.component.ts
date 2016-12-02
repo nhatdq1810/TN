@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { DetailPopupComponent } from '../detail-popup/detail-popup.component';
 
 let Constants = require('../../../resources/constants');
@@ -16,9 +17,9 @@ export class PtNotCheckedComponent implements OnInit {
   private checkAllPT: boolean;
   private selectedPT: any;
 
-  constructor() {
-    // this.fakeInit();
-    this.init();
+  constructor(private toastr: ToastsManager) {
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {
@@ -31,10 +32,6 @@ export class PtNotCheckedComponent implements OnInit {
   showDetailItem(item) {
     this.selectedPT = item;
     this.detailPopup.showPopup();
-  }
-
-  deletePT() {
-    console.log(this.listPTCheckbox);
   }
 
   updateCheckAll(event, index, type) {
@@ -55,12 +52,19 @@ export class PtNotCheckedComponent implements OnInit {
     });
   }
 
+  deletePT() {
+    console.log(this.listPTCheckbox);
+    this.toastr.success('Đã xóa phòng trọ thành công', 'Thành công !');
+  }
+
   acceptPT() {
     console.log(this.listPTCheckbox);
+    this.toastr.success('Đã duyệt phòng trọ thành công', 'Thành công !');
   }
 
   denyPT() {
     console.log(this.listPTCheckbox);
+    this.toastr.success('Đã hủy chấp nhận phòng trọ', 'Thành công !');
   }
 
   fakeInit() {

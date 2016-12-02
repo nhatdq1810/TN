@@ -64,7 +64,7 @@ export class AdminComponent implements OnInit {
       },
       {
         'content': 'Thống kê',
-        'statusPage': 'statistics'
+        'statusPage': 'statistic-pt'
       }]
     },
     {
@@ -77,7 +77,7 @@ export class AdminComponent implements OnInit {
       },
       {
         'content': 'Thống kê',
-        'statusPage': 'statistics'
+        'statusPage': 'statistic-user'
       }]
     },
     {
