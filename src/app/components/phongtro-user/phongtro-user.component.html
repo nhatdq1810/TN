@@ -30,6 +30,8 @@
         </div>
         <button class="fa fa-wrench btn-modal right" (click)="editPT(item)"></button>
         <button class="fa fa-times btn-modal right" (click)="showConfirm(item)"></button>
+        <button *ngIf="item.an === 0" class="fa fa-eye btn-modal right" (click)="anPT(item)"></button>
+        <button *ngIf="item.an === 1" class="fa fa-eye-slash btn-modal right" (click)="hienPT(item)"></button>
       </li>
     </ul>
   </div>

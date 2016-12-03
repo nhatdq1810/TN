@@ -64,8 +64,12 @@ sebm-google-map {
   font-size: 15px;
 }
 
-.phongtro-title .btn-modal:last-of-type {
+.phongtro-title .btn-modal {
   margin-right: 10px;
+}
+
+.phongtro-title .btn-modal:first-of-type {
+  margin-right: 0;
 }
 
 .phongtro-header {

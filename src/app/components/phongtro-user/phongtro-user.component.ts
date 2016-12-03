@@ -65,14 +65,36 @@ export class PhongtroUserComponent implements OnInit {
 
   }
 
-  editPT(pt) {
-    this.ptService.currentPT = pt;
-    this.router.navigate(['/phongtro/create', {formInfo: 'edit'}]);
-  }
-
   showConfirm(pt) {
     this.ptXoa = pt;
     this.confirmModal.show();
+  }
+
+  anPT(pt) {
+    this.ptService.anPT(pt.id, 1)
+      .then(result => {
+        let index = this.listPT.indexOf(pt);
+        this.listPT[index].an = 1;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  hienPT(pt) {
+    this.ptService.anPT(pt.id, 0)
+      .then(result => {
+        let index = this.listPT.indexOf(pt);
+        this.listPT[index].an = 0;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  editPT(pt) {
+    this.ptService.currentPT = pt;
+    this.router.navigate(['/phongtro/create', { formInfo: 'edit' }]);
   }
 
   xoaPT() {

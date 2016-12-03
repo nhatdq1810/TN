@@ -1,5 +1,5 @@
 <div *ngIf="!isPTValid" class="error">
-  <h1>Phòng trọ chưa được kiểm duyệt</h1>
+  <h1>{{errorMsg}}</h1>
 </div>
 <sebm-google-map *ngIf="phongtro" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
   <sebm-google-map-marker [latitude]="lat" [longitude]="lng">
@@ -13,12 +13,13 @@
     <div class="col-lg-9 col-md-9 main-content">
       <div class="phongtro-title margin-bottom-15">
         <div class="row margin-bottom-15">
-          <div class="col-lg-9 col-md-9">
+          <div class="col-lg-8 col-md-8">
             <h1>{{phongtro.diachi}}</h1>
           </div>
-          <div class="col-lg-3 col-md-3 btn-edit-pt" *ngIf="userService.user && isUserPT">
-            <button class="btn-modal" (click)="showConfirmModal();">Xóa
-            </button>
+          <div class="col-lg-4 col-md-4 btn-edit-pt" *ngIf="userService.user && isUserPT">
+            <button class="btn-modal" (click)="showConfirmModal();">Xóa</button>
+            <button *ngIf="phongtro.an === 0" class="btn-modal" (click)="anPT();">Ẩn</button>
+            <button *ngIf="phongtro.an === 1" class="btn-modal" (click)="hienPT();">Hiện</button>
             <button class="btn-modal" (click)="editPT();">Chỉnh sửa</button>
           </div>
         </div>

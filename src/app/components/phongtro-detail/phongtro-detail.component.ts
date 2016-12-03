@@ -33,6 +33,7 @@ export class PhongtroDetailComponent implements OnInit {
   private xoaPTFail: boolean;
   private userThichPT: boolean;
   private isPTValid: boolean;
+  private errorMsg: string;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
   }
@@ -66,6 +67,12 @@ export class PhongtroDetailComponent implements OnInit {
           this.isPTValid = true;
           if (+this.phongtro.duyet === 0 || +this.phongtro.an === 1) {
             this.isPTValid = false;
+            if(+this.phongtro.an === 1) {
+              this.errorMsg = 'Phòng trọ bị ẩn';
+            }
+            if(+this.phongtro.duyet === 0) {
+              this.errorMsg = 'Phòng trọ chưa được kiểm duyệt';
+            }
             if (!this.isUserPT) {
               this.router.navigate(['404']);
             }
@@ -178,6 +185,26 @@ export class PhongtroDetailComponent implements OnInit {
     this.xoaPTSuccess = false;
     this.xoaPTFail = false;
     this.confirmModal.show();
+  }
+
+  anPT() {
+    this.ptService.anPT(this.phongtro.id, 1)
+      .then(result => {
+        this.phongtro.an = 1;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  hienPT() {
+    this.ptService.anPT(this.phongtro.id, 0)
+      .then(result => {
+        this.phongtro.an = 0;
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   editPT() {
