@@ -18,6 +18,7 @@
         <thead>
           <tr>
             <th class="index"></th>
+            <th class="index">#</th>
             <th>Username</th>
             <th colspan="2">Họ tên</th>
             <th>Email</th>
@@ -31,6 +32,7 @@
             <td class="index">
               <input type="checkbox" name="deleteUser" value="1" [ngModel]="listUserDelete[i]" (ngModelChange)="updateCheckAll($event, i, item)">
             </td>
+            <th class="index">{{item.id}}</th>
             <td class="break-word">{{item.username}}</td>
             <td colspan="2">{{item.hoten}}</td>
             <td class="break-word">{{item.email}}</td>

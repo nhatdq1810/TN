@@ -8,7 +8,7 @@ sebm-google-map {
 }
 
 .error {
-  z-index: 200;
+  z-index: 100;
   position: absolute;
   top: 80px;
   height: 400px;

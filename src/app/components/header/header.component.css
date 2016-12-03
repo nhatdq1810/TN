@@ -3,7 +3,7 @@
 .tm-header {
   background: #333333;
   position: relative;
-  z-index: 100;
+  z-index: 200;
 }
 
 .tm-site-name-container {

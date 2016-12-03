@@ -2,7 +2,7 @@
   <div class="custom-table margin-bottom-30">
     <div class="table-header">
       <h2 class="left">Phòng trọ không duyệt</h2>
-      <a class="right" (click)="deletePT()"><i class="fa fa-trash-o"></i></a>
+      <a class="right" [attr.disabled]="listCheckbox.length === 0 || listPTNotAcceptView.length === 0" (click)="deletePT()"><i class="fa fa-trash-o"></i></a>
       <div class="search-bar right">
         <label for="search-input">
           <i class="fa fa-search"></i>
@@ -10,39 +10,38 @@
         <input type="text" id="search-input" name="search" [ngModel]="searchTerm" (ngModelChange)="searchPT($event)" placeholder="Tìm kiếm phòng trọ theo username, địa chỉ,...">
       </div>
     </div>
-    <div *ngIf="!listPTCheckedView || listPTCheckedView.length === 0">
+    <div *ngIf="!listPTNotAcceptView || listPTNotAcceptView.length === 0">
       <p class="error">Không tìm thấy phòng trọ</p>
     </div>
-    <div *ngIf="listPTCheckedView.length > 0 && listUser.length > 0" class="table-content">
+    <div *ngIf="listPTNotAcceptView.length > 0 && listUser.length > 0" class="table-content">
       <table class="table">
         <thead>
           <tr>
             <th class="index"></th>
+            <th class="index">#</th>
             <th>Username</th>
             <th>Ngày đăng</th>
-            <th colspan="3">Địa chỉ</th>
-            <th>Giá tiền nguyên phòng</th>
-            <th>Giá tiền từng người</th>
-            <th>Tiền cọc nguyên phòng</th>
-            <th>Tiền cọc từng người</th>
-            <th>Số phòng còn trống</th>
+            <th colspan="3" class="break-word">Địa chỉ</th>
+            <th>Giá tiền</th>
+            <th>Số phòng trống</th>
             <th>Diện tích (m<sup>2</sup>)</th>
           </tr>
         </thead>
         <tbody>
-          <tr [ngClass]="{'active': listPTNotAcceptView[i]}" *ngFor="let item of listPTCheckedView, let i = index">
-            <td class="index">
-              <input type="checkbox" name="acceptPT" [ngModel]="listPTNotAcceptView[i]" (ngModelChange)="updateCheckAll($event, i, item)">
+          <tr [ngClass]="{'active': listCheckboxView[item.id]}" *ngFor="let item of listPTNotAcceptView">
+            <td class="index" (click)="$event.stopPropagation();">
+              <input type="checkbox" name="acceptPT" value="1" [ngModel]="listCheckboxView[item.id]" (ngModelChange)="updateCheckAll($event, item)">
             </td>
-            <td>{{listUser[item.userID]?.username}}</td>
-            <td>{{item.ngaydang | date:'dd/MM/yyyy'}}</td>
+            <th class="index">{{item.id}}</th>
+            <td class="break-word">{{listUser[item.userID]?.username}}</td>
+            <td>{{item.ngaydang}}</td>
             <td colspan="3">{{item.diachi}}</td>
-            <td>{{item.giatien | number}}</td>
-            <td>{{item.giatienTheoNguoi | number}}</td>
-            <td>{{item.tiencoc | number}}</td>
-            <td>{{item.tiencocTheoNguoi | number}}</td>
-            <td>{{item.sophong | number}}</td>
-            <td>{{item.dientich | number}}</td>
+            <td>
+              <p *ngIf="item.giatien > 0">{{item.giatien | number}}</p>
+              <p *ngIf="item.giatienTheoNguoi > 0">{{item.giatienTheoNguoi | number}} / người</p>
+            </td>
+            <td>{{item.sophong}}</td>
+            <td>{{item.dientich}}</td>
           </tr>
         </tbody>
       </table>
@@ -50,7 +49,7 @@
         <span>Chọn tất cả</span>
         <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllPT">
       </div>
-      <input type="button" class="btn-modal right" (click)="acceptPT()" name="submit" value="Duyệt">
     </div>
   </div>
 </div>
+<app-detail-popup #detailPopup [typeInfo]="'phòng trọ'" [info]="selectedPT"></app-detail-popup>

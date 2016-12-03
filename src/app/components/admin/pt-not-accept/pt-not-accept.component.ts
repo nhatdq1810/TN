@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { DetailPopupComponent } from '../detail-popup/detail-popup.component';
 import { PhongtroService } from '../../../services/phongtro.service';
 import { UserService } from '../../../services/user.service';
 
@@ -11,15 +13,16 @@ let Constants = require('../../../resources/constants');
 })
 export class PtNotAcceptComponent implements OnInit {
 
-  private listPTChecked: Array<any> = [];
-  private listPTCheckedView: Array<any> = [];
+  @ViewChild('detailPopup') detailPopup: DetailPopupComponent;
+  private listCheckbox: Array<any> = [];
+  private listCheckboxView: Array<boolean> = [];
   private listUser: Array<any> = [];
   private listPTNotAccept: Array<any> = [];
-  private listPTNotAcceptView: Array<boolean> = [];
+  private listPTNotAcceptView: Array<any> = [];
   private checkAllPT: boolean;
-  private searchTerm: string;
+  private selectedPT: any;
 
-  constructor(private ptService: PhongtroService, private userService: UserService) {
+  constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) {
     this.init();
     // this.fakeInit();
   }
@@ -29,97 +32,123 @@ export class PtNotAcceptComponent implements OnInit {
 
   init() {
     this.checkAllPT = false;
-    this.ptService.layTatcaPhongtro(1)
-      .then(resp => {
-        this.listPTChecked = resp;
-        this.listPTCheckedView = resp;
-        this.listPTCheckedView.forEach((pt, index) => {
-          this.listPTNotAcceptView[index] = false;
-          this.userService.layThongtinUserID(pt.userID)
+    this.ptService.layTatcaPhongtro(-1)
+      .then(result => {
+        this.listPTNotAccept = result;
+        this.listPTNotAcceptView = result;
+        for (let i = 0; i < this.listPTNotAcceptView.length; ++i) {
+          this.listCheckboxView[this.listPTNotAcceptView[i].id] = false;
+          this.userService.layThongtinUserID(this.listPTNotAcceptView[i].userID)
             .then(resp => {
-              if (!this.listUser[pt.userID]) {
-                this.listUser[pt.userID] = resp;
+              if (!this.listUser[this.listPTNotAcceptView[i].userID]) {
+                this.listUser[this.listPTNotAcceptView[i].userID] = resp;
               }
             })
             .catch(err => {
               console.error(err);
-              this.listUser[pt.userID] = 'Không xác định';
-            })
-        });
+              this.listUser[this.listPTNotAcceptView[i].userID] = 'Không xác định';
+            });
+        }
       })
       .catch(err => {
         console.error(err);
+        this.listPTNotAccept = [];
+        this.listPTNotAcceptView = [];
       });
   }
 
-  wantDelete() {
 
+  showDetailItem(item) {
+    this.selectedPT = item;
+    this.detailPopup.showPopup();
   }
 
   searchPT(term: string) {
-    if(term && term !== '') {
-      this.listPTCheckedView = [];
-      for (let i = 0; i < this.listPTChecked.length; i++) {
-        for (let propPT in this.listPTChecked[i]) {
-          if (this.listPTChecked[i][propPT].toString().indexOf(term) > -1) {
-            this.listPTCheckedView.push(this.listPTChecked[i]);
+    if (term && term !== '') {
+      this.listPTNotAcceptView = [];
+      for (let i = 0; i < this.listPTNotAccept.length; i++) {
+        for (let propPT in this.listPTNotAccept[i]) {
+          if (this.listPTNotAccept[i][propPT].toString().indexOf(term) > -1) {
+            this.listPTNotAcceptView.push(this.listPTNotAccept[i]);
             break;
-          } else if(this.listUser[this.listPTChecked[i].userID].username.indexOf(term) > -1) {
-            this.listPTCheckedView.push(this.listPTChecked[i]);
+          } else if (this.listUser[this.listPTNotAccept[i].userID].username.indexOf(term) > -1) {
+            this.listPTNotAcceptView.push(this.listPTNotAccept[i]);
             break;
           }
         }
       }
     } else {
-      this.listPTCheckedView = this.listPTChecked;
+      this.listPTNotAcceptView = this.listPTNotAccept;
+    }
+    this.listCheckbox = [];
+    this.checkAllPT = true;
+    for (let i = 0; i < this.listPTNotAcceptView.length; i++) {
+      let value = this.listPTNotAcceptView[i];
+      if (this.listCheckboxView[value.id]) {
+        this.listCheckbox.push(value.id);
+      } else {
+        this.checkAllPT = false;
+      }
     }
   }
 
-  updateCheckAll(event, index, pt) {
-    this.listPTNotAcceptView[index] = event;
-    if(event) {
-      if(this.listPTNotAccept.indexOf(pt.id) === -1) {
-        this.listPTNotAccept.push(pt.id);
+  updateCheckAll(event, pt) {
+    this.listCheckboxView[pt.id] = event;
+    this.checkAllPT = this.listPTNotAcceptView.every((value) => {
+      return this.listCheckboxView[value.id] === true;
+    });
+    let indexPT = this.listCheckbox.indexOf(pt.id);
+    if (event) {
+      if (indexPT === -1) {
+        this.listCheckbox.push(pt.id);
       }
     } else {
-      let index = this.listPTNotAccept.indexOf(pt.id);
-      this.listPTNotAccept.splice(index, 1);
+      if(indexPT > -1) {
+        this.listCheckbox.splice(indexPT, 1);
+      }
     }
-    this.checkAllPT = this.listPTNotAcceptView.every((value) => {
-      return value === true;
-    });
   }
 
   checkAll() {
     let valueSet = !this.listPTNotAcceptView.every((value) => {
-      return value === true;
+      return this.listCheckboxView[value.id] === true;
     });
-    this.listPTNotAcceptView.forEach((value, index) => {
-      this.listPTNotAcceptView[index] = valueSet;
-    })
+    this.listCheckbox = [];
+    if (valueSet) {
+      this.listPTNotAcceptView.forEach((value) => {
+        this.listCheckboxView[value.id] = valueSet;
+        this.listCheckbox.push(value.id);
+      });
+    } else {
+      this.listPTNotAcceptView.forEach((value) => {
+        this.listCheckboxView[value.id] = valueSet;
+      });
+    }
   }
 
-  acceptPT() {
-    this.ptService.xetduyetPT(this.listPTNotAccept, 1)
-      .then(resp => {
-        this.listPTChecked = resp;
-        this.listPTCheckedView = resp;
-        this.listPTNotAccept = [];
-        this.listPTNotAcceptView = [];
-        this.checkAllPT = false;
-        for (let i = 0; i < this.listPTChecked.length; i++) {
-          this.listPTNotAcceptView.push(false);
-        }
-      })
-      .catch(err => {
-        console.error(err);
-      });
+  deletePT() {
+    if (this.listCheckbox.length > 0) {
+      for (let i = 0; i < this.listCheckbox.length; i++) {
+        this.ptService.adminXoaPhongtro(this.listCheckbox[i], 0)
+          .then(result => {
+            if (i === (this.listCheckbox.length - 1)) {
+              this.init();
+            }
+            this.toastr.success(`Đã xóa phòng trọ ${this.listCheckbox[i]}`, 'Thành công !');
+          })
+          .catch(err => {
+            console.error(err);
+            this.toastr.error(`Xóa thất bại phòng trọ ${this.listCheckbox[i]}`, 'Xảy ra lỗi !');
+            this.init();
+          });
+      }
+    }
   }
 
   fakeInit() {
     this.checkAllPT = false;
-    this.listPTChecked = Constants.fakeListPT;
-    for (let i = 0; i < this.listPTChecked.length; ++i) {
+    this.listCheckbox = Constants.fakeListPT;
+    for (let i = 0; i < this.listCheckbox.length; ++i) {
       this.listPTNotAcceptView[i] = false;
     }
   }

@@ -40,7 +40,7 @@ export class ListUserComponent implements OnInit {
     }];
     let currentMonth = Constants.getCurrentDate().split('/')[1];
     this.labelsNewUsers = [];
-    for (let i = 0; i<6; ++i) {
+    for (let i = 0; i < 6; ++i) {
       this.labelsNewUsers.push(`tháng ${currentMonth - 5 + i}`);
     }
     this.labelsUsers = ['User mới', 'User cũ'];

@@ -32,15 +32,15 @@ export class PhongtroDetailComponent implements OnInit {
   private xoaPTSuccess: boolean;
   private xoaPTFail: boolean;
   private userThichPT: boolean;
-  private isValid: boolean;
+  private isPTValid: boolean;
 
   constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.fakeInit();
-      // this.init();
+      // this.fakeInit();
+      this.init();
     });
     this.userService.checkLoggedIn.subscribe(result => {
       if (result) {
@@ -63,9 +63,9 @@ export class PhongtroDetailComponent implements OnInit {
           this.phongtro = pt;
           this.getLatLng();
           this.initUserPT();
-          this.isValid = true;
+          this.isPTValid = true;
           if (+this.phongtro.duyet === 0 || +this.phongtro.an === 1) {
-            this.isValid = false;
+            this.isPTValid = false;
             if (!this.isUserPT) {
               this.router.navigate(['404']);
             }
@@ -206,7 +206,7 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   fakeInit() {
-    this.isValid = false;
+    this.isPTValid = false;
     this.userThichPT = true;
     this.xoaPTSuccess = false;
     this.isUserPT = true;
