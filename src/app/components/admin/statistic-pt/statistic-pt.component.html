@@ -1,3 +1,50 @@
-<p>
-  statistic-pt works!
-</p>
+<div class="page-content">
+  <div *ngIf="datasetsUsers[0] && datasetsNewUsers && datasetsUsers[0].length > 0 && datasetsNewUsers.length > 0" class="row margin-bottom-30">
+    <div class="chart col-lg-4 col-md-4">
+      <canvas baseChart [datasets]="datasetsUsers[0]" [labels]="labelsUsers[0]" [chartType]="'doughnut'">
+      </canvas>
+    </div>
+    <div class="chart col-lg-8 col-md-8">
+      <canvas baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [chartType]="'bar'">
+      </canvas>
+    </div>
+  </div>
+  <div *ngIf="datasetsUsers[3] && datasetsUsers[1] && datasetsUsers[2] && datasetsUsers[3].length > 0 && datasetsUsers[1].length > 0 && datasetsUsers[2].length > 0" class="row margin-bottom-30">
+    <div class="chart col-lg-4 col-md-4">
+      <canvas baseChart [datasets]="datasetsUsers[1]" [labels]="labelsUsers[1]" [chartType]="'doughnut'">
+      </canvas>
+    </div>
+    <div class="chart col-lg-4 col-md-4">
+      <canvas baseChart [datasets]="datasetsUsers[2]" [labels]="labelsUsers[2]" [chartType]="'doughnut'">
+      </canvas>
+    </div>
+    <div class="chart col-lg-4 col-md-4">
+      <canvas baseChart [datasets]="datasetsUsers[3]" [labels]="labelsUsers[3]" [chartType]="'doughnut'">
+      </canvas>
+    </div>
+  </div>
+  <div *ngIf="datasetsPT[0] && datasetsNewPT && datasetsPT[0].length > 0 && datasetsNewPT.length > 0" class="row margin-bottom-30">
+    <div class="chart col-lg-8 col-md-8">
+      <canvas baseChart [datasets]="datasetsNewPT" [labels]="labelsNewPT" [chartType]="'bar'">
+      </canvas>
+    </div>
+    <div class="chart col-lg-4 col-md-4">
+      <canvas baseChart [datasets]="datasetsPT[0]" [labels]="labelsPT[0]" [chartType]="'doughnut'">
+      </canvas>
+    </div>
+  </div>
+  <div *ngIf="datasetsPT[3] && datasetsPT[1] && datasetsPT[2] && datasetsPT[3].length > 0 && datasetsPT[1].length > 0 && datasetsPT[2].length > 0" class="row margin-bottom-30">
+    <div class="chart col-lg-4 col-md-4">
+      <canvas baseChart [datasets]="datasetsPT[1]" [labels]="labelsPT[1]" [chartType]="'doughnut'">
+      </canvas>
+    </div>
+    <div class="chart col-lg-4 col-md-4">
+      <canvas baseChart [datasets]="datasetsPT[2]" [labels]="labelsPT[2]" [chartType]="'doughnut'">
+      </canvas>
+    </div>
+    <div class="chart col-lg-4 col-md-4">
+      <canvas baseChart [datasets]="datasetsPT[3]" [labels]="labelsPT[3]" [chartType]="'doughnut'">
+      </canvas>
+    </div>
+  </div>
+</div>

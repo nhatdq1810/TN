@@ -358,6 +358,54 @@ export class PhongtroService {
     });
   }
 
+  thongkePTTheoDiachi(loai, gioihan) {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoDiachi/${loai}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkePTTheoDiachi', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkePTTheoDiachi', err));
+    });
+  }
+
+  thongkePTTheoInput(column, gioihan) {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoInput/${column}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkePTTheoInput', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkePTTheoInput', err));
+    });
+  }
+
+  thongkePTTheoTienVaDientich(column, gioihan) {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoTienVaDientich/${column}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkePTTheoTienVaDientich', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkePTTheoTienVaDientich', err));
+    });
+  }
+
   xetduyetPT(listID, duyet): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.put(Constants.apiUrl + `phongtro/duyet/${duyet}`, JSON.stringify(listID), { headers: Constants.headers })

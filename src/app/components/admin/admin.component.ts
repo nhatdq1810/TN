@@ -37,8 +37,6 @@ export class AdminComponent implements OnInit {
   private labelsUsers: Array<any> = [];
   private labelsPT: Array<any> = [];
   private labelsNewPT: Array<any> = [];
-  private options;
-  private chartColors;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
     this.listLi = [{
@@ -141,23 +139,6 @@ export class AdminComponent implements OnInit {
   }
 
   initChart() {
-    this.options = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    };
-    this.chartColors = [{
-      borderWidth: '0.5',
-      borderColor: '#c72',
-      pointBackgroundColor: '#c7254e',
-      pointHoverBackgroundColor: 'transparent',
-      pointBorderColor: '#c7254e',
-      pointHoverRadius: 10
-    }];
 
     let currentMonth = Constants.getCurrentDate().split('/')[1];
     this.userService.thongkeUserTheoThang(currentMonth - 5, currentMonth)
