@@ -1,3 +1,11 @@
 .page-content {
   padding: 0 30px;
 }
+
+.select-type .radio {
+  display: inline-block;
+}
+
+.select-type .btn-modal {
+  width: 15%;
+}
