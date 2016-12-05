@@ -11,19 +11,25 @@ let Constants = require('../../../resources/constants');
 })
 export class StatisticPtComponent implements OnInit {
 
-  private datasetsUsers: Array<any> = [];
-  private datasetsNewUsers: Array<any> = [];
-  private datasetsPT: Array<any> = [];
-  private datasetsNewPT: Array<any> = [];
-  private labelsNewUsers: Array<any> = [];
-  private labelsUsers: Array<any> = [];
-  private labelsPT: Array<any> = [];
-  private labelsNewPT: Array<any> = [];
+  private datasetsDiachi: Array<any> = [];
+  private datasetsTvDT: Array<any> = [];
+  private datasetsInput: Array<any> = [];
+  private labelsDiachi: Array<any> = [];
+  private labelsTvDT: Array<any> = [];
+  private labelsInput: Array<any> = [];
+  private nameRadioTvDT: Array<string> = [];
+  private nameRadioKhac: Array<string> = [];
+  private loaiTvDT: any;
+  private loaiKhac: any;
   private options;
   private chartColors;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
     this.initChart();
+    this.loaiTvDT = 0;
+    this.loaiKhac = 0;
+    this.nameRadioTvDT = ['Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích'];
+    this.nameRadioKhac = ['Loại phòng', 'Giới tính', 'Chung trường', 'Chung ngành', 'Chung niên khóa', 'Wifi', 'Ở với chủ'];
   }
 
   ngOnInit() {
@@ -49,68 +55,89 @@ export class StatisticPtComponent implements OnInit {
     }];
 
     let currentMonth = Constants.getCurrentDate().split('/')[1];
-    this.userService.thongkeUserTheoThang(currentMonth - 5, currentMonth)
-      .then(resp => {
-        this.datasetsNewUsers = [{ label: 'User tạo mới trong tháng (người)', data: [] }];
-        for (let i = 0; i < 6; ++i) {
-          let tmpMonth = currentMonth - 5 + i;
-          this.labelsNewUsers.push(`tháng ${tmpMonth}`);
-          if (resp[tmpMonth]) {
-            this.datasetsNewUsers[0].data[i] = resp[tmpMonth];
-          } else {
-            this.datasetsNewUsers[0].data[i] = 0;
-            resp[tmpMonth] = 0;
+    let tmpDC = 'đường,phường,quận,tp';
+    let tmpTvDT = 'giatien,giatienTheoNguoi,tiencoc,tiencocTheoNguoi,dientich';
+    let tmpInput = 'loaiPhong,gioitinh,truong,nganh,khoa,wifi,chu';
+    for (let i = 0; i < 7; i++) {
+      if(i < 4) {
+        this.ptService.thongkePTTheoDiachi(tmpDC.split(',')[i], 5)
+        .then(result => {
+          this.labelsDiachi[i] = [];
+          this.datasetsDiachi[i] = [];
+          for (let prop in result) {
+            this.labelsDiachi[i].push(prop);
+            this.datasetsDiachi[i].push(result[prop]);
           }
-        }
-      })
-      .catch(err => {
-        console.error(err);
-      });
-    for (let i = 0; i < 4; i++) {
-      this.userService.thongkeUserMoiTrenTongso(currentMonth - i)
-        .then(resp => {
-          if (i === 0) {
-          }
-          this.labelsUsers[i] = [`User tạo mới tháng ${currentMonth - i} (%)`, 'User cũ các tháng trước (%)'];
-          let newUserPercent = +((resp['new'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
-          let oldUserPercent = +((resp['old'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
-          this.datasetsUsers[i] = [{ data: [newUserPercent, oldUserPercent] }];
         })
         .catch(err => {
+          console.log('error at i: ' + i);
           console.error(err);
         });
-    }
+      }
 
-    this.ptService.thongkePTTheoThang(currentMonth - 5, currentMonth)
-      .then(resp => {
-        this.datasetsNewPT = [{ label: 'Phòng trọ tạo mới (người)', data: [] }];
-        for (let i = 0; i < 6; ++i) {
-          let tmpMonth = currentMonth - 5 + i;
-          this.labelsNewPT.push(`tháng ${tmpMonth}`);
-          if (resp[tmpMonth]) {
-            this.datasetsNewPT[0].data[i] = resp[tmpMonth];
-          } else {
-            this.datasetsNewPT[0].data[i] = 0;
-            resp[tmpMonth] = 0;
+      if(i < 5) {
+        this.ptService.thongkePTTheoTienVaDientich(tmpTvDT.split(',')[i], 5)
+          .then(result => {
+            this.labelsTvDT[i] = [];
+            this.datasetsTvDT[i] = [];
+            for (let prop in result) {
+              this.labelsTvDT[i].push(prop);
+              this.datasetsTvDT[i].push(result[prop]);
+            }
+          })
+          .catch(err => {
+            console.log('err at i: ' + i);
+            console.error(err);
+          });
+      }
+
+      this.ptService.thongkePTTheoInput(tmpInput.split(',')[i], 5)
+        .then(result => {
+          this.labelsInput[i] = [];
+          this.datasetsInput[i] = [];
+          for (let prop in result) {
+            if(i === 0) {
+              if(prop === '0') {
+                this.labelsInput[i].push('Cả hai');
+              }
+              if (prop === '1') {
+                this.labelsInput[i].push('Thuê từng người');
+              }
+              if (prop === '2') {
+                this.labelsInput[i].push('Thuê nguyên phòng');
+              }
+            } else if(i === 1) {
+              if(prop === '') {
+                this.labelsInput[i].push('Bất kỳ');
+              }
+            } else if(i === 5 || i === 6) {
+              if(prop === '1') {
+                this.labelsInput[i].push('Có');
+              } else {
+                this.labelsInput[i].push('Không');
+              }
+            } else {
+              this.labelsInput[i].push(prop);
+            }
+            this.datasetsInput[i].push(result[prop]);
           }
-        }
-      })
-      .catch(err => {
-        console.error(err);
-      });
-    for (let i = 0; i < 4; i++) {
-      this.ptService.thongkePTMoiTrenTongso(currentMonth - i)
-        .then(resp => {
-          if (i === 0) {
-          }
-          this.labelsPT[i] = [`Phòng trọ tạo mới tháng ${currentMonth - i} (%)`, 'Phòng trọ cũ các tháng trước (%)'];
-          let newPTPercent = +((resp['new'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
-          let oldPTPercent = +((resp['old'] / (resp['new'] + resp['old'])) * 100).toFixed(2);
-          this.datasetsPT[i] = [{ data: [newPTPercent, oldPTPercent] }];
         })
         .catch(err => {
+          console.log('err at i: ' + i);
           console.error(err);
         });
     }
+  }
+
+  thongkeTvDT() {
+    console.log(this.loaiTvDT);
+  }
+
+  thongkeKhac() {
+    console.log(this.loaiKhac);
+  }
+
+  fakeInit() {
+
   }
 }

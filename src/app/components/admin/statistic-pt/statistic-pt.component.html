@@ -1,49 +1,52 @@
 <div class="page-content">
-  <div *ngIf="datasetsUsers[0] && datasetsNewUsers && datasetsUsers[0].length > 0 && datasetsNewUsers.length > 0" class="row margin-bottom-30">
-    <div class="chart col-lg-4 col-md-4">
-      <canvas baseChart [datasets]="datasetsUsers[0]" [labels]="labelsUsers[0]" [chartType]="'doughnut'">
-      </canvas>
-    </div>
-    <div class="chart col-lg-8 col-md-8">
-      <canvas baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [chartType]="'bar'">
+  <div *ngIf="datasetsDiachi && datasetsDiachi.length > 0" class="row margin-bottom-30">
+    <div *ngFor="let item of datasetsDiachi, let i = index" class="chart col-lg-6 col-md-6">
+      <canvas baseChart [datasets]="item" [labels]="labelsDiachi[i]" [chartType]="'bar'">
       </canvas>
     </div>
   </div>
-  <div *ngIf="datasetsUsers[3] && datasetsUsers[1] && datasetsUsers[2] && datasetsUsers[3].length > 0 && datasetsUsers[1].length > 0 && datasetsUsers[2].length > 0" class="row margin-bottom-30">
-    <div class="chart col-lg-4 col-md-4">
-      <canvas baseChart [datasets]="datasetsUsers[1]" [labels]="labelsUsers[1]" [chartType]="'doughnut'">
+  <div *ngIf="datasetsTvDT && datasetsTvDT.length > 0" class="row margin-bottom-30">
+    <div class="chart col-lg-6 col-md-6">
+      <div class="select-type">
+        <ul>
+          <li class="radio" *ngFor="let item of nameRadioTvDT, let i = index">
+            <label>
+              <input type="radio" name="loaiTvDT" [value]="i" [(ngModel)]="loaiTvDT" [checked]="loaiTvDT === i"> {{item}}
+            </label>
+          </li>
+          <!-- <li class="radio">
+            <label>
+              <input type="radio" name="loaiDiachi" value="1" [(ngModel)]="loaiDiachi" [checked]="loaiDiachi === 1"> Tên phường
+            </label>
+          </li>
+          <li class="radio">
+            <label>
+              <input type="radio" name="loaiDiachi" value="2" [(ngModel)]="loaiDiachi" [checked]="loaiDiachi === 2"> Tên quận
+            </label>
+          </li>
+          <li class="radio">
+            <label>
+              <input type="radio" name="loaiDiachi" value="3" [(ngModel)]="loaiDiachi" [checked]="loaiDiachi === 3"> Tên thành phố
+            </label>
+          </li> -->
+        </ul>
+        <button class="btn-modal" (click)="thongkeTvDT()">Thống kê</button>
+      </div>
+      <canvas baseChart [datasets]="datasetsTvDT[loaiTvDT]" [labels]="labelsTvDT[loaiTvDT]" [chartType]="'bar'">
       </canvas>
     </div>
-    <div class="chart col-lg-4 col-md-4">
-      <canvas baseChart [datasets]="datasetsUsers[2]" [labels]="labelsUsers[2]" [chartType]="'doughnut'">
-      </canvas>
-    </div>
-    <div class="chart col-lg-4 col-md-4">
-      <canvas baseChart [datasets]="datasetsUsers[3]" [labels]="labelsUsers[3]" [chartType]="'doughnut'">
-      </canvas>
-    </div>
-  </div>
-  <div *ngIf="datasetsPT[0] && datasetsNewPT && datasetsPT[0].length > 0 && datasetsNewPT.length > 0" class="row margin-bottom-30">
-    <div class="chart col-lg-8 col-md-8">
-      <canvas baseChart [datasets]="datasetsNewPT" [labels]="labelsNewPT" [chartType]="'bar'">
-      </canvas>
-    </div>
-    <div class="chart col-lg-4 col-md-4">
-      <canvas baseChart [datasets]="datasetsPT[0]" [labels]="labelsPT[0]" [chartType]="'doughnut'">
-      </canvas>
-    </div>
-  </div>
-  <div *ngIf="datasetsPT[3] && datasetsPT[1] && datasetsPT[2] && datasetsPT[3].length > 0 && datasetsPT[1].length > 0 && datasetsPT[2].length > 0" class="row margin-bottom-30">
-    <div class="chart col-lg-4 col-md-4">
-      <canvas baseChart [datasets]="datasetsPT[1]" [labels]="labelsPT[1]" [chartType]="'doughnut'">
-      </canvas>
-    </div>
-    <div class="chart col-lg-4 col-md-4">
-      <canvas baseChart [datasets]="datasetsPT[2]" [labels]="labelsPT[2]" [chartType]="'doughnut'">
-      </canvas>
-    </div>
-    <div class="chart col-lg-4 col-md-4">
-      <canvas baseChart [datasets]="datasetsPT[3]" [labels]="labelsPT[3]" [chartType]="'doughnut'">
+    <div class="chart col-lg-6 col-md-6">
+      <div class="select-type">
+        <ul>
+          <li class="radio" *ngFor="let item of nameRadioKhac, let i = index">
+            <label>
+              <input type="radio" name="loaiKhac" [value]="i" [(ngModel)]="loaiKhac" [checked]="loaiKhac === i"> {{item}}
+            </label>
+          </li>
+        </ul>
+        <button class="btn-modal" (click)="thongkeKhac()">Thống kê</button>
+      </div>
+      <canvas baseChart [datasets]="datasetsUsers[loaiKhac]" [labels]="labelsUsers[loaiKhac]" [chartType]="'bar'">
       </canvas>
     </div>
   </div>
