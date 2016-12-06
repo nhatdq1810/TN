@@ -45,7 +45,7 @@ export class StatisticPtComponent implements OnInit {
     this.nameRadioDiachi = ['Quận', 'Thành phố'];
     this.nameRadioTvDT = ['Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích'];
     this.nameRadioKhac = ['Loại phòng', 'Giới tính', 'Chung trường', 'Chung ngành', 'Chung niên khóa', 'Wifi', 'Ở với chủ'];
-    this.tmpDC = 'đường,phường,quận,tp';
+    this.tmpDC = 'quận,tp';
     this.tmpTvDT = 'giatien,giatienTheoNguoi,tiencoc,tiencocTheoNguoi,dientich';
     this.tmpInput = 'loaiPhong,gioitinh,truong,nganh,khoa,wifi,chu';
 
@@ -64,78 +64,94 @@ export class StatisticPtComponent implements OnInit {
     this.initChart();
   }
 
-  getDiachi(i: number) {
-    this.labelsDiachi[i] = [];
-    this.datasetsDiachi[i].data = [];
-    this.ptService.thongkePTTheoDiachi(this.tmpDC.split(',')[i], 5)
+  getDiachi() {
+    this.labelsDiachi[this.loaiDiachi] = [];
+    this.datasetsDiachi[this.loaiDiachi] = [
+      {
+        label: 'Số phòng trọ',
+        data: []
+      }
+    ];
+    this.ptService.thongkePTTheoDiachi(this.tmpDC.split(',')[this.loaiDiachi], 5)
       .then(result => {
         let tmpData = [];
         for (let prop in result) {
-          this.labelsDiachi[i].push(prop);
+          this.labelsDiachi[this.loaiDiachi].push(prop);
           tmpData.push(result[prop]);
         }
-        console.log(tmpData);
-        this.datasetsDiachi[i].data = tmpData;
+        this.datasetsDiachi[this.loaiDiachi][0].data = tmpData;
       })
       .catch(err => {
-        console.log('error at i: ' + i);
+        console.log('error at i: ' + this.loaiDiachi);
         console.error(err);
       });
   }
 
-  getTvDT(i: number) {
-    this.loaiTvDT = i;
-    this.labelsTvDT[i] = [];
-    this.datasetsTvDT[i] = [];
-    this.ptService.thongkePTTheoTienVaDientich(this.tmpTvDT.split(',')[i], 5)
+  getTvDT() {
+    this.labelsTvDT[this.loaiTvDT] = [];
+    this.datasetsTvDT[this.loaiTvDT] = [
+      {
+        label: 'Số phòng trọ',
+        data: []
+      }
+    ];
+    this.ptService.thongkePTTheoTienVaDientich(this.tmpTvDT.split(',')[this.loaiTvDT], 5)
       .then(result => {
+        let tmpData = [];
         for (let prop in result) {
           let label = new DecimalPipe('en').transform(prop);
-          this.labelsTvDT[i].push(label);
-          this.datasetsTvDT[i].push(result[prop]);
+          this.labelsTvDT[this.loaiTvDT].push(label);
+          tmpData.push(result[prop]);
         }
+        this.datasetsTvDT[this.loaiTvDT][0].data = tmpData;
       })
       .catch(err => {
-        console.log('err at i: ' + i);
+        console.log('err at i: ' + this.loaiTvDT);
         console.error(err);
       });
   }
 
-  getKhac(i: number) {
-    this.loaiKhac = i;
-    this.labelsKhac[i] = [];
-    this.datasetsKhac[i] = [];
-    this.ptService.thongkePTTheoInput(this.tmpInput.split(',')[i], 5)
+  getKhac() {
+    this.labelsKhac[this.loaiKhac] = [];
+    this.datasetsKhac[this.loaiKhac] = [
+      {
+        label: 'Số phòng trọ',
+        data: []
+      }
+    ];
+    this.ptService.thongkePTTheoInput(this.tmpInput.split(',')[this.loaiKhac], 5)
       .then(result => {
+        let tmpData = [];
         for (let prop in result) {
-          if (i === 0) {
+          if (this.loaiKhac === 0) {
             if (prop === '0') {
-              this.labelsKhac[i].push('Cả hai');
+              this.labelsKhac[this.loaiKhac].push('Cả hai');
             }
             if (prop === '1') {
-              this.labelsKhac[i].push('Thuê từng người');
+              this.labelsKhac[this.loaiKhac].push('Thuê từng người');
             }
             if (prop === '2') {
-              this.labelsKhac[i].push('Thuê nguyên phòng');
+              this.labelsKhac[this.loaiKhac].push('Thuê nguyên phòng');
             }
-          } else if (i === 1) {
+          } else if (this.loaiKhac === 1) {
             if (prop === '') {
-              this.labelsKhac[i].push('Bất kỳ');
+              this.labelsKhac[this.loaiKhac].push('Bất kỳ');
             }
-          } else if (i === 5 || i === 6) {
+          } else if (this.loaiKhac === 5 || this.loaiKhac === 6) {
             if (prop === '1') {
-              this.labelsKhac[i].push('Có');
+              this.labelsKhac[this.loaiKhac].push('Có');
             } else {
-              this.labelsKhac[i].push('Không');
+              this.labelsKhac[this.loaiKhac].push('Không');
             }
           } else {
-            this.labelsKhac[i].push(prop);
+            this.labelsKhac[this.loaiKhac].push(prop);
           }
-          this.datasetsKhac[i].push(result[prop]);
+          tmpData.push(result[prop]);
         }
+        this.datasetsKhac[this.loaiKhac][0].data = tmpData;
       })
       .catch(err => {
-        console.log('err at i: ' + i);
+        console.log('err at i: ' + this.loaiKhac);
         console.error(err);
       });
   }
@@ -160,21 +176,21 @@ export class StatisticPtComponent implements OnInit {
     }];
 
     let currentMonth = Constants.getCurrentDate().split('/')[1];
-    this.getDiachi(0);
-    this.getTvDT(0);
-    this.getKhac(0);
+    this.getDiachi();
+    this.getTvDT();
+    this.getKhac();
   }
 
   thongkeDiachi() {
-    this.getDiachi(this.loaiDiachi);
+    this.getDiachi();
   }
 
   thongkeTvDT() {
-    this.getTvDT(this.loaiTvDT);
+    this.getTvDT();
   }
 
   thongkeKhac() {
-    this.getKhac(this.loaiKhac);
+    this.getKhac();
   }
 
   fakeInit() {
@@ -184,9 +200,6 @@ export class StatisticPtComponent implements OnInit {
     this.nameRadioDiachi = ['Quận', 'Thành phố'];
     this.nameRadioTvDT = ['Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích'];
     this.nameRadioKhac = ['Loại phòng', 'Giới tính', 'Chung trường', 'Chung ngành', 'Chung niên khóa', 'Wifi', 'Ở với chủ'];
-    this.tmpDC = 'đường,phường,quận,tp';
-    this.tmpTvDT = 'giatien,giatienTheoNguoi,tiencoc,tiencocTheoNguoi,dientich';
-    this.tmpInput = 'loaiPhong,gioitinh,truong,nganh,khoa,wifi,chu';
     for (let i = 0; i < 7; i++) {
       if(i < 5) {
         this.datasetsTvDT[i] = [{
@@ -197,7 +210,6 @@ export class StatisticPtComponent implements OnInit {
       if(i < 4) {
         let tmpNumber = 2000000 + (i * 100000);
         let label = new DecimalPipe('en').transform(tmpNumber);
-        console.log(label);
         this.labelsTvDT[i] = [label, label, label, label, label];
       }
       if(i === 5 || i === 6) {

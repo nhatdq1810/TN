@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { PhongtroService } from '../../services/phongtro.service';
+import { LoginComponent } from '../login/login.component';
 
 let Constants = require('../../resources/constants');
 declare let $: JQueryStatic;
@@ -10,8 +11,10 @@ declare let $: JQueryStatic;
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, AfterViewInit {
 
+  @ViewChild('loginModal') loginModal: LoginComponent;
+  @ViewChild('navigation') navigation: ElementRef;
   private totalUser: number;
   private totalPT: number;
   private newUser: number;
@@ -28,7 +31,6 @@ export class AdminComponent implements OnInit {
   private isChildLiActive: Array<boolean> = [];
   private listLi: Array<any> = [];
   private statusPage: string;
-  @ViewChild('navigation') navigation: ElementRef;
   private datasetsUsers: Array<any> = [];
   private datasetsNewUsers: Array<any> = [];
   private datasetsPT: Array<any> = [];
@@ -37,8 +39,32 @@ export class AdminComponent implements OnInit {
   private labelsUsers: Array<any> = [];
   private labelsPT: Array<any> = [];
   private labelsNewPT: Array<any> = [];
+  private isLogin: boolean = false;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
+    this.isLogin = true;
+  }
+
+  ngOnInit() {
+    this.userService.checkAdminLoggedIn.subscribe((value: boolean) => {
+      this.isLogin = value;
+      if(!this.isLogin) {
+        this.loginModal.showModal('admin', 0);
+      } else {
+        this.init();
+      }
+    })
+  }
+
+  ngAfterViewInit() {
+    if (!this.isLogin) {
+      this.loginModal.showModal('admin', 0);
+    } else {
+      this.init();
+    }
+  }
+
+  init() {
     this.listLi = [{
       'statusPage': 'home',
       'i': 'fa fa-tachometer',
@@ -84,7 +110,7 @@ export class AdminComponent implements OnInit {
       'span': 'Thống kê giao dịch'
     }];
     for (let i = 0; i < this.listLi.length; ++i) {
-      if(i === 0) {
+      if (i === 0) {
         this.isLiActive[i] = true;
       } else {
         this.isLiActive[i] = false;
@@ -92,9 +118,6 @@ export class AdminComponent implements OnInit {
     }
     this.statusPage = 'home';
     this.initChart();
-  }
-
-  ngOnInit() {
   }
 
   private calcPercent(newValue, oldValue, type) {

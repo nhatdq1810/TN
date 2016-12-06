@@ -4,15 +4,21 @@
 
 .chart {
   background: #ffffff;
-  padding: 20px;
 }
 
 .chart h3 {
+  padding: 10px 20px;
   font-weight: 700;
 }
 
-.chart canvas {
-  padding: 0;
+.chart ul {
+  text-align: right;
+  padding: 0 20px;
+}
+
+.select-type {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #dddddd;
 }
 
 .select-type .radio {

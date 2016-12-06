@@ -1,8 +1,8 @@
 <div class="page-content">
   <div class="row margin-bottom-30">
-    <div *ngIf="datasetsDiachi[loaiDiachi]" class="chart">
+    <div class="chart">
       <div class="select-type">
-        <h3 class="margin-bottom-15">Thống kê theo {{nameRadioDiachi[loaiDiachi] | lowercase}}</h3>
+        <h3>Thống kê theo {{nameRadioDiachi[loaiDiachi] | lowercase}}</h3>
         <ul>
           <li class="radio" *ngFor="let item of nameRadioDiachi, let i = index">
             <label>
@@ -16,9 +16,9 @@
     </div>
   </div>
   <div class="row margin-bottom-30">
-    <div *ngIf="datasetsTvDT[loaiTvDT]" class="chart margin-bottom-30">
+    <div class="chart margin-bottom-30">
       <div class="select-type">
-        <h3 class="margin-bottom-15">Thống kê {{nameRadioTvDT[loaiTvDT] | lowercase}}</h3>
+        <h3>Thống kê {{nameRadioTvDT[loaiTvDT] | lowercase}}</h3>
         <ul>
           <li class="radio" *ngFor="let item of nameRadioTvDT, let i = index">
             <label>
@@ -30,9 +30,9 @@
       <canvas baseChart [datasets]="datasetsTvDT[loaiTvDT]" [labels]="labelsTvDT[loaiTvDT]" [chartType]="'bar'">
       </canvas>
     </div>
-    <div *ngIf="datasetsKhac[loaiKhac]" class="chart">
+    <div class="chart">
       <div class="select-type">
-        <h3 class="margin-bottom-15">Thống kê {{nameRadioKhac[loaiKhac] | lowercase}}</h3>
+        <h3>Thống kê {{nameRadioKhac[loaiKhac] | lowercase}}</h3>
         <ul>
           <li class="radio" *ngFor="let item of nameRadioKhac, let i = index">
             <label>

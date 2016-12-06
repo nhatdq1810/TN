@@ -94,7 +94,11 @@ export class LoginComponent implements OnInit {
   submitForm(value: any) {
     delete value.usernameForgot;
     if(this.loginForm !== 'nganhang') {
-      this.userService.login(value.username, value.password, 'user')
+      let typeLogin = 'user';
+      if(this.loginForm === 'admin') {
+         typeLogin = 'admin';
+      }
+      this.userService.login(value.username, value.password, typeLogin)
         .then(resp => {
           if (resp) {
             this.closeModal();

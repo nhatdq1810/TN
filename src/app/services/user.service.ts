@@ -11,6 +11,7 @@ let Constants = require('../resources/constants');
 export class UserService {
 
   public checkLoggedIn = new Subject();
+  public checkAdminLoggedIn = new Subject();
   private loggedIn = false;
   private _user: any;
 
@@ -44,7 +45,11 @@ export class UserService {
             this.loggedIn = true;
             localStorage.setItem('isLoggedIn', 'true');
             this._user = resp;
-            this.checkLoggedIn.next(true);
+            if(loai === 'user') {
+              this.checkLoggedIn.next(true);
+            } else {
+              this.checkAdminLoggedIn.next(true);
+            }
             resolve(resp);
           } else {
             this.handleError('login', resp.result);
@@ -60,6 +65,7 @@ export class UserService {
     localStorage.removeItem('isLoggedIn');
     this.loggedIn = false;
     this.checkLoggedIn.next(false);
+    this.checkAdminLoggedIn.next(false);
     let homepage = encodeURIComponent('http://localhost:4200/home');
     window.location.href = `https://nhatdq1810.auth0.com/v2/logout?returnTo=${homepage}`;
   }
