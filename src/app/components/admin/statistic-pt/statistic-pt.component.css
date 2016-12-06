@@ -2,10 +2,24 @@
   padding: 0 30px;
 }
 
-.select-type .radio {
-  display: inline-block;
+.chart {
+  background: #ffffff;
+  padding: 20px;
 }
 
-.select-type .btn-modal {
-  width: 15%;
+.chart h3 {
+  font-weight: 700;
+}
+
+.chart canvas {
+  padding: 0;
+}
+
+.select-type .radio {
+  display: inline-block;
+  margin-left: 50px;
+}
+
+.select-type .radio:first-of-type {
+  margin-left: 10px;
 }

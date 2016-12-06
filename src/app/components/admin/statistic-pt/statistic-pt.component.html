@@ -1,7 +1,8 @@
 <div class="page-content">
   <div class="row margin-bottom-30">
-    <div class="chart">
+    <div *ngIf="datasetsDiachi[loaiDiachi]" class="chart">
       <div class="select-type">
+        <h3 class="margin-bottom-15">Thống kê theo {{nameRadioDiachi[loaiDiachi] | lowercase}}</h3>
         <ul>
           <li class="radio" *ngFor="let item of nameRadioDiachi, let i = index">
             <label>
@@ -9,15 +10,15 @@
             </label>
           </li>
         </ul>
-        <button class="btn-modal" (click)="thongkeDiachi()">Thống kê</button>
       </div>
       <canvas baseChart [datasets]="datasetsDiachi[loaiDiachi]" [labels]="labelsDiachi[loaiDiachi]" [chartType]="'bar'">
       </canvas>
     </div>
   </div>
-  <!-- <div class="row margin-bottom-30">
-    <div *ngIf="datasetsTvDT[loaiTvDT]" class="chart">
+  <div class="row margin-bottom-30">
+    <div *ngIf="datasetsTvDT[loaiTvDT]" class="chart margin-bottom-30">
       <div class="select-type">
+        <h3 class="margin-bottom-15">Thống kê {{nameRadioTvDT[loaiTvDT] | lowercase}}</h3>
         <ul>
           <li class="radio" *ngFor="let item of nameRadioTvDT, let i = index">
             <label>
@@ -25,13 +26,13 @@
             </label>
           </li>
         </ul>
-        <button class="btn-modal" (click)="thongkeTvDT()">Thống kê</button>
       </div>
       <canvas baseChart [datasets]="datasetsTvDT[loaiTvDT]" [labels]="labelsTvDT[loaiTvDT]" [chartType]="'bar'">
       </canvas>
     </div>
     <div *ngIf="datasetsKhac[loaiKhac]" class="chart">
       <div class="select-type">
+        <h3 class="margin-bottom-15">Thống kê {{nameRadioKhac[loaiKhac] | lowercase}}</h3>
         <ul>
           <li class="radio" *ngFor="let item of nameRadioKhac, let i = index">
             <label>
@@ -39,10 +40,9 @@
             </label>
           </li>
         </ul>
-        <button class="btn-modal" (click)="thongkeKhac()">Thống kê</button>
       </div>
       <canvas baseChart [datasets]="datasetsKhac[loaiKhac]" [labels]="labelsKhac[loaiKhac]" [chartType]="'bar'">
       </canvas>
     </div>
-  </div> -->
+  </div>
 </div>

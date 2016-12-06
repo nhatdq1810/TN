@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import { UserService } from '../../../services/user.service';
 import { PhongtroService } from '../../../services/phongtro.service';
 
@@ -30,7 +31,8 @@ export class StatisticPtComponent implements OnInit {
   private chartColors;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
-    this.init();
+    // this.init();
+    this.fakeInit();
   }
 
   ngOnInit() {
@@ -40,7 +42,7 @@ export class StatisticPtComponent implements OnInit {
     this.loaiDiachi = 0;
     this.loaiTvDT = 0;
     this.loaiKhac = 0;
-    this.nameRadioDiachi = ['Tên đường', 'Tên phường', 'Tên quận', 'Tên thành phố'];
+    this.nameRadioDiachi = ['Quận', 'Thành phố'];
     this.nameRadioTvDT = ['Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích'];
     this.nameRadioKhac = ['Loại phòng', 'Giới tính', 'Chung trường', 'Chung ngành', 'Chung niên khóa', 'Wifi', 'Ở với chủ'];
     this.tmpDC = 'đường,phường,quận,tp';
@@ -88,7 +90,8 @@ export class StatisticPtComponent implements OnInit {
     this.ptService.thongkePTTheoTienVaDientich(this.tmpTvDT.split(',')[i], 5)
       .then(result => {
         for (let prop in result) {
-          this.labelsTvDT[i].push(prop);
+          let label = new DecimalPipe('en').transform(prop);
+          this.labelsTvDT[i].push(label);
           this.datasetsTvDT[i].push(result[prop]);
         }
       })
@@ -175,6 +178,57 @@ export class StatisticPtComponent implements OnInit {
   }
 
   fakeInit() {
-
+    this.loaiDiachi = 0;
+    this.loaiTvDT = 0;
+    this.loaiKhac = 0;
+    this.nameRadioDiachi = ['Quận', 'Thành phố'];
+    this.nameRadioTvDT = ['Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích'];
+    this.nameRadioKhac = ['Loại phòng', 'Giới tính', 'Chung trường', 'Chung ngành', 'Chung niên khóa', 'Wifi', 'Ở với chủ'];
+    this.tmpDC = 'đường,phường,quận,tp';
+    this.tmpTvDT = 'giatien,giatienTheoNguoi,tiencoc,tiencocTheoNguoi,dientich';
+    this.tmpInput = 'loaiPhong,gioitinh,truong,nganh,khoa,wifi,chu';
+    for (let i = 0; i < 7; i++) {
+      if(i < 5) {
+        this.datasetsTvDT[i] = [{
+          label: 'Số phòng trọ',
+          data: [1, 2, 3, 5, 6]
+        }];
+      }
+      if(i < 4) {
+        let tmpNumber = 2000000 + (i * 100000);
+        let label = new DecimalPipe('en').transform(tmpNumber);
+        console.log(label);
+        this.labelsTvDT[i] = [label, label, label, label, label];
+      }
+      if(i === 5 || i === 6) {
+        this.datasetsKhac[i] = [{
+          label: 'Số phòng trọ',
+          data: [4, 0]
+        }]
+      } else {
+        this.datasetsKhac[i] = [{
+          label: 'Số phòng trọ',
+          data: [1, 2, 6]
+        }];
+      }
+    }
+    this.datasetsDiachi[0] = [{
+      label: 'Số phòng trọ',
+      data: [10, 3, 1, 15]
+    }];
+    this.datasetsDiachi[1] = [{
+      label: 'Số phòng trọ',
+      data: [0, 3, 1, 15]
+    }];
+    this.labelsDiachi[0] = ['Quận Gò Vấp, TP.Hồ Chí Minh', 'Quận 1, TP.Hồ Chí Minh', 'Quận 2, TP.Hồ Chí Minh', 'Quận 9, TP.Hồ Chí Minh'];
+    this.labelsDiachi[1] = ['TP Hồ Chí Minh', 'Thành phố Hà Nội', 'TP. Hà Nội', 'Tp. Đà Nẵng'];
+    this.labelsTvDT[4] = [10, 11, 12, 14, 20];
+    this.labelsKhac[0] = ['Cả hai', 'Thuê nguyên phòng', 'Thuê từng người'];
+    this.labelsKhac[1] = ['Bất kỳ', 'Nam', 'Nữ'];
+    this.labelsKhac[2] = ['bách khoa', 'ptit', 'ueh'];
+    this.labelsKhac[3] = ['cntt', 'qtkd', 'ke toan'];
+    this.labelsKhac[4] = ['2012', '2013', '2014'];
+    this.labelsKhac[5] = ['Có', 'Không'];
+    this.labelsKhac[6] = this.labelsKhac[5];
   }
 }
