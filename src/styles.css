@@ -547,7 +547,6 @@ accordion-group.panel-open .panel-title {
 /* charts */
 .chart canvas {
   background: #ffffff;
-  padding: 20px;
 }
 @media screen and (max-width: 1199px) {
   .tm-banner-title {

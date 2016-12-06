@@ -40,9 +40,10 @@ export class AdminComponent implements OnInit, AfterViewInit {
   private labelsPT: Array<any> = [];
   private labelsNewPT: Array<any> = [];
   private isLogin: boolean = false;
+  private options: any;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
-    this.isLogin = true;
+    // this.isLogin = true;
   }
 
   ngOnInit() {
@@ -65,6 +66,18 @@ export class AdminComponent implements OnInit, AfterViewInit {
   }
 
   init() {
+    this.options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      },
+      layout: {
+        padding: 20
+      }
+    };
     this.listLi = [{
       'statusPage': 'home',
       'i': 'fa fa-tachometer',

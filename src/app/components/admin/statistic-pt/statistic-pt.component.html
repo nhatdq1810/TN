@@ -1,48 +1,44 @@
 <div class="page-content">
-  <div class="row margin-bottom-30">
-    <div class="chart">
-      <div class="select-type">
-        <h3>Thống kê theo {{nameRadioDiachi[loaiDiachi] | lowercase}}</h3>
-        <ul>
-          <li class="radio" *ngFor="let item of nameRadioDiachi, let i = index">
-            <label>
-              <input type="radio" name="loaiDiachi" [value]="i" [(ngModel)]="loaiDiachi" [checked]="loaiDiachi === i"> {{item}}
-            </label>
-          </li>
-        </ul>
-      </div>
-      <canvas baseChart [datasets]="datasetsDiachi[loaiDiachi]" [labels]="labelsDiachi[loaiDiachi]" [chartType]="'bar'">
-      </canvas>
+  <div class="chart margin-bottom-30">
+    <div class="select-type">
+      <h3>Thống kê theo {{nameRadioDiachi[loaiDiachi] | lowercase}}</h3>
+      <ul>
+        <li class="radio" *ngFor="let item of nameRadioDiachi, let i = index">
+          <label>
+            <input type="radio" name="loaiDiachi" [value]="i" [ngModel]="loaiDiachi" (ngModelChange)="thongkeDiachi($event)" [checked]="loaiDiachi === i"> {{item}}
+          </label>
+        </li>
+      </ul>
     </div>
+    <canvas *ngIf="datasetsDiachi && datasetsDiachi.length > 0" baseChart [data]="datasetsDiachi" [labels]="labelsDiachi" [options]="optionsPolar" [legend]="true" [chartType]="'polarArea'">
+    </canvas>
   </div>
-  <div class="row margin-bottom-30">
-    <div class="chart margin-bottom-30">
-      <div class="select-type">
-        <h3>Thống kê {{nameRadioTvDT[loaiTvDT] | lowercase}}</h3>
-        <ul>
-          <li class="radio" *ngFor="let item of nameRadioTvDT, let i = index">
-            <label>
-              <input type="radio" name="loaiTvDT" [value]="i" [(ngModel)]="loaiTvDT" [checked]="loaiTvDT === i"> {{item}}
-            </label>
-          </li>
-        </ul>
-      </div>
-      <canvas baseChart [datasets]="datasetsTvDT[loaiTvDT]" [labels]="labelsTvDT[loaiTvDT]" [chartType]="'bar'">
-      </canvas>
+  <div class="chart margin-bottom-30">
+    <div class="select-type">
+      <h3>Thống kê {{nameRadioTvDT[loaiTvDT] | lowercase}}</h3>
+      <ul>
+        <li class="radio" *ngFor="let item of nameRadioTvDT, let i = index">
+          <label>
+            <input type="radio" name="loaiTvDT" [value]="i" [ngModel]="loaiTvDT" (ngModelChange)="thongkeTvDT($event)" [checked]="loaiTvDT === i"> {{item}}
+          </label>
+        </li>
+      </ul>
     </div>
-    <div class="chart">
-      <div class="select-type">
-        <h3>Thống kê {{nameRadioKhac[loaiKhac] | lowercase}}</h3>
-        <ul>
-          <li class="radio" *ngFor="let item of nameRadioKhac, let i = index">
-            <label>
-              <input type="radio" name="loaiKhac" [value]="i" [(ngModel)]="loaiKhac" [checked]="loaiKhac === i"> {{item}}
-            </label>
-          </li>
-        </ul>
-      </div>
-      <canvas baseChart [datasets]="datasetsKhac[loaiKhac]" [labels]="labelsKhac[loaiKhac]" [chartType]="'bar'">
-      </canvas>
+    <canvas *ngIf="datasetsTvDT[0].data && datasetsTvDT[0].data.length > 0" baseChart [datasets]="datasetsTvDT" [labels]="labelsTvDT" [options]="options" [chartType]="'bar'">
+    </canvas>
+  </div>
+  <div class="chart margin-bottom-30">
+    <div class="select-type">
+      <h3>Thống kê {{nameRadioKhac[loaiKhac] | lowercase}}</h3>
+      <ul>
+        <li class="radio" *ngFor="let item of nameRadioKhac, let i = index">
+          <label>
+            <input type="radio" name="loaiKhac" [value]="i" [ngModel]="loaiKhac" (ngModelChange)="thongkeKhac($event)" [checked]="loaiKhac === i"> {{item}}
+          </label>
+        </li>
+      </ul>
     </div>
+    <canvas *ngIf="datasetsKhac[0].data && datasetsKhac[0].data.length > 0" baseChart [datasets]="datasetsKhac" [labels]="labelsKhac" [options]="options" [chartType]="'bar'">
+    </canvas>
   </div>
 </div>

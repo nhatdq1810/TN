@@ -28,11 +28,12 @@ export class StatisticPtComponent implements OnInit {
   private tmpTvDT: string;
   private tmpInput: string;
   private options;
+  private optionsPolar;
   private chartColors;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
-    // this.init();
-    this.fakeInit();
+    this.init();
+    // this.fakeInit();
   }
 
   ngOnInit() {
@@ -42,44 +43,25 @@ export class StatisticPtComponent implements OnInit {
     this.loaiDiachi = 0;
     this.loaiTvDT = 0;
     this.loaiKhac = 0;
-    this.nameRadioDiachi = ['Quận', 'Thành phố'];
+    this.nameRadioDiachi = ['Đường', 'Phường', 'Quận', 'Thành phố'];
     this.nameRadioTvDT = ['Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích'];
     this.nameRadioKhac = ['Loại phòng', 'Giới tính', 'Chung trường', 'Chung ngành', 'Chung niên khóa', 'Wifi', 'Ở với chủ'];
-    this.tmpDC = 'quận,tp';
+    this.tmpDC = 'đường,phường,quận,tp';
     this.tmpTvDT = 'giatien,giatienTheoNguoi,tiencoc,tiencocTheoNguoi,dientich';
     this.tmpInput = 'loaiPhong,gioitinh,truong,nganh,khoa,wifi,chu';
 
-    for (let i = 0; i < this.nameRadioKhac.length; i++) {
-      if(i < 4) {
-        this.datasetsDiachi[i] = [{ label: 'Số phòng trọ', data: [] }];
-        this.labelsDiachi[i] = [];
-      }
-      if(i < 5) {
-        this.datasetsTvDT[i] = [{ label: 'Số phòng trọ', data: [] }];
-        this.labelsTvDT[i] = [];
-      }
-      this.datasetsKhac[i] = [{ label: 'Số phòng trọ', data: [] }];
-      this.labelsKhac[i] = [];
-    }
     this.initChart();
   }
 
   getDiachi() {
-    this.labelsDiachi[this.loaiDiachi] = [];
-    this.datasetsDiachi[this.loaiDiachi] = [
-      {
-        label: 'Số phòng trọ',
-        data: []
-      }
-    ];
+    this.labelsDiachi = [];
+    this.datasetsDiachi = [];
     this.ptService.thongkePTTheoDiachi(this.tmpDC.split(',')[this.loaiDiachi], 5)
       .then(result => {
-        let tmpData = [];
         for (let prop in result) {
-          this.labelsDiachi[this.loaiDiachi].push(prop);
-          tmpData.push(result[prop]);
+          this.labelsDiachi.push(prop);
+          this.datasetsDiachi.push(result[prop]);
         }
-        this.datasetsDiachi[this.loaiDiachi][0].data = tmpData;
       })
       .catch(err => {
         console.log('error at i: ' + this.loaiDiachi);
@@ -88,8 +70,8 @@ export class StatisticPtComponent implements OnInit {
   }
 
   getTvDT() {
-    this.labelsTvDT[this.loaiTvDT] = [];
-    this.datasetsTvDT[this.loaiTvDT] = [
+    this.labelsTvDT = [];
+    this.datasetsTvDT = [
       {
         label: 'Số phòng trọ',
         data: []
@@ -100,10 +82,10 @@ export class StatisticPtComponent implements OnInit {
         let tmpData = [];
         for (let prop in result) {
           let label = new DecimalPipe('en').transform(prop);
-          this.labelsTvDT[this.loaiTvDT].push(label);
+          this.labelsTvDT.push(label);
           tmpData.push(result[prop]);
         }
-        this.datasetsTvDT[this.loaiTvDT][0].data = tmpData;
+        this.datasetsTvDT[0].data = tmpData;
       })
       .catch(err => {
         console.log('err at i: ' + this.loaiTvDT);
@@ -112,8 +94,8 @@ export class StatisticPtComponent implements OnInit {
   }
 
   getKhac() {
-    this.labelsKhac[this.loaiKhac] = [];
-    this.datasetsKhac[this.loaiKhac] = [
+    this.labelsKhac = [];
+    this.datasetsKhac = [
       {
         label: 'Số phòng trọ',
         data: []
@@ -125,30 +107,32 @@ export class StatisticPtComponent implements OnInit {
         for (let prop in result) {
           if (this.loaiKhac === 0) {
             if (prop === '0') {
-              this.labelsKhac[this.loaiKhac].push('Cả hai');
+              this.labelsKhac.push('Cả hai');
             }
             if (prop === '1') {
-              this.labelsKhac[this.loaiKhac].push('Thuê từng người');
+              this.labelsKhac.push('Thuê từng người');
             }
             if (prop === '2') {
-              this.labelsKhac[this.loaiKhac].push('Thuê nguyên phòng');
+              this.labelsKhac.push('Thuê nguyên phòng');
             }
           } else if (this.loaiKhac === 1) {
             if (prop === '') {
-              this.labelsKhac[this.loaiKhac].push('Bất kỳ');
+              this.labelsKhac.push('Bất kỳ');
+            } else {
+              this.labelsKhac.push(prop);
             }
           } else if (this.loaiKhac === 5 || this.loaiKhac === 6) {
             if (prop === '1') {
-              this.labelsKhac[this.loaiKhac].push('Có');
+              this.labelsKhac.push('Có');
             } else {
-              this.labelsKhac[this.loaiKhac].push('Không');
+              this.labelsKhac.push('Không');
             }
           } else {
-            this.labelsKhac[this.loaiKhac].push(prop);
+            this.labelsKhac.push(prop);
           }
           tmpData.push(result[prop]);
         }
-        this.datasetsKhac[this.loaiKhac][0].data = tmpData;
+        this.datasetsKhac[0].data = tmpData;
       })
       .catch(err => {
         console.log('err at i: ' + this.loaiKhac);
@@ -164,16 +148,29 @@ export class StatisticPtComponent implements OnInit {
             beginAtZero: true
           }
         }]
+      },
+      layout: {
+        padding: 20
       }
     };
-    this.chartColors = [{
-      borderWidth: '0.5',
-      borderColor: '#c72',
-      pointBackgroundColor: '#c7254e',
-      pointHoverBackgroundColor: 'transparent',
-      pointBorderColor: '#c7254e',
-      pointHoverRadius: 10
-    }];
+    this.optionsPolar = {
+      layout: {
+        padding: {
+          left: 20,
+          right: 20,
+          top: 20,
+          bottom: 0
+        }
+      }
+    };
+    // this.chartColors = [{
+    //   borderWidth: '0.5',
+    //   borderColor: '#c72',
+    //   pointBackgroundColor: '#c7254e',
+    //   pointHoverBackgroundColor: 'transparent',
+    //   pointBorderColor: '#c7254e',
+    //   pointHoverRadius: 10
+    // }];
 
     let currentMonth = Constants.getCurrentDate().split('/')[1];
     this.getDiachi();
@@ -181,15 +178,18 @@ export class StatisticPtComponent implements OnInit {
     this.getKhac();
   }
 
-  thongkeDiachi() {
+  thongkeDiachi(e: any) {
+    this.loaiDiachi = e;
     this.getDiachi();
   }
 
-  thongkeTvDT() {
+  thongkeTvDT(e: any) {
+    this.loaiTvDT = e;
     this.getTvDT();
   }
 
-  thongkeKhac() {
+  thongkeKhac(e: any) {
+    this.loaiKhac = e;
     this.getKhac();
   }
 
