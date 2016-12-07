@@ -45,7 +45,8 @@ export class AuthService {
           email: email,
           username: username,
           password: profile.clientID,
-          facebook: facebook
+          facebook: facebook,
+          ngayDK: Constants.getCurrentDate()
         };
         this.userService.login(user.username, user.password, 'user').then(user => {
           this.userService.user = user;

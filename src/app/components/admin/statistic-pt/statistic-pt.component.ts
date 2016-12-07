@@ -35,8 +35,6 @@ export class StatisticPtComponent implements OnInit {
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
     this.init();
-    // this.fakeInit();
-
   }
 
   ngOnInit() {
@@ -159,15 +157,6 @@ export class StatisticPtComponent implements OnInit {
         padding: 20
       }
     };
-    // this.chartColors = [{
-    //   borderWidth: '0.5',
-    //   borderColor: '#c72',
-    //   pointBackgroundColor: '#c7254e',
-    //   pointHoverBackgroundColor: 'transparent',
-    //   pointBorderColor: '#c7254e',
-    //   pointHoverRadius: 10
-    // }];
-
     this.getDiachi();
     this.getTvDT();
     this.getKhac();
@@ -201,8 +190,6 @@ export class StatisticPtComponent implements OnInit {
   }
 
   fakeInit() {
-    // this.pieChart.nativeElement.width = 500;
-    // this.pieChart.nativeElement.height = 500;
     this.selectedMonth[0] = this.selectedMonth[1] = this.selectedMonth[2] = Constants.getCurrentDate().split('/')[1];
     for (let i = 0; i < 5; i++) {
       this.listMonth.push(this.selectedMonth[0] - i);

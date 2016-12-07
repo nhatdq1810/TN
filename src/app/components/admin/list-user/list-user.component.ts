@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
-let Constants = require('../../../resources/constants');
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { DetailPopupComponent } from '../detail-popup/detail-popup.component';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-list-user',
@@ -9,59 +10,46 @@ let Constants = require('../../../resources/constants');
 })
 export class ListUserComponent implements OnInit {
 
-  private datasetsUsers;
-  private labelsNewUsers;
-  private labelsUsers;
-  private datasetsNewUsers;
-  private options;
-  private chartColors;
+  @ViewChild('detailPopup') detailPopup: DetailPopupComponent;
   private listUser: Array<any> = [];
   private listUserView: Array<any> = [];
   private checkAllUser: boolean;
-  private listUserDelete: Array<boolean> = [];
+  private listCheckbox: Array<any> = [];
+  private listCheckboxView: Array<boolean> = [];
+  private selectedUser: any;
 
-  constructor() {
-    this.options = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    };
-    this.chartColors = [{
-      borderWidth: '0.5',
-      borderColor: '#c72',
-      pointBackgroundColor: '#c7254e',
-      pointHoverBackgroundColor: 'transparent',
-      pointBorderColor: '#c7254e',
-      pointHoverRadius: 10
-    }];
-    let currentMonth = Constants.getCurrentDate().split('/')[1];
-    this.labelsNewUsers = [];
-    for (let i = 0; i < 6; ++i) {
-      this.labelsNewUsers.push(`tháng ${currentMonth - 5 + i}`);
-    }
-    this.labelsUsers = ['User mới', 'User cũ'];
-
-    // this.fakeInit();
+  constructor(private toastr: ToastsManager, private userService: UserService) {
+    this.init();
   }
 
   ngOnInit() {
   }
 
-  deleteUser() {
-    console.log(this.listUserDelete)
+  init() {
+    this.checkAllUser = false;
+    this.userService.layTatcaUser()
+      .then(result => {
+        this.listUser = result;
+        this.listUserView = result;
+      })
+      .catch(err => {
+        console.error(err);
+        this.listUser = [];
+        this.listUserView = [];
+      });
+  }
+
+  showDetailItem(item) {
+    this.selectedUser = item;
+    this.detailPopup.showPopup();
   }
 
   searchUser(term: string) {
     if (term && term !== '') {
       this.listUserView = [];
       for (let i = 0; i < this.listUser.length; i++) {
-        for (let propPT in this.listUser[i]) {
-          console.log(this.listUser[i]);
-          if (this.listUser[i][propPT].toString().indexOf(term) > -1) {
+        for (let propUser in this.listUser[i]) {
+          if (this.listUser[i][propUser].toString().indexOf(term) > -1) {
             this.listUserView.push(this.listUser[i]);
             break;
           }
@@ -70,37 +58,72 @@ export class ListUserComponent implements OnInit {
     } else {
       this.listUserView = this.listUser;
     }
-  }
-
-  updateCheckAll(event, index, user) {
-    this.listUserDelete[index] = event;
-    this.checkAllUser = this.listUserDelete.every((value) => {
-      return value === true;
-    });
-  }
-
-  checkAll() {
-    let valueSet = !this.listUserDelete.every((value) => {
-      return value === true;
-    });
-    this.listUserDelete.forEach((value, index) => {
-      this.listUserDelete[index] = valueSet;
-    })
-  }
-
-  fakeInit() {
-    this.datasetsNewUsers = [{
-      label: 'User mới',
-      data: [12, 9, 3, 5, 2, 10]
-    }];
-    this.datasetsUsers = [{
-      data: [10, 21]
-    }];
-    this.listUser = Constants.fakeListUser;
-    this.listUserView = Constants.fakeListUser;
-    for (let i = 0; i < this.listUser.length; ++i) {
-      this.listUserDelete[i] = false;
+    this.listCheckbox = [];
+    this.checkAllUser = true;
+    for (let i = 0; i < this.listUserView.length; i++) {
+      let value = this.listUserView[i];
+      if (this.listCheckboxView[value.id]) {
+        this.listCheckbox.push(value.id);
+      } else {
+        this.checkAllUser = false;
+      }
     }
   }
 
+  updateCheckAll(event, user) {
+    this.listCheckboxView[user.id] = event;
+    this.checkAllUser = this.listUserView.every((value) => {
+      return this.listCheckboxView[value.id] === true;
+    });
+    let indexUser = this.listCheckbox.indexOf(user.id);
+    if (event) {
+      if (indexUser === -1) {
+        this.listCheckbox.push(user.id);
+      }
+    } else {
+      if(indexUser > -1) {
+        this.listCheckbox.splice(indexUser, 1);
+      }
+    }
+  }
+
+  checkAll() {
+    let valueSet = !this.listUserView.every((value) => {
+      return this.listCheckboxView[value.id] === true;
+    });
+    this.listCheckbox = [];
+    if (valueSet) {
+      this.listUserView.forEach((value) => {
+        this.listCheckboxView[value.id] = valueSet;
+        this.listCheckbox.push(value.id);
+      });
+    } else {
+      this.listUserView.forEach((value) => {
+        this.listCheckboxView[value.id] = valueSet;
+      });
+    }
+  }
+
+  deleteUser() {
+    if (this.listCheckbox.length > 0) {
+      for (let i = 0; i < this.listCheckbox.length; i++) {
+        this.userService.xoaUser(this.listCheckbox[i])
+          .then(result => {
+            if(result === 'fail') {
+              this.toastr.error(`Xóa thất bại user ${this.listCheckbox[i]}`, 'Xảy ra lỗi !');
+            } else {
+              this.toastr.success(`Đã xóa user ${this.listCheckbox[i]}`, 'Thành công !');
+            }
+            if (i === (this.listCheckbox.length - 1)) {
+              this.init();
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            this.toastr.error(`Xóa thất bại user ${this.listCheckbox[i]}`, 'Xảy ra lỗi !');
+            this.init();
+          });
+      }
+    }
+  }
 }

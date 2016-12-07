@@ -58,7 +58,8 @@ export class RegisterComponent implements OnInit {
       username: value.username,
       password: value.password,
       hoten: value.hoten,
-      email: value.email
+      email: value.email,
+      ngayDK: Constants.getCurrentDate()
     }
     if (Constants.patternPassword.test(value.password)) {
       this.errorPattern = false;

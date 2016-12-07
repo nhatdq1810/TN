@@ -1,18 +1,5 @@
 .page-content {
-  height: 100%;
   padding: 0 20px;
-}
-
-.page-content > div {
-  width: 100%;
-}
-
-.custom-table .table-header .search-bar input {
-  padding-right: 45px;
-}
-
-.custom-table .table-header .search-bar input:focus {
-  padding-right: 10px;
 }
 
 .error {

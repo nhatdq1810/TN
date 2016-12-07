@@ -74,6 +74,22 @@ export class UserService {
     return this.loggedIn;
   }
 
+  layTatcaUser(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + 'user/tatca', { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('layTatcaUser', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('layTatcaUser', err));
+    })
+  }
+
   layThongtinUser(username: string): Promise<User>{
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'user/' + username, { headers: Constants.headers })
@@ -140,6 +156,22 @@ export class UserService {
           }
         },
         err => this.handleError('capnhatUser', err));
+    });
+  }
+
+  xoaUser(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.delete(Constants.apiUrl + `user/${id}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result && resp.result === 'success') {
+            resolve(resp.result);
+          } else {
+            this.handleError('xoaUser', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('xoaUser', err));
     });
   }
 
