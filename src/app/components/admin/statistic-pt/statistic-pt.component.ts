@@ -30,12 +30,12 @@ export class StatisticPtComponent implements OnInit {
   private options;
   private optionsPie;
   private chartColors;
-  private listMonth: Array<number>;
-  private selectedMonth;
+  private listMonth: Array<number> = [];
+  private selectedMonth: Array<number> = [];
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
-    // this.init();
-    this.fakeInit();
+    this.init();
+    // this.fakeInit();
 
   }
 
@@ -52,14 +52,17 @@ export class StatisticPtComponent implements OnInit {
     this.tmpDC = 'đường,phường,quận,tp';
     this.tmpTvDT = 'giatien,giatienTheoNguoi,tiencoc,tiencocTheoNguoi,dientich';
     this.tmpInput = 'loaiPhong,gioitinh,truong,nganh,khoa,wifi,chu';
-
+    this.selectedMonth[0] = this.selectedMonth[1] = this.selectedMonth[2] = Constants.getCurrentDate().split('/')[1];
+    for (let i = 0; i < 5; i++) {
+      this.listMonth.push(this.selectedMonth[0] - i);
+    }
     this.initChart();
   }
 
   getDiachi() {
     this.labelsDiachi = [];
     this.datasetsDiachi = [];
-    this.ptService.thongkePTTheoDiachi(this.tmpDC.split(',')[this.loaiDiachi], 5)
+    this.ptService.thongkePTTheoDiachi(this.tmpDC.split(',')[this.loaiDiachi], this.selectedMonth[0], 5)
       .then(result => {
         for (let prop in result) {
           this.labelsDiachi.push(prop);
@@ -80,7 +83,7 @@ export class StatisticPtComponent implements OnInit {
         data: []
       }
     ];
-    this.ptService.thongkePTTheoTienVaDientich(this.tmpTvDT.split(',')[this.loaiTvDT], 5)
+    this.ptService.thongkePTTheoTienVaDientich(this.tmpTvDT.split(',')[this.loaiTvDT], this.selectedMonth[1], 5)
       .then(result => {
         let tmpData = [];
         for (let prop in result) {
@@ -104,7 +107,7 @@ export class StatisticPtComponent implements OnInit {
         data: []
       }
     ];
-    this.ptService.thongkePTTheoInput(this.tmpInput.split(',')[this.loaiKhac], 5)
+    this.ptService.thongkePTTheoInput(this.tmpInput.split(',')[this.loaiKhac], this.selectedMonth[2], 5)
       .then(result => {
         let tmpData = [];
         for (let prop in result) {
@@ -165,34 +168,45 @@ export class StatisticPtComponent implements OnInit {
     //   pointHoverRadius: 10
     // }];
 
-    let currentMonth = Constants.getCurrentDate().split('/')[1];
     this.getDiachi();
     this.getTvDT();
     this.getKhac();
   }
 
-  thongkeDiachi(e: any) {
-    console.log(e);
-    // this.loaiDiachi = e;
-    // this.getDiachi();
+  thongkeDiachi(e: any, type: string) {
+    if(type && type === 'month') {
+      this.selectedMonth[0] = e;
+    } else {
+      this.loaiDiachi = e;
+    }
+    this.getDiachi();
   }
 
-  thongkeTvDT(e: any) {
-    this.loaiTvDT = e;
+  thongkeTvDT(e: any, type: string) {
+    if(type && type === 'month') {
+      this.selectedMonth[1] = e;
+    } else {
+      this.loaiTvDT = e;
+    }
     this.getTvDT();
   }
 
-  thongkeKhac(e: any) {
-    this.loaiKhac = e;
+  thongkeKhac(e: any, type: string) {
+    if(type && type === 'month') {
+      this.selectedMonth[2] = e;
+    } else {
+      this.loaiKhac = e;
+    }
     this.getKhac();
   }
 
   fakeInit() {
     // this.pieChart.nativeElement.width = 500;
     // this.pieChart.nativeElement.height = 500;
-    let currentMonth = Constants.getCurrentDate().split('/')[1];
-    this.listMonth = [6, 7, 8, 9, 10, 11, 12];
-    this.selectedMonth = currentMonth;
+    this.selectedMonth[0] = this.selectedMonth[1] = this.selectedMonth[2] = Constants.getCurrentDate().split('/')[1];
+    for (let i = 0; i < 5; i++) {
+      this.listMonth.push(this.selectedMonth[0] - i);
+    }
     this.loaiDiachi = 0;
     this.loaiTvDT = 0;
     this.loaiKhac = 0;

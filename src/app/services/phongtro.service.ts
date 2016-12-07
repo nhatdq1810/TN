@@ -358,9 +358,9 @@ export class PhongtroService {
     });
   }
 
-  thongkePTTheoDiachi(loai, gioihan) {
+  thongkePTTheoDiachi(loai, thang, gioihan) {
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoDiachi/${loai}?gioihan=${gioihan}`, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoDiachi/${loai}/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
@@ -374,9 +374,9 @@ export class PhongtroService {
     });
   }
 
-  thongkePTTheoInput(column, gioihan) {
+  thongkePTTheoInput(column, thang, gioihan) {
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoInput/${column}?gioihan=${gioihan}`, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoInput/${column}/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
@@ -390,9 +390,9 @@ export class PhongtroService {
     });
   }
 
-  thongkePTTheoTienVaDientich(column, gioihan) {
+  thongkePTTheoTienVaDientich(column, thang, gioihan) {
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoTienVaDientich/${column}?gioihan=${gioihan}`, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoTienVaDientich/${column}/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
