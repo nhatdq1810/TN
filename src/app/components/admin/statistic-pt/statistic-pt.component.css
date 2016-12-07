@@ -6,13 +6,38 @@
   background: #ffffff;
 }
 
+.chart.pie-chart .canvas {
+  max-height: 400px;
+  max-width: 400px;
+  margin: auto;
+}
+
+.chart .header {
+  overflow: hidden;
+}
+
+.chart .select-month {
+  position: relative;
+}
+
+.chart .select-month i {
+  position: absolute;
+  left: 30px;
+  top: 20px;
+}
+
+.chart select {
+  width: 300px;
+  margin: 10px 20px;
+  padding-left: 25px;
+}
+
 .chart h3 {
   padding: 10px 20px;
   font-weight: 700;
 }
 
 .chart ul {
-  text-align: right;
   padding: 0 20px;
 }
 
@@ -23,7 +48,7 @@
 
 .select-type .radio {
   display: inline-block;
-  margin-left: 50px;
+  margin-left: 20px;
 }
 
 .select-type .radio:first-of-type {

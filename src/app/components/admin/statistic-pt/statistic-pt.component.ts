@@ -28,12 +28,15 @@ export class StatisticPtComponent implements OnInit {
   private tmpTvDT: string;
   private tmpInput: string;
   private options;
-  private optionsPolar;
+  private optionsPie;
   private chartColors;
+  private listMonth: Array<number>;
+  private selectedMonth;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
-    this.init();
-    // this.fakeInit();
+    // this.init();
+    this.fakeInit();
+
   }
 
   ngOnInit() {
@@ -153,16 +156,6 @@ export class StatisticPtComponent implements OnInit {
         padding: 20
       }
     };
-    this.optionsPolar = {
-      layout: {
-        padding: {
-          left: 20,
-          right: 20,
-          top: 20,
-          bottom: 0
-        }
-      }
-    };
     // this.chartColors = [{
     //   borderWidth: '0.5',
     //   borderColor: '#c72',
@@ -179,8 +172,9 @@ export class StatisticPtComponent implements OnInit {
   }
 
   thongkeDiachi(e: any) {
-    this.loaiDiachi = e;
-    this.getDiachi();
+    console.log(e);
+    // this.loaiDiachi = e;
+    // this.getDiachi();
   }
 
   thongkeTvDT(e: any) {
@@ -194,10 +188,15 @@ export class StatisticPtComponent implements OnInit {
   }
 
   fakeInit() {
+    // this.pieChart.nativeElement.width = 500;
+    // this.pieChart.nativeElement.height = 500;
+    let currentMonth = Constants.getCurrentDate().split('/')[1];
+    this.listMonth = [6, 7, 8, 9, 10, 11, 12];
+    this.selectedMonth = currentMonth;
     this.loaiDiachi = 0;
     this.loaiTvDT = 0;
     this.loaiKhac = 0;
-    this.nameRadioDiachi = ['Quận', 'Thành phố'];
+    this.nameRadioDiachi = ['Đường', 'Phường', 'Quận', 'Thành phố'];
     this.nameRadioTvDT = ['Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích'];
     this.nameRadioKhac = ['Loại phòng', 'Giới tính', 'Chung trường', 'Chung ngành', 'Chung niên khóa', 'Wifi', 'Ở với chủ'];
     for (let i = 0; i < 7; i++) {
@@ -224,16 +223,8 @@ export class StatisticPtComponent implements OnInit {
         }];
       }
     }
-    this.datasetsDiachi[0] = [{
-      label: 'Số phòng trọ',
-      data: [10, 3, 1, 15]
-    }];
-    this.datasetsDiachi[1] = [{
-      label: 'Số phòng trọ',
-      data: [0, 3, 1, 15]
-    }];
-    this.labelsDiachi[0] = ['Quận Gò Vấp, TP.Hồ Chí Minh', 'Quận 1, TP.Hồ Chí Minh', 'Quận 2, TP.Hồ Chí Minh', 'Quận 9, TP.Hồ Chí Minh'];
-    this.labelsDiachi[1] = ['TP Hồ Chí Minh', 'Thành phố Hà Nội', 'TP. Hà Nội', 'Tp. Đà Nẵng'];
+    this.datasetsDiachi = [10, 3, 1, 15, 6];
+    this.labelsDiachi = ['Phan Đăng Lưu, Quận Bình Thạnh, TP.Hồ Chí Minh', 'Lê Đức Thọ, Quận Gò Vấp, TP.Hồ Chí Minh', 'Điện Biên Phủ, Quận 1, TP.Hồ Chí Minh', 'Nam Kỳ Khởi Nghĩa, Quận Tân Bình, TP.Hồ Chí Minh', 'Man Thiện, Quận 9, TP.Hồ Chí Minh'];
     this.labelsTvDT[4] = [10, 11, 12, 14, 20];
     this.labelsKhac[0] = ['Cả hai', 'Thuê nguyên phòng', 'Thuê từng người'];
     this.labelsKhac[1] = ['Bất kỳ', 'Nam', 'Nữ'];

@@ -1,7 +1,15 @@
 <div class="page-content">
-  <div class="chart margin-bottom-30">
+  <div class="chart pie-chart margin-bottom-30">
     <div class="select-type">
-      <h3>Thống kê theo {{nameRadioDiachi[loaiDiachi] | lowercase}}</h3>
+      <div class="header">
+        <h3 class="left">Thống kê số phòng trọ</h3>
+        <div class="select-month right">
+          <i class="fa fa-calendar"></i>
+          <select [ngModel]="selectedMonth" (ngModelChange)="thongkeDiachi($event)" class="form-control right">
+            <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
+          </select>
+        </div>
+      </div>
       <ul>
         <li class="radio" *ngFor="let item of nameRadioDiachi, let i = index">
           <label>
@@ -10,12 +18,22 @@
         </li>
       </ul>
     </div>
-    <canvas *ngIf="datasetsDiachi && datasetsDiachi.length > 0" baseChart [data]="datasetsDiachi" [labels]="labelsDiachi" [options]="optionsPolar" [legend]="true" [chartType]="'polarArea'">
-    </canvas>
+    <div class="canvas">
+      <canvas *ngIf="datasetsDiachi && datasetsDiachi.length > 0" baseChart [data]="datasetsDiachi" [labels]="labelsDiachi" [chartType]="'pie'">
+      </canvas>
+    </div>
   </div>
   <div class="chart margin-bottom-30">
     <div class="select-type">
-      <h3>Thống kê {{nameRadioTvDT[loaiTvDT] | lowercase}}</h3>
+      <div class="header">
+        <h3 class="left">Thống kê số phòng trọ</h3>
+        <div class="select-month right">
+          <i class="fa fa-calendar"></i>
+          <select [ngModel]="selectedMonth" (ngModelChange)="thongkeTvDT($event)" class="form-control right">
+            <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
+          </select>
+        </div>
+      </div>
       <ul>
         <li class="radio" *ngFor="let item of nameRadioTvDT, let i = index">
           <label>
@@ -29,7 +47,15 @@
   </div>
   <div class="chart margin-bottom-30">
     <div class="select-type">
-      <h3>Thống kê {{nameRadioKhac[loaiKhac] | lowercase}}</h3>
+      <div class="header">
+        <h3 class="left">Thống kê số phòng trọ</h3>
+        <div class="select-month right">
+          <i class="fa fa-calendar"></i>
+          <select [ngModel]="selectedMonth" (ngModelChange)="thongkeKhac($event)" class="form-control right">
+            <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
+          </select>
+        </div>
+      </div>
       <ul>
         <li class="radio" *ngFor="let item of nameRadioKhac, let i = index">
           <label>
