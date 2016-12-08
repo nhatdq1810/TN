@@ -1,3 +1,70 @@
-<p>
-  list-gd works!
-</p>
+<div class="page-content">
+  <div class="chart pie-chart margin-bottom-30">
+    <div class="select-type">
+      <div class="header">
+        <h3 class="left">Thống kê số user</h3>
+        <div class="select-month right">
+          <i class="fa fa-calendar"></i>
+          <select [ngModel]="selectedMonth[0]" (ngModelChange)="thongkeDiachi($event, 'month')" class="form-control right">
+            <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
+          </select>
+        </div>
+      </div>
+      <ul>
+        <li class="radio" *ngFor="let item of nameRadioDiachi, let i = index">
+          <label>
+            <input type="radio" name="loaiDiachi" [value]="i" [ngModel]="loaiDiachi" (ngModelChange)="thongkeDiachi($event)" [checked]="loaiDiachi === i"> {{item}}
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div class="canvas">
+      <canvas *ngIf="datasetsDiachi && datasetsDiachi.length > 0" baseChart [data]="datasetsDiachi" [labels]="labelsDiachi" [chartType]="'pie'">
+      </canvas>
+    </div>
+  </div>
+  <div class="chart margin-bottom-30">
+    <div class="select-type">
+      <div class="header">
+        <h3 class="left">Thống kê số user</h3>
+        <div class="select-month right">
+          <i class="fa fa-calendar"></i>
+          <select [ngModel]="selectedMonth[1]" (ngModelChange)="thongkeTvDT($event, 'month')" class="form-control right">
+            <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
+          </select>
+        </div>
+      </div>
+      <ul>
+        <li class="radio" *ngFor="let item of nameRadioTvDT, let i = index">
+          <label>
+            <input type="radio" name="loaiTvDT" [value]="i" [ngModel]="loaiTvDT" (ngModelChange)="thongkeTvDT($event)" [checked]="loaiTvDT === i"> {{item}}
+          </label>
+        </li>
+      </ul>
+    </div>
+    <canvas *ngIf="datasetsTvDT[0].data && datasetsTvDT[0].data.length > 0" baseChart [datasets]="datasetsTvDT" [labels]="labelsTvDT" [options]="options" [chartType]="'bar'">
+    </canvas>
+  </div>
+  <div class="chart margin-bottom-30">
+    <div class="select-type">
+      <div class="header">
+        <h3 class="left">Thống kê số user</h3>
+        <div class="select-month right">
+          <i class="fa fa-calendar"></i>
+          <select [ngModel]="selectedMonth[2]" (ngModelChange)="thongkeKhac($event, 'month')" class="form-control right">
+            <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
+          </select>
+        </div>
+      </div>
+      <ul>
+        <li class="radio" *ngFor="let item of nameRadioKhac, let i = index">
+          <label>
+            <input type="radio" name="loaiKhac" [value]="i" [ngModel]="loaiKhac" (ngModelChange)="thongkeKhac($event)" [checked]="loaiKhac === i"> {{item}}
+          </label>
+        </li>
+      </ul>
+    </div>
+    <canvas *ngIf="datasetsKhac[0].data && datasetsKhac[0].data.length > 0" baseChart [datasets]="datasetsKhac" [labels]="labelsKhac" [options]="options" [chartType]="'bar'">
+    </canvas>
+  </div>
+</div>
