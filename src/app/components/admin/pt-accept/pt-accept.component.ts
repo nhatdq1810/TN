@@ -46,7 +46,7 @@ export class PtAcceptComponent implements OnInit {
             })
             .catch(err => {
               console.error(err);
-              this.listUser[this.listPTAcceptView[i].userID] = 'Không xác định';
+              this.listUser[this.listPTAcceptView[i].userID].username = 'Không xác định';
             });
         }
       })

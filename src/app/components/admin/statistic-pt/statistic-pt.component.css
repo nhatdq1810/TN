@@ -2,8 +2,48 @@
   padding: 0 30px;
 }
 
+.custom-table .table-header > div {
+  overflow: hidden;
+}
+
+.custom-table .table-header > ul .radio {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.custom-table .table-header > ul .radio:first-of-type {
+  margin-left: 10px;
+}
+
+.custom-table .table-header h3 {
+  font-weight: 700;
+}
+
+.custom-table .table-header .select-month select {
+  margin: 0;
+}
+
+.custom-table .table-header .select-month i {
+  top: 10px;
+  left: 10px;
+}
+
 .chart {
   background: #ffffff;
+}
+
+.chart.pie-chart {
+  float: left;
+  padding: 0 15px;
+}
+
+.chart.pie-chart:first-of-type {
+  width: 50%;
+  margin-right: 2%;
+}
+
+.chart.pie-chart:last-of-type {
+  width: 48%;
 }
 
 .chart.pie-chart .canvas {
@@ -12,24 +52,25 @@
   margin: auto;
 }
 
+.chart.pie-chart .header h3 {
+  padding: 10px 0;
+}
+
+.chart.pie-chart .select-month select {
+  width: 180px;
+  margin: 10px 0;
+}
+
+.chart.pie-chart .select-month i {
+  left: 10px;
+}
+
+.chart.pie-chart ul {
+  padding: 0;
+}
+
 .chart .header {
   overflow: hidden;
-}
-
-.chart .select-month {
-  position: relative;
-}
-
-.chart .select-month i {
-  position: absolute;
-  left: 30px;
-  top: 20px;
-}
-
-.chart select {
-  width: 300px;
-  margin: 10px 20px;
-  padding-left: 25px;
 }
 
 .chart h3 {

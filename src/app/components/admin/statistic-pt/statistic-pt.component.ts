@@ -15,23 +15,33 @@ export class StatisticPtComponent implements OnInit {
   private datasetsDiachi: Array<any> = [];
   private datasetsTvDT: Array<any> = [];
   private datasetsKhac: Array<any> = [];
+  private datasetsDvA: Array<any> = [];
   private labelsDiachi: Array<any> = [];
   private labelsTvDT: Array<any> = [];
   private labelsKhac: Array<any> = [];
+  private labelsDvA: Array<any> = [];
   private nameRadioDiachi: Array<string> = [];
   private nameRadioTvDT: Array<string> = [];
   private nameRadioKhac: Array<string> = [];
+  private nameRadioDvA: Array<string> = [];
+  private nameRadioLvCmt: Array<string> = [];
   private loaiDiachi: any;
   private loaiTvDT: any;
   private loaiKhac: any;
+  private loaiDvA: any;
+  private loaiLvCmt: any;
   private tmpDC: string;
   private tmpTvDT: string;
   private tmpInput: string;
+  private tmpDvA: string;
   private options;
   private optionsPie;
   private chartColors;
   private listMonth: Array<number> = [];
   private selectedMonth: Array<number> = [];
+  private currentMonth: number;
+  private listPTLvCmtView: Array<any> = [];
+  private listUser: Array<any> = [];
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
     this.init();
@@ -41,20 +51,75 @@ export class StatisticPtComponent implements OnInit {
   }
 
   init() {
+    this.loaiLvCmt = 0;
     this.loaiDiachi = 0;
     this.loaiTvDT = 0;
     this.loaiKhac = 0;
+    this.loaiDvA = 0;
     this.nameRadioDiachi = ['Đường', 'Phường', 'Quận', 'Thành phố'];
     this.nameRadioTvDT = ['Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích'];
     this.nameRadioKhac = ['Loại phòng', 'Giới tính', 'Chung trường', 'Chung ngành', 'Chung niên khóa', 'Wifi', 'Ở với chủ'];
+    this.nameRadioDvA = ['Duyệt', 'Ẩn'];
+    this.nameRadioLvCmt = ['Lượt thích', 'Lượt bình luận'];
     this.tmpDC = 'đường,phường,quận,tp';
     this.tmpTvDT = 'giatien,giatienTheoNguoi,tiencoc,tiencocTheoNguoi,dientich';
     this.tmpInput = 'loaiPhong,gioitinh,truong,nganh,khoa,wifi,chu';
-    this.selectedMonth[0] = this.selectedMonth[1] = this.selectedMonth[2] = Constants.getCurrentDate().split('/')[1];
+    this.tmpDvA = 'duyet,an';
+    this.currentMonth = Constants.getCurrentDate().split('/')[1];
+    for (let i = 0; i < 5; i++) {
+      this.selectedMonth[i] = this.currentMonth;
+    }
     for (let i = 0; i < 5; i++) {
       this.listMonth.push(this.selectedMonth[0] - i);
     }
+    this.getPTLike();
     this.initChart();
+  }
+
+  getPTCmt() {
+    this.ptService.thongkePTTheoComment(this.selectedMonth[4], 5)
+      .then(result => {
+        this.listPTLvCmtView = result;
+        for (let i = 0; i < this.listPTLvCmtView.length; ++i) {
+          this.userService.layThongtinUserID(this.listPTLvCmtView[i].userID)
+            .then(resp => {
+              if (!this.listUser[this.listPTLvCmtView[i].userID]) {
+                this.listUser[this.listPTLvCmtView[i].userID] = resp;
+              }
+            })
+            .catch(err => {
+              console.error(err);
+              this.listUser[this.listPTLvCmtView[i].userID].username = 'Không xác định';
+            });
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        this.listPTLvCmtView = [];
+      });
+  }
+
+  getPTLike() {
+    this.ptService.thongkePTTheoLike(this.selectedMonth[4], 5)
+      .then(result => {
+        this.listPTLvCmtView = result;
+        for (let i = 0; i < this.listPTLvCmtView.length; ++i) {
+          this.userService.layThongtinUserID(this.listPTLvCmtView[i].userID)
+            .then(resp => {
+              if (!this.listUser[this.listPTLvCmtView[i].userID]) {
+                this.listUser[this.listPTLvCmtView[i].userID] = resp;
+              }
+            })
+            .catch(err => {
+              console.error(err);
+              this.listUser[this.listPTLvCmtView[i].userID].username = 'Không xác định';
+            });
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        this.listPTLvCmtView = [];
+      });
   }
 
   getDiachi() {
@@ -144,6 +209,38 @@ export class StatisticPtComponent implements OnInit {
       });
   }
 
+  getDvA() {
+    this.labelsDvA = [];
+    this.datasetsDvA = [];
+    this.ptService.thongkePTTheoInput(this.tmpDvA.split(',')[this.loaiDvA], this.selectedMonth[3], 5)
+      .then(result => {
+        for (let prop in result) {
+          if (this.loaiDvA === 0) {
+            if (prop === '0') {
+              this.labelsDvA.push('Chờ duyệt');
+            }
+            if (prop === '1') {
+              this.labelsDvA.push('Đã duyệt');
+            }
+            if (prop === '-1') {
+              this.labelsDvA.push('Không duyệt');
+            }
+          } else if (this.loaiDvA === 1) {
+            if (prop === '1') {
+              this.labelsDvA.push('Ẩn');
+            } else {
+              this.labelsDvA.push('Hiện');
+            }
+          }
+          this.datasetsDvA.push(result[prop]);
+        }
+      })
+      .catch(err => {
+        console.log('err at i: ' + this.loaiDvA);
+        console.error(err);
+      });
+  }
+
   initChart() {
     this.options = {
       scales: {
@@ -160,6 +257,7 @@ export class StatisticPtComponent implements OnInit {
     this.getDiachi();
     this.getTvDT();
     this.getKhac();
+    this.getDvA();
   }
 
   thongkeDiachi(e: any, type: string) {
@@ -187,6 +285,28 @@ export class StatisticPtComponent implements OnInit {
       this.loaiKhac = e;
     }
     this.getKhac();
+  }
+
+  thongkeDvA(e: any, type: string) {
+    if (type && type === 'month') {
+      this.selectedMonth[3] = e;
+    } else {
+      this.loaiDvA = e;
+    }
+    this.getDvA();
+  }
+
+  thongkeLvCmt(e: any, type: string) {
+    if (type && type === 'month') {
+      this.selectedMonth[4] = e;
+    } else {
+      this.loaiLvCmt = e;
+    }
+    if(this.loaiLvCmt == 0) {
+      this.getPTLike();
+    } else {
+      this.getPTCmt();
+    }
   }
 
   fakeInit() {

@@ -438,4 +438,36 @@ export class PhongtroService {
     });
   }
 
+  thongkePTTheoLike(thang, gioihan): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoLike/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkePTTheoLike', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkePTTheoLike', err));
+    });
+  }
+
+  thongkePTTheoComment(thang, gioihan): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoComment/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkePTTheoComment', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkePTTheoComment', err));
+    });
+  }
+
 }

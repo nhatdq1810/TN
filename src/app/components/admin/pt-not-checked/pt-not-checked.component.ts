@@ -46,7 +46,7 @@ export class PtNotCheckedComponent implements OnInit {
             })
             .catch(err => {
               console.error(err);
-              this.listUser[this.listPTNotCheckedView[i].userID] = 'Không xác định';
+              this.listUser[this.listPTNotCheckedView[i].userID].username = 'Không xác định';
             });
         }
       })

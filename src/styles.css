@@ -405,6 +405,25 @@ accordion-group.panel-open .panel-title {
 }
 
 
+/* select-month */
+
+.select-month {
+  position: relative;
+}
+
+.select-month i {
+  position: absolute;
+  left: 30px;
+  top: 20px;
+}
+
+.select-month select {
+  width: 300px;
+  margin: 10px 20px;
+  padding-left: 25px;
+}
+
+
 /* table */
 
 .custom-table {
@@ -487,7 +506,6 @@ accordion-group.panel-open .panel-title {
 
 .custom-table .table-header .search-bar {
   position: relative;
-  margin-top: 10px;
 }
 
 .custom-table .table-header .search-bar label {
@@ -513,7 +531,6 @@ accordion-group.panel-open .panel-title {
 
 .custom-table .table-header a {
   margin-left: 10px;
-  margin-top: 10px;
   font-size: 20px;
   border: 1px solid #cccccc;
   padding: 2px 15px;
@@ -522,6 +539,15 @@ accordion-group.panel-open .panel-title {
 .custom-table .table-header a:hover,
 .custom-table .table-header a.active {
   background: #f5f5f5;
+}
+
+
+/* table error */
+
+.custom-table .error {
+  color: #aaaaaa;
+  font-size: 25px;
+  font-weight: 700;
 }
 
 
@@ -544,10 +570,13 @@ accordion-group.panel-open .panel-title {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
+
 /* charts */
+
 .chart canvas {
   background: #ffffff;
 }
+
 @media screen and (max-width: 1199px) {
   .tm-banner-title {
     font-size: 50px;

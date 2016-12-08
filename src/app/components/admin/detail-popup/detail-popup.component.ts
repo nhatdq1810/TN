@@ -31,19 +31,19 @@ export class DetailPopupComponent implements OnInit {
     this.detailPopup.show();
   }
 
-  closePopup() {
-    this.popupClose.emit(true);
+  closePopup(result) {
+    this.popupClose.emit(result);
     this.detailPopup.hide();
   }
 
   deletePT() {
     this.ptService.adminXoaPhongtro(this.info.id, 0)
       .then(result => {
-        this.closePopup();
+        this.closePopup(true);
         this.toastr.success(`Đã xóa phòng trọ ${this.info.id}`, 'Thành công !');
       })
       .catch(err => {
-        this.closePopup();
+        this.closePopup(false);
         console.error(err);
         this.toastr.error(`Xóa thất bại phòng trọ ${this.info.id}`, 'Xảy ra lỗi !');
       });
@@ -53,11 +53,11 @@ export class DetailPopupComponent implements OnInit {
     let tmpArray = [this.info.id];
     this.ptService.xetduyetPT(tmpArray, 1)
       .then(result => {
-        this.closePopup();
+        this.closePopup(true);
         this.toastr.success(`Đã duyệt phòng trọ ${this.info.id}`, 'Thành công !');
       })
       .catch(err => {
-        this.closePopup();
+        this.closePopup(false);
         console.error(err);
         this.toastr.error(`Duyệt thất bại phòng trọ ${this.info.id}`, 'Xảy ra lỗi !');
       });
@@ -67,11 +67,11 @@ export class DetailPopupComponent implements OnInit {
     let tmpArray = [this.info.id];
     this.ptService.xetduyetPT(tmpArray, -1)
       .then(result => {
-        this.closePopup();
+        this.closePopup(true);
         this.toastr.success('Đã hủy chấp nhận phòng trọ ${this.info.id}', 'Thành công !');
       })
       .catch(err => {
-        this.closePopup();
+        this.closePopup(false);
         console.error(err);
         this.toastr.error(`Hủy chấp nhận thất bại phòng trọ ${this.info.id}`, 'Xảy ra lỗi !');
       });
