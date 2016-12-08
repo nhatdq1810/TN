@@ -28,8 +28,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr (click)="showDetailItem(item)" [ngClass]="{'active': listCheckboxView[item.id]}" *ngFor="let item of listUserView">
-            <td class="index" (click)="$event.stopPropagation();">
+          <tr [ngClass]="{'active': listCheckboxView[item.id]}" *ngFor="let item of listUserView">
+            <td class="index">
               <input type="checkbox" name="deleteUser" value="1" [ngModel]="listCheckboxView[item.id]" (ngModelChange)="updateCheckAll($event, item)">
             </td>
             <th class="index">{{item.id}}</th>
@@ -49,4 +49,3 @@
     </div>
   </div>
 </div>
-<app-detail-popup #detailPopup [typeInfo]="'user'" [info]="selectedUser"></app-detail-popup>

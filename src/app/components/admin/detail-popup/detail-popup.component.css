@@ -1,5 +1,53 @@
-.info-item > div {
+.delete-btn {
+  margin-top: 5px;
+  font-size: 20px;
+  border: 1px solid #cccccc;
+  padding: 2px 15px;
+}
+
+.delete-btn:hover {
   background: #f5f5f5;
+}
+
+.info-item > div {
+  border: 1px solid #dddddd;
+  box-shadow: 2px 2px 5px #dddddd;
   padding-top: 10px;
   margin-bottom: 10px;
+}
+
+.info-item .fa.fa-check-circle-o,
+.info-item .fa.fa-times-circle-o {
+  font-size: 24px;
+  color: green;
+}
+
+.info-item .fa.fa-times-circle-o {
+  color: red;
+}
+
+.right-column .tien-block h3 {
+  margin-top: 60px;
+}
+
+.left-column > div {
+  padding-bottom: 10px;
+}
+
+.left-column > div i {
+  text-align: center;
+  font-size: 24px;
+  color: green;
+}
+
+.left-column > div i.inactive {
+  color: #dddddd
+}
+
+.left-column > div span {
+  color: #000000;
+}
+
+.modal-footer .btn-modal {
+  width: 15%;
 }

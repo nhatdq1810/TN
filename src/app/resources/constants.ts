@@ -147,7 +147,7 @@ export let fakeListPT: Array<Phongtro> = [
     gioitinh: '',
     nganh: 'Công nghệ thông tin',
     khoa: '2012-2017',
-    wifi: 1,
+    wifi: 0,
     chu: 0,
     ghichu: 'Tiền thuê đã bao gồm tiền rác, chưa bao gồm tiền điện nước và wifi',
     userID: 4,

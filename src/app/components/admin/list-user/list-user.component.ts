@@ -3,6 +3,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DetailPopupComponent } from '../detail-popup/detail-popup.component';
 import { UserService } from '../../../services/user.service';
 
+let Constants = require('../../../resources/constants');
+
 @Component({
   selector: 'app-list-user',
   templateUrl: './list-user.component.html',
@@ -31,17 +33,15 @@ export class ListUserComponent implements OnInit {
       .then(result => {
         this.listUser = result;
         this.listUserView = result;
+        for (let i = 0; i < this.listUserView.length; ++i) {
+          this.listCheckboxView[this.listUserView[i].id] = false;
+        }
       })
       .catch(err => {
         console.error(err);
         this.listUser = [];
         this.listUserView = [];
       });
-  }
-
-  showDetailItem(item) {
-    this.selectedUser = item;
-    this.detailPopup.showPopup();
   }
 
   searchUser(term: string) {

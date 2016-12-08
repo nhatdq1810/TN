@@ -5,42 +5,101 @@
         <button type="button" class="close" aria-label="Close" (click)="closePopup()">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h2 class="modal-title">Thông tin {{typeInfo}}</h2>
+        <h2 class="modal-title">Thông tin phòng trọ</h2>
+        <a class="left delete-btn" (click)="deletePT()"><i class="fa fa-trash-o"></i></a>
       </div>
       <div *ngIf="info" class="modal-body">
-        <div *ngIf="typeInfo === 'phòng trọ'" class="row">
-          <div class="col-lg-4 col-md-4">
-            <img [src]="info.hinhanh" alt="">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 info-item left-column">
+                <img class="margin-bottom-15" [src]="info.hinhanh" alt="">
+                <div class="col-lg-12 col-md-12">
+                  <div class="row">
+                    <i [ngClass]="{'inactive': info.wifi === 0}" class="col-lg-4 col-md-4 fa fa-wifi"></i>
+                    <i [ngClass]="{'inactive': info.chu === 0}" class="col-lg-4 col-md-4 fa fa-key"></i>
+                    <i *ngIf="info.gioitinh === 'nam'" class="col-lg-4 col-md-4 fa fa-mars"></i>
+                    <i *ngIf="info.gioitinh === 'nữ'" class="col-lg-4 col-md-4 fa fa-venus"></i>
+                    <i *ngIf="info.gioitinh === ''" class="col-lg-4 col-md-4 fa fa-user-o"></i>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                  <div class="row">
+                    <i class="col-lg-2 col-md-2 fa fa-building-o"></i>
+                    <span class="col-lg-10 col-md-10">{{info.dientich | number}}</span>
+                  </div>
+                </div>
+                <div *ngIf="info.truong" class="col-lg-12 col-md-12">
+                  <div class="row">
+                    <i class="col-lg-2 col-md-2 fa fa-university"></i>
+                    <span class="col-lg-10 col-md-10">{{info.truong}}</span>
+                  </div>
+                </div>
+                <div *ngIf="info.nganh" class="col-lg-12 col-md-12">
+                  <div class="row">
+                    <i class="col-lg-2 col-md-2 fa fa-graduation-cap"></i>
+                    <span class="col-lg-10 col-md-10">{{info.nganh}}</span>
+                  </div>
+                </div>
+                <div *ngIf="info.khoa" class="col-lg-12 col-md-12">
+                  <div class="row">
+                    <i class="col-lg-2 col-md-2 fa fa-clock-o"></i>
+                    <span class="col-lg-10 col-md-10">{{info.khoa}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8 info-item right-column">
+                <div class="col-lg-12 col-md-12">
+                  <label for="diachi">Địa chỉ</label>
+                  <i class="right fa fa-check-circle-o"></i>
+                  <input type="text" id="diachi" class="input-modal" [ngModel]="info.diachi" [readonly]="true">
+                </div>
+                <div class="col-lg-12 col-md-12 tien-block">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                      <h3>Giá thuê</h3>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-md-offset-1">
+                      <div>
+                        <label for="giatien">Nguyên phòng</label>
+                        <i class="right fa fa-check-circle-o"></i>
+                        <input type="text" id="giatien" class="input-modal" [ngModel]="info.giatien | number" [readonly]="true">
+                      </div>
+                      <div>
+                        <label for="giatienTheoNguoi">Từng người</label>
+                        <i class="right fa fa-check-circle-o"></i>
+                        <input type="text" id="giatienTheoNguoi" class="input-modal" [ngModel]="info.giatienTheoNguoi | number" [readonly]="true">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 tien-block">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                      <h3>Tiền cọc</h3>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-md-offset-1">
+                      <div>
+                        <label for="tiencoc">Nguyên phòng</label>
+                        <i class="right fa fa-times-circle-o"></i>
+                        <input type="text" id="tiencoc" class="input-modal" [ngModel]="info.tiencoc | number" [readonly]="true">
+                      </div>
+                      <div>
+                        <label for="tiencocTheoNguoi">Từng người</label>
+                        <i class="right fa fa-times-circle-o"></i>
+                        <input type="text" id="tiencocTheoNguoi" class="input-modal" [ngModel]="info.tiencocTheoNguoi | number" [readonly]="true">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-lg-8 col-md-8 row info-item">
-            <div class="col-lg-12 col-md-12">
-              <label for="diachi">Địa chỉ</label>
-              <input type="text" id="diachi" class="input-modal" [ngModel]="info.diachi" [readonly]="true">
-            </div>
-            <div class="col-lg-6 col-md-6">
-              <label for="giatien">Nguyên phòng</label>
-              <input type="text" id="giatien" class="input-modal" [ngModel]="info.giatien | number" [readonly]="true">
-            </div>
-            <div class="col-lg-5 col-md-5">
-              <label for="giatienTheoNguoi">Từng người</label>
-              <input type="text" id="giatienTheoNguoi" class="input-modal" [ngModel]="info.giatienTheoNguoi | number" [readonly]="true">
-            </div>
-          </div>
-          <!-- <div class="info-item">
-            <div class="col-lg-4 col-md-4">
-              <label for="diachi">Địa chỉ</label>
-              <input type="text" id="diachi" class="input-modal" [ngModel]="info.diachi" [readonly]="true">
-            </div>
-            <div class="col-lg-4 col-md-4">
-              <label for="giatien">Giá thuê nguyên phòng</label>
-              <input type="text" id="giatien" class="input-modal" [ngModel]="info.giatien" [readonly]="true">
-            </div>
-            <div class="col-lg-4 col-md-4">
-              <label for="giatienTheoNguoi">Giá thuê từng người</label>
-              <input type="text" id="giatienTheoNguoi" class="input-modal" [ngModel]="info.giatienTheoNguoi" [readonly]="true">
-            </div>
-          </div> -->
         </div>
+      </div>
+      <div class="modal-footer">
+        <input *ngIf="showDenyBtn" type="button" class="btn-modal left deny-btn" (click)="denyPT()" name="submit" value="Không duyệt">
+        <input *ngIf="showAcceptBtn" type="button" class="btn-modal right accept-btn" (click)="acceptPT()" name="submit" value="Duyệt">
       </div>
     </div>
   </div>
