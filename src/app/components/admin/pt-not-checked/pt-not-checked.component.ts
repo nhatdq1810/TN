@@ -23,8 +23,8 @@ export class PtNotCheckedComponent implements OnInit {
   private selectedPT: any;
 
   constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {
@@ -172,6 +172,12 @@ export class PtNotCheckedComponent implements OnInit {
           this.toastr.error(`Hủy chấp nhận thất bại`, 'Xảy ra lỗi !');
           this.init();
         });
+    }
+  }
+
+  popupClose(e: any) {
+    if (e) {
+      this.init();
     }
   }
 

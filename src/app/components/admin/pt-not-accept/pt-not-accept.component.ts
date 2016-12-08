@@ -145,6 +145,12 @@ export class PtNotAcceptComponent implements OnInit {
     }
   }
 
+  popupClose(e: any) {
+    if (e) {
+      this.init();
+    }
+  }
+
   fakeInit() {
     this.checkAllPT = false;
     this.listCheckbox = Constants.fakeListPT;
