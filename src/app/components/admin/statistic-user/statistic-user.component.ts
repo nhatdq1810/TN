@@ -34,8 +34,8 @@ export class StatisticUserComponent implements OnInit {
   private selectedMonth: Array<number> = [];
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
-    this.init();
-    // this.fakeInit();
+    // this.init();
+    this.fakeInit();
   }
 
   ngOnInit() {

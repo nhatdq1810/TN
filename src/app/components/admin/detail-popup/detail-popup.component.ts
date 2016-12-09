@@ -16,6 +16,7 @@ export class DetailPopupComponent implements OnInit {
   @Input() info: any;
   @Input() showAcceptBtn: boolean;
   @Input() showDenyBtn: boolean;
+  @Input() showDetailPTBtn: boolean;
 
   constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) {
   }
@@ -34,6 +35,10 @@ export class DetailPopupComponent implements OnInit {
   closePopup(result) {
     this.popupClose.emit(result);
     this.detailPopup.hide();
+  }
+
+  showDetailPT() {
+    window.open(`/phongtro/detail/${this.info.id}`);
   }
 
   deletePT() {

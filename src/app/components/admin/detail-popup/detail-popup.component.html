@@ -62,12 +62,14 @@
                     <div class="col-lg-8 col-md-8 col-md-offset-1">
                       <div>
                         <label for="giatien">Nguyên phòng</label>
-                        <i class="right fa fa-check-circle-o"></i>
+                        <i *ngIf="info.giatien && info.giatien > 0" class="right fa fa-check-circle-o"></i>
+                        <i *ngIf="info.giatien <= 0" class="right fa fa-times-circle-o"></i>
                         <input type="text" id="giatien" class="input-modal" [ngModel]="info.giatien | number" [readonly]="true">
                       </div>
                       <div>
                         <label for="giatienTheoNguoi">Từng người</label>
-                        <i class="right fa fa-check-circle-o"></i>
+                        <i *ngIf="info.giatienTheoNguoi && info.giatienTheoNguoi > 0" class="right fa fa-check-circle-o"></i>
+                        <i *ngIf="info.giatienTheoNguoi <= 0" class="right fa fa-times-circle-o"></i>
                         <input type="text" id="giatienTheoNguoi" class="input-modal" [ngModel]="info.giatienTheoNguoi | number" [readonly]="true">
                       </div>
                     </div>
@@ -81,12 +83,14 @@
                     <div class="col-lg-8 col-md-8 col-md-offset-1">
                       <div>
                         <label for="tiencoc">Nguyên phòng</label>
-                        <i class="right fa fa-times-circle-o"></i>
+                        <i *ngIf="info.tiencoc && info.tiencoc > 0" class="right fa fa-check-circle-o"></i>
+                        <i *ngIf="info.tiencoc <= 0" class="right fa fa-times-circle-o"></i>
                         <input type="text" id="tiencoc" class="input-modal" [ngModel]="info.tiencoc | number" [readonly]="true">
                       </div>
                       <div>
                         <label for="tiencocTheoNguoi">Từng người</label>
-                        <i class="right fa fa-times-circle-o"></i>
+                        <i *ngIf="info.tiencocTheoNguoi && info.tiencocTheoNguoi > 0" class="right fa fa-check-circle-o"></i>
+                        <i *ngIf="info.tiencocTheoNguoi <= 0" class="right fa fa-times-circle-o"></i>
                         <input type="text" id="tiencocTheoNguoi" class="input-modal" [ngModel]="info.tiencocTheoNguoi | number" [readonly]="true">
                       </div>
                     </div>
@@ -99,6 +103,7 @@
       </div>
       <div class="modal-footer">
         <input *ngIf="showDenyBtn" type="button" class="btn-modal left deny-btn" (click)="denyPT()" name="submit" value="Không duyệt">
+        <!-- <input *ngIf="showDetailPTBtn" type="button" class="btn-modal right accept-btn" (click)="showDetailPT()" name="submit" value="Chi tiết phòng trọ"> -->
         <input *ngIf="showAcceptBtn" type="button" class="btn-modal right accept-btn" (click)="acceptPT()" name="submit" value="Duyệt">
       </div>
     </div>

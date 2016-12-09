@@ -23,8 +23,8 @@ export class PtNotCheckedComponent implements OnInit {
   private selectedPT: any;
 
   constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {
