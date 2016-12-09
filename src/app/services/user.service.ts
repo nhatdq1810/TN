@@ -60,14 +60,17 @@ export class UserService {
     })
   }
 
-  logout(){
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('isLoggedIn');
-    this.loggedIn = false;
-    this.checkLoggedIn.next(false);
-    this.checkAdminLoggedIn.next(false);
-    let homepage = encodeURIComponent('http://localhost:4200/home');
-    window.location.href = `https://nhatdq1810.auth0.com/v2/logout?returnTo=${homepage}`;
+  logout(role: string){
+    if(role && role === 'admin') {
+      this.checkAdminLoggedIn.next(false);
+    } else {
+      localStorage.removeItem('id_token');
+      localStorage.removeItem('isLoggedIn');
+      this.loggedIn = false;
+      this.checkLoggedIn.next(false);
+      let homepage = encodeURIComponent('http://localhost:4200/home');
+      window.location.href = `https://nhatdq1810.auth0.com/v2/logout?returnTo=${homepage}`;
+    }
   }
 
   isLoggedIn(){

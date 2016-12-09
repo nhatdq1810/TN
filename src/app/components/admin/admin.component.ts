@@ -49,12 +49,12 @@ export class AdminComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.userService.checkAdminLoggedIn.subscribe((value: boolean) => {
       this.isLogin = value;
-      if(!this.isLogin) {
+      if (!this.isLogin) {
         this.loginModal.showModal('admin', 0);
       } else {
         this.init();
       }
-    })
+    });
   }
 
   ngAfterViewInit() {
@@ -291,5 +291,9 @@ export class AdminComponent implements OnInit, AfterViewInit {
         }
       }
     }
+  }
+
+  logout() {
+    this.userService.logout('admin');
   }
 }

@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.userService.logout();
+    this.userService.logout('user');
   }
 
   createPTActiveLink() {

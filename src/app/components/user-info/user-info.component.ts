@@ -147,7 +147,7 @@ export class UserInfoComponent implements OnInit {
               }];
               window.scrollTo(0, 0);
               setTimeout(() => {
-                this.userService.logout();
+                this.userService.logout('user');
               }, 3000);
             })
               .catch(err => {
