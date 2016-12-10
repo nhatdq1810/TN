@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
+import { DetailPopupComponent } from '../detail-popup/detail-popup.component';
 import { UserService } from '../../../services/user.service';
 import { PhongtroService } from '../../../services/phongtro.service';
 
@@ -12,6 +13,7 @@ let Constants = require('../../../resources/constants');
 })
 export class StatisticPtComponent implements OnInit {
 
+  @ViewChild('detailPopup') detailPopup: DetailPopupComponent;
   private datasetsDiachi: Array<any> = [];
   private datasetsTvDT: Array<any> = [];
   private datasetsKhac: Array<any> = [];
@@ -41,7 +43,7 @@ export class StatisticPtComponent implements OnInit {
   private selectedMonth: Array<number> = [];
   private currentMonth: number;
   private listPTLvCmtView: Array<any> = [];
-  private listUser: Array<any> = [];
+  private selectedPT: any;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
     this.init();
@@ -80,18 +82,6 @@ export class StatisticPtComponent implements OnInit {
     this.ptService.thongkePTTheoComment(this.selectedMonth[4], 5)
       .then(result => {
         this.listPTLvCmtView = result;
-        for (let i = 0; i < this.listPTLvCmtView.length; ++i) {
-          this.userService.layThongtinUserID(this.listPTLvCmtView[i].userID)
-            .then(resp => {
-              if (!this.listUser[this.listPTLvCmtView[i].userID]) {
-                this.listUser[this.listPTLvCmtView[i].userID] = resp;
-              }
-            })
-            .catch(err => {
-              console.error(err);
-              this.listUser[this.listPTLvCmtView[i].userID].username = 'Không xác định';
-            });
-        }
       })
       .catch(err => {
         console.error(err);
@@ -103,18 +93,6 @@ export class StatisticPtComponent implements OnInit {
     this.ptService.thongkePTTheoLike(this.selectedMonth[4], 5)
       .then(result => {
         this.listPTLvCmtView = result;
-        for (let i = 0; i < this.listPTLvCmtView.length; ++i) {
-          this.userService.layThongtinUserID(this.listPTLvCmtView[i].userID)
-            .then(resp => {
-              if (!this.listUser[this.listPTLvCmtView[i].userID]) {
-                this.listUser[this.listPTLvCmtView[i].userID] = resp;
-              }
-            })
-            .catch(err => {
-              console.error(err);
-              this.listUser[this.listPTLvCmtView[i].userID].username = 'Không xác định';
-            });
-        }
       })
       .catch(err => {
         console.error(err);
@@ -306,6 +284,21 @@ export class StatisticPtComponent implements OnInit {
       this.getPTLike();
     } else {
       this.getPTCmt();
+    }
+  }
+
+  showDetailItem(item) {
+    this.selectedPT = item;
+    this.detailPopup.showPopup();
+  }
+
+  popupClose(e: any) {
+    if(e) {
+      if(this.loaiLvCmt == 0) {
+        this.getPTLike();
+      } else {
+        this.getPTCmt();
+      }
     }
   }
 

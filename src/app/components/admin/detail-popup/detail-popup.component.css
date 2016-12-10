@@ -30,6 +30,10 @@
   margin-top: 60px;
 }
 
+.left-column img {
+  height: 200px;
+}
+
 .left-column > div {
   padding-bottom: 10px;
 }

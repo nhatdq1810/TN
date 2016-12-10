@@ -243,4 +243,68 @@ export class UserService {
         });
   }
 
+  thongkeUserComment(thang, gioihan) {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `user/thongkeUserComment/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkeUserComment', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkeUserComment', err));
+    });
+  }
+
+  thongkeUserKieuLogin(thang) {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `user/thongkeUserKieuLogin/${thang}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkeUserKieuLogin', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkeUserKieuLogin', err));
+    });
+  }
+
+  thongkeUserTaoPT(thang, gioihan) {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `user/thongkeUserTaoPT/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkeUserTaoPT', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkeUserTaoPT', err));
+    });
+  }
+
+  thongkeUserTheoDTC(thang, gioihan) {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `user/thongkeUserTheoDTC/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkeUserTheoDTC', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkeUserTheoDTC', err));
+    });
+  }
+
 }

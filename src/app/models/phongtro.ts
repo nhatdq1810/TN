@@ -23,4 +23,5 @@ export class Phongtro {
   nganhangID: string;
   thich: number;
   userThich: boolean;
+  counter: number;
 }

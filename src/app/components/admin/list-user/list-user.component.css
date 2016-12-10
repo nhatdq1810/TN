@@ -2,6 +2,10 @@
   padding: 0 20px;
 }
 
+.custom-table .table-content tbody tr {
+  cursor: default;
+}
+
 .error {
   color: #aaaaaa;
   font-size: 25px;

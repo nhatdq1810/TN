@@ -3,8 +3,8 @@
     <div class="custom-table">
       <div class="table-header">
         <div>
-          <h3 *ngIf="loaiLvCmt == 0" class="left">Phòng trọ được yêu thích nhất</h3>
-          <h3 *ngIf="loaiLvCmt == 1" class="left">Phòng trọ được bình luận nhiều nhất</h3>
+          <h3 *ngIf="loaiLvCmt == 0" class="left">Top 5 phòng trọ được yêu thích nhất</h3>
+          <h3 *ngIf="loaiLvCmt == 1" class="left">Top 5 phòng trọ được bình luận nhiều nhất</h3>
           <div class="select-month right">
             <i class="fa fa-calendar"></i>
             <select [ngModel]="selectedMonth[4]" (ngModelChange)="thongkeLvCmt($event, 'month')" class="form-control right">
@@ -23,32 +23,21 @@
       <div *ngIf="!listPTLvCmtView || listPTLvCmtView.length === 0">
         <p class="error">Không tìm thấy phòng trọ</p>
       </div>
-      <div *ngIf="listPTLvCmtView.length > 0 && listUser.length > 0" class="table-content">
+      <div *ngIf="listPTLvCmtView.length > 0" class="table-content">
         <table class="table">
           <thead>
             <tr>
-              <th class="index">#</th>
-              <th>Username</th>
-              <th>Ngày đăng</th>
-              <th colspan="3">Địa chỉ</th>
-              <th>Giá tiền</th>
-              <th>Diện tích (m<sup>2</sup>)</th>
-              <th *ngIf="loaiLvCmt == 0">Lượt thích</th>
-              <th *ngIf="loaiLvCmt == 1">Lượt bình luận</th>
+              <td class="index">#</td>
+              <td colspan="5" class="pt-username">Địa chỉ</td>
+              <td *ngIf="loaiLvCmt == 0" colspan="2">Lượt thích</td>
+              <td *ngIf="loaiLvCmt == 1" colspan="2">Lượt bình luận</td>
             </tr>
           </thead>
           <tbody>
             <tr (click)="showDetailItem(item)" *ngFor="let item of listPTLvCmtView">
-              <th class="index">{{item.id}}</th>
-              <td class="break-word">{{listUser[item.userID]?.username}}</td>
-              <td>{{item.ngaydang}}</td>
-              <td colspan="3">{{item.diachi}}</td>
-              <td>
-                <p *ngIf="item.giatien > 0">{{item.giatien | number}}</p>
-                <p *ngIf="item.giatienTheoNguoi > 0">{{item.giatienTheoNguoi | number}} / người</p>
-              </td>
-              <td>{{item.dientich}}</td>
-              <td>{{item.thich}}</td>
+              <td class="index">{{item.id}}</td>
+              <td class="break-word pt-username" colspan="5">{{item.diachi}}</td>
+              <th colspan="2">{{item.counter | number}}</th>
             </tr>
           </tbody>
         </table>
@@ -150,3 +139,4 @@
     </canvas>
   </div>
 </div>
+<app-detail-popup #detailPopup (popupClose)="popupClose($event)" [info]="selectedPT" [showAcceptBtn]="false" [showDenyBtn]="false"></app-detail-popup>

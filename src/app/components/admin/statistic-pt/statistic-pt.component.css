@@ -28,6 +28,18 @@
   left: 10px;
 }
 
+.custom-table .table tbody {
+  font-size: 22px;
+}
+
+.custom-table .table tbody .index {
+  font-size: 14px;
+}
+
+.custom-table .table .pt-username {
+  text-align: left;
+}
+
 .chart {
   background: #ffffff;
 }

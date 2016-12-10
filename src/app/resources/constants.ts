@@ -23,7 +23,8 @@ export let fakeUser: User = {
   password: '123456',
   sodt: '0123456789',
   username: 'abcd',
-  ngayDK: '10/10/2016'
+  ngayDK: '10/10/2016',
+  counter: 1
 };
 export let fakeListUser: Array<User> = [{
   id: 0,
@@ -37,7 +38,8 @@ export let fakeListUser: Array<User> = [{
   skype: '',
   sodt: '0123456789',
   username: 'abc',
-  ngayDK: '10/10/2016'
+  ngayDK: '10/10/2016',
+  counter: 1
 },
 {
   id: 1,
@@ -51,7 +53,8 @@ export let fakeListUser: Array<User> = [{
   skype: 'sdfdfdfdfdfdfdfdfdfdfdfdfdf',
   sodt: '',
   username: 'abc',
-  ngayDK: '10/10/2016'
+  ngayDK: '10/10/2016',
+  counter: 1
 },
 {
   id: 2,
@@ -65,7 +68,8 @@ export let fakeListUser: Array<User> = [{
   skype: '',
   sodt: '',
   username: 'abc',
-  ngayDK: '10/10/2016'
+  ngayDK: '10/10/2016',
+  counter: 1
 },
 {
   id: 3,
@@ -79,7 +83,8 @@ export let fakeListUser: Array<User> = [{
   skype: '',
   sodt: '',
   username: 'abc',
-  ngayDK: '10/10/2016'
+  ngayDK: '10/10/2016',
+  counter: 1
 },
 {
   id: 4,
@@ -93,7 +98,8 @@ export let fakeListUser: Array<User> = [{
   skype: '',
   sodt: '',
   username: 'abc',
-  ngayDK: '10/10/2016'
+  ngayDK: '10/10/2016',
+  counter: 1
 },
 {
   id: 5,
@@ -107,7 +113,8 @@ export let fakeListUser: Array<User> = [{
   skype: '',
   sodt: '',
   username: 'abc',
-  ngayDK: '10/10/2016'
+  ngayDK: '10/10/2016',
+  counter: 1
 }];
 export let fakePT: Phongtro = {
   id: 3,
@@ -133,7 +140,8 @@ export let fakePT: Phongtro = {
   userThich: false,
   tiencocTheoNguoi: 500000,
   duyet: 1,
-  an: 0
+  an: 0,
+  counter: 2
 };
 export let fakeListPT: Array<Phongtro> = [
   {
@@ -160,7 +168,8 @@ export let fakeListPT: Array<Phongtro> = [
     userThich: false,
     tiencocTheoNguoi: 300000,
     duyet: 1,
-    an: 0
+    an: 0,
+    counter: 2
   },
   {
     id: 13,
@@ -186,7 +195,8 @@ export let fakeListPT: Array<Phongtro> = [
     userThich: false,
     tiencocTheoNguoi: 500000,
     duyet: 1,
-    an: 0
+    an: 0,
+    counter: 2
   },
   {
     id: 14,
@@ -212,7 +222,8 @@ export let fakeListPT: Array<Phongtro> = [
     userThich: false,
     tiencocTheoNguoi: 500000,
     duyet: 1,
-    an: 0
+    an: 0,
+    counter: 2
   },
   {
     id: 15,
@@ -238,7 +249,8 @@ export let fakeListPT: Array<Phongtro> = [
     userThich: false,
     tiencocTheoNguoi: 500000,
     duyet: 1,
-    an: 0
+    an: 0,
+    counter: 2
   },
   {
     id: 16,
@@ -264,7 +276,8 @@ export let fakeListPT: Array<Phongtro> = [
     userThich: false,
     tiencocTheoNguoi: 500000,
     duyet: 1,
-    an: 0
+    an: 0,
+    counter: 2
   },
   {
     id: 17,
@@ -290,7 +303,8 @@ export let fakeListPT: Array<Phongtro> = [
     userThich: false,
     tiencocTheoNguoi: 500000,
     duyet: 1,
-    an: 0
+    an: 0,
+    counter: 2
   },
   {
     id: 18,
@@ -316,7 +330,8 @@ export let fakeListPT: Array<Phongtro> = [
     userThich: false,
     tiencocTheoNguoi: 500000,
     duyet: 1,
-    an: 0
+    an: 0,
+    counter: 2
   }
 ];
 export let fakeNgh: Nganhang = {

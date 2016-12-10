@@ -11,4 +11,5 @@ export class User {
   facebook: string;
   dotincay: number;
   ngayDK: string;
+  counter: number;
 }

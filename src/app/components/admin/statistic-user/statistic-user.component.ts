@@ -55,6 +55,34 @@ export class StatisticUserComponent implements OnInit {
     for (let i = 0; i < 5; i++) {
       this.listMonth.push(this.selectedMonth[0] - i);
     }
+    this.userService.thongkeUserComment(this.selectedMonth[0], 5)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    this.userService.thongkeUserKieuLogin(this.selectedMonth[0])
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    this.userService.thongkeUserTaoPT(this.selectedMonth[0], 5)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    this.userService.thongkeUserTheoDTC(this.selectedMonth[0], 5)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.error(err);
+      });
     this.initChart();
   }
 
