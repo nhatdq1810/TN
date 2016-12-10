@@ -28,15 +28,7 @@
   left: 10px;
 }
 
-.custom-table .table tbody {
-  font-size: 22px;
-}
-
-.custom-table .table tbody .index {
-  font-size: 14px;
-}
-
-.custom-table .table .pt-username {
+.custom-table .table .pt-diachi {
   text-align: left;
 }
 
@@ -81,10 +73,6 @@
   padding: 0;
 }
 
-.chart .header {
-  overflow: hidden;
-}
-
 .chart h3 {
   padding: 10px 20px;
   font-weight: 700;
@@ -92,11 +80,6 @@
 
 .chart ul {
   padding: 0 20px;
-}
-
-.select-type {
-  padding-bottom: 15px;
-  border-bottom: 1px solid #dddddd;
 }
 
 .select-type .radio {

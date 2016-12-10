@@ -326,7 +326,7 @@ export class PhongtroService {
     });
   }
 
-  thongkePTTheoThang(thangBD, thangKT) {
+  thongkePTTheoThang(thangBD, thangKT): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'phongtro/thongkePTTheoThang/' + thangBD + '/' + thangKT, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
@@ -342,9 +342,9 @@ export class PhongtroService {
     });
   }
 
-  thongkePTMoiTrenTongso(thang) {
+  thongkePTMoiTrenTongso(thang): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + 'phongtro/thongkePTMoiTrenTongso/' + thang, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + 'phongtro/thongkePTMoiTrenTongso/thang/' + thang, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
@@ -358,7 +358,7 @@ export class PhongtroService {
     });
   }
 
-  thongkePTTheoDiachi(loai, thang, gioihan) {
+  thongkePTTheoDiachi(loai, thang, gioihan): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoDiachi/${loai}/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
@@ -374,7 +374,7 @@ export class PhongtroService {
     });
   }
 
-  thongkePTTheoInput(column, thang, gioihan) {
+  thongkePTTheoInput(column, thang, gioihan): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoInput/${column}/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
@@ -390,7 +390,7 @@ export class PhongtroService {
     });
   }
 
-  thongkePTTheoTienVaDientich(column, thang, gioihan) {
+  thongkePTTheoTienVaDientich(column, thang, gioihan): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoTienVaDientich/${column}/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())

@@ -2,55 +2,44 @@
   padding: 0 30px;
 }
 
-.chart {
+.chart .header h3 {
+  padding: 10px;
+}
+
+.chart .select-type {
   background: #ffffff;
 }
 
-.chart.pie-chart .canvas {
-  max-height: 500px;
-  max-width: 500px;
-  margin: auto;
+.chart:first-of-type .select-month select {
+  width: 140px;
+  margin: 10px;
 }
 
-.chart .header {
-  overflow: hidden;
+.chart:first-of-type .select-month i {
+  left: 20px;
 }
 
-.chart .select-month {
-  position: relative;
-}
-
-.chart .select-month i {
-  position: absolute;
-  left: 30px;
-  top: 20px;
-}
-
-.chart select {
-  width: 300px;
-  margin: 10px 20px;
-  padding-left: 25px;
-}
-
-.chart h3 {
-  padding: 10px 20px;
+.chart:first-of-type .canvas .error {
+  background: #ffffff;
+  color: #aaaaaa;
+  font-size: 24px;
   font-weight: 700;
+  padding: 10px;
 }
 
-.chart ul {
-  padding: 0 20px;
+.custom-table .table-header .select-month select {
+  margin: 0;
 }
 
-.select-type {
-  padding-bottom: 15px;
-  border-bottom: 1px solid #dddddd;
+.custom-table .table-header .select-month i {
+  top: 10px;
+  left: 10px;
 }
 
-.select-type .radio {
-  display: inline-block;
-  margin-left: 20px;
+.custom-table .table-content tbody tr {
+  cursor: default;
 }
 
-.select-type .radio:first-of-type {
-  margin-left: 10px;
+.custom-table .table .pt-username {
+  text-align: left;
 }

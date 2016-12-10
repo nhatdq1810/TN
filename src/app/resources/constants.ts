@@ -342,7 +342,8 @@ export let fakeNgh: Nganhang = {
   password: '123454',
   sodt: '0123456789',
   tien: 0,
-  username: 'abc'
+  username: 'abc',
+  counter: 2
 };
 
 export let fakeListCmt = [{

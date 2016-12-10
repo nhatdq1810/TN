@@ -58,4 +58,52 @@ export class NganhangService {
     });
   }
 
+  thongkeGDGui(thang, gioihan):Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `giaodich/thongkeGDGui/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkeGDGui', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkeGDGui', err));
+    });
+  }
+
+  thongkeGDNhan(thang, gioihan):Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `giaodich/thongkeGDNhan/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkeGDNhan', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkeGDNhan', err));
+    });
+  }
+
+  thongkeGDTheoPT(thang, gioihan):Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(Constants.apiUrl + `giaodich/thongkeGDTheoPT/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('thongkeGDTheoPT', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('thongkeGDTheoPT', err));
+    });
+  }
+
 }

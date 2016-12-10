@@ -27,17 +27,17 @@
         <table class="table">
           <thead>
             <tr>
-              <td class="index">#</td>
-              <td colspan="5" class="pt-username">Địa chỉ</td>
-              <td *ngIf="loaiLvCmt == 0" colspan="2">Lượt thích</td>
-              <td *ngIf="loaiLvCmt == 1" colspan="2">Lượt bình luận</td>
+              <th>#</th>
+              <th colspan="6" class="pt-diachi">Địa chỉ</th>
+              <th *ngIf="loaiLvCmt == 0">Lượt thích</th>
+              <th *ngIf="loaiLvCmt == 1">Lượt bình luận</th>
             </tr>
           </thead>
           <tbody>
             <tr (click)="showDetailItem(item)" *ngFor="let item of listPTLvCmtView">
-              <td class="index">{{item.id}}</td>
-              <td class="break-word pt-username" colspan="5">{{item.diachi}}</td>
-              <th colspan="2">{{item.counter | number}}</th>
+              <td>{{item.id}}</td>
+              <td class="break-word pt-diachi" colspan="6">{{item.diachi}}</td>
+              <th class="counter">{{item.counter | number}}</th>
             </tr>
           </tbody>
         </table>

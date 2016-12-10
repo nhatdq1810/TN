@@ -211,7 +211,7 @@ export class UserService {
     });
   }
 
-  thongkeUserTheoThang(thangBD, thangKT) {
+  thongkeUserTheoThang(thangBD, thangKT): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'user/thongkeUserTheoThang/' + thangBD + '/' + thangKT, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
@@ -227,9 +227,9 @@ export class UserService {
     });
   }
 
-  thongkeUserMoiTrenTongso(thang) {
+  thongkeUserMoiTrenTongso(thang): Promise<any> {
     return new Promise((resolve, reject) => {
-          this.http.get(Constants.apiUrl + 'user/thongkeUserMoiTrenTongso/' + thang, { headers: Constants.headers })
+          this.http.get(Constants.apiUrl + 'user/thongkeUserMoiTrenTongso/thang/' + thang, { headers: Constants.headers })
             .map((resp: Response) => resp.json())
             .subscribe(resp => {
               if (!resp.result || resp.result !== 'fail') {
@@ -243,9 +243,9 @@ export class UserService {
         });
   }
 
-  thongkeUserComment(thang, gioihan) {
+  thongkeUserComment(thang, gioihan): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `user/thongkeUserComment/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + `user/thongkeUserComment/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
@@ -259,9 +259,9 @@ export class UserService {
     });
   }
 
-  thongkeUserKieuLogin(thang) {
+  thongkeUserKieuLogin(thang): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `user/thongkeUserKieuLogin/${thang}`, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + `user/thongkeUserKieuLogin/thang/${thang}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
@@ -275,9 +275,9 @@ export class UserService {
     });
   }
 
-  thongkeUserTaoPT(thang, gioihan) {
+  thongkeUserTaoPT(thang, gioihan): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `user/thongkeUserTaoPT/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + `user/thongkeUserTaoPT/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {
@@ -291,9 +291,9 @@ export class UserService {
     });
   }
 
-  thongkeUserTheoDTC(thang, gioihan) {
+  thongkeUserTheoDTC(thang, gioihan): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `user/thongkeUserTheoDTC/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + `user/thongkeUserTheoDTC/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {

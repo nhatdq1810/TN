@@ -551,6 +551,13 @@ accordion-group.panel-open .panel-title {
 }
 
 
+/* table counter column */
+
+.custom-table .table tbody .counter {
+  font-size: 22px;
+}
+
+
 /* scroll bar */
 
 ::-webkit-scrollbar {
@@ -573,8 +580,17 @@ accordion-group.panel-open .panel-title {
 
 /* charts */
 
+.select-type {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #dddddd;
+}
+
 .chart canvas {
   background: #ffffff;
+}
+
+.chart .header {
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1199px) {

@@ -95,7 +95,8 @@ export class TransferMoneyComponent implements OnInit {
       password: '123454',
       sodt: '0123456789',
       tien: 0,
-      username: 'bbb'
+      username: 'bbb',
+      counter: 1
     };
   }
 }

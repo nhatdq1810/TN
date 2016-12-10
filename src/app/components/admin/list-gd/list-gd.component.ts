@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { UserService } from '../../../services/user.service';
 import { PhongtroService } from '../../../services/phongtro.service';
+import { NganhangService } from '../../../services/nganhang.service';
 
 let Constants = require('../../../resources/constants');
 
@@ -33,12 +34,33 @@ export class ListGdComponent implements OnInit {
   private listMonth: Array<number> = [];
   private selectedMonth: Array<number> = [];
 
-  constructor(private userService: UserService, private ptService: PhongtroService) {
+  constructor(private userService: UserService, private ptService: PhongtroService, private nghService: NganhangService) {
     this.init();
     // this.fakeInit();
   }
 
   ngOnInit() {
+    this.nghService.thongkeGDGui(this.selectedMonth[0], 5)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    this.nghService.thongkeGDNhan(this.selectedMonth[0], 5)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    this.nghService.thongkeGDTheoPT(this.selectedMonth[0], 5)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   init() {
@@ -55,6 +77,7 @@ export class ListGdComponent implements OnInit {
     for (let i = 0; i < 5; i++) {
       this.listMonth.push(this.selectedMonth[0] - i);
     }
+
     this.initChart();
   }
 
