@@ -10,12 +10,11 @@
   background: #ffffff;
 }
 
-.chart:first-of-type .select-month select {
-  width: 140px;
-  margin: 10px;
+.chart .select-month select {
+  margin-left: 10px;
 }
 
-.chart:first-of-type .select-month i {
+.chart .select-month i {
   left: 20px;
 }
 

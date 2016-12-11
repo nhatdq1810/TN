@@ -93,7 +93,7 @@
       </div>
       <div *ngIf="datasetsUsers[0] && datasetsNewUsers && datasetsUsers[0].length > 0 && datasetsNewUsers.length > 0" class="row margin-bottom-30">
         <div class="chart col-lg-4 col-md-4">
-          <canvas baseChart [datasets]="datasetsUsers[0]" [labels]="labelsUsers[0]" [chartType]="'doughnut'">
+          <canvas baseChart [datasets]="datasetsUsers[0]" [labels]="labelsUsers[0]" [chartType]="'pie'">
           </canvas>
         </div>
         <div class="chart col-lg-8 col-md-8">
@@ -121,7 +121,7 @@
           </canvas>
         </div>
         <div class="chart col-lg-4 col-md-4">
-          <canvas baseChart [datasets]="datasetsPT[0]" [labels]="labelsPT[0]" [chartType]="'doughnut'">
+          <canvas baseChart [datasets]="datasetsPT[0]" [labels]="labelsPT[0]" [chartType]="'pie'">
           </canvas>
         </div>
       </div>

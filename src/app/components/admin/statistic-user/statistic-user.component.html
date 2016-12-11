@@ -1,12 +1,12 @@
 <div class="page-content">
   <div class="row margin-bottom-30">
-    <div class="chart col-lg-5 col-md-5">
+    <div class="chart col-lg-4 col-md-4">
       <div class="select-type">
         <div class="header">
-          <h3 class="left">Thống kê số phòng trọ</h3>
-          <div class="select-month right">
+          <h3 class="left">Thống kê số user</h3>
+          <div class="select-month left">
             <i class="fa fa-calendar"></i>
-            <select [ngModel]="selectedMonth[3]" (ngModelChange)="thongkeUserKieuLogin($event)" class="form-control right">
+            <select [ngModel]="selectedMonth[3]" (ngModelChange)="thongkeUserKieuLogin($event)" class="form-control">
               <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
             </select>
           </div>
@@ -14,24 +14,18 @@
       </div>
       <div class="canvas">
         <p *ngIf="datasetsUserKieuLogin[0] === 0 && datasetsUserKieuLogin[1] === 0 && datasetsUserKieuLogin[2] === 0" class="error">Không có user đăng ký trong tháng</p>
-        <canvas *ngIf="datasetsUserKieuLogin && datasetsUserKieuLogin.length > 0 && (datasetsUserKieuLogin[0] !== 0 || datasetsUserKieuLogin[1] !== 0 || datasetsUserKieuLogin[2] !== 0)" baseChart [data]="datasetsUserKieuLogin" [labels]="labelsUserKieuLogin" [chartType]="'pie'">
+        <canvas *ngIf="datasetsUserKieuLogin && datasetsUserKieuLogin.length > 0 && (datasetsUserKieuLogin[0] !== 0 || datasetsUserKieuLogin[1] !== 0 || datasetsUserKieuLogin[2] !== 0)" baseChart [data]="datasetsUserKieuLogin" [labels]="labelsUserKieuLogin" [options]="optionsPie" [chartType]="'pie'">
         </canvas>
       </div>
     </div>
-    <div class="chart col-lg-7 col-md-7">
+    <div class="chart col-lg-8 col-md-8">
       <div class="select-type">
         <div class="header">
-          <h3 class="left">Thống kê số phòng trọ</h3>
-          <div class="select-month right">
-            <i class="fa fa-calendar"></i>
-            <select [ngModel]="selectedMonth[4]" (ngModelChange)="thongkeNewUsers($event)" class="form-control right">
-              <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
-            </select>
-          </div>
+          <h3 class="left">Thống kê số user tạo mới từng tháng</h3>
         </div>
       </div>
       <div class="canvas">
-        <canvas *ngIf="datasetsNewUsers && datasetsNewUsers.length > 0" baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [chartType]="'bar'">
+        <canvas *ngIf="datasetsNewUsers[0].data && datasetsNewUsers[0].data.length > 0" baseChart [datasets]="datasetsNewUsers" [labels]="labelsNewUsers" [options]="options" [chartType]="'bar'">
         </canvas>
       </div>
     </div>
@@ -81,7 +75,7 @@
           <h3 class="left">Top 5 user tạo nhiều phòng trọ nhất</h3>
           <div class="select-month right">
             <i class="fa fa-calendar"></i>
-            <select [ngModel]="selectedMonth[2]" (ngModelChange)="thongkeUserTaoPT($event)" class="form-control right">
+            <select [ngModel]="selectedMonth[1]" (ngModelChange)="thongkeUserTaoPT($event)" class="form-control right">
               <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
             </select>
           </div>
@@ -119,7 +113,7 @@
           <h3 class="left">Top 5 user độ tin cậy cao nhất</h3>
           <div class="select-month right">
             <i class="fa fa-calendar"></i>
-            <select [ngModel]="selectedMonth[3]" (ngModelChange)="thongkeUserTheoDTC($event)" class="form-control right">
+            <select [ngModel]="selectedMonth[2]" (ngModelChange)="thongkeUserTheoDTC($event)" class="form-control right">
               <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
             </select>
           </div>

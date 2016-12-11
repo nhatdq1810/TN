@@ -16,12 +16,14 @@ export class StatisticUserComponent implements OnInit {
   private listUserTaoPT: Array<any> = [];
   private listUserTheoDTC: Array<any> = [];
   private datasetsUserKieuLogin: Array<any> = [];
+  private datasetsNewUsers: Array<any> = [];
   private labelsUserKieuLogin: Array<any> = [];
+  private labelsNewUsers: Array<any> = [];
   private options;
   private optionsPie;
-  private chartColors;
   private listMonth: Array<number> = [];
   private selectedMonth: Array<number> = [];
+  private currentMonth: number;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
     this.init();
@@ -31,8 +33,9 @@ export class StatisticUserComponent implements OnInit {
   }
 
   init() {
+    this.currentMonth = Constants.getCurrentDate().split('/')[1];
     for (let i = 0; i < 5; i++) {
-      this.selectedMonth[i] = Constants.getCurrentDate().split('/')[1];
+      this.selectedMonth[i] = this.currentMonth;
       this.listMonth.push(this.selectedMonth[0] - i);
     }
 
@@ -40,6 +43,7 @@ export class StatisticUserComponent implements OnInit {
     this.thongkeUserTaoPT(this.selectedMonth[1]);
     this.thongkeUserTheoDTC(this.selectedMonth[2]);
     this.thongkeUserKieuLogin(this.selectedMonth[3]);
+    this.initChartNewUsers();
   }
 
   thongkeUserComment(e: any) {
@@ -77,6 +81,16 @@ export class StatisticUserComponent implements OnInit {
   }
 
   thongkeUserKieuLogin(e: any) {
+    this.optionsPie = {
+      layout: {
+        padding: {
+          left: 10,
+          right: 10,
+          top: 20,
+          bottom: 20
+        }
+      }
+    };
     this.selectedMonth[3] = e;
     this.labelsUserKieuLogin = [];
     this.datasetsUserKieuLogin = [];
@@ -92,7 +106,7 @@ export class StatisticUserComponent implements OnInit {
       });
   }
 
-  initChart() {
+  initChartNewUsers() {
     this.options = {
       scales: {
         yAxes: [{
@@ -105,5 +119,23 @@ export class StatisticUserComponent implements OnInit {
         padding: 20
       }
     };
+    this.datasetsNewUsers = [{ label: 'User tạo mới trong tháng (người)', data: [] }];
+    this.labelsNewUsers = [];
+    this.userService.thongkeUserTheoThang(this.currentMonth - 4, this.currentMonth)
+      .then(resp => {
+        for (let i = 0; i < 5; ++i) {
+          let tmpMonth = this.currentMonth - 4 + i;
+          this.labelsNewUsers.push(`tháng ${tmpMonth}`);
+          if (resp[tmpMonth]) {
+            this.datasetsNewUsers[0].data[i] = resp[tmpMonth];
+          } else {
+            this.datasetsNewUsers[0].data[i] = 0;
+            resp[tmpMonth] = 0;
+          }
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 }
