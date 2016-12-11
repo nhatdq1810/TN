@@ -5,6 +5,9 @@
         <button *ngIf="loginForm !== 'admin'" type="button" class="close" aria-label="Close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
+        <button *ngIf="loginForm === 'admin'" type="button" class="btn-modal right" aria-label="Close" (click)="returnHome()">
+          Trang chủ <i class="fa fa-home"></i>
+        </button>
         <h2 *ngIf="loginForm !== 'nganhang' && !isForgot" class="modal-title">Đăng nhập</h2>
         <h2 *ngIf="loginForm === 'nganhang'" class="modal-title">Tài khoản ngân hàng</h2>
         <h2 *ngIf="loginForm !== 'nganhang' && loginForm !== 'admin' && isForgot" class="modal-title">Quên mật khẩu</h2>
@@ -46,7 +49,7 @@
             </form>
             <div class="options" *ngIf="loginForm !== 'nganhang' && loginForm !== 'admin' && !isForgot">
               <a class="forgot-password" (click)="isForgot = true">Quên mật khẩu?</a>
-              <a class="register btn-modal right" (click)="closeModal(); registerModal.showModal();">Đăng ký?</a>
+              <a class="register btn-modal right" (click)="closeModal(); registerModal.showModal();">Đăng ký</a>
             </div>
             <div class="social-icons" *ngIf="loginForm !== 'nganhang' && loginForm !== 'admin' && !isForgot">
               <p>- Đăng nhập với -</p>

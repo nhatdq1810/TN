@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { Router, Params } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +11,14 @@ export class AppComponent {
   private viewContainerRef: ViewContainerRef;
   private admin: boolean;
 
-  public constructor(private toastr: ToastsManager, viewContainerRef: ViewContainerRef) {
+  public constructor(private router: Router, viewContainerRef: ViewContainerRef) {
     this.viewContainerRef = viewContainerRef;
-    this.toastr.setRootViewContainerRef(viewContainerRef);
-    if(window.location.href.indexOf('admin') > -1) {
-      this.admin = true;
-    } else {
-      this.admin = false;
-    }
+    this.router.events.subscribe(event => {
+      if (event.url.indexOf('admin') > -1) {
+        this.admin = true;
+      } else {
+        this.admin = false;
+      }
+    });
   }
 }

@@ -143,7 +143,7 @@ export class UserInfoComponent implements OnInit {
               this.successMsg = [{
                 msg: 'Cập nhật mật khẩu thành công !'
               }, {
-                msg: 'Bạn sẽ được đăng xuất ra ngay bây giờ ! Vui lòng đăng nhập lại'
+                msg: 'Vui lòng đăng nhập lại !'
               }];
               window.scrollTo(0, 0);
               setTimeout(() => {

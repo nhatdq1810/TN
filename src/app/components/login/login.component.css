@@ -1,3 +1,7 @@
+.modal-header button.btn-modal {
+  width: 20%;
+}
+
 .login form {
   margin-bottom: 20px;
 }

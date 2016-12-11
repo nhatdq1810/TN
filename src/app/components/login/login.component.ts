@@ -144,4 +144,8 @@ export class LoginComponent implements OnInit {
     this.loginModal.show();
   }
 
+  returnHome() {
+    this.router.navigate(['/home']);
+  }
+
 }
