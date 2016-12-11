@@ -64,6 +64,7 @@ export class TransferMoneyComponent implements OnInit {
       nganhangID_gui: this.ngh_gui.id,
       nganhangID_nhan: this.ngh_nhan.id,
       phongtroID: this.phongtro.id,
+      loaiGD: this.typeTiencoc,
       ngay: this.ngay,
       tien: tiencoc
     }

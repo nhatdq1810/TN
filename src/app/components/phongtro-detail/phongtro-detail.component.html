@@ -31,7 +31,7 @@
           </div>
           <div class="phongtro-like right">
             <p class="ngay right">{{phongtro.ngaydang | date:"dd/MM/yyyy HH:mm"}}</p>
-            <a *ngIf="isValid" (click)="likePT()" [ngClass]="{'active': userThichPT}"><i class="fa fa-heart-o"></i>{{phongtro.thich}}</a>
+            <a *ngIf="isPTValid" (click)="likePT()" [ngClass]="{'active': userThichPT}"><i class="fa fa-heart-o"></i>{{phongtro.thich}}</a>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
             <strong>{{phongtro.giatien | number}}</strong>
           </div>
         </div>
-        <div *ngIf="!isUserPT && isValid">
+        <div *ngIf="!isUserPT && isPTValid">
           <div *ngIf="phongtro.tiencoc > 0 && phongtro.sophong > 0" class="bounce">
             <i class="fa fa-hand-o-right fa-3x"></i>
           </div>
@@ -56,7 +56,7 @@
             <strong>{{phongtro.giatienTheoNguoi | number}}</strong>
           </div>
         </div>
-        <div *ngIf="!isUserPT && isValid">
+        <div *ngIf="!isUserPT && isPTValid">
           <div *ngIf="phongtro.tiencocTheoNguoi > 0 && phongtro.sophong > 0" class="bounce">
             <i class="fa fa-hand-o-right fa-3x"></i>
           </div>
@@ -195,7 +195,7 @@
               </li>
             </ul>
           </accordion-group>
-          <accordion-group *ngIf="isValid" class="comments" heading="BÌNH LUẬN" [isOpen]="true">
+          <accordion-group *ngIf="isPTValid" class="comments" heading="BÌNH LUẬN" [isOpen]="true">
             <app-comments #commentsComponent></app-comments>
           </accordion-group>
         </accordion>
