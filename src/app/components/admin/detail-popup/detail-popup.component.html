@@ -6,7 +6,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <h2 class="modal-title">Thông tin phòng trọ</h2>
-        <a class="left delete-btn" (click)="deletePT()"><i class="fa fa-trash-o"></i></a>
+        <a *ngIf="showDeleteBtn" class="left delete-btn" (click)="deletePT()"><i class="fa fa-trash-o"></i></a>
       </div>
       <div *ngIf="info" class="modal-body">
         <div class="row">

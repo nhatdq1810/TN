@@ -245,9 +245,9 @@ export class PhongtroService {
     });
   }
 
-  adminXoaPhongtro(id, duyet): Promise<any> {
+  adminXoaPhongtro(pt, duyet, lydo): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.delete(Constants.apiUrl + `phongtro/${id}/admin?duyet=${duyet}`, { headers: Constants.headers })
+      this.http.post(Constants.apiUrl + `phongtro/${pt.id}/user/${pt.userID}/admin?duyet=${duyet}`, JSON.stringify(lydo),{ headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {

@@ -50,6 +50,7 @@ import { ListGdComponent } from './components/admin/list-gd/list-gd.component';
 import { DetailPopupComponent } from './components/admin/detail-popup/detail-popup.component';
 import { StatisticPtComponent } from './components/admin/statistic-pt/statistic-pt.component';
 import { StatisticUserComponent } from './components/admin/statistic-user/statistic-user.component';
+import { ConfirmPopupComponent } from './components/admin/confirm-popup/confirm-popup.component';
 
 let toastOptions: ToastOptions = new ToastOptions({
   newestOnTop: true
@@ -87,6 +88,7 @@ let toastOptions: ToastOptions = new ToastOptions({
     DetailPopupComponent,
     StatisticUserComponent,
     StatisticPtComponent,
+    ConfirmPopupComponent,
     LoopObjectPipe
   ],
   imports: [

@@ -105,7 +105,7 @@
 
 .main-container .nav-top {
   height: 50px;
-  background: #ededed;
+  box-shadow: 3px 5px 5px #dddddd;
   border-bottom: 1px solid #d9dee4;
 }
 

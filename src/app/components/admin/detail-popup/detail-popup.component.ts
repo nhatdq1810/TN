@@ -2,7 +2,6 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angu
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { PhongtroService } from '../../../services/phongtro.service';
-import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-detail-popup',
@@ -17,8 +16,9 @@ export class DetailPopupComponent implements OnInit {
   @Input() showAcceptBtn: boolean;
   @Input() showDenyBtn: boolean;
   @Input() showDetailPTBtn: boolean;
+  @Input() showDeleteBtn: boolean;
 
-  constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) {
+  constructor(private toastr: ToastsManager, private ptService: PhongtroService) {
   }
 
   ngOnInit() {
@@ -42,16 +42,16 @@ export class DetailPopupComponent implements OnInit {
   }
 
   deletePT() {
-    this.ptService.adminXoaPhongtro(this.info.id, 0)
-      .then(result => {
-        this.closePopup(true);
-        this.toastr.success(`Đã xóa phòng trọ ${this.info.id}`, 'Thành công !');
-      })
-      .catch(err => {
-        this.closePopup(false);
-        console.error(err);
-        this.toastr.error(`Xóa thất bại phòng trọ ${this.info.id}`, 'Xảy ra lỗi !');
-      });
+    // this.ptService.adminXoaPhongtro(this.info.id, 0)
+    //   .then(result => {
+    //     this.closePopup(true);
+    //     this.toastr.success(`Đã xóa phòng trọ ${this.info.id}`, 'Thành công !');
+    //   })
+    //   .catch(err => {
+    //     this.closePopup(false);
+    //     console.error(err);
+    //     this.toastr.error(`Xóa thất bại phòng trọ ${this.info.id}`, 'Xảy ra lỗi !');
+    //   });
   }
 
   acceptPT() {
@@ -73,7 +73,7 @@ export class DetailPopupComponent implements OnInit {
     this.ptService.xetduyetPT(tmpArray, -1)
       .then(result => {
         this.closePopup(true);
-        this.toastr.success('Đã hủy chấp nhận phòng trọ ${this.info.id}', 'Thành công !');
+        this.toastr.success(`Đã hủy chấp nhận phòng trọ ${this.info.id}`, 'Thành công !');
       })
       .catch(err => {
         this.closePopup(false);

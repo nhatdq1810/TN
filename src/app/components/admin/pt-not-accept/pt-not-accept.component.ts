@@ -128,20 +128,20 @@ export class PtNotAcceptComponent implements OnInit {
 
   deletePT() {
     if (this.listCheckbox.length > 0) {
-      for (let i = 0; i < this.listCheckbox.length; i++) {
-        this.ptService.adminXoaPhongtro(this.listCheckbox[i], 0)
-          .then(result => {
-            if (i === (this.listCheckbox.length - 1)) {
-              this.init();
-            }
-            this.toastr.success(`Đã xóa phòng trọ ${this.listCheckbox[i]}`, 'Thành công !');
-          })
-          .catch(err => {
-            console.error(err);
-            this.toastr.error(`Xóa thất bại phòng trọ ${this.listCheckbox[i]}`, 'Xảy ra lỗi !');
-            this.init();
-          });
-      }
+      // for (let i = 0; i < this.listCheckbox.length; i++) {
+      //   this.ptService.adminXoaPhongtro(this.listCheckbox[i], 0)
+      //     .then(result => {
+      //       if (i === (this.listCheckbox.length - 1)) {
+      //         this.init();
+      //       }
+      //       this.toastr.success(`Đã xóa phòng trọ ${this.listCheckbox[i]}`, 'Thành công !');
+      //     })
+      //     .catch(err => {
+      //       console.error(err);
+      //       this.toastr.error(`Xóa thất bại phòng trọ ${this.listCheckbox[i]}`, 'Xảy ra lỗi !');
+      //       this.init();
+      //     });
+      // }
     }
   }
 

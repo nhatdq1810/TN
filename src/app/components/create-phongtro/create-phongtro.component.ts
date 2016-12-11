@@ -502,8 +502,6 @@ export class CreatePhongtroComponent implements OnInit {
             this.successMsg = [{
               msg: 'Tạo phòng trọ thành công'
             }, {
-              msg: 'Phòng trọ được đưa vào danh sách chờ phê duyệt'
-            }, {
               msg: 'Chúng tôi sẽ thông báo đến bạn sau 1 ngày'
             }];
             window.scrollTo(0, 300);
