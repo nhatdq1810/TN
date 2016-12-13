@@ -27,8 +27,8 @@ export class PtNotCheckedComponent implements OnInit {
   private isDelete: boolean;
 
   constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) {
-    // this.fakeInit();
-    this.init();
+    this.fakeInit();
+    // this.init();
   }
 
   ngOnInit() {
@@ -160,7 +160,8 @@ export class PtNotCheckedComponent implements OnInit {
 
   acceptPT() {
     if (this.listCheckbox.length > 0) {
-      this.ptService.xetduyetPT(this.listCheckbox, 1)
+      let tmpReason = [];
+      this.ptService.xetduyetPT(this.listCheckbox, tmpReason, 1)
         .then(result => {
           this.toastr.success('Đã duyệt tất cả phòng trọ', 'Thành công !');
           this.init();
@@ -175,16 +176,18 @@ export class PtNotCheckedComponent implements OnInit {
 
   denyPT() {
     if (this.listCheckbox.length > 0) {
-      this.ptService.xetduyetPT(this.listCheckbox, -1)
-        .then(result => {
-          this.toastr.success('Đã hủy chấp nhận phòng trọ', 'Thành công !');
-          this.init();
-        })
-        .catch(err => {
-          console.error(err);
-          this.toastr.error(`Hủy chấp nhận thất bại`, 'Xảy ra lỗi !');
-          this.init();
-        });
+      this.isDelete = false;
+      this.confirmPopup.showPopup();
+      // this.ptService.xetduyetPT(this.listCheckbox, -1)
+      //   .then(result => {
+      //     this.toastr.success('Đã hủy chấp nhận phòng trọ', 'Thành công !');
+      //     this.init();
+      //   })
+      //   .catch(err => {
+      //     console.error(err);
+      //     this.toastr.error(`Hủy chấp nhận thất bại`, 'Xảy ra lỗi !');
+      //     this.init();
+      //   });
     }
   }
 

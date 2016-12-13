@@ -1,0 +1,30 @@
+.modal-body {
+  max-height: 450px;
+  overflow: auto;
+}
+
+.modal-body div p {
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.modal-body div span {
+  font-weight: 700;
+}
+
+.modal-body textarea {
+  display: block;
+  height: 100px;
+  width: 80%;
+  padding: 10px;
+  margin: auto;
+}
+
+.modal-body .col-lg-6.col-md-6.margin-bottom-15 textarea {
+  width: 100%;
+}
+
+.modal-footer .btn-modal {
+  width: 20%;
+}

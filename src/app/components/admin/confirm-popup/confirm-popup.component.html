@@ -9,17 +9,16 @@
         <h2 *ngIf="isDeny" class="modal-title">Lý do không duyệt phòng trọ</h2>
       </div>
       <div *ngIf="info" class="modal-body">
-        <div *ngFor="let item of info">
-          <p>Phòng trọ #{{item.id}}</p>
-          <label [attr.for]="item.id">
-            Lý do:
-            <input type="text" name="reason" [id]="item.id" [(ngModel)]="reason[item.id]">
-          </label>
+        <div class="row">
+          <div [ngClass]="{'col-lg-6 col-md-6 margin-bottom-15': info.length > 1}" *ngFor="let item of info">
+            <p>Phòng trọ <span>#{{item.id}}</span></p>
+            <textarea [(ngModel)]="reason[item.id]" placeholder="Lý do xóa / không duyệt phòng trọ..."></textarea>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
-        <input *ngIf="isDelete" type="button" class="btn-modal left" (click)="deletePT()" name="submit" value="Xác nhận">
-        <input *ngIf="isDeny" type="button" class="btn-modal left" (click)="denyPT()" name="submit" value="Xác nhận">
+        <input *ngIf="isDelete" type="button" class="btn-modal right" (click)="deletePT()" name="submit" value="Xác nhận">
+        <input *ngIf="isDeny" type="button" class="btn-modal right" (click)="denyPT()" name="submit" value="Xác nhận">
       </div>
     </div>
   </div>

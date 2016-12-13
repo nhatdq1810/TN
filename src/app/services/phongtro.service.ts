@@ -406,9 +406,13 @@ export class PhongtroService {
     });
   }
 
-  xetduyetPT(listID, duyet): Promise<any> {
+  xetduyetPT(listPT, listReason, duyet): Promise<any> {
+    let listInfo = {
+      pt: listPT,
+      reason: listReason
+    };
     return new Promise((resolve, reject) => {
-      this.http.put(Constants.apiUrl + `phongtro/duyet/${duyet}`, JSON.stringify(listID), { headers: Constants.headers })
+      this.http.put(Constants.apiUrl + `phongtro/duyet/${duyet}`, JSON.stringify(listInfo), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (!resp.result || resp.result !== 'fail') {

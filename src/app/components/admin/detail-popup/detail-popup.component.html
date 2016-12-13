@@ -13,7 +13,7 @@
           <div class="col-lg-12 col-md-12">
             <div class="row">
               <div class="col-lg-4 col-md-4 info-item left-column">
-                <img class="margin-bottom-15" [src]="info.hinhanh" alt="">
+                <img class="margin-bottom-15" [src]="info.hinhanh" alt="info.diachi">
                 <div class="col-lg-12 col-md-12">
                   <div class="row">
                     <i [ngClass]="{'inactive': info.wifi === 0}" class="col-lg-4 col-md-4 fa fa-wifi"></i>
@@ -109,3 +109,4 @@
     </div>
   </div>
 </div>
+<app-confirm-popup #confirmPopup (popupClose)="confirmPopupClose($event)" [info]="confirmSelectedPT" [isDelete]="isDelete" [isDeny]="!isDelete"></app-confirm-popup>
