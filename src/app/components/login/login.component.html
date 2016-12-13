@@ -6,7 +6,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <button *ngIf="loginForm === 'admin'" type="button" class="btn-modal right" aria-label="Close" (click)="returnHome()">
-          Trang chủ <i class="fa fa-home"></i>
+          <i class="fa fa-home"></i>
         </button>
         <h2 *ngIf="loginForm !== 'nganhang' && !isForgot" class="modal-title">Đăng nhập</h2>
         <h2 *ngIf="loginForm === 'nganhang'" class="modal-title">Tài khoản ngân hàng</h2>

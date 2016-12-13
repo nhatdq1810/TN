@@ -22,6 +22,7 @@ export class PtAcceptComponent implements OnInit {
   private listCheckboxView: Array<boolean> = [];
   private checkAllPT: boolean;
   private selectedPT: any;
+  private isDelete: boolean;
 
   constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) {
     this.init();
@@ -32,6 +33,8 @@ export class PtAcceptComponent implements OnInit {
   }
 
   init() {
+    this.listCheckbox = [];
+    this.listCheckboxView = [];
     this.checkAllPT = false;
     this.ptService.layTatcaPhongtro(1)
       .then(result => {
@@ -85,7 +88,7 @@ export class PtAcceptComponent implements OnInit {
     for (let i = 0; i < this.listPTAcceptView.length; i++) {
       let value = this.listPTAcceptView[i];
       if (this.listCheckboxView[value.id]) {
-        this.listCheckbox.push(value.id);
+        this.listCheckbox.push(value);
       } else {
         this.checkAllPT = false;
       }
@@ -97,10 +100,10 @@ export class PtAcceptComponent implements OnInit {
     this.checkAllPT = this.listPTAcceptView.every((value) => {
       return this.listCheckboxView[value.id] === true;
     });
-    let indexPT = this.listCheckbox.indexOf(pt.id);
+    let indexPT = this.listCheckbox.indexOf(pt);
     if (event) {
       if (indexPT === -1) {
-        this.listCheckbox.push(pt.id);
+        this.listCheckbox.push(pt);
       }
     } else {
       if(indexPT > -1) {
@@ -117,7 +120,7 @@ export class PtAcceptComponent implements OnInit {
     if (valueSet) {
       this.listPTAcceptView.forEach((value) => {
         this.listCheckboxView[value.id] = valueSet;
-        this.listCheckbox.push(value.id);
+        this.listCheckbox.push(value);
       });
     } else {
       this.listPTAcceptView.forEach((value) => {
@@ -128,36 +131,15 @@ export class PtAcceptComponent implements OnInit {
 
   deletePT() {
     if (this.listCheckbox.length > 0) {
-      // for (let i = 0; i < this.listCheckbox.length; i++) {
-      //   this.ptService.adminXoaPhongtro(this.listCheckbox[i], 0)
-      //     .then(result => {
-      //       if (i === (this.listCheckbox.length - 1)) {
-      //         this.init();
-      //       }
-      //       this.toastr.success(`Đã xóa phòng trọ ${this.listCheckbox[i]}`, 'Thành công !');
-      //     })
-      //     .catch(err => {
-      //       console.error(err);
-      //       this.toastr.error(`Xóa thất bại phòng trọ ${this.listCheckbox[i]}`, 'Xảy ra lỗi !');
-      //       this.init();
-      //     });
-      // }
-
+      this.isDelete = true;
+      this.confirmPopup.showPopup();
     }
   }
 
   denyPT() {
     if (this.listCheckbox.length > 0) {
-      // this.ptService.xetduyetPT(this.listCheckbox, -1)
-      //   .then(result => {
-      //     this.toastr.success('Đã hủy chấp nhận phòng trọ', 'Thành công !');
-      //     this.init();
-      //   })
-      //   .catch(err => {
-      //     console.error(err);
-      //     this.toastr.error(`Hủy chấp nhận thất bại`, 'Xảy ra lỗi !');
-      //     this.init();
-      //   });
+      this.isDelete = false;
+      this.confirmPopup.showPopup();
     }
   }
 

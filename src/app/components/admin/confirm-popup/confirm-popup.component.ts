@@ -33,33 +33,27 @@ export class ConfirmPopupComponent implements OnInit {
   }
 
   deletePT() {
-    console.log(this.reason);
-    console.log(this.info);
-    for (let i = 0; i < this.info.length; i++) {
-      this.ptService.adminXoaPhongtro(this.info[i], 0, this.reason[this.info[i].id])
-        .then(result => {
-          this.toastr.success(`Đã xóa phòng trọ ${this.info[i].id}`, 'Thành công !');
-          if(i === this.info.length) {
-            this.closePopup(true);
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          this.closePopup(false);
-          this.toastr.error(`Xóa thất bại phòng trọ ${this.info[i].id}`, 'Xảy ra lỗi !');
-        });
-    }
+    this.ptService.adminXoaPhongtro(this.info, this.reason)
+      .then(result => {
+        this.toastr.success(`Đã xóa các phòng trọ`, 'Thành công !');
+        this.closePopup(true);
+      })
+      .catch(err => {
+        console.error(err);
+        this.closePopup(false);
+        this.toastr.error(`Xóa thất bại các phòng trọ`, 'Xảy ra lỗi !');
+      });
   }
 
   denyPT() {
-    console.log(this.reason);
-    console.log(this.info);
     this.ptService.xetduyetPT(this.info, this.reason, -1)
       .then(result => {
+        this.closePopup(true);
         this.toastr.success('Đã hủy chấp nhận các phòng trọ', 'Thành công !');
       })
       .catch(err => {
         console.error(err);
+        this.closePopup(false);
         this.toastr.error(`Hủy chấp nhận thất bại các phòng trọ`, 'Xảy ra lỗi !');
       });
   }

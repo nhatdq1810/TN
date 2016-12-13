@@ -54,3 +54,4 @@
   </div>
 </div>
 <app-detail-popup #detailPopup (popupClose)="popupClose($event)" [info]="selectedPT" [showAcceptBtn]="false" [showDenyBtn]="true" [showDeleteBtn]="true"></app-detail-popup>
+<app-confirm-popup #confirmPopup (popupClose)="popupClose($event)" [info]="listCheckbox" [isDelete]="isDelete" [isDeny]="!isDelete"></app-confirm-popup>

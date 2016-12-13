@@ -41,10 +41,6 @@ export class DetailPopupComponent implements OnInit {
     this.detailPopup.hide();
   }
 
-  showDetailPT() {
-    window.open(`/phongtro/detail/${this.info.id}`);
-  }
-
   confirmPopupClose(e: any) {
     this.closePopup(e);
   }
@@ -55,22 +51,11 @@ export class DetailPopupComponent implements OnInit {
     this.confirmSelectedPT.push(this.info);
     this.isDelete = true;
     this.confirmPopup.showPopup();
-    // this.ptService.adminXoaPhongtro(this.info.id, 0)
-    //   .then(result => {
-    //     this.closePopup(true);
-    //     this.toastr.success(`Đã xóa phòng trọ ${this.info.id}`, 'Thành công !');
-    //   })
-    //   .catch(err => {
-    //     this.closePopup(false);
-    //     console.error(err);
-    //     this.toastr.error(`Xóa thất bại phòng trọ ${this.info.id}`, 'Xảy ra lỗi !');
-    //   });
   }
 
   acceptPT() {
-    let tmpArray = [this.info];
     let tmpReason = [];
-    this.ptService.xetduyetPT(tmpArray, tmpReason, 1)
+    this.ptService.xetduyetPT(this.confirmSelectedPT, tmpReason, 1)
       .then(result => {
         this.closePopup(true);
         this.toastr.success(`Đã duyệt phòng trọ ${this.info.id}`, 'Thành công !');
@@ -88,17 +73,6 @@ export class DetailPopupComponent implements OnInit {
     this.confirmSelectedPT.push(this.info);
     this.isDelete = false;
     this.confirmPopup.showPopup();
-    // let tmpArray = [this.info.id];
-    // this.ptService.xetduyetPT(tmpArray, -1)
-    //   .then(result => {
-    //     this.closePopup(true);
-    //     this.toastr.success(`Đã hủy chấp nhận phòng trọ ${this.info.id}`, 'Thành công !');
-    //   })
-    //   .catch(err => {
-    //     this.closePopup(false);
-    //     console.error(err);
-    //     this.toastr.error(`Hủy chấp nhận thất bại phòng trọ ${this.info.id}`, 'Xảy ra lỗi !');
-    //   });
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DetailPopupComponent } from '../detail-popup/detail-popup.component';
+import { ConfirmPopupComponent } from '../confirm-popup/confirm-popup.component';
 import { PhongtroService } from '../../../services/phongtro.service';
 import { UserService } from '../../../services/user.service';
 
@@ -14,6 +15,7 @@ let Constants = require('../../../resources/constants');
 export class PtNotAcceptComponent implements OnInit {
 
   @ViewChild('detailPopup') detailPopup: DetailPopupComponent;
+  @ViewChild('confirmPopup') confirmPopup: ConfirmPopupComponent;
   private listCheckbox: Array<any> = [];
   private listCheckboxView: Array<boolean> = [];
   private listUser: Array<any> = [];
@@ -21,6 +23,7 @@ export class PtNotAcceptComponent implements OnInit {
   private listPTNotAcceptView: Array<any> = [];
   private checkAllPT: boolean;
   private selectedPT: any;
+  private isDelete: boolean;
 
   constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) {
     this.init();
@@ -31,6 +34,8 @@ export class PtNotAcceptComponent implements OnInit {
   }
 
   init() {
+    this.listCheckbox = [];
+    this.listCheckboxView = [];
     this.checkAllPT = false;
     this.ptService.layTatcaPhongtro(-1)
       .then(result => {
@@ -85,7 +90,7 @@ export class PtNotAcceptComponent implements OnInit {
     for (let i = 0; i < this.listPTNotAcceptView.length; i++) {
       let value = this.listPTNotAcceptView[i];
       if (this.listCheckboxView[value.id]) {
-        this.listCheckbox.push(value.id);
+        this.listCheckbox.push(value);
       } else {
         this.checkAllPT = false;
       }
@@ -97,10 +102,10 @@ export class PtNotAcceptComponent implements OnInit {
     this.checkAllPT = this.listPTNotAcceptView.every((value) => {
       return this.listCheckboxView[value.id] === true;
     });
-    let indexPT = this.listCheckbox.indexOf(pt.id);
+    let indexPT = this.listCheckbox.indexOf(pt);
     if (event) {
       if (indexPT === -1) {
-        this.listCheckbox.push(pt.id);
+        this.listCheckbox.push(pt);
       }
     } else {
       if(indexPT > -1) {
@@ -117,7 +122,7 @@ export class PtNotAcceptComponent implements OnInit {
     if (valueSet) {
       this.listPTNotAcceptView.forEach((value) => {
         this.listCheckboxView[value.id] = valueSet;
-        this.listCheckbox.push(value.id);
+        this.listCheckbox.push(value);
       });
     } else {
       this.listPTNotAcceptView.forEach((value) => {
@@ -128,20 +133,8 @@ export class PtNotAcceptComponent implements OnInit {
 
   deletePT() {
     if (this.listCheckbox.length > 0) {
-      // for (let i = 0; i < this.listCheckbox.length; i++) {
-      //   this.ptService.adminXoaPhongtro(this.listCheckbox[i], 0)
-      //     .then(result => {
-      //       if (i === (this.listCheckbox.length - 1)) {
-      //         this.init();
-      //       }
-      //       this.toastr.success(`Đã xóa phòng trọ ${this.listCheckbox[i]}`, 'Thành công !');
-      //     })
-      //     .catch(err => {
-      //       console.error(err);
-      //       this.toastr.error(`Xóa thất bại phòng trọ ${this.listCheckbox[i]}`, 'Xảy ra lỗi !');
-      //       this.init();
-      //     });
-      // }
+      this.isDelete = true;
+      this.confirmPopup.showPopup();
     }
   }
 

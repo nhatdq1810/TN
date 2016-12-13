@@ -1,5 +1,9 @@
 .modal-header button.btn-modal {
-  width: 20%;
+  width: 10%;
+}
+
+.modal-header button.btn-modal .fa.fa-home {
+  font-size: 20px;
 }
 
 .login form {

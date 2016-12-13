@@ -245,22 +245,6 @@ export class PhongtroService {
     });
   }
 
-  adminXoaPhongtro(pt, duyet, lydo): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.http.post(Constants.apiUrl + `phongtro/${pt.id}/user/${pt.userID}/admin?duyet=${duyet}`, JSON.stringify(lydo),{ headers: Constants.headers })
-        .map((resp: Response) => resp.json())
-        .subscribe(resp => {
-          if (!resp.result || resp.result !== 'fail') {
-            resolve(resp);
-          } else {
-            this.handleError('adminXoaPhongtro', resp.result);
-            reject(resp.result);
-          }
-        },
-        err => this.handleError('adminXoaPhongtro', err));
-    });
-  }
-
   thichPhongtro(id, userID): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.put(Constants.apiUrl + 'phongtro/' + id + '/like/user/' + userID, { headers: Constants.headers })
@@ -406,10 +390,30 @@ export class PhongtroService {
     });
   }
 
+  adminXoaPhongtro(listPT, listReason): Promise<any> {
+    let listInfo = {
+      listPT: listPT,
+      listReason: listReason
+    };
+    return new Promise((resolve, reject) => {
+      this.http.post(Constants.apiUrl + `phongtro/admin/xoa`, JSON.stringify(listInfo), { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          if (resp.result !== 'fail') {
+            resolve(resp.result);
+          } else {
+            this.handleError('adminXoaPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        err => this.handleError('adminXoaPhongtro', err));
+    });
+  }
+
   xetduyetPT(listPT, listReason, duyet): Promise<any> {
     let listInfo = {
-      pt: listPT,
-      reason: listReason
+      listPT: listPT,
+      listReason: listReason
     };
     return new Promise((resolve, reject) => {
       this.http.put(Constants.apiUrl + `phongtro/duyet/${duyet}`, JSON.stringify(listInfo), { headers: Constants.headers })

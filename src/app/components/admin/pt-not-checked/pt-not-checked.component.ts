@@ -23,18 +23,19 @@ export class PtNotCheckedComponent implements OnInit {
   private listCheckboxView: Array<boolean> = [];
   private checkAllPT: boolean;
   private selectedPT: any;
-  private confirmSelectedPT: Array<any> = [];
   private isDelete: boolean;
 
   constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) {
-    this.fakeInit();
-    // this.init();
+    // this.fakeInit();
+    this.init();
   }
 
   ngOnInit() {
   }
 
   init() {
+    this.listCheckbox = [];
+    this.listCheckboxView = [];
     this.checkAllPT = false;
     this.ptService.layTatcaPhongtro(0)
       .then(result => {
@@ -71,18 +72,13 @@ export class PtNotCheckedComponent implements OnInit {
     this.checkAllPT = this.listPTNotCheckedView.every((value) => {
       return this.listCheckboxView[value.id] === true;
     });
-    let indexPT = this.listCheckbox.indexOf(pt.id);
+    let indexPT = this.listCheckbox.indexOf(pt);
     if (event) {
       if (indexPT === -1) {
-        this.confirmSelectedPT.push(pt);
-        this.listCheckbox.push(pt.id);
+        this.listCheckbox.push(pt);
       }
     } else {
       if(indexPT > -1) {
-        let tmpIndex = this.confirmSelectedPT.indexOf(pt);
-        if(tmpIndex > -1) {
-          this.confirmSelectedPT.splice(tmpIndex, 1);
-        }
         this.listCheckbox.splice(indexPT, 1);
       }
     }
@@ -94,12 +90,10 @@ export class PtNotCheckedComponent implements OnInit {
     });
 
     this.listCheckbox = [];
-    this.confirmSelectedPT = [];
     if (valueSet) {
       this.listPTNotCheckedView.forEach((value) => {
         this.listCheckboxView[value.id] = valueSet;
-        this.confirmSelectedPT.push(value);
-        this.listCheckbox.push(value.id);
+        this.listCheckbox.push(value);
       });
     } else {
       this.listPTNotCheckedView.forEach((value) => {
@@ -130,7 +124,7 @@ export class PtNotCheckedComponent implements OnInit {
     for (let i = 0; i < this.listPTNotCheckedView.length; i++) {
       let value = this.listPTNotCheckedView[i];
       if (this.listCheckboxView[value.id]) {
-        this.listCheckbox.push(value.id);
+        this.listCheckbox.push(value);
       } else {
         this.checkAllPT = false;
       }
@@ -141,20 +135,6 @@ export class PtNotCheckedComponent implements OnInit {
     if(this.listCheckbox.length > 0) {
       this.isDelete = true;
       this.confirmPopup.showPopup();
-      // for (let i = 0; i < this.listCheckbox.length; i++) {
-      //   this.ptService.adminXoaPhongtro(this.listCheckbox[i], 0)
-      //     .then(result => {
-      //       if(i === (this.listCheckbox.length - 1)) {
-      //         this.init();
-      //       }
-      //       this.toastr.success(`Đã xóa phòng trọ ${this.listCheckbox[i]}`, 'Thành công !');
-      //     })
-      //     .catch(err => {
-      //       console.error(err);
-      //       this.toastr.error(`Xóa thất bại phòng trọ ${this.listCheckbox[i]}`, 'Xảy ra lỗi !');
-      //       this.init();
-      //     });
-      // }
     }
   }
 
@@ -178,16 +158,6 @@ export class PtNotCheckedComponent implements OnInit {
     if (this.listCheckbox.length > 0) {
       this.isDelete = false;
       this.confirmPopup.showPopup();
-      // this.ptService.xetduyetPT(this.listCheckbox, -1)
-      //   .then(result => {
-      //     this.toastr.success('Đã hủy chấp nhận phòng trọ', 'Thành công !');
-      //     this.init();
-      //   })
-      //   .catch(err => {
-      //     console.error(err);
-      //     this.toastr.error(`Hủy chấp nhận thất bại`, 'Xảy ra lỗi !');
-      //     this.init();
-      //   });
     }
   }
 
