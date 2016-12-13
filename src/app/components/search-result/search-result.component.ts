@@ -38,12 +38,6 @@ export class SearchResultComponent implements OnInit {
 
   }
 
-  initListPT() {
-    this.ptService.layPhongtroHot(7).then(resp => {
-      this.listPT = resp;
-    });
-  }
-
   initSearchTerm() {
     this.complexForm = this.fb.group({
       'loaiPhong': 2,
