@@ -14,8 +14,9 @@ export class ConfirmPopupComponent implements OnInit {
   @Output() popupClose = new EventEmitter();
   @Input() info: Array<any>;
   @Input() isDelete: boolean;
-  @Input() isDeny: boolean;
+  @Input() isUser: boolean;
   private reason: Array<string> = [];
+  private hintReason: Array<string> = [];
 
   constructor(private toastr: ToastsManager, private ptService: PhongtroService) { }
 
@@ -24,6 +25,7 @@ export class ConfirmPopupComponent implements OnInit {
 
   showPopup() {
     this.reason = [];
+    this.hintReason = ['Địa chỉ', 'Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích', 'Số phòng còn trống', 'Wifi', 'Ở với chủ', 'Ghi chú'];
     this.confirmPopup.show();
   }
 

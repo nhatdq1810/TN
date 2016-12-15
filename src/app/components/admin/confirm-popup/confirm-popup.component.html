@@ -5,20 +5,23 @@
         <button type="button" class="close" aria-label="Close" (click)="closePopup()">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h2 *ngIf="isDelete" class="modal-title">Lý do xóa phòng trọ</h2>
-        <h2 *ngIf="isDeny" class="modal-title">Lý do không duyệt phòng trọ</h2>
+        <h2 *ngIf="isDelete && !isUser" class="modal-title">Lý do xóa phòng trọ</h2>
+        <h2 *ngIf="!isDelete && !isUser" class="modal-title">Lý do không duyệt phòng trọ</h2>
+        <h2 *ngIf="isUser" class="modal-title">Lý do xóa user</h2>
       </div>
       <div *ngIf="info" class="modal-body">
         <div class="row">
           <div [ngClass]="{'col-lg-6 col-md-6 margin-bottom-15': info.length > 1}" *ngFor="let item of info">
-            <p>Phòng trọ <span>#{{item.id}}</span></p>
-            <textarea [(ngModel)]="reason[item.id]" placeholder="Lý do xóa / không duyệt phòng trọ..."></textarea>
+            <p *ngIf="!isUser">Phòng trọ <span>#{{item.id}}</span></p>
+            <p *ngIf="isUser">User <span>{{item.username}}</span></p>
+            <textarea *ngIf="!isUser" [(ngModel)]="reason[item.id]" rows="3" placeholder="Lý do xóa / không duyệt phòng trọ..."></textarea>
+            <textarea *ngIf="isUser" [(ngModel)]="reason[item.id]" rows="3" placeholder="Lý do xóa user..."></textarea>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <input *ngIf="isDelete" type="button" class="btn-modal right" (click)="deletePT()" name="submit" value="Xác nhận">
-        <input *ngIf="isDeny" type="button" class="btn-modal right" (click)="denyPT()" name="submit" value="Xác nhận">
+        <input *ngIf="!isDelete" type="button" class="btn-modal right" (click)="denyPT()" name="submit" value="Xác nhận">
       </div>
     </div>
   </div>

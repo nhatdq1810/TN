@@ -43,7 +43,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   private options: any;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
-    // this.isLogin = true;
+    this.isLogin = true;
   }
 
   ngOnInit() {

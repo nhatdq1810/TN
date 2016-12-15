@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DetailPopupComponent } from '../detail-popup/detail-popup.component';
+import { ConfirmPopupComponent } from '../confirm-popup/confirm-popup.component';
 import { UserService } from '../../../services/user.service';
 
 let Constants = require('../../../resources/constants');
@@ -13,6 +14,7 @@ let Constants = require('../../../resources/constants');
 export class ListUserComponent implements OnInit {
 
   @ViewChild('detailPopup') detailPopup: DetailPopupComponent;
+  @ViewChild('confirmPopup') confirmPopup: ConfirmPopupComponent;
   private listUser: Array<any> = [];
   private listUserView: Array<any> = [];
   private checkAllUser: boolean;
@@ -124,6 +126,12 @@ export class ListUserComponent implements OnInit {
             this.init();
           });
       }
+    }
+  }
+
+  popupClose(e: any) {
+    if (e) {
+      this.init();
     }
   }
 }

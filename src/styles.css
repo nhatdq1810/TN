@@ -418,7 +418,7 @@ accordion-group.panel-open .panel-title {
 }
 
 .select-month select {
-  width: 300px;
+  width: 290px;
   margin: 10px 20px;
   padding-left: 25px;
 }
@@ -460,7 +460,7 @@ accordion-group.panel-open .panel-title {
 }
 
 .custom-table .table-content tbody {
-  max-height: 300px;
+  max-height: 400px;
   display: block;
   overflow: auto;
 }

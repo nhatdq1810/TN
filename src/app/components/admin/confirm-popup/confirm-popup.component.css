@@ -1,5 +1,5 @@
 .modal-body {
-  max-height: 450px;
+  max-height: 500px;
   overflow: auto;
 }
 
@@ -15,7 +15,6 @@
 
 .modal-body textarea {
   display: block;
-  height: 100px;
   width: 80%;
   padding: 10px;
   margin: auto;

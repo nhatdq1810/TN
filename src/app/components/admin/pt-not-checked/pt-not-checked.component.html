@@ -49,10 +49,10 @@
         <span>Chọn tất cả</span>
         <input type="checkbox" (click)="checkAll()" [(ngModel)]="checkAllPT">
       </div>
+      <input type="button" class="btn-modal right delete-btn" [disabled]="listCheckbox.length === 0" (click)="acceptPT()" name="submit" value="Duyệt">
       <input type="button" class="btn-modal right deny-btn" [disabled]="listCheckbox.length === 0" (click)="denyPT()" name="submit" value="Không duyệt">
-      <input type="button" class="btn-modal right" [disabled]="listCheckbox.length === 0" (click)="acceptPT()" name="submit" value="Duyệt">
     </div>
   </div>
 </div>
 <app-detail-popup #detailPopup (popupClose)="popupClose($event)" [info]="selectedPT" [showAcceptBtn]="true" [showDenyBtn]="true" [showDeleteBtn]="true"></app-detail-popup>
-<app-confirm-popup #confirmPopup (popupClose)="popupClose($event)" [info]="listCheckbox" [isDelete]="isDelete" [isDeny]="!isDelete"></app-confirm-popup>
+<app-confirm-popup #confirmPopup (popupClose)="popupClose($event)" [info]="listCheckbox" [isDelete]="isDelete"></app-confirm-popup>
