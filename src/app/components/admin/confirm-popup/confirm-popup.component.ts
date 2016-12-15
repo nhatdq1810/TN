@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angu
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { PhongtroService } from '../../../services/phongtro.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-confirm-popup',
@@ -18,7 +19,7 @@ export class ConfirmPopupComponent implements OnInit {
   private reason: Array<string> = [];
   private hintReason: Array<string> = [];
 
-  constructor(private toastr: ToastsManager, private ptService: PhongtroService) { }
+  constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -57,6 +58,24 @@ export class ConfirmPopupComponent implements OnInit {
         console.error(err);
         this.closePopup(false);
         this.toastr.error(`Hủy chấp nhận thất bại các phòng trọ`, 'Xảy ra lỗi !');
+      });
+  }
+
+  deleteUser() {
+    this.userService.xoaUser(this.info, this.reason)
+      .then(result => {
+        if(result === 'fail') {
+          this.closePopup(false);
+          this.toastr.error(`Xóa thất bại các user`, 'Xảy ra lỗi !');
+        } else {
+          this.closePopup(true);
+          this.toastr.success(`Đã xóa các user`, 'Thành công !');
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        this.closePopup(false);
+        this.toastr.error(`Xóa thất bại các user`, 'Xảy ra lỗi !');
       });
   }
 }

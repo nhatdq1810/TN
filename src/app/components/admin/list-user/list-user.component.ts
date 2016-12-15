@@ -65,7 +65,7 @@ export class ListUserComponent implements OnInit {
     for (let i = 0; i < this.listUserView.length; i++) {
       let value = this.listUserView[i];
       if (this.listCheckboxView[value.id]) {
-        this.listCheckbox.push(value.id);
+        this.listCheckbox.push(value);
       } else {
         this.checkAllUser = false;
       }
@@ -77,10 +77,10 @@ export class ListUserComponent implements OnInit {
     this.checkAllUser = this.listUserView.every((value) => {
       return this.listCheckboxView[value.id] === true;
     });
-    let indexUser = this.listCheckbox.indexOf(user.id);
+    let indexUser = this.listCheckbox.indexOf(user);
     if (event) {
       if (indexUser === -1) {
-        this.listCheckbox.push(user.id);
+        this.listCheckbox.push(user);
       }
     } else {
       if(indexUser > -1) {
@@ -97,7 +97,7 @@ export class ListUserComponent implements OnInit {
     if (valueSet) {
       this.listUserView.forEach((value) => {
         this.listCheckboxView[value.id] = valueSet;
-        this.listCheckbox.push(value.id);
+        this.listCheckbox.push(value);
       });
     } else {
       this.listUserView.forEach((value) => {
@@ -108,24 +108,7 @@ export class ListUserComponent implements OnInit {
 
   deleteUser() {
     if (this.listCheckbox.length > 0) {
-      for (let i = 0; i < this.listCheckbox.length; i++) {
-        this.userService.xoaUser(this.listCheckbox[i])
-          .then(result => {
-            if(result === 'fail') {
-              this.toastr.error(`Xóa thất bại user ${this.listCheckbox[i]}`, 'Xảy ra lỗi !');
-            } else {
-              this.toastr.success(`Đã xóa user ${this.listCheckbox[i]}`, 'Thành công !');
-            }
-            if (i === (this.listCheckbox.length - 1)) {
-              this.init();
-            }
-          })
-          .catch(err => {
-            console.error(err);
-            this.toastr.error(`Xóa thất bại user ${this.listCheckbox[i]}`, 'Xảy ra lỗi !');
-            this.init();
-          });
-      }
+      this.confirmPopup.showPopup();
     }
   }
 

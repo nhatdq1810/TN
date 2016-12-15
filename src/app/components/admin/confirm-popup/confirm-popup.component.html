@@ -5,9 +5,9 @@
         <button type="button" class="close" aria-label="Close" (click)="closePopup()">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h2 *ngIf="isDelete && !isUser" class="modal-title">Lý do xóa phòng trọ</h2>
-        <h2 *ngIf="!isDelete && !isUser" class="modal-title">Lý do không duyệt phòng trọ</h2>
-        <h2 *ngIf="isUser" class="modal-title">Lý do xóa user</h2>
+        <h2 *ngIf="isDelete && !isUser" class="modal-title">Xác nhận xóa phòng trọ</h2>
+        <h2 *ngIf="!isDelete && !isUser" class="modal-title">Xác nhận không duyệt phòng trọ</h2>
+        <h2 *ngIf="isUser" class="modal-title">Xác nhận xóa user</h2>
       </div>
       <div *ngIf="info" class="modal-body">
         <div class="row">
@@ -20,8 +20,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <input *ngIf="isDelete" type="button" class="btn-modal right" (click)="deletePT()" name="submit" value="Xác nhận">
-        <input *ngIf="!isDelete" type="button" class="btn-modal right" (click)="denyPT()" name="submit" value="Xác nhận">
+        <input *ngIf="isDelete && isUser" type="button" class="btn-modal right" (click)="deletePT()" name="submit" value="Xác nhận">
+        <input *ngIf="!isDelete && !isUser" type="button" class="btn-modal right" (click)="denyPT()" name="submit" value="Xác nhận">
+        <input *ngIf="isUser" type="button" class="btn-modal right" (click)="deleteUser()" name="submit" value="Xác nhận">
       </div>
     </div>
   </div>

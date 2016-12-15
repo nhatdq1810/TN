@@ -162,9 +162,13 @@ export class UserService {
     });
   }
 
-  xoaUser(id): Promise<any> {
+  xoaUser(listUser, listReason): Promise<any> {
+    let listInfo = {
+      listUser: listUser,
+      listReason: listReason
+    }
     return new Promise((resolve, reject) => {
-      this.http.delete(Constants.apiUrl + `user/${id}`, { headers: Constants.headers })
+      this.http.post(Constants.apiUrl + `user/xoa`, JSON.stringify(listInfo),{ headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           if (resp.result && resp.result === 'success') {
