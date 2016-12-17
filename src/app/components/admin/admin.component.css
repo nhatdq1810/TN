@@ -192,3 +192,13 @@
 .statistics .tile-stats-count:first-of-type:before {
   border-left: none;
 }
+
+.logout-form h2 {
+  text-align: center;
+  color: red;
+}
+
+.btn-modal {
+  font-size: 20px;
+  width: 120px;
+}

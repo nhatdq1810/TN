@@ -75,13 +75,12 @@
   padding: 10px;
 }
 
-.logout-form p {
+.logout-form h2 {
   text-align: center;
-  color: #c7254e;
-  font-size: 36px;
+  color: red;
 }
 
 .btn-modal {
   font-size: 20px;
-  width: 150px;
+  width: 120px;
 }
