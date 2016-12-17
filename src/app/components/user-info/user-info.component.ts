@@ -24,7 +24,6 @@ export class UserInfoComponent implements OnInit {
   private successMsg: Array<Object>;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService) {
-    // this.fakeInit();
     this.init();
   }
 
@@ -188,23 +187,4 @@ export class UserInfoComponent implements OnInit {
       this.successMsg.splice(0, 1);
     }
   }
-
-  fakeInit() {
-    this.route.params.forEach((params: Params) => {
-      this.formInfo = params['formInfo'];
-    });
-    this.user = Constants.fakeUser;
-    this.complexForm = this.fb.group({
-      'password': ['', Validators.required],
-      'hoten': [this.user.hoten, Validators.required],
-      'email': [this.user.email, Validators.required],
-      'diachi': this.user.diachi,
-      'sodt': this.user.sodt,
-      'facebook': this.user.facebook,
-      'skype': this.user.skype,
-      'oldPassword': ['', Validators.required],
-      'rePassword': ''
-    });
-  }
-
 }

@@ -19,6 +19,7 @@ export class ConfirmPopupComponent implements OnInit {
   private reason: Array<string> = [];
   private isReasonEmpty: Array<any> = [];
   private errorMsg: Array<any> = [];
+  private msg: string;
   private isError: boolean;
 
   constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) { }
@@ -32,8 +33,12 @@ export class ConfirmPopupComponent implements OnInit {
     this.errorMsg = [{
       msg: ''
     }];
+    if (this.isUser) {
+      this.msg = 'User ';
+    } else {
+      this.msg = 'Phòng trọ ';
+    }
     this.isError = false;
-    // this.hintReason = ['Địa chỉ', 'Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích', 'Số phòng còn trống', 'Wifi', 'Ở với chủ', 'Ghi chú'];
     this.confirmPopup.show();
   }
 
@@ -48,78 +53,42 @@ export class ConfirmPopupComponent implements OnInit {
 
   deletePT() {
     let listInfo = [];
-    let msg = '';
-    if(this.isUser) {
-      msg = 'User ';
-    } else {
-      msg = 'Phòng trọ ';
-    }
     for (let i = 0; i < this.info.length; i++) {
       if (this.reason[this.info[i].id] && this.reason[this.info[i].id] !== '') {
         listInfo.push(this.info[i]);
       } else {
         this.isReasonEmpty.push(this.info[i].id);
-        if(this.isUser) {
-          if(i === (this.info.length - 1)) {
-            msg += `${this.info[i].username}`;
-          } else {
-            msg += `${this.info[i].username}, `;
-          }
+        if (i === (this.info.length - 1)) {
+          this.msg += `${this.info[i].id}`;
         } else {
-          if (i === (this.info.length - 1)) {
-            msg += `${this.info[i].id}`;
-          } else {
-            msg += `${this.info[i].id}, `;
-          }
+          this.msg += `${this.info[i].id}, `;
         }
       }
     }
-    for (let i = 0; i < listInfo.length; i++) {
-      this.info.splice(this.info.indexOf(listInfo[i]), 1);
-    }
-    if(this.info.length !== 0) {
-      this.isError = true;
-      if (this.isUser) {
-        this.errorMsg = [{
-          msg: msg
-        },{
-          msg: 'Không có lý dó để xóa user'
-        }];
-      } else {
-        this.errorMsg = [{
-          msg: msg
-        },{
-          msg: 'Không có lý dó để xóa / hủy duyệt phòng trọ'
-        }];
-      }
-    }
 
-    // this.ptService.adminXoaPhongtro(listInfo, this.reason)
-    //   .then(result => {
-    //     this.toastr.success(`Đã xóa các phòng trọ`, 'Thành công !');
-    //     for (let i = 0; i < listInfo.length; i++) {
-    //       this.info.splice(this.info.indexOf(listInfo[i]), 1);
-    //     }
-    //     if(this.info.length === 0) {
-    //       this.closePopup(true);
-    //     } else {
-    //       this.isError = true;
-    //       if(this.isUser) {
-    //         this.errorMsg = [{
-    //           msg: 'Không có lý dó để xóa user'
-    //         }];
-    //       } else {
-    //         this.errorMsg = [{
-    //           msg: 'Không có lý dó để xóa / hủy duyệt phòng trọ'
-    //         }];
-    //       }
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //     this.closePopup(false);
-    //     this.toastr.error(`Xóa thất bại các phòng trọ`, 'Xảy ra lỗi !');
-    //   });
+    this.ptService.adminXoaPhongtro(listInfo, this.reason)
+      .then(result => {
+        this.toastr.success(`Đã xóa các phòng trọ`, 'Thành công !');
+        for (let i = 0; i < listInfo.length; i++) {
+          this.info.splice(this.info.indexOf(listInfo[i]), 1);
+        }
+        if(this.info.length === 0) {
+          this.isError = false;
+          this.closePopup(true);
+        } else {
+          this.isError = true;
+          this.errorMsg = [{
+            msg: this.msg
+          }, {
+            msg: 'Không có lý do để xóa các phòng trọ'
+          }];
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        this.closePopup(false);
+        this.toastr.error(`Xóa thất bại các phòng trọ`, 'Xảy ra lỗi !');
+      });
   }
 
   denyPT() {
@@ -129,6 +98,11 @@ export class ConfirmPopupComponent implements OnInit {
         listInfo.push(this.info[i]);
       } else {
         this.isReasonEmpty.push(this.info[i].id);
+        if (i === (this.info.length - 1)) {
+          this.msg += `${this.info[i].id}`;
+        } else {
+          this.msg += `${this.info[i].id}, `;
+        }
       }
     }
     this.ptService.xetduyetPT(this.info, this.reason, -1)
@@ -137,8 +111,16 @@ export class ConfirmPopupComponent implements OnInit {
         for (let i = 0; i < listInfo.length; i++) {
           this.info.splice(this.info.indexOf(listInfo[i]), 1);
         }
-        if(this.info.length === 0) {
+        if (this.info.length === 0) {
+          this.isError = false;
           this.closePopup(true);
+        } else {
+          this.isError = true;
+          this.errorMsg = [{
+            msg: this.msg
+          }, {
+            msg: 'Không có lý do để hủy chấp nhận các phòng trọ'
+          }];
         }
       })
       .catch(err => {
@@ -155,6 +137,11 @@ export class ConfirmPopupComponent implements OnInit {
         listInfo.push(this.info[i]);
       } else {
         this.isReasonEmpty.push(this.info[i].id);
+        if (i === (this.info.length - 1)) {
+          this.msg += `${this.info[i].username}`;
+        } else {
+          this.msg += `${this.info[i].username}, `;
+        }
       }
     }
     this.userService.xoaUser(this.info, this.reason)
@@ -168,7 +155,15 @@ export class ConfirmPopupComponent implements OnInit {
             this.info.splice(this.info.indexOf(listInfo[i]), 1);
           }
           if (this.info.length === 0) {
+            this.isError = false;
             this.closePopup(true);
+          } else {
+            this.isError = true;
+            this.errorMsg = [{
+              msg: this.msg
+            }, {
+              msg: 'Không có lý do để xóa các user'
+            }];
           }
         }
       })

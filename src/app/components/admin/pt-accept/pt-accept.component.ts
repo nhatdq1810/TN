@@ -26,7 +26,6 @@ export class PtAcceptComponent implements OnInit {
 
   constructor(private toastr: ToastsManager, private ptService: PhongtroService, private userService: UserService) {
     this.init();
-    // this.fakeInit();
   }
 
   ngOnInit() {
@@ -148,13 +147,4 @@ export class PtAcceptComponent implements OnInit {
       this.init();
     }
   }
-
-  fakeInit() {
-    this.checkAllPT = false;
-    this.listPTAccept = Constants.fakeListPT;
-    for (let i = 0; i < this.listPTAccept.length; ++i) {
-      this.listCheckboxView[i] = false;
-    }
-  }
-
 }

@@ -22,14 +22,12 @@ export class PhongtroUserComponent implements OnInit {
 
   constructor(private userService: UserService, private ptService: PhongtroService, private router: Router) {
     this.init();
-    // this.fakeInit();
   }
 
   ngOnInit() {
     this.userService.checkLoggedIn.subscribe(result => {
       if(result) {
         this.init();
-        // this.fakeInit();
       }
     })
   }
@@ -122,10 +120,4 @@ export class PhongtroUserComponent implements OnInit {
   closeAlert() {
     this.successMsg.splice(0, 1);
   }
-
-  fakeInit() {
-    this.listPT = Constants.fakeListPT;
-    this.userService.user = Constants.fakeUser;
-  }
-
 }

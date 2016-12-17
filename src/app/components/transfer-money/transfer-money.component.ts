@@ -29,7 +29,6 @@ export class TransferMoneyComponent implements OnInit {
   private ngay;
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private ptService: PhongtroService, private userService: UserService, private nghService: NganhangService, private gdService: GiaodichService) {
-    // this.fakeInit();
     this.init();
   }
 
@@ -81,23 +80,5 @@ export class TransferMoneyComponent implements OnInit {
 
   goBack() {
     this.router.navigate([`/phongtro/detail/${this.phongtro.id}`]);
-  }
-
-  fakeInit() {
-    this.typeTiencoc = 0;
-    this.ngay = Constants.getCurrentDate();
-    this.phongtro = Constants.fakePT;
-    this.ngh_gui = Constants.fakeNgh;
-    this.ngh_nhan = {
-      cmnd: '111222333',
-      diachi: '123 abc',
-      hoten: 'abc',
-      id: '2248273829182',
-      password: '123454',
-      sodt: '0123456789',
-      tien: 0,
-      username: 'bbb',
-      counter: 1
-    };
   }
 }

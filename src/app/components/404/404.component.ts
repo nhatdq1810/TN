@@ -19,7 +19,6 @@ export class Error404Component implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.init();
-      // this.fakeInit();
     })
   }
 
@@ -52,9 +51,4 @@ export class Error404Component implements OnInit {
     this.ptService.searchTerm = undefined;
     this.ptService.listPT = [];
   }
-
-  fakeInit() {
-    this.deals = Constants.fakeListPT.splice(0, 4);
-  }
-
 }

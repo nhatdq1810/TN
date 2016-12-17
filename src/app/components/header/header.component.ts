@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
   private user: any;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
-    // this.fakeInit();
     this.init();
   }
 
@@ -41,12 +40,4 @@ export class HeaderComponent implements OnInit {
       return false;
     }
   }
-
-  fakeInit() {
-    this.isLoggedIn = true;
-    this.user = {
-      id: 1
-    };
-  }
-
 }

@@ -28,7 +28,6 @@ export class FormValidationComponent implements OnInit {
       'gioitinh': ''
     });
     this.sliderValue = [500000, 5000000];
-    // this.fakeInit();
     this.ptService.layDulieuTimkiemPhongtro()
       .then(result => {
         if (result === 'success') {
@@ -59,10 +58,4 @@ export class FormValidationComponent implements OnInit {
     this.ptService.listPT = [];
     this.router.navigate(['/search/result']);
   }
-
-  fakeInit() {
-    this.listTruong = ['hvcnbcvt', 'học viện cn bc-vt', 'đại học hoa sen', 'ueh', 'ptit'];
-    this.listNganh = ['viễn thông', 'cntt', 'qtkd', 'kế toán'];
-  }
-
 }

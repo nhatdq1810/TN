@@ -149,11 +149,4 @@ export class CommentsComponent implements OnInit {
         });
     }
   }
-
-  fakeInit() {
-    this.listCmtUserLike = [true, false, false, true, true, false];
-    this.listCmt = Constants.fakeListCmt;
-    this.listUser = Constants.fakeListUser;
-  }
-
 }

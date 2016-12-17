@@ -60,7 +60,7 @@
         <img *ngIf="previewData" [src]="previewData" alt="Preview Data" class="img-preview">
         <div class="input-btn">
           <input type="file" id="hinhanh-phongtro" ngFileSelect *ngIf="!previewData" [options]="options" (change)="fileChangeListener($event)" (onPreviewData)="handlePreviewData($event)" [events]="uploadEvents">
-          <button *ngIf="previewData" (click)="cropImage.show();" class="fa fa-crosshairs btn-modal">Chỉnh sửa ảnh</button>
+          <!-- <button *ngIf="previewData" (click)="cropImage.show();" class="fa fa-crosshairs btn-modal">Chỉnh sửa ảnh</button> -->
           <button *ngIf="previewData" (click)="deleteImage()" class="fa fa-times btn-modal">Xóa</button>
         </div>
         <div *ngIf="!hasHinhanh">
@@ -242,7 +242,7 @@
     </form>
   </div>
 </div>
-<div bsModal #cropImage="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- <div bsModal #cropImage="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
@@ -256,4 +256,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

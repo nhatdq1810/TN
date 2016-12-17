@@ -18,8 +18,8 @@ let Constants = require('../../resources/constants');
 })
 export class CreatePhongtroComponent implements OnInit {
 
-  @ViewChild('cropImage') cropImage: ModalDirective;
-  @ViewChild('cropper') cropper: ImageCropperComponent;
+  // @ViewChild('cropImage') cropImage: ModalDirective;
+  // @ViewChild('cropper') cropper: ImageCropperComponent;
   private hasBaseDropZoneOver: boolean = false;
   private options: any;
   private previewData: any;
@@ -55,8 +55,8 @@ export class CreatePhongtroComponent implements OnInit {
   private nganh: string = '';
   private listKhoa;
   private khoa: string = '';
-  private data1: any;
-  private cropperSettings1: CropperSettings;
+  // private data1: any;
+  // private cropperSettings1: CropperSettings;
 
   constructor(private route: ActivatedRoute, private http: Http, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
   }
@@ -64,7 +64,6 @@ export class CreatePhongtroComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.init();
-      // this.fakeInit();
     });
   }
 
@@ -119,23 +118,23 @@ export class CreatePhongtroComponent implements OnInit {
   }
 
   init() {
-    this.cropperSettings1 = new CropperSettings();
-    this.cropperSettings1.width = 850;
-    this.cropperSettings1.height = 450;
+    // this.cropperSettings1 = new CropperSettings();
+    // this.cropperSettings1.width = 850;
+    // this.cropperSettings1.height = 450;
 
-    this.cropperSettings1.canvasWidth = 868;
-    this.cropperSettings1.canvasHeight = 450;
+    // this.cropperSettings1.canvasWidth = 868;
+    // this.cropperSettings1.canvasHeight = 450;
 
-    this.cropperSettings1.minWidth = 850;
-    this.cropperSettings1.minHeight = 450;
+    // this.cropperSettings1.minWidth = 850;
+    // this.cropperSettings1.minHeight = 450;
 
-    this.cropperSettings1.rounded = false;
-    this.cropperSettings1.noFileInput = true;
+    // this.cropperSettings1.rounded = false;
+    // this.cropperSettings1.noFileInput = true;
 
-    this.cropperSettings1.cropperDrawSettings.strokeColor = '#fcdd44';
-    this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
+    // this.cropperSettings1.cropperDrawSettings.strokeColor = '#fcdd44';
+    // this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
 
-    this.data1 = {};
+    // this.data1 = {};
     this.infoWindowOpen = false;
     this.ptService.layDulieuTimkiemPhongtro()
       .then(result => {
@@ -538,32 +537,33 @@ export class CreatePhongtroComponent implements OnInit {
   }
 
   fileChangeListener($event: any) {
-    let image: any = new Image();
-    if($event.target) {
-      let file: File = $event.target.files[0];
-      let myReader: FileReader = new FileReader();
-      let that = this;
-      myReader.onloadend = function(loadEvent: any) {
-        image.src = loadEvent.target.result;
-        that.cropper.setImage(image);
-      };
-      myReader.readAsDataURL(file);
-    } else {
-      image.crossOrigin = "Anonymous";
-      image.src = $event;
-      this.cropper.setImage(image);
-    }
+    console.log($event);
+    // let image: any = new Image();
+    // if($event.target) {
+    //   let file: File = $event.target.files[0];
+    //   let myReader: FileReader = new FileReader();
+    //   let that = this;
+    //   myReader.onloadend = function(loadEvent: any) {
+    //     image.src = loadEvent.target.result;
+    //     that.cropper.setImage(image);
+    //   };
+    //   myReader.readAsDataURL(file);
+    // } else {
+    //   image.crossOrigin = "Anonymous";
+    //   image.src = $event;
+    //   this.cropper.setImage(image);
+    // }
   }
 
-  cropDone() {
-    console.log(this.data1);
-    this.previewData = this.data1.image;
-    this.cropImage.hide();
-  }
+  // cropDone() {
+  //   console.log(this.data1);
+  //   this.previewData = this.data1.image;
+  //   this.cropImage.hide();
+  // }
 
   handlePreviewData(data: any): void {
     this.previewData = data;
-    this.cropImage.show();
+    // this.cropImage.show();
   }
 
   startUpload() {
@@ -591,143 +591,6 @@ export class CreatePhongtroComponent implements OnInit {
       if (!isNaN(e)) {
         this.formValue[type] = e;
       }
-    }
-  }
-
-  fakeInit() {
-    this.listTruong = ['hvcnbcvt', 'học viện cn bc-vt', 'đại học hoa sen', 'ueh', 'ptit'];
-    this.listNganh = ['viễn thông', 'cntt', 'qtkd', 'kế toán'];
-    this.listKhoa = ['2012', '2013', '2010'];
-    this.formValue = {
-      giatien: 1000000,
-      giatienTheoNguoi: 0,
-      tiencoc: 0,
-      tiencocTheoNguoi: 0,
-      dientich: 0,
-      sophong: 0
-    };
-    this.ptDiachi = {
-      sonha: '',
-      phuong: '',
-      quan: '',
-      tp: ''
-    };
-    this.getLatLng('Hồ Chí Minh');
-    this.route.params.forEach((params: Params) => {
-      this.formInfo = params['formInfo'];
-      if(this.formInfo === 'edit') {
-        this.ptEdit = this.ptService.currentPT;
-      }
-    });
-    this.user = Constants.fakeUser;
-
-    if (this.ptEdit && this.formInfo === 'edit') {
-      this.options = {
-        url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
-        filterExtensions: true,
-        allowedExtensions: ['jpg', 'jpeg', 'png'],
-        data: { id: this.ptEdit.id },
-        autoUpload: false,
-        previewUrl: true
-      };
-      let ptDiachi = this.ptEdit.diachi.split(', ');
-      let sonha = ptDiachi[0];
-      let phuong = ptDiachi[1].split('phường ')[1];
-      let quan = ptDiachi[2].split('quận ')[1];
-      let tp = ptDiachi[3].split('thành phố ')[1];
-      this.complexForm = this.fb.group({
-        'loaiPhong': this.ptEdit.loaiPhong,
-        'sonha': [sonha, Validators.required],
-        'phuong': [phuong, Validators.required],
-        'quan': [quan, Validators.required],
-        'tp': [tp, Validators.required],
-        'giatien': [this.ptEdit.giatien, Validators.required],
-        'giatienTheoNguoi': [this.ptEdit.giatienTheoNguoi, Validators.required],
-        'tiencoc': this.ptEdit.tiencoc,
-        'tiencocTheoNguoi': this.ptEdit.tiencocTheoNguoi,
-        'dientich': [this.ptEdit.dientich, Validators.required],
-        'sophong': [this.ptEdit.sophong, Validators.required],
-        'nganhangID': this.ptEdit.nganhangID,
-        'hinhanh': '',
-        'truong': this.ptEdit.truong,
-        'nganh': this.ptEdit.nganh,
-        'khoa': this.ptEdit.khoa,
-        'gioitinh': this.ptEdit.gioitinh,
-        'wifi': this.ptEdit.wifi,
-        'chu': this.ptEdit.chu,
-        'ghichu': this.ptEdit.ghichu,
-        'userID': this.user.id
-      });
-      this.initLoaiPhong = this.ptEdit.loaiPhong;
-      this.initGioitinh = this.ptEdit.gioitinh;
-      this.initWifi = this.ptEdit.wifi;
-      this.initChu = this.ptEdit.chu;
-      this.hasGiatien = true;
-      this.hasHinhanh = true;
-      this.hasTkNgh = true;
-      this.editSuccess = false;
-      this.errorMsg = [{
-        msg: ''
-      }];
-      this.errorMsgNgh = [{
-        msg: ''
-      }];
-      this.successMsg = [{
-        msg: ''
-      }];
-      this.uploadEvents = new EventEmitter();
-      this.previewData = this.ptEdit.hinhanh;
-    } else {
-      this.options = {
-        url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
-        filterExtensions: true,
-        allowedExtensions: ['jpg', 'jpeg', 'png'],
-        data: { id: 0 },
-        autoUpload: false,
-        previewUrl: true
-      };
-      this.complexForm = this.fb.group({
-        'loaiPhong': 2,
-        'sonha': ['', Validators.required],
-        'phuong': ['', Validators.required],
-        'quan': ['', Validators.required],
-        'tp': ['', Validators.required],
-        'giatien': [0, Validators.required],
-        'giatienTheoNguoi': [0, Validators.required],
-        'tiencoc': 0,
-        'tiencocTheoNguoi': 0,
-        'dientich': [0, Validators.required],
-        'sophong': [0, Validators.required],
-        'nganhangID': '',
-        'hinhanh': '',
-        'truong': '',
-        'nganh': '',
-        'khoa': '',
-        'gioitinh': '',
-        'wifi': 1,
-        'chu': 1,
-        'ghichu': '',
-        'userID': this.user.id
-      });
-      this.initLoaiPhong = 2;
-      this.initGioitinh = '';
-      this.initWifi = 1;
-      this.initChu = 1;
-      this.hasGiatien = true;
-      this.hasHinhanh = true;
-      this.hasTkNgh = true;
-      this.editSuccess = false;
-      this.errorMsg = [{
-        msg: ''
-      }];
-      this.errorMsgNgh = [{
-        msg: ''
-      }];
-      this.successMsg = [{
-        msg: ''
-      }];
-      this.uploadEvents = new EventEmitter();
-      this.previewData = null;
     }
   }
 }

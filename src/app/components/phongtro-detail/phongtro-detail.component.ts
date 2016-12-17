@@ -40,7 +40,6 @@ export class PhongtroDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      // this.fakeInit();
       this.init();
     });
     this.userService.checkLoggedIn.subscribe(result => {
@@ -230,16 +229,5 @@ export class PhongtroDetailComponent implements OnInit {
           this.confirmModal.hide();
         }, 2000);
       });
-  }
-
-  fakeInit() {
-    this.isPTValid = false;
-    this.userThichPT = true;
-    this.xoaPTSuccess = false;
-    this.isUserPT = true;
-    this.phongtro = Constants.fakePT;
-    this.user = Constants.fakeUser;
-    this.getLatLng();
-    this.userService.user = this.user;
   }
 }

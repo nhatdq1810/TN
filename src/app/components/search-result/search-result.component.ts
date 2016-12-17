@@ -30,7 +30,6 @@ export class SearchResultComponent implements OnInit {
   private khoa = '';
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService) {
-    // this.fakeInit();
     this.init();
   }
 
@@ -190,40 +189,4 @@ export class SearchResultComponent implements OnInit {
         }
       });
   }
-
-  fakeInit() {
-    this.listTruong = ['hvcnbcvt', 'học viện cn bc-vt', 'đại học hoa sen', 'ueh', 'ptit'];
-    this.listNganh = ['viễn thông', 'cntt', 'qtkd', 'kế toán'];
-    this.listKhoa = ['2012', '2013', '2010'];
-    this.searchTerm = this.ptService.searchTerm;
-    this.listPT = Constants.fakeListPT;
-
-    if (!this.searchTerm) {
-      this.initSearchTerm();
-    } else {
-      this.complexForm = this.fb.group({
-        'loaiPhong': this.searchTerm.loaiPhong,
-        'giatien': this.searchTerm.giatien_min,
-        'giatienTheoNguoi': 0,
-        'dientich': 10,
-        'duong': '',
-        'phuong': '',
-        'quan': '',
-        'tp': '',
-        'truong': this.searchTerm.truong,
-        'nganh': this.searchTerm.nganh,
-        'khoa': '',
-        'gioitinh': this.searchTerm.gioitinh,
-        'wifi': -1,
-        'chu': -1
-      });
-
-      this.initLoaiPhong = this.searchTerm.loaiPhong;
-      this.initGioitinh = this.searchTerm.gioitinh;
-      this.giatienValue = [this.searchTerm.giatien_min, this.searchTerm.giatien_max];
-      this.giatienTheoNguoiValue = [0, 5000000];
-      this.dientichValue = [10, 20];
-    }
-  }
-
 }
