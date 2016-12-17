@@ -33,6 +33,16 @@ export class StatisticUserComponent implements OnInit {
   }
 
   init() {
+    this.listUserComment = [];
+    this.listUserTaoPT = [];
+    this.listUserTheoDTC = [];
+    this.datasetsUserKieuLogin = [];
+    this.datasetsNewUsers = [];
+    this.labelsUserKieuLogin = [];
+    this.labelsNewUsers = [];
+    this.listMonth = [];
+    this.selectedMonth = [];
+
     this.currentMonth = Constants.getCurrentDate().split('/')[1];
     for (let i = 0; i < 5; i++) {
       this.selectedMonth[i] = this.currentMonth;

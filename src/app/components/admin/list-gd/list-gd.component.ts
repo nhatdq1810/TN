@@ -33,6 +33,16 @@ export class ListGdComponent implements OnInit {
   }
 
   init() {
+    this.listGDNhan = [];
+    this.listGDGui = [];
+    this.listGDTheoPT = [];
+    this.listMonth = [];
+    this.selectedMonth = [];
+    this.datasetsGDTheoLoaiGD = [];
+    this.datasetsGDTheoLoaiGDMoiThang = [];
+    this.labelsGDTheoLoaiGD = [];
+    this.labelsGDTheoLoaiGDMoiThang = [];
+
     this.currentMonth = Constants.getCurrentDate().split('/')[1];
     for (let i = 0; i < 5; i++) {
       if(i < 4) {

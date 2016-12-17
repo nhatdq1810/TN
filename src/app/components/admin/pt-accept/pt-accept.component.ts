@@ -32,8 +32,12 @@ export class PtAcceptComponent implements OnInit {
   }
 
   init() {
+    this.listPTAccept = [];
+    this.listPTAcceptView = [];
+    this.listUser = [];
     this.listCheckbox = [];
     this.listCheckboxView = [];
+
     this.checkAllPT = false;
     this.ptService.layTatcaPhongtro(1)
       .then(result => {

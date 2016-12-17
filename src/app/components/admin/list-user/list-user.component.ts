@@ -30,6 +30,11 @@ export class ListUserComponent implements OnInit {
   }
 
   init() {
+    this.listUser = [];
+    this.listUserView = [];
+    this.listCheckbox = [];
+    this.listCheckboxView = [];
+
     this.checkAllUser = false;
     this.userService.layTatcaUser()
       .then(result => {

@@ -30,7 +30,6 @@ export class AdminComponent implements OnInit, AfterViewInit {
   private isLiActive: Array<boolean> = [];
   private isChildLiActive: Array<boolean> = [];
   private listLi: Array<any> = [];
-  private statusPage: string;
   private datasetsUsers: Array<any> = [];
   private datasetsNewUsers: Array<any> = [];
   private datasetsPT: Array<any> = [];
@@ -41,6 +40,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   private labelsNewPT: Array<any> = [];
   private isLogin: boolean = false;
   private options: any;
+  private statusPage: string;
 
   constructor(private userService: UserService, private ptService: PhongtroService) {
     // this.isLogin = true;
@@ -66,6 +66,17 @@ export class AdminComponent implements OnInit, AfterViewInit {
   }
 
   init() {
+    this.isLiActive = [];
+    this.isChildLiActive = [];
+    this.datasetsUsers = [];
+    this.datasetsNewUsers = [];
+    this.datasetsPT = [];
+    this.datasetsNewPT = [];
+    this.labelsNewUsers = [];
+    this.labelsUsers = [];
+    this.labelsPT = [];
+    this.labelsNewPT = [];
+
     this.options = {
       scales: {
         yAxes: [{

@@ -34,8 +34,12 @@ export class PtNotCheckedComponent implements OnInit {
   }
 
   init() {
+    this.listPTNotChecked = [];
+    this.listPTNotCheckedView = [];
+    this.listUser = [];
     this.listCheckbox = [];
     this.listCheckboxView = [];
+
     this.checkAllPT = false;
     this.ptService.layTatcaPhongtro(0)
       .then(result => {

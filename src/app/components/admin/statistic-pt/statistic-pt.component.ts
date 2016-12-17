@@ -53,6 +53,18 @@ export class StatisticPtComponent implements OnInit {
   }
 
   init() {
+    this.datasetsDiachi = [];
+    this.datasetsTvDT = [];
+    this.datasetsKhac = [];
+    this.datasetsDvA = [];
+    this.labelsDiachi = [];
+    this.labelsTvDT = [];
+    this.labelsKhac = [];
+    this.labelsDvA = [];
+    this.listMonth = [];
+    this.selectedMonth = [];
+    this.listPTLvCmtView = [];
+
     this.loaiLvCmt = 0;
     this.loaiDiachi = 0;
     this.loaiTvDT = 0;

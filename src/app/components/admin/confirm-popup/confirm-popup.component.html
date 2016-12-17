@@ -1,8 +1,8 @@
-<div bsModal #confirmPopup="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div bsModal #confirmPopup="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" (onHide)="popupClose.emit(true);">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" aria-label="Close" (click)="closePopup(false)">
+        <button type="button" class="close" aria-label="Close" (click)="closePopup(true)">
           <span aria-hidden="true">&times;</span>
         </button>
         <h2 *ngIf="isDelete && !isUser" class="modal-title">Xác nhận xóa phòng trọ</h2>
@@ -10,11 +10,6 @@
         <h2 *ngIf="isUser" class="modal-title">Xác nhận xóa user</h2>
       </div>
       <div *ngIf="info" class="modal-body">
-        <div *ngIf="isError">
-          <alert *ngFor="let item of errorMsg" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert()">
-            {{item?.msg}}
-          </alert>
-        </div>
         <div class="row">
           <div [ngClass]="{'col-lg-6 col-md-6 margin-bottom-15': info.length > 1}" *ngFor="let item of info">
             <p *ngIf="!isUser">Phòng trọ <span>#{{item.id}}</span></p>

@@ -33,6 +33,7 @@ export class DetailPopupComponent implements OnInit {
   }
 
   showPopup() {
+    this.confirmSelectedPT = [];
     this.detailPopup.show();
   }
 
@@ -47,7 +48,6 @@ export class DetailPopupComponent implements OnInit {
 
   deletePT() {
     this.closePopup(false);
-    this.confirmSelectedPT = [];
     this.confirmSelectedPT.push(this.info);
     this.isDelete = true;
     this.confirmPopup.showPopup();
@@ -55,6 +55,7 @@ export class DetailPopupComponent implements OnInit {
 
   acceptPT() {
     let tmpReason = [];
+    this.confirmSelectedPT.push(this.info);
     this.ptService.xetduyetPT(this.confirmSelectedPT, tmpReason, 1)
       .then(result => {
         this.closePopup(true);
@@ -69,7 +70,6 @@ export class DetailPopupComponent implements OnInit {
 
   denyPT() {
     this.closePopup(false);
-    this.confirmSelectedPT = [];
     this.confirmSelectedPT.push(this.info);
     this.isDelete = false;
     this.confirmPopup.showPopup();
