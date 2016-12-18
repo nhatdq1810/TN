@@ -1,7 +1,7 @@
 <div class="comments">
   <div class="comments-form">
-    <div *ngIf="!userService.user" class="error">
-      Đăng nhập để bình luận
+    <div *ngIf="!userService.user" class="error-text">
+      <p>Đăng nhập để bình luận</p>
     </div>
     <form *ngIf="userService.user" [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
       <textarea [formControl]="complexForm.controls['comment']" [(ngModel)]="comment" placeholder="Bình luận..."></textarea>
@@ -22,7 +22,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="listCmt.length === 0 && userService.user" class="error">
-    Không có bình luận về phòng trọ này
+  <div *ngIf="listCmt.length === 0 && userService.user" class="error-text">
+    <p>Không có bình luận về phòng trọ này</p>
   </div>
 </div>

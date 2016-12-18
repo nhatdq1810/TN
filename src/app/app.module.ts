@@ -21,6 +21,7 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { ImageCropperComponent } from 'ng2-img-cropper';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 import { LoopObjectPipe } from './pipes/loop-object.pipe';
 
@@ -105,6 +106,7 @@ let toastOptions: ToastOptions = new ToastOptions({
     TypeaheadModule,
     PaginationModule,
     ChartsModule,
+    SlimLoadingBarModule.forRoot(),
     ToastModule.forRoot(toastOptions),
     AgmCoreModule.forRoot({
       apiKey: Constants.googleApiKey

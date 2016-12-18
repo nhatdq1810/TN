@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Rx';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 let Constants = require('../resources/constants');
 
@@ -15,11 +16,12 @@ export class UserService {
   private loggedIn = false;
   private _user: any;
 
-  constructor(private http: Http, private router: Router) {
+  constructor(private slimLoader: SlimLoadingBarService, private http: Http, private router: Router) {
     this.loggedIn = !!localStorage.getItem('isLoggedIn');
   }
 
   private handleError(funcName: string, error: any): Observable<any> {
+    this.completeLoading();
     console.error(funcName + ' has error ', error);
     return Observable.throw(error.message || error);
   }
@@ -32,15 +34,27 @@ export class UserService {
     this._user = user;
   }
 
+  startLoading() {
+    this.slimLoader.start(() => {
+      console.log('Loading complete');
+    });
+  }
+
+  completeLoading() {
+    this.slimLoader.complete();
+  }
+
   login(username, password, loai) {
     let data = {
       username: username,
       password: password
     };
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.post(Constants.apiUrl + `user/login/${loai}`, JSON.stringify(data), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             this.loggedIn = true;
             localStorage.setItem('isLoggedIn', 'true');
@@ -78,10 +92,12 @@ export class UserService {
   }
 
   layTatcaUser(): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'user/tatca', { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -93,11 +109,13 @@ export class UserService {
     })
   }
 
-  layThongtinUser(username: string): Promise<User>{
+  layThongtinUser(username: string): Promise<User> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'user/' + username, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -110,10 +128,12 @@ export class UserService {
   }
 
   layThongtinUserID(id: number): Promise<User> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'user/id/' + id, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -126,10 +146,12 @@ export class UserService {
   }
 
   themUser(user): Promise<User> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.post(Constants.apiUrl + 'user/moi', JSON.stringify(user), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result) {
             this.loggedIn = true;
             localStorage.setItem('isLoggedIn', 'true');
@@ -146,10 +168,12 @@ export class UserService {
   }
 
   capnhatUser(user): Promise<User> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.put(Constants.apiUrl + 'user/' + user.username, JSON.stringify(user), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result) {
             this._user = resp;
             resolve(resp);
@@ -167,10 +191,12 @@ export class UserService {
       listUser: listUser,
       listReason: listReason
     }
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.post(Constants.apiUrl + `user/xoa`, JSON.stringify(listInfo),{ headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (resp.result && resp.result === 'success') {
             resolve(resp.result);
           } else {
@@ -183,10 +209,12 @@ export class UserService {
   }
 
   capnhatPassword(user): Promise<User> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.put(Constants.apiUrl + 'user/' + user.username + '/password', JSON.stringify(user), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result) {
             this._user = resp;
             resolve(resp);
@@ -200,10 +228,12 @@ export class UserService {
   }
 
   phuchoiPassword(user): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.post(Constants.apiUrl + 'user/' + user.username + '/password', JSON.stringify(user), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (resp.result !== 'fail') {
             resolve(resp.result);
           } else {
@@ -216,10 +246,12 @@ export class UserService {
   }
 
   thongkeUserTheoThang(thangBD, thangKT): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'user/thongkeUserTheoThang/' + thangBD + '/' + thangKT, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -232,26 +264,30 @@ export class UserService {
   }
 
   thongkeUserMoiTrenTongso(thang): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
           this.http.get(Constants.apiUrl + 'user/thongkeUserMoiTrenTongso/thang/' + thang, { headers: Constants.headers })
             .map((resp: Response) => resp.json())
             .subscribe(resp => {
+              this.completeLoading();
               if (!resp.result || resp.result !== 'fail') {
                 resolve(resp);
               } else {
                 this.handleError('thongkeUserMoiTrenTongso', resp.result);
                 reject(resp.result);
               }
-            },
-            err => this.handleError('thongkeUserMoiTrenTongso', err));
-        });
+        },
+        err => this.handleError('thongkeUserMoiTrenTongso', err));
+    });
   }
 
   thongkeUserComment(thang, gioihan): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `user/thongkeUserComment/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -264,10 +300,12 @@ export class UserService {
   }
 
   thongkeUserKieuLogin(thang): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `user/thongkeUserKieuLogin/thang/${thang}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -280,10 +318,12 @@ export class UserService {
   }
 
   thongkeUserTaoPT(thang, gioihan): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `user/thongkeUserTaoPT/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -296,10 +336,12 @@ export class UserService {
   }
 
   thongkeUserTheoDTC(thang, gioihan): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `user/thongkeUserTheoDTC/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {

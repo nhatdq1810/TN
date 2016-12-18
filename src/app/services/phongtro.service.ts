@@ -4,6 +4,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Rx';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 
 let Constants = require('../resources/constants');
@@ -19,7 +20,7 @@ export class PhongtroService {
   private _listKhoa: any[] = [];
   public phongtroDetailChange = new Subject();
 
-  constructor(private http: Http, private router: Router) {
+  constructor(private slimLoader: SlimLoadingBarService, private http: Http, private router: Router) {
   }
 
   get listPT(): any[]{
@@ -58,17 +59,30 @@ export class PhongtroService {
     this._searchTerm = term;
   }
 
+  startLoading() {
+    this.slimLoader.start(() => {
+      console.log('Loading complete');
+    });
+  }
+
+  completeLoading() {
+    this.slimLoader.complete();
+  }
+
   private handleError(funcName: string, error: any): Observable<any> {
+    this.completeLoading();
     console.error(funcName + ' has error ', error);
     return Observable.throw(error.message || error);
   }
 
   layTatcaPhongtro(duyet): Promise<any>{
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http
         .get(Constants.apiUrl + 'phongtro/tatca/' + duyet, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -81,11 +95,13 @@ export class PhongtroService {
   }
 
   layPhongtro(id: number): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http
         .get(Constants.apiUrl + 'phongtro/' + id, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result) {
             this._currentPT = resp;
             this.phongtroDetailChange.next(true);
@@ -100,11 +116,13 @@ export class PhongtroService {
   }
 
   layPhongtroUser(userID: number): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http
         .get(Constants.apiUrl + 'phongtro/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -117,11 +135,13 @@ export class PhongtroService {
   }
 
   layPhongtroHot(gioihan: number): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http
         .get(Constants.apiUrl + 'phongtro/hot?gioihan=' + gioihan, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             this._listPT = resp;
             resolve(resp)
@@ -135,11 +155,13 @@ export class PhongtroService {
   }
 
   layPhongtroMoi(gioihan: number): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http
         .get(Constants.apiUrl + 'phongtro/moi?gioihan=' + gioihan, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             this._listPT = resp;
             resolve(resp);
@@ -153,10 +175,12 @@ export class PhongtroService {
   }
 
   layDulieuTimkiemPhongtro(): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/dulieu/timkiem`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resp.forEach((pt) => {
               if (pt.truong !== '' && this.listTruong.indexOf(pt.truong) < 0) {
@@ -180,10 +204,12 @@ export class PhongtroService {
   }
 
   timkiemPhongtro(model, gioihan): Promise<any>{
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/timkiem?loaiPhong=${model.loaiPhong}&giatien_min=${model.giatien_min}&giatien_max=${model.giatien_max}&giatienTheoNguoi_min=${model.giatienTheoNguoi_min}&giatienTheoNguoi_max=${model.giatienTheoNguoi_max}&dientich_min=${model.dientich_min}&dientich_max=${model.dientich_max}&truong=${model.truong}&nganh=${model.nganh}&khoa=${model.khoa}&gioitinh=${model.gioitinh}&wifi=${model.wifi}&chu=${model.chu}&gioihan=${gioihan}&diachi=${model.diachi}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             this._searchTerm = model;
             this._listPT = resp;
@@ -198,10 +224,12 @@ export class PhongtroService {
   }
 
   themPhongtro(model): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.post(Constants.apiUrl + 'phongtro/moi', JSON.stringify(model), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -214,10 +242,12 @@ export class PhongtroService {
   }
 
   capnhatPhongtro(id, model): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.put(Constants.apiUrl + 'phongtro/' + id, JSON.stringify(model), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -230,10 +260,12 @@ export class PhongtroService {
   }
 
   xoaPhongtro(userID, id: number): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.delete(Constants.apiUrl + 'phongtro/' + id + '/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -246,10 +278,12 @@ export class PhongtroService {
   }
 
   thichPhongtro(id, userID): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.put(Constants.apiUrl + 'phongtro/' + id + '/like/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (resp.result !== 'fail') {
             resolve(resp.result);
           } else {
@@ -262,10 +296,12 @@ export class PhongtroService {
   }
 
   boThichPhongtro(id, userID): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.delete(Constants.apiUrl + 'phongtro/' + id + '/like/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (resp.result !== 'fail') {
             resolve(resp.result);
           } else {
@@ -278,11 +314,13 @@ export class PhongtroService {
   }
 
   layLuotThichPhongtro(id): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http
         .get(Constants.apiUrl + 'phongtro/' + id + '/like', { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -295,10 +333,12 @@ export class PhongtroService {
   }
 
   kiemtraUserThichPhongtro(id, userID): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'phongtro/' + id + '/like/user/' + userID, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (resp.result !== 'fail') {
             resolve(resp.result);
           } else {
@@ -311,10 +351,12 @@ export class PhongtroService {
   }
 
   thongkePTTheoThang(thangBD, thangKT): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'phongtro/thongkePTTheoThang/' + thangBD + '/' + thangKT, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -327,10 +369,12 @@ export class PhongtroService {
   }
 
   thongkePTMoiTrenTongso(thang): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + 'phongtro/thongkePTMoiTrenTongso/thang/' + thang, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -343,10 +387,12 @@ export class PhongtroService {
   }
 
   thongkePTTheoDiachi(loai, thang, gioihan): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoDiachi/${loai}/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -359,10 +405,12 @@ export class PhongtroService {
   }
 
   thongkePTTheoInput(column, thang, gioihan): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoInput/${column}/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -375,10 +423,12 @@ export class PhongtroService {
   }
 
   thongkePTTheoTienVaDientich(column, thang, gioihan): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoTienVaDientich/${column}/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -395,10 +445,12 @@ export class PhongtroService {
       listPT: listPT,
       listReason: listReason
     };
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.post(Constants.apiUrl + `phongtro/admin/xoa`, JSON.stringify(listInfo), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (resp.result !== 'fail') {
             resolve(resp.result);
           } else {
@@ -415,10 +467,12 @@ export class PhongtroService {
       listPT: listPT,
       listReason: listReason
     };
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.put(Constants.apiUrl + `phongtro/duyet/${duyet}`, JSON.stringify(listInfo), { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -431,10 +485,12 @@ export class PhongtroService {
   }
 
   anPT(id, an) {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.put(Constants.apiUrl + `phongtro/${id}/an/${an}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -447,10 +503,12 @@ export class PhongtroService {
   }
 
   thongkePTTheoLike(thang, gioihan): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoLike/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
@@ -463,10 +521,12 @@ export class PhongtroService {
   }
 
   thongkePTTheoComment(thang, gioihan): Promise<any> {
+    this.startLoading();
     return new Promise((resolve, reject) => {
       this.http.get(Constants.apiUrl + `phongtro/thongkePTTheoComment/thang/${thang}?gioihan=${gioihan}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
+          this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
