@@ -94,18 +94,7 @@ export class ListGdComponent implements OnInit {
   }
 
   thongkeSoGD() {
-    this.options = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      },
-      layout: {
-        padding: 20
-      }
-    };
+    this.options = Constants.chartOptions;
     this.labelsGDTheoLoaiGD = [];
     this.datasetsGDTheoLoaiGD = [{ label: 'Số giao dịch', data: [] }];
     this.nghService.thongkeSoGD(this.currentMonth - 4, this.currentMonth)

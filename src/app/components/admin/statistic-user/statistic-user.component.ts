@@ -117,18 +117,7 @@ export class StatisticUserComponent implements OnInit {
   }
 
   initChartNewUsers() {
-    this.options = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      },
-      layout: {
-        padding: 20
-      }
-    };
+    this.options = Constants.chartOptions;
     this.datasetsNewUsers = [{ label: 'User tạo mới trong tháng (người)', data: [] }];
     this.labelsNewUsers = [];
     this.userService.thongkeUserTheoThang(this.currentMonth - 4, this.currentMonth)

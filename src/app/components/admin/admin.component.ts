@@ -77,18 +77,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
     this.labelsPT = [];
     this.labelsNewPT = [];
 
-    this.options = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      },
-      layout: {
-        padding: 20
-      }
-    };
+    this.options = Constants.chartOptions;
     this.listLi = [{
       'statusPage': 'home',
       'i': 'fa fa-tachometer',

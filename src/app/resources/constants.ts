@@ -428,3 +428,16 @@ export let authConfig = {
   domain: 'nhatdq1810.auth0.com',
   callbackURL: 'http://localhost:4200/'
 }
+
+export let chartOptions = {
+  scales: {
+    yAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }]
+  },
+  layout: {
+    padding: 20
+  }
+};

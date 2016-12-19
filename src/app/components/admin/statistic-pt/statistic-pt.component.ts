@@ -37,7 +37,6 @@ export class StatisticPtComponent implements OnInit {
   private tmpInput: string;
   private tmpDvA: string;
   private options;
-  private optionsPie;
   private chartColors;
   private listMonth: Array<number> = [];
   private selectedMonth: Array<number> = [];
@@ -232,18 +231,7 @@ export class StatisticPtComponent implements OnInit {
   }
 
   initChart() {
-    this.options = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      },
-      layout: {
-        padding: 20
-      }
-    };
+    this.options = Constants.chartOptions;
     this.getDiachi();
     this.getTvDT();
     this.getKhac();
