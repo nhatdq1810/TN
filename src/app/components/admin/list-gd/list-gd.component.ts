@@ -53,7 +53,7 @@ export class ListGdComponent implements OnInit {
     this.thongkeGDGui(this.selectedMonth[0]);
     this.thongkeGDNhan(this.selectedMonth[1]);
     this.thongkeGDTheoPT(this.selectedMonth[2]);
-    this.thongkeGDTheoLoaiGD();
+    this.thongkeSoGD();
     this.thongkeGDTheoLoaiGDMoiThang(this.selectedMonth[3]);
   }
 
@@ -93,7 +93,7 @@ export class ListGdComponent implements OnInit {
       });
   }
 
-  thongkeGDTheoLoaiGD() {
+  thongkeSoGD() {
     this.options = {
       scales: {
         yAxes: [{
@@ -108,7 +108,7 @@ export class ListGdComponent implements OnInit {
     };
     this.labelsGDTheoLoaiGD = [];
     this.datasetsGDTheoLoaiGD = [{ label: 'Số giao dịch', data: [] }];
-    this.nghService.thongkeGDTheoLoaiGD(this.currentMonth - 4, this.currentMonth)
+    this.nghService.thongkeSoGD(this.currentMonth - 4, this.currentMonth)
       .then(result => {
         for (let prop in result) {
           this.labelsGDTheoLoaiGD.push(`tháng ${prop}`);

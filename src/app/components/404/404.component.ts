@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PhongtroService } from '../../services/phongtro.service';
 
 let Constants = require('../../resources/constants');
@@ -13,7 +13,7 @@ export class Error404Component implements OnInit {
 
   private deals: Array<any>;
 
-  constructor(private ptService: PhongtroService, private route: ActivatedRoute) {
+  constructor(private ptService: PhongtroService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -50,5 +50,6 @@ export class Error404Component implements OnInit {
   searchFull() {
     this.ptService.searchTerm = undefined;
     this.ptService.listPT = [];
+    this.router.navigate(['/search/result']);
   }
 }

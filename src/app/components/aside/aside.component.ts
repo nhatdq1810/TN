@@ -92,4 +92,8 @@ export class AsideComponent implements OnInit {
           });
       });
   }
+
+  getMoreDeals(){
+    console.log('aside');
+  }
 }

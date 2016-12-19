@@ -65,6 +65,7 @@ export class SearchResultComponent implements OnInit {
   }
 
   init() {
+    window.scrollTo(0, 0);
     this.ptService.layDulieuTimkiemPhongtro()
       .then(result => {
         if (result === 'success') {

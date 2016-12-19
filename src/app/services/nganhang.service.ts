@@ -128,21 +128,21 @@ export class NganhangService {
     });
   }
 
-  thongkeGDTheoLoaiGD(thangBD, thangKT): Promise<any> {
+  thongkeSoGD(thangBD, thangKT): Promise<any> {
     this.startLoading();
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `giaodich/thongkeGDTheoLoaiGD/${thangBD}/${thangKT}`, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + `giaodich/thongkeSoGD/${thangBD}/${thangKT}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             resolve(resp);
           } else {
-            this.handleError('thongkeGDTheoLoaiGD', resp.result);
+            this.handleError('thongkeSoGD', resp.result);
             reject(resp.result);
           }
         },
-        err => this.handleError('thongkeGDTheoLoaiGD', err));
+        err => this.handleError('thongkeSoGD', err));
     });
   }
 

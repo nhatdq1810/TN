@@ -19,7 +19,6 @@
       </div>
     </div>
     <div class="row flexslider deals-block" #flexslider>
-      <!-- <a [routerLink]="['/search/result']" (click)="getMoreHotDeals()">Xem thêm...</a> -->
       <ul class="slides deals-list">
         <li *ngFor="let item of hotDeals">
           <a [routerLink]="['/phongtro/detail', item.id]">
