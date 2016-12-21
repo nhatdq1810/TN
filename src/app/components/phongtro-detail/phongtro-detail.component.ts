@@ -64,16 +64,20 @@ export class PhongtroDetailComponent implements OnInit {
           this.getLatLng();
           this.initUserPT();
           this.isPTValid = true;
-          if (+this.phongtro.duyet === 0 || +this.phongtro.an === 1) {
-            this.isPTValid = false;
-            if(+this.phongtro.an === 1) {
-              this.errorMsg = 'Phòng trọ bị ẩn';
-            }
-            if(+this.phongtro.duyet === 0) {
-              this.errorMsg = 'Phòng trọ chưa được kiểm duyệt';
-            }
+          if (+this.phongtro.duyet === 0 || +this.phongtro.duyet === -1 || +this.phongtro.an === 1) {
             if (!this.isUserPT) {
               this.router.navigate(['404']);
+            } else {
+              this.isPTValid = false;
+              if (+this.phongtro.an === 1) {
+                this.errorMsg = 'Phòng trọ bị ẩn';
+              }
+              if (+this.phongtro.duyet === 0) {
+                this.errorMsg = 'Phòng trọ chưa được kiểm duyệt';
+              }
+              if (+this.phongtro.duyet === -1) {
+                this.errorMsg = 'Phòng trọ không được kiểm duyệt';
+              }
             }
           }
           this.ptService.layLuotThichPhongtro(id)
