@@ -193,6 +193,10 @@ export class PhongtroDetailComponent implements OnInit {
   anPT() {
     this.ptService.anPT(this.phongtro.id, 1)
       .then(result => {
+        if(this.phongtro.duyet === 1 && this.isPTValid) {
+          this.isPTValid = false;
+          this.errorMsg = 'Phòng trọ bị ẩn';
+        }
         this.phongtro.an = 1;
       })
       .catch(err => {
@@ -203,6 +207,9 @@ export class PhongtroDetailComponent implements OnInit {
   hienPT() {
     this.ptService.anPT(this.phongtro.id, 0)
       .then(result => {
+        if(this.phongtro.duyet === 1 && !this.isPTValid) {
+          this.isPTValid = true;
+        }
         this.phongtro.an = 0;
       })
       .catch(err => {

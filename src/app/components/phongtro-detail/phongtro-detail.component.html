@@ -226,7 +226,8 @@
         <div class="confirm-form">
           <p class="header">Bạn thật sự muốn xóa phòng trọ này ???</p>
           <div class="content">
-            <p><span>Giá tiền:</span>{{phongtro.giatien | number}}</p>
+            <p *ngIf="phongtro.giatien > 0"><span>Giá thuê nguyên phòng:</span>{{phongtro.giatien | number}}</p>
+            <p *ngIf="phongtro.giatienTheoNguoi > 0"><span>Giá thuê từng người:</span>{{phongtro.giatienTheoNguoi | number}}</p>
             <p><span>Địa chỉ:</span>{{phongtro.diachi}}</p>
             <p><span>Diện tích (m<sup>2</sup>):</span>{{phongtro.dientich}}</p>
             <p><span>Số phòng còn trống:</span>{{phongtro.sophong}}</p>
