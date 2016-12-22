@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PhongtroService } from '../../services/phongtro.service';
 
 declare let $: JQueryStatic;
+let Constants = require('../../resources/constants');
 
 @Component({
   selector: 'app-homepage',
@@ -14,18 +15,20 @@ declare let $: JQueryStatic;
 
 export class HomepageComponent implements OnInit, AfterViewChecked{
 
+  @ViewChild('flexslider') el: ElementRef;
   private model: string;
   private hotDeals: any[];
   private newDeals: any[];
   private quantityNewDeals: number;
   private searchLink: string;
-  @ViewChild('flexslider') el: ElementRef;
+  private listTienichIcon: Array<string>;
 
   constructor(private ptService: PhongtroService, private router: Router) {
     this.init();
   }
 
   init() {
+    this.listTienichIcon = Constants.listTienichIcon;
     this.quantityNewDeals = 3;
     this.searchLink = ('/');
 
@@ -50,9 +53,5 @@ export class HomepageComponent implements OnInit, AfterViewChecked{
       itemWidth: 350,
       itemMargin: 10
     });
-  }
-
-  getMoreHotDeals() {
-    this.ptService.layPhongtroHot(10);
   }
 }

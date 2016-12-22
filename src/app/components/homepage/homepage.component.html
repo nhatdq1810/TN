@@ -38,10 +38,9 @@
                   <i *ngIf="item.gioitinh === ''" class="fa fa-user-o"></i>
                   <span>{{item.sophong}}</span>
                 </li>
-                <li>
-                  <i class="fa fa-wifi"></i>
-                  <span *ngIf="item.wifi === 0">Không</span>
-                  <span *ngIf="item.wifi === 1">Có</span>
+                <li *ngIf="item.tienich && item.tienich.length > 0">
+                  <i [class]="listTienichIcon[item.tienich[0]?.id - 1]"></i>
+                  <span>Có</span>
                 </li>
                 <li *ngIf="item.truong && item.truong !== ''">
                   <i class="fa fa-university"></i>

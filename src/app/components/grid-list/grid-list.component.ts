@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PhongtroService } from '../../services/phongtro.service';
 
+let Constants = require('../../resources/constants');
+
 @Component({
   selector: 'app-grid-list',
   templateUrl: './grid-list.component.html',
@@ -12,12 +14,14 @@ export class GridListComponent implements OnInit {
   @Input() searchLink: string = '/';
   @Input() getMoreDeals: Function;
   private quantityNewDeals: number = 3;
+  private listTienichIcon: Array<string>;
 
   constructor(private ptService: PhongtroService) {
 
   }
 
   ngOnInit() {
+    this.listTienichIcon = Constants.listTienichIcon;
     if(!this.getMoreDeals) {
       this.getMoreDeals = this.initGetMoreDeals;
     }
@@ -32,6 +36,7 @@ export class GridListComponent implements OnInit {
       });
 
     if (this.quantityNewDeals >= 9) {
+      this.ptService.searchTerm = undefined;
       this.searchLink = '/search/result';
     }
   }
