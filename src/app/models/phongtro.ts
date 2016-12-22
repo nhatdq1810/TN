@@ -14,8 +14,7 @@ export class Phongtro {
   truong: string;
   nganh: string;
   khoa: string;
-  wifi: number;
-  chu: number;
+  tienich: Array<any>;
   ghichu: string;
   duyet: number;
   an: number;

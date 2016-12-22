@@ -206,7 +206,7 @@ export class PhongtroService {
   timkiemPhongtro(model, gioihan): Promise<any>{
     this.startLoading();
     return new Promise((resolve, reject) => {
-      this.http.get(Constants.apiUrl + `phongtro/timkiem?loaiPhong=${model.loaiPhong}&giatien_min=${model.giatien_min}&giatien_max=${model.giatien_max}&giatienTheoNguoi_min=${model.giatienTheoNguoi_min}&giatienTheoNguoi_max=${model.giatienTheoNguoi_max}&dientich_min=${model.dientich_min}&dientich_max=${model.dientich_max}&truong=${model.truong}&nganh=${model.nganh}&khoa=${model.khoa}&gioitinh=${model.gioitinh}&wifi=${model.wifi}&chu=${model.chu}&gioihan=${gioihan}&diachi=${model.diachi}`, { headers: Constants.headers })
+      this.http.get(Constants.apiUrl + `phongtro/timkiem?loaiPhong=${model.loaiPhong}&giatien_min=${model.giatien_min}&giatien_max=${model.giatien_max}&giatienTheoNguoi_min=${model.giatienTheoNguoi_min}&giatienTheoNguoi_max=${model.giatienTheoNguoi_max}&dientich_min=${model.dientich_min}&dientich_max=${model.dientich_max}&truong=${model.truong}&nganh=${model.nganh}&khoa=${model.khoa}&gioitinh=${model.gioitinh}&gioihan=${gioihan}&diachi=${model.diachi}`, { headers: Constants.headers })
         .map((resp: Response) => resp.json())
         .subscribe(resp => {
           this.completeLoading();

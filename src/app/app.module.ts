@@ -7,6 +7,7 @@ import { NganhangService } from './services/nganhang.service';
 import { GiaodichService } from './services/giaodich.service';
 import { CommentService } from './services/comment.service';
 import { AuthService } from './services/auth.service';
+import { TienichService } from './services/tienich.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -120,7 +121,8 @@ let toastOptions: ToastOptions = new ToastOptions({
     NganhangService,
     GiaodichService,
     CommentService,
-    AuthService
+    AuthService,
+    TienichService
   ],
   bootstrap: [AppComponent]
 })

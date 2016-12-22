@@ -216,8 +216,7 @@ export class CreatePhongtroComponent implements OnInit {
         'nganh': this.ptEdit.nganh,
         'khoa': this.ptEdit.khoa,
         'gioitinh': this.ptEdit.gioitinh,
-        'wifi': this.ptEdit.wifi,
-        'chu': this.ptEdit.chu,
+        'tienich': this.ptEdit.tienich,
         'ghichu': this.ptEdit.ghichu,
         'userID': this.user.id
       });
@@ -234,8 +233,8 @@ export class CreatePhongtroComponent implements OnInit {
       };
       this.initLoaiPhong = this.ptEdit.loaiPhong;
       this.initGioitinh = this.ptEdit.gioitinh;
-      this.initWifi = this.ptEdit.wifi;
-      this.initChu = this.ptEdit.chu;
+      // this.initWifi = this.ptEdit.wifi;
+      // this.initChu = this.ptEdit.chu;
 
       this.previewData = this.ptEdit.hinhanh;
       this.fileChangeListener(this.ptEdit.hinhanh);
@@ -267,8 +266,7 @@ export class CreatePhongtroComponent implements OnInit {
         'nganh': '',
         'khoa': '',
         'gioitinh': '',
-        'wifi': 1,
-        'chu': 1,
+        'tienich': [],
         'ghichu': '',
         'userID': this.user.id
       });
@@ -282,8 +280,8 @@ export class CreatePhongtroComponent implements OnInit {
       };
       this.initLoaiPhong = 2;
       this.initGioitinh = '';
-      this.initWifi = 1;
-      this.initChu = 1;
+      // this.initWifi = 1;
+      // this.initChu = 1;
 
       this.previewData = null;
     }
@@ -432,8 +430,8 @@ export class CreatePhongtroComponent implements OnInit {
 
     if(this.hasHinhanh && this.hasTkNgh && this.hasGiatien && this.hasDientich && this.hasSonguoi) {
       let currentDate = Constants.getCurrentDate();
-      value.wifi = +value.wifi;
-      value.chu = +value.chu;
+      // value.wifi = +value.wifi;
+      // value.chu = +value.chu;
       value.ngaydang = currentDate;
       value.sonha = value.sonha.toLowerCase();
       value.phuong = value.phuong.toLowerCase();

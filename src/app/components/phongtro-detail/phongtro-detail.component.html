@@ -117,24 +117,13 @@
                   <strong>{{phongtro.khoa | uppercase}}</strong>
                 </div>
               </li>
-              <li>
+              <li *ngFor="let ti of phongtro.tienich">
                 <div class="border-b-dotted">
-                  <i class="fa fa-wifi"></i>
-                  <p>Wifi</p>
+                  <i [class]="listTienichIcon[ti.id - 1]"></i>
+                  <p>{{ti.ten}}</p>
                 </div>
                 <div class="phongtro-value">
-                  <strong *ngIf="phongtro.wifi === 0">Không</strong>
-                  <strong *ngIf="phongtro.wifi === 1">Có</strong>
-                </div>
-              </li>
-              <li>
-                <div class="border-b-dotted">
-                  <i class="fa fa-key"></i>
-                  <p>Ở với chủ</p>
-                </div>
-                <div class="phongtro-value">
-                  <strong *ngIf="phongtro.chu === 0">Không</strong>
-                  <strong *ngIf="phongtro.chu === 1">Có</strong>
+                  <strong>Có</strong>
                 </div>
               </li>
               <li class="ghichu" *ngIf="phongtro.ghichu && phongtro.ghichu !== ''">

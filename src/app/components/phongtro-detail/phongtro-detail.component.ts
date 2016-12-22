@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { Location } from '@angular/common';
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { PhongtroService } from '../../services/phongtro.service';
+import { TienichService } from '../../services/tienich.service';
 import { UserService } from '../../services/user.service';
 import { Phongtro } from '../../models/phongtro';
 import { User } from '../../models/user';
@@ -34,8 +35,9 @@ export class PhongtroDetailComponent implements OnInit {
   private userThichPT: boolean;
   private isPTValid: boolean;
   private errorMsg: string;
+  private listTienichIcon: Array<string>;
 
-  constructor(private ptService: PhongtroService, private userService: UserService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
+  constructor(private ptService: PhongtroService, private userService: UserService, private tienichService: TienichService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
   }
 
   ngOnInit() {
@@ -53,6 +55,7 @@ export class PhongtroDetailComponent implements OnInit {
     this.isUserPT = false;
     this.xoaPTFail = false;
     this.xoaPTSuccess = false;
+    this.listTienichIcon = Constants.listTienichIcon;
     let id: number;
     this.route.params.forEach((params: Params) => {
       id = +params['id'];
