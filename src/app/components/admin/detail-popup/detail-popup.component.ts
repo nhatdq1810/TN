@@ -3,6 +3,9 @@ import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ConfirmPopupComponent } from '../confirm-popup/confirm-popup.component';
 import { PhongtroService } from '../../../services/phongtro.service';
+import { TienichService } from '../../../services/tienich.service';
+
+let Constants = require('../../../resources/constants');
 
 @Component({
   selector: 'app-detail-popup',
@@ -21,8 +24,9 @@ export class DetailPopupComponent implements OnInit {
   @Input() showDeleteBtn: boolean;
   private isDelete: boolean;
   private confirmSelectedPT: Array<any> = [];
+  private listTienichIcon: Array<string>;
 
-  constructor(private toastr: ToastsManager, private ptService: PhongtroService) {
+  constructor(private toastr: ToastsManager, private ptService: PhongtroService, private tienichService: TienichService) {
   }
 
   ngOnInit() {
@@ -33,6 +37,7 @@ export class DetailPopupComponent implements OnInit {
   }
 
   showPopup() {
+    this.listTienichIcon = Constants.listTienichIcon;
     this.confirmSelectedPT = [];
     this.detailPopup.show();
   }
