@@ -182,7 +182,8 @@ export class PhongtroService {
         .subscribe(resp => {
           this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
-            resp.forEach((pt) => {
+            for (let i = 0; i < resp.length; i++) {
+              let pt = resp[i];
               if (pt.truong !== '' && this.listTruong.indexOf(pt.truong) < 0) {
                 this.listTruong.push(pt.truong);
               }
@@ -192,7 +193,7 @@ export class PhongtroService {
               if (pt.khoa !== '' && this.listKhoa.indexOf(pt.khoa) < 0) {
                 this.listKhoa.push(pt.khoa);
               }
-            });
+            }
             resolve('success');
           } else {
             this.handleError('layDulieuTimkiemPhongtro', resp.result);

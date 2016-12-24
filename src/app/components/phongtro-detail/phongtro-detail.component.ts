@@ -45,11 +45,23 @@ export class PhongtroDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.init();
+      if(!this.phongtro || this.phongtro.id !== +params['id'] ) {
+        this.init();
+      }
     });
     this.userService.checkLoggedIn.subscribe(result => {
       if (result) {
-        this.initUserPT();
+        this.init();
+      } else {
+        if (!this.isPTValid) {
+          this.router.navigate(['/home']);
+        } else {
+          this.isUserPT = false;
+          this.xoaPTFail = false;
+          this.xoaPTSuccess = false;
+          this.userThichPT = false;
+          this.isPTValid = true;
+        }
       }
     });
   }
@@ -63,65 +75,63 @@ export class PhongtroDetailComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       id = +params['id'];
     });
-    if (!this.phongtro || this.phongtro.id !== id) {
-      this.ptService.layPhongtro(id)
-        .then(pt => {
-          this.phongtro = pt;
-          this.getLatLng();
-          this.initUserPT();
-          this.isPTValid = true;
-          if (+this.phongtro.duyet === 0 || +this.phongtro.duyet === -1 || +this.phongtro.an === 1) {
-            if (!this.isUserPT) {
-              this.router.navigate(['404']);
-            } else {
-              this.isPTValid = false;
-              if (+this.phongtro.an === 1) {
-                this.errorMsg = 'Phòng trọ bị ẩn';
-              }
-              if (+this.phongtro.duyet === 0) {
-                this.errorMsg = 'Phòng trọ chưa được kiểm duyệt';
-              }
-              if (+this.phongtro.duyet === -1) {
-                this.errorMsg = 'Phòng trọ không được kiểm duyệt';
-              }
+    this.ptService.layPhongtro(id)
+      .then(pt => {
+        this.phongtro = pt;
+        this.getLatLng();
+        this.initUserPT();
+        this.isPTValid = true;
+        if (this.phongtro.duyet === 0 || this.phongtro.duyet === -1 || this.phongtro.an === 1) {
+          if (!this.isUserPT) {
+            this.router.navigate(['404']);
+          } else {
+            this.isPTValid = false;
+            if (+this.phongtro.an === 1) {
+              this.errorMsg = 'Phòng trọ bị ẩn';
+            }
+            if (+this.phongtro.duyet === 0) {
+              this.errorMsg = 'Phòng trọ chưa được kiểm duyệt';
+            }
+            if (+this.phongtro.duyet === -1) {
+              this.errorMsg = 'Phòng trọ không được kiểm duyệt';
             }
           }
-          this.ptService.layLuotThichPhongtro(id)
-            .then(result => {
-              this.phongtro.thich = +result;
-            }).catch(err => {
-              console.error(err);
-              this.phongtro.thich = 0;
-            });
-          this.userService.layThongtinUserID(this.phongtro.userID)
-            .then((usr: User) => {
-              this.user = usr;
-              let email = this.user.email.split('fb-');
+        }
+        this.ptService.layLuotThichPhongtro(id)
+          .then(result => {
+            this.phongtro.thich = +result;
+          }).catch(err => {
+            console.error(err);
+            this.phongtro.thich = 0;
+          });
+        this.userService.layThongtinUserID(this.phongtro.userID)
+          .then((usr: User) => {
+            this.user = usr;
+            let email = this.user.email.split('fb-');
+            if (email.length > 1) {
+              this.user.email = email[1];
+            } else {
+              email = this.user.email.split('gg-');
               if (email.length > 1) {
                 this.user.email = email[1];
-              } else {
-                email = this.user.email.split('gg-');
-                if (email.length > 1) {
-                  this.user.email = email[1];
-                }
               }
-            });
+            }
+          });
 
-        })
-        .catch(err => {
-          console.error(err);
-          this.router.navigate(['/404']);
-        });
-      let currentMonth = Constants.getCurrentDate().split('/')[1];
-      this.gdService.layGDTheoPhongtro(id, currentMonth)
-        .then(result => {
-          this.listGD = result;
-        })
-        .catch(err => {
-          console.error(err);
-          this.listGD = [];
-        });
-    }
+      })
+      .catch(err => {
+        console.error(err);
+        this.router.navigate(['/404']);
+      });
+    let currentMonth = Constants.getCurrentDate().split('/')[1];
+    this.gdService.layGDTheoPhongtro(id, currentMonth)
+      .then(result => {
+        this.listGD = result;
+      })
+      .catch(err => {
+        console.error(err);
+        this.listGD = [];
+      });
   }
 
   initUserPT() {

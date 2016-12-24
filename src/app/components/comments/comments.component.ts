@@ -26,9 +26,11 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit() {
     this.ptService.phongtroDetailChange.subscribe(result => {
-      if(result) {
-        this.init();
-      }
+      this.complexForm = this.fb.group({
+        'comment': ''
+      });
+      this.comment = '';
+      this.init();
     });
     this.route.params.subscribe(params => {
       this.complexForm = this.fb.group({
@@ -89,7 +91,7 @@ export class CommentsComponent implements OnInit {
       });
     })
     .catch(err => {
-      console.log(err);
+      console.error(err);
       this.listCmt = [];
       this.listUser = [];
     });

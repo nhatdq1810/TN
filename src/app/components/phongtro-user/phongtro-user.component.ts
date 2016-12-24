@@ -29,7 +29,9 @@ export class PhongtroUserComponent implements OnInit {
       if (result) {
         this.init();
       } else {
-        this.router.navigate(['/home']);
+        if(window.location.href.indexOf('phongtro/user') > -1) {
+          this.router.navigate(['/home']);
+        }
       }
     });
   }
