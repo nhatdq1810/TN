@@ -27,23 +27,24 @@ sebm-google-map strong {
 }
 
 .form-group.loai-phong {
+  overflow: hidden;
   padding-bottom: 30px;
   margin: 0 15px 30px;
   border-bottom: 1px solid #aaaaaa;
 }
 
-.form-group.loai-phong h1 {
-  display: inline-block;
-  margin-right: 55px;
-  font-weight: 600;
+.form-group.loai-phong:first-of-type {
+  border: none;
+  padding-bottom: 0;
 }
 
 .form-group.loai-phong ul {
-  display: inline-block;
+  margin-top: 10px;
 }
 
 .create-phongtro-block .radio {
   display: inline-block;
+  font-size: 16px;
   margin: 0 10px 0 0;
 }
 
@@ -58,7 +59,14 @@ sebm-google-map strong {
   margin-right: 10px;
 }
 
-rl-tag-input >>> .ng2-tag-input-field {
+.create-phongtro-block rl-tag-input {
+  box-shadow: none;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+  padding: 15px;
+}
+
+.create-phongtro-block rl-tag-input >>> .ng2-tag-input-field {
   background: transparent;
 }
 
