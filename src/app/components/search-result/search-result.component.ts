@@ -16,8 +16,6 @@ export class SearchResultComponent implements OnInit {
   private complexForm: FormGroup;
   private initLoaiPhong: number;
   private initGioitinh: string;
-  private initChu: number;
-  private initWifi: number;
   private giatienValue: number[];
   private giatienTheoNguoiValue: number[];
   private dientichValue: number[];
@@ -50,15 +48,11 @@ export class SearchResultComponent implements OnInit {
       'truong': '',
       'nganh': '',
       'khoa': '',
-      'gioitinh': '',
-      'wifi': -1,
-      'chu': -1
+      'gioitinh': ''
     });
 
     this.initLoaiPhong = 2;
     this.initGioitinh = '';
-    this.initChu = -1;
-    this.initWifi = -1;
     this.giatienValue = [500000, 5000000];
     this.giatienTheoNguoiValue = [500000, 5000000];
     this.dientichValue = [5, 20];
@@ -92,17 +86,13 @@ export class SearchResultComponent implements OnInit {
         'truong': this.searchTerm.truong,
         'nganh': this.searchTerm.nganh,
         'khoa': this.searchTerm.khoa,
-        'gioitinh': this.searchTerm.gioitinh,
-        'wifi': this.searchTerm.wifi,
-        'chu': this.searchTerm.chu
+        'gioitinh': this.searchTerm.gioitinh
       });
       this.truong = this.searchTerm.truong;
       this.nganh = this.searchTerm.nganh;
       this.khoa = this.searchTerm.khoa;
       this.initLoaiPhong = this.searchTerm.loaiPhong;
       this.initGioitinh = this.searchTerm.gioitinh;
-      this.initChu = this.searchTerm.chu;
-      this.initWifi = this.searchTerm.wifi;
 
       if(this.searchTerm.giatien_min > 5000000) {
         this.searchTerm.giatien_min = 5000000;
@@ -174,9 +164,7 @@ export class SearchResultComponent implements OnInit {
       truong: value.truong,
       nganh: value.nganh,
       khoa: value.khoa,
-      gioitinh: value.gioitinh,
-      wifi: +(value.wifi),
-      chu: +(value.chu)
+      gioitinh: value.gioitinh
     }
     this.ptService.timkiemPhongtro(searchTerm, 12)
       .then((result: string) => {

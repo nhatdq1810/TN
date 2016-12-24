@@ -8,6 +8,7 @@ import { Phongtro } from '../../models/phongtro';
 import { User } from '../../models/user';
 import { PhongtroService } from '../../services/phongtro.service';
 import { UserService } from '../../services/user.service';
+import { TienichService } from '../../services/tienich.service';
 
 let Constants = require('../../resources/constants');
 
@@ -28,8 +29,6 @@ export class CreatePhongtroComponent implements OnInit {
   private complexForm: FormGroup;
   private initLoaiPhong: number;
   private initGioitinh: string;
-  private initWifi: number;
-  private initChu: number;
   private hasGiatien: boolean;
   private hasDientich: boolean;
   private hasSonguoi: boolean;
@@ -55,10 +54,13 @@ export class CreatePhongtroComponent implements OnInit {
   private nganh: string = '';
   private listKhoa;
   private khoa: string = '';
+  private tienichTags: Array<string>;
+  private listTienich: Array<string>;
+  private listAllTienich: Array<any>;
   // private data1: any;
   // private cropperSettings1: CropperSettings;
 
-  constructor(private route: ActivatedRoute, private http: Http, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService) {
+  constructor(private route: ActivatedRoute, private http: Http, private fb: FormBuilder, private router: Router, private ptService: PhongtroService, private userService: UserService, private tienichService: TienichService) {
   }
 
   ngOnInit() {
@@ -135,6 +137,8 @@ export class CreatePhongtroComponent implements OnInit {
     // this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
 
     // this.data1 = {};
+    this.listTienich = [];
+    this.tienichTags = [];
     this.infoWindowOpen = false;
     this.ptService.layDulieuTimkiemPhongtro()
       .then(result => {
@@ -198,6 +202,20 @@ export class CreatePhongtroComponent implements OnInit {
         quan: quan,
         tp: tp
       };
+      this.tienichService.layTatcaTienich()
+        .then(result => {
+          this.listAllTienich = result;
+          for (let i = 0; i < result.length; i++) {
+            if(this.ptEdit.tienich.findIndex(item => item.ten === result[i].ten) > -1) {
+              this.tienichTags.push(result[i].ten);
+            } else {
+              this.listTienich.push(result[i].ten);
+            }
+          }
+        })
+        .catch(err => {
+          console.error(err);
+        });
       this.complexForm = this.fb.group({
         'loaiPhong': this.ptEdit.loaiPhong,
         'sonha': [sonha, Validators.required],
@@ -216,7 +234,7 @@ export class CreatePhongtroComponent implements OnInit {
         'nganh': this.ptEdit.nganh,
         'khoa': this.ptEdit.khoa,
         'gioitinh': this.ptEdit.gioitinh,
-        'tienich': this.ptEdit.tienich,
+        'tienich': '',
         'ghichu': this.ptEdit.ghichu,
         'userID': this.user.id
       });
@@ -233,12 +251,20 @@ export class CreatePhongtroComponent implements OnInit {
       };
       this.initLoaiPhong = this.ptEdit.loaiPhong;
       this.initGioitinh = this.ptEdit.gioitinh;
-      // this.initWifi = this.ptEdit.wifi;
-      // this.initChu = this.ptEdit.chu;
 
       this.previewData = this.ptEdit.hinhanh;
       this.fileChangeListener(this.ptEdit.hinhanh);
     } else {
+      this.tienichService.layTatcaTienich()
+        .then(result => {
+          this.listAllTienich = result;
+          for (let i = 0; i < result.length; i++) {
+            this.listTienich.push(result[i].ten);
+          }
+        })
+        .catch(err => {
+          console.error(err);
+        });
       this.getLatLng('Hồ Chí Minh');
       this.options = {
         url: 'http://localhost:8080/trosv/api/phongtro/hinhanh',
@@ -266,7 +292,7 @@ export class CreatePhongtroComponent implements OnInit {
         'nganh': '',
         'khoa': '',
         'gioitinh': '',
-        'tienich': [],
+        'tienich': '',
         'ghichu': '',
         'userID': this.user.id
       });
@@ -280,11 +306,20 @@ export class CreatePhongtroComponent implements OnInit {
       };
       this.initLoaiPhong = 2;
       this.initGioitinh = '';
-      // this.initWifi = 1;
-      // this.initChu = 1;
 
       this.previewData = null;
     }
+  }
+
+  addTienich(tienich, e) {
+    this.listTienich.splice(this.listTienich.indexOf(tienich), 1);
+    if(e === 'clickEvent') {
+      this.tienichTags.push(tienich);
+    }
+  }
+
+  removeTienich(e: any) {
+    this.listTienich.push(e);
   }
 
   submitForm(value: any) {
@@ -430,8 +465,6 @@ export class CreatePhongtroComponent implements OnInit {
 
     if(this.hasHinhanh && this.hasTkNgh && this.hasGiatien && this.hasDientich && this.hasSonguoi) {
       let currentDate = Constants.getCurrentDate();
-      // value.wifi = +value.wifi;
-      // value.chu = +value.chu;
       value.ngaydang = currentDate;
       value.sonha = value.sonha.toLowerCase();
       value.phuong = value.phuong.toLowerCase();
@@ -440,6 +473,7 @@ export class CreatePhongtroComponent implements OnInit {
       value.truong = this.truong.toLowerCase();
       value.nganh = this.nganh.toLowerCase();
       value.khoa = this.khoa;
+
       let phuong, quan, tp;
       phuong = value.phuong;
       quan = value.quan;
@@ -458,6 +492,15 @@ export class CreatePhongtroComponent implements OnInit {
       delete value.phuong;
       delete value.quan;
       delete value.tp;
+      for (let i = 0; i < this.listAllTienich.length; i++) {
+        let item = this.listAllTienich[i];
+        if (this.tienichTags.indexOf(item.ten) === -1) {
+          this.listAllTienich.splice(this.listAllTienich.indexOf(item), 1);
+          i--;
+        }
+      }
+      value.tienich = this.listAllTienich;
+
       if(this.formInfo === 'edit') {
         this.ptService.capnhatPhongtro(this.ptEdit.id, value)
           .then(resp => {
@@ -535,7 +578,7 @@ export class CreatePhongtroComponent implements OnInit {
   }
 
   fileChangeListener($event: any) {
-    console.log($event);
+    // console.log($event);
     // let image: any = new Image();
     // if($event.target) {
     //   let file: File = $event.target.files[0];

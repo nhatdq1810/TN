@@ -17,7 +17,6 @@ export class UserService {
   private _user: any;
 
   constructor(private slimLoader: SlimLoadingBarService, private http: Http, private router: Router) {
-    this.loggedIn = !!localStorage.getItem('isLoggedIn');
   }
 
   private handleError(funcName: string, error: any): Observable<any> {
@@ -57,7 +56,6 @@ export class UserService {
           this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             this.loggedIn = true;
-            localStorage.setItem('isLoggedIn', 'true');
             this._user = resp;
             if(loai === 'user') {
               this.checkLoggedIn.next(true);
@@ -78,12 +76,12 @@ export class UserService {
     if(role && role === 'admin') {
       this.checkAdminLoggedIn.next(false);
     } else {
-      localStorage.removeItem('id_token');
-      localStorage.removeItem('isLoggedIn');
       this.loggedIn = false;
       this.checkLoggedIn.next(false);
-      let homepage = encodeURIComponent('http://localhost:4200/home');
-      window.location.href = `https://nhatdq1810.auth0.com/v2/logout?returnTo=${homepage}`;
+      if (this._user.email.indexOf('gg-') > -1 || this._user.email.indexOf('fb-') > -1) {
+        let homepage = encodeURIComponent('http://localhost:4200/home');
+        window.location.href = `https://nhatdq1810.auth0.com/v2/logout?returnTo=${homepage}`;
+      }
     }
   }
 
@@ -154,7 +152,6 @@ export class UserService {
           this.completeLoading();
           if (!resp.result) {
             this.loggedIn = true;
-            localStorage.setItem('isLoggedIn', 'true');
             this._user = resp;
             this.checkLoggedIn.next(true);
             resolve(resp);

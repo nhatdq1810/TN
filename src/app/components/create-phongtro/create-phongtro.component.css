@@ -47,6 +47,21 @@ sebm-google-map strong {
   margin: 0 10px 0 0;
 }
 
+.create-phongtro-block .list-tienich li {
+  font-size: 16px;
+  height: 32px;
+  line-height: 32px;
+  display: inline-block;
+  background: #e0e0e0;
+  padding: 0 12px;
+  border-radius: 90px;
+  margin-right: 10px;
+}
+
+rl-tag-input >>> .ng2-tag-input-field {
+  background: transparent;
+}
+
 .info-required {
   overflow: hidden;
 }
