@@ -1,0 +1,46 @@
+.list-gd {
+  border: 1px solid #dddddd;
+  background: #ffffff;
+  margin-bottom: 20px;
+  padding: 15px 45px;
+  display: inline-block;
+  width: 48%;
+}
+
+.list-gd h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-modal {
+  font-size: 16px;
+  text-align: right;
+  color: #c7254e;
+}
+
+.margin-right {
+  margin-right: 4%;
+}
+
+.modal-header h2 {
+  margin-bottom: 20px;
+}
+
+.modal-header .select-month select {
+  margin: 0;
+}
+
+.modal-header .select-month i {
+  left: 10px;
+  top: 10px;
+}
+
+.modal-header #search-input {
+  padding-left: 10px;
+  width: 275px;
+  padding-right: 33px;
+}
+
+.modal-header #search-input:focus {
+  width: 400px;
+}

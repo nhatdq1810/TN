@@ -64,6 +64,11 @@ sebm-google-map {
   font-size: 15px;
 }
 
+.phongtro-title .btn-modal.datcoc {
+  margin-right: 0;
+  margin-top: 10px;
+}
+
 .phongtro-title .btn-modal {
   margin-right: 10px;
 }

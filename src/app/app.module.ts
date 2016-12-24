@@ -26,6 +26,7 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { RlTagInputModule } from 'angular2-tag-input';
 
 import { LoopObjectPipe } from './pipes/loop-object.pipe';
+import { PhonePipe } from './pipes/phone.pipe';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
@@ -44,6 +45,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { GridListComponent } from './components/grid-list/grid-list.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.component';
+import { ListDatcocComponent } from './components/list-datcoc/list-datcoc.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { PtNotCheckedComponent } from './components/admin/pt-not-checked/pt-not-checked.component';
 import { PtAcceptComponent } from './components/admin/pt-accept/pt-accept.component';
@@ -92,7 +94,9 @@ let toastOptions: ToastOptions = new ToastOptions({
     StatisticUserComponent,
     StatisticPtComponent,
     ConfirmPopupComponent,
-    LoopObjectPipe
+    ListDatcocComponent,
+    LoopObjectPipe,
+    PhonePipe
   ],
   imports: [
     BrowserModule,

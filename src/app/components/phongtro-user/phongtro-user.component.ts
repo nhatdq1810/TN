@@ -26,10 +26,12 @@ export class PhongtroUserComponent implements OnInit {
 
   ngOnInit() {
     this.userService.checkLoggedIn.subscribe(result => {
-      if(result) {
+      if (result) {
         this.init();
+      } else {
+        this.router.navigate(['/home']);
       }
-    })
+    });
   }
 
   init() {

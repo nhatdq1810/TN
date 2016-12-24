@@ -55,9 +55,9 @@ export class UserService {
         .subscribe(resp => {
           this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
-            this.loggedIn = true;
-            this._user = resp;
             if(loai === 'user') {
+              this.loggedIn = true;
+              this._user = resp;
               this.checkLoggedIn.next(true);
             } else {
               this.checkAdminLoggedIn.next(true);
@@ -82,6 +82,7 @@ export class UserService {
         let homepage = encodeURIComponent('http://localhost:4200/home');
         window.location.href = `https://nhatdq1810.auth0.com/v2/logout?returnTo=${homepage}`;
       }
+      this._user = undefined;
     }
   }
 

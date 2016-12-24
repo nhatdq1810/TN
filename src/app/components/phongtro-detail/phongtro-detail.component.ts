@@ -1,15 +1,16 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Http } from '@angular/http';
-import { Location } from '@angular/common';
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { PhongtroService } from '../../services/phongtro.service';
 import { TienichService } from '../../services/tienich.service';
 import { UserService } from '../../services/user.service';
+import { GiaodichService } from '../../services/giaodich.service';
 import { Phongtro } from '../../models/phongtro';
 import { User } from '../../models/user';
 import { AsideComponent } from '../aside/aside.component';
 import { CommentsComponent } from '../comments/comments.component';
+import { ListDatcocComponent } from '../list-datcoc/list-datcoc.component';
 
 
 let Constants = require('../../resources/constants');
@@ -24,6 +25,7 @@ export class PhongtroDetailComponent implements OnInit {
   @ViewChild('asideComponent') asideComponent: AsideComponent;
   @ViewChild('commentsComponent') commentsComponent: CommentsComponent;
   @ViewChild('confirmModal') confirmModal: ModalDirective;
+  @ViewChild('listDatcocModal') listDatcocModal: ListDatcocComponent;
   private phongtro: Phongtro;
   private user: User;
   private lat: number;
@@ -36,8 +38,9 @@ export class PhongtroDetailComponent implements OnInit {
   private isPTValid: boolean;
   private errorMsg: string;
   private listTienichIcon: Array<string>;
+  private listGD: Array<any>;
 
-  constructor(private ptService: PhongtroService, private userService: UserService, private tienichService: TienichService, private route: ActivatedRoute, private http: Http, private location: Location, private router: Router) {
+  constructor(private ptService: PhongtroService, private userService: UserService, private tienichService: TienichService, private gdService: GiaodichService, private route: ActivatedRoute, private http: Http, private router: Router) {
   }
 
   ngOnInit() {
@@ -103,10 +106,20 @@ export class PhongtroDetailComponent implements OnInit {
                 }
               }
             });
+
         })
         .catch(err => {
           console.error(err);
           this.router.navigate(['/404']);
+        });
+      let currentMonth = Constants.getCurrentDate().split('/')[1];
+      this.gdService.layGDTheoPhongtro(id, currentMonth)
+        .then(result => {
+          this.listGD = result;
+        })
+        .catch(err => {
+          console.error(err);
+          this.listGD = [];
         });
     }
   }
@@ -243,5 +256,9 @@ export class PhongtroDetailComponent implements OnInit {
           this.confirmModal.hide();
         }, 2000);
       });
+  }
+
+  showListDatcoc() {
+    this.listDatcocModal.showModal();
   }
 }

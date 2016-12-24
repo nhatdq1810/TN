@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
@@ -23,11 +23,16 @@ export class UserInfoComponent implements OnInit {
   private errorMsg: Array<Object>;
   private successMsg: Array<Object>;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService) {
+  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private userService: UserService) {
     this.init();
   }
 
   ngOnInit() {
+    this.userService.checkLoggedIn.subscribe(result => {
+      if (!result) {
+        this.router.navigate(['/home']);
+      }
+    });
   }
 
   init() {

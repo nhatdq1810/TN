@@ -67,6 +67,11 @@ export class CreatePhongtroComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.init();
     });
+    this.userService.checkLoggedIn.subscribe(result => {
+      if (!result) {
+        this.router.navigate(['/home']);
+      }
+    });
   }
 
   getLatLng(diachi) {

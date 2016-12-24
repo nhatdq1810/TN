@@ -28,6 +28,25 @@ export class GiaodichService {
     return Observable.throw(error.message || error);
   }
 
+  layGDTheoPhongtro(phongtroID, thang): Promise<any>{
+    this.startLoading();
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(Constants.apiUrl + `giaodich/phongtro/datcoc/${phongtroID}?thang=${thang}`, { headers: Constants.headers })
+        .map((resp: Response) => resp.json())
+        .subscribe(resp => {
+          this.completeLoading();
+          if (!resp.result || resp.result !== 'fail') {
+            resolve(resp);
+          } else {
+            this.handleError('layGDTheoPhongtro', resp.result);
+            reject(resp.result);
+          }
+        },
+        error => this.handleError('layGDTheoPhongtro', error));
+    });
+  }
+
   chuyenTien(model) {
     this.startLoading();
     return new Promise((resolve, reject) => {

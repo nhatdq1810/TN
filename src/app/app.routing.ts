@@ -12,6 +12,7 @@ import { TransferMoneyComponent } from './components/transfer-money/transfer-mon
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PhongtroUserComponent } from './components/phongtro-user/phongtro-user.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ListDatcocComponent } from './components/list-datcoc/list-datcoc.component';
 
 const appRoutes: Routes = [
   {
@@ -45,6 +46,11 @@ const appRoutes: Routes = [
       {
         path: 'user',
         component: PhongtroUserComponent,
+        canActivate: [LoggedInService]
+      },
+      {
+        path: 'datcoc/:id',
+        component: ListDatcocComponent,
         canActivate: [LoggedInService]
       }
     ]

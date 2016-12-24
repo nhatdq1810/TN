@@ -515,14 +515,14 @@ accordion-group.panel-open .panel-title {
   margin: 0;
 }
 
-.custom-table .table-header .search-bar input {
+#search-input {
   width: 175px;
   padding: 5px 10px;
   padding-left: 33px;
   transition: width .5s ease-in-out;
 }
 
-.custom-table .table-header .search-bar input:focus {
+#search-input:focus {
   width: 400px;
 }
 

@@ -1,0 +1,38 @@
+<div bsModal [config]="modalOptions" #listGDModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Danh sách đặt cọc</h2>
+        <div class="search-area">
+          <div class="search-info left">
+            <input type="text" id="search-input" name="search" [ngModel]="searchTerm" (ngModelChange)="search($event, 'term')" placeholder="Tìm kiếm theo mã tài khoản, họ tên, số điện thoại...">
+          </div>
+          <div class="select-month right">
+            <i class="fa fa-calendar"></i>
+            <select [ngModel]="selectedMonth" (ngModelChange)="search($event, 'thang')" class="form-control">
+              <option *ngFor="let item of listMonth" [value]="item">Tháng {{item}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="!listGDView || listGDView.length === 0" class="error-text">
+          <p>Không tìm thấy</p>
+        </div>
+        <div *ngIf="listGDView && listGDView.length > 0">
+          <div [ngClass]="{'margin-right': i%2 === 0}" class="list-gd" *ngFor="let item of listGDView, let i = index">
+            <h2>Thông tin người đặt cọc</h2>
+            <label>Ngày đặt cọc</label>
+            <input class="input-modal" type="text" [ngModel]="item.ngayGD | date:'dd-MM-yyyy'" [readonly]="true" name="item.ngayGD">
+            <label>Mã tài khoản</label>
+            <input class="input-modal" type="text" [ngModel]="item.id" [readonly]="true" name="item.id">
+            <label>Họ tên</label>
+            <input class="input-modal" type="text" [ngModel]="item.hoten" [readonly]="true" name="item.hoten">
+            <label>Điện thoại</label>
+            <input class="input-modal" type="text" [ngModel]="item.sodt | phone" [readonly]="true" name="item.sodt">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
