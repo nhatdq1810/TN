@@ -51,8 +51,6 @@ export class FormValidationComponent implements OnInit {
     value.giatienTheoNguoi_max = value.giatien[1];
     delete value.giatien;
     value.khoa = '';
-    value.wifi = -1;
-    value.chu = -1;
     value.loaiPhong = 2;
     this.ptService.searchTerm = value;
     this.ptService.listPT = [];

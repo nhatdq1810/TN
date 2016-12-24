@@ -43,9 +43,7 @@ export class AsideComponent implements OnInit {
       truong: '',
       nganh: '',
       khoa: '',
-      gioitinh: this.currentPT.gioitinh,
-      wifi: -1,
-      chu: -1
+      gioitinh: this.currentPT.gioitinh
     };
     this.ptService.timkiemPhongtro(searchTerm, 6)
       .then(result => {

@@ -71,12 +71,12 @@ export class StatisticPtComponent implements OnInit {
     this.loaiDvA = 0;
     this.nameRadioDiachi = ['Đường', 'Phường', 'Quận', 'Thành phố'];
     this.nameRadioTvDT = ['Giá thuê nguyên phòng', 'Giá thuê từng người', 'Tiền cọc nguyên phòng', 'Tiền cọc từng người', 'Diện tích'];
-    this.nameRadioKhac = ['Loại phòng', 'Giới tính', 'Chung trường', 'Chung ngành', 'Chung niên khóa', 'Wifi', 'Ở với chủ'];
+    this.nameRadioKhac = ['Loại phòng', 'Giới tính', 'Chung trường', 'Chung ngành', 'Chung niên khóa'];
     this.nameRadioDvA = ['Duyệt', 'Ẩn'];
     this.nameRadioLvCmt = ['Lượt thích', 'Lượt bình luận'];
     this.tmpDC = 'đường,phường,quận,tp';
     this.tmpTvDT = 'giatien,giatienTheoNguoi,tiencoc,tiencocTheoNguoi,dientich';
-    this.tmpInput = 'loaiPhong,gioitinh,truong,nganh,khoa,wifi,chu';
+    this.tmpInput = 'loaiPhong,gioitinh,truong,nganh,khoa';
     this.tmpDvA = 'duyet,an';
     this.currentMonth = Constants.getCurrentDate().split('/')[1];
     for (let i = 0; i < 5; i++) {
