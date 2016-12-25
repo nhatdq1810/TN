@@ -119,6 +119,9 @@
               <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('required') && complexForm.controls['giatien'].touched">
                 Bạn chưa nhập giá thuê nguyên phòng.
               </alert>
+              <alert [type]="'danger'" *ngIf="complexForm.controls['giatien'].hasError('minlength') && complexForm.controls['giatien'].touched">
+                Giá thuê nguyên phòng phải từ 1,000,000.
+              </alert>
               <div *ngIf="!hasGiatien  && successMsg[0]">
                 <alert [type]="typeEditSuccess" [dismissOnTimeout]="5000" (close)="closeAlert('success')">
                   {{successMsg[0].msg}}
@@ -136,6 +139,9 @@
               </div>
               <alert [type]="'danger'" *ngIf="complexForm.controls['giatienTheoNguoi'].hasError('required') && complexForm.controls['giatienTheoNguoi'].touched">
                 Bạn chưa nhập giá thuê từng người.
+              </alert>
+              <alert [type]="'danger'" *ngIf="complexForm.controls['giatienTheoNguoi'].hasError('minlength') && complexForm.controls['giatienTheoNguoi'].touched">
+                Giá thuê từng người phải từ 1,000,000.
               </alert>
             </div>
             <div class="form-group">

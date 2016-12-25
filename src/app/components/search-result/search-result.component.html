@@ -30,7 +30,7 @@
             <span>{{ giatienValue[0] | number }}</span>
             <span class="right">{{ giatienValue[1] | number }}<span *ngIf="giatienValue[1] === 5000000">+</span></span>
           </p>
-          <nouislider [connect]="true" [min]="500000" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['giatien']" [(ngModel)]="giatienValue"></nouislider>
+          <nouislider [connect]="true" [min]="1000000" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['giatien']" [(ngModel)]="giatienValue"></nouislider>
         </div>
         <div class="form-group" *ngIf="complexForm.controls['loaiPhong'].value == 2 || complexForm.controls['loaiPhong'].value == 1">
           <label>Giá thuê từng người</label>
@@ -38,7 +38,7 @@
             <span>{{ giatienTheoNguoiValue[0] | number }}</span>
             <span class="right">{{ giatienTheoNguoiValue[1] | number }}<span *ngIf="giatienTheoNguoiValue[1] === 5000000">+</span></span>
           </p>
-          <nouislider [connect]="true" [min]="500000" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['giatienTheoNguoi']" [(ngModel)]="giatienTheoNguoiValue"></nouislider>
+          <nouislider [connect]="true" [min]="1000000" [max]="5000000" [step]="500000" [formControl]="complexForm.controls['giatienTheoNguoi']" [(ngModel)]="giatienTheoNguoiValue"></nouislider>
         </div>
         <div class="form-group">
           <label>Diện tích (m<sup>2</sup>)</label>

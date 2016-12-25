@@ -23,7 +23,7 @@
           <div [ngClass]="{'margin-right': i%2 === 0}" class="list-gd" *ngFor="let item of listGDView, let i = index">
             <h2>Thông tin người đặt cọc</h2>
             <label>Ngày đặt cọc</label>
-            <input class="input-modal" type="text" [ngModel]="item.ngayGD | date:'dd-MM-yyyy'" [readonly]="true" name="item.ngayGD">
+            <input class="input-modal" type="text" [ngModel]="item.ngayGD | date:'dd-MM-yyyy HH:mm'" [readonly]="true" name="item.ngayGD">
             <label>Mã tài khoản</label>
             <input class="input-modal" type="text" [ngModel]="item.id" [readonly]="true" name="item.id">
             <label>Họ tên</label>

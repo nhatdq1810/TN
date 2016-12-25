@@ -38,8 +38,8 @@ export class SearchResultComponent implements OnInit {
   initSearchTerm() {
     this.complexForm = this.fb.group({
       'loaiPhong': 2,
-      'giatien': 500000,
-      'giatienTheoNguoi': 500000,
+      'giatien': 1000000,
+      'giatienTheoNguoi': 1000000,
       'dientich': 5,
       'duong': '',
       'phuong': '',
@@ -53,8 +53,8 @@ export class SearchResultComponent implements OnInit {
 
     this.initLoaiPhong = 2;
     this.initGioitinh = '';
-    this.giatienValue = [500000, 5000000];
-    this.giatienTheoNguoiValue = [500000, 5000000];
+    this.giatienValue = [1000000, 5000000];
+    this.giatienTheoNguoiValue = [1000000, 5000000];
     this.dientichValue = [5, 20];
   }
 
@@ -111,8 +111,8 @@ export class SearchResultComponent implements OnInit {
       this.dientichValue = [this.searchTerm.dientich_min, this.searchTerm.dientich_max];
     }
     if(!this.listPT || this.listPT.length === 0) {
-      this.complexForm.value.giatien = [500000, 5000000];
-      this.complexForm.value.giatienTheoNguoi = [500000, 5000000];
+      this.complexForm.value.giatien = [1000000, 5000000];
+      this.complexForm.value.giatienTheoNguoi = [1000000, 5000000];
       this.complexForm.value.dientich = [5, 20];
       this.submitForm(this.complexForm.value);
     }

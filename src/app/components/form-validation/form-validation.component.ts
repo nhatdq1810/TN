@@ -22,12 +22,15 @@ export class FormValidationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private ptService: PhongtroService, private router: Router) {
     this.complexForm = this.fb.group({
-      'giatien': 500000,
+      'giatien': 1000000,
       'truong': '',
       'nganh': '',
       'gioitinh': ''
     });
-    this.sliderValue = [500000, 5000000];
+    this.sliderValue = [1000000, 5000000];
+  }
+
+  ngOnInit(){
     this.ptService.layDulieuTimkiemPhongtro()
       .then(result => {
         if (result === 'success') {
@@ -35,9 +38,6 @@ export class FormValidationComponent implements OnInit {
           this.listNganh = this.ptService.listNganh;
         }
       });
-  }
-
-  ngOnInit(){
   }
 
   submitForm(value: any){

@@ -67,6 +67,7 @@ export class PhongtroDetailComponent implements OnInit {
   }
 
   init() {
+    window.scrollTo(0, 0);
     this.isUserPT = false;
     this.xoaPTFail = false;
     this.xoaPTSuccess = false;

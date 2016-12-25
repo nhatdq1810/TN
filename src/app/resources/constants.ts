@@ -119,7 +119,7 @@ export let fakeListUser: Array<User> = [{
 export let fakePT: Phongtro = {
   id: 3,
   loaiPhong: 2,
-  giatienTheoNguoi: 500000,
+  giatienTheoNguoi: 1000000,
   hinhanh: 'assets/img/index-03.jpg',
   diachi: '123 Lê Đức Thọ, Phường 15, Quận Gò Vấp, TP.Hồ Chí Minh',
   sophong: 2,
@@ -137,7 +137,7 @@ export let fakePT: Phongtro = {
   nganhangID: '12345678',
   thich: 5,
   userThich: false,
-  tiencocTheoNguoi: 500000,
+  tiencocTheoNguoi: 1000000,
   duyet: 1,
   an: 0,
   counter: 2
@@ -146,7 +146,7 @@ export let fakeListPT: Array<Phongtro> = [
   {
     id: 12,
     loaiPhong: 2,
-    giatienTheoNguoi: 500000,
+    giatienTheoNguoi: 1000000,
     hinhanh: 'assets/img/index-08.jpg',
     diachi: '1236 abc P.15 Quận Gò Vấp',
     sophong: 2,
@@ -172,7 +172,7 @@ export let fakeListPT: Array<Phongtro> = [
   {
     id: 13,
     loaiPhong: 2,
-    giatienTheoNguoi: 500000,
+    giatienTheoNguoi: 1000000,
     hinhanh: 'assets/img/index-09.jpg',
     diachi: '1234 abc P.15 Quận Gò Vấp',
     sophong: 2,
@@ -183,14 +183,14 @@ export let fakeListPT: Array<Phongtro> = [
     tienich: ['Wifi'],
     ghichu: 'Tiền thuê đã bao gồm tiền rác, chưa bao gồm tiền điện nước và wifi',
     userID: 4,
-    tiencoc: 2500000,
+    tiencoc: 21000000,
     truong: 'học viện công nghệ Bưu chính Viễn thông',
     ngaydang: '01/10/2016',
     giatien: 2000000,
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000,
+    tiencocTheoNguoi: 1000000,
     duyet: 1,
     an: 0,
     counter: 2
@@ -198,7 +198,7 @@ export let fakeListPT: Array<Phongtro> = [
   {
     id: 14,
     loaiPhong: 2,
-    giatienTheoNguoi: 500000,
+    giatienTheoNguoi: 1000000,
     hinhanh: 'assets/img/index-10.jpg',
     diachi: '1235 abc P.15 Quận Gò Vấp',
     sophong: 2,
@@ -216,7 +216,7 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000,
+    tiencocTheoNguoi: 1000000,
     duyet: 1,
     an: 0,
     counter: 2
@@ -224,7 +224,7 @@ export let fakeListPT: Array<Phongtro> = [
   {
     id: 15,
     loaiPhong: 2,
-    giatienTheoNguoi: 500000,
+    giatienTheoNguoi: 1000000,
     hinhanh: 'assets/img/index-07.jpg',
     diachi: '123 abc P.15 Quận Gò Vấp',
     sophong: 2,
@@ -242,7 +242,7 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000,
+    tiencocTheoNguoi: 1000000,
     duyet: 1,
     an: 0,
     counter: 2
@@ -250,7 +250,7 @@ export let fakeListPT: Array<Phongtro> = [
   {
     id: 16,
     loaiPhong: 2,
-    giatienTheoNguoi: 500000,
+    giatienTheoNguoi: 1000000,
     hinhanh: 'assets/img/index-08.jpg',
     diachi: '1236 abc P.15 Quận Gò Vấp',
     sophong: 2,
@@ -261,14 +261,14 @@ export let fakeListPT: Array<Phongtro> = [
     tienich: ['Wifi'],
     ghichu: 'Tiền thuê đã bao gồm tiền rác, chưa bao gồm tiền điện nước và wifi',
     userID: 4,
-    tiencoc: 3500000,
+    tiencoc: 31000000,
     truong: 'học viện công nghệ Bưu chính Viễn thông',
     ngaydang: '01/10/2016',
     giatien: 2000000,
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000,
+    tiencocTheoNguoi: 1000000,
     duyet: 1,
     an: 0,
     counter: 2
@@ -276,7 +276,7 @@ export let fakeListPT: Array<Phongtro> = [
   {
     id: 17,
     loaiPhong: 2,
-    giatienTheoNguoi: 500000,
+    giatienTheoNguoi: 1000000,
     hinhanh: 'assets/img/index-09.jpg',
     diachi: '1234 abc P.15 Quận Gò Vấp',
     sophong: 2,
@@ -294,7 +294,7 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000,
+    tiencocTheoNguoi: 1000000,
     duyet: 1,
     an: 0,
     counter: 2
@@ -302,7 +302,7 @@ export let fakeListPT: Array<Phongtro> = [
   {
     id: 18,
     loaiPhong: 2,
-    giatienTheoNguoi: 500000,
+    giatienTheoNguoi: 1000000,
     hinhanh: 'assets/img/index-10.jpg',
     diachi: '1235 abc P.15 Quận Gò Vấp',
     sophong: 2,
@@ -320,7 +320,7 @@ export let fakeListPT: Array<Phongtro> = [
     nganhangID: '12345678',
     thich: 3,
     userThich: false,
-    tiencocTheoNguoi: 500000,
+    tiencocTheoNguoi: 1000000,
     duyet: 1,
     an: 0,
     counter: 2

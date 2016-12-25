@@ -61,7 +61,7 @@ li .btn-modal {
 }
 
 .phongtro-block .phongtro-info {
-  width: 70%;
+  width: 73%;
   padding-left: 30px;
   padding-top: 10px;
 }
@@ -73,6 +73,10 @@ li .btn-modal {
 .phongtro-block .phongtro-info span {
   color: #aaaaaa;
   margin-right: 10px;
+}
+
+.phongtro-block .phongtro-info span.date {
+  font-weight: normal;
 }
 
 .confirm-form p.header {

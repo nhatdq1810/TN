@@ -37,7 +37,7 @@
         <label>Diện tích (m<sup>2</sup>)</label>
         <input class="input-modal" type="text" [ngModel]="phongtro.dientich" [readonly]="true" name="phongtro.dientich">
         <label>Ngày đặt cọc</label>
-        <input class="input-modal" type="text" [ngModel]="ngay | date:'dd/MM/yyyy'" [readonly]="true" name="ngay">
+        <input class="input-modal" type="text" [ngModel]="ngay | date:'dd-MM-yyyy HH:mm'" [readonly]="true" name="ngay">
       </div>
       <div class="col-md-4">
         <label>Số tiền đặt cọc</label>

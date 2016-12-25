@@ -34,15 +34,15 @@
               </div>
             </form>
             <form *ngIf="isForgot" [formGroup]="complexForm" (ngSubmit)="forgotPassword(complexForm.value)">
+              <alert *ngIf="successForgotPasswordMsg && successForgotPasswordMsg !== ''" [type]="'success'">
+                {{successForgotPasswordMsg}}
+              </alert>
               <input class="input-modal" type="text" [formControl]="complexForm.controls['usernameForgot']" name="usernameForgot" placeholder="Tài khoản hoặc Email đăng ký">
               <div *ngIf="hasUsernameForgot">
                 <alert *ngFor="let item of alertUsernameForgot" [type]="'danger'" [dismissOnTimeout]="5000" (close)="closeAlert('forgot')">
                   {{item?.msg}}
                 </alert>
               </div>
-              <alert *ngIf="successForgotPasswordMsg && successForgotPasswordMsg !== ''" [type]="'success'">
-                {{successForgotPasswordMsg}}
-              </alert>
               <div class="send-button">
                 <input class="btn-modal forgot-password-submit" type="submit" value="Quên mật khẩu">
               </div>

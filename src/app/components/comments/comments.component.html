@@ -17,7 +17,7 @@
         <span class="noidung">{{item.noidung}}</span>
       </p>
       <div class="phongtro-like right">
-        <p class="ngay right">{{item.ngay | date:"dd/MM/yyyy HH:mm"}}</p>
+        <p class="ngay right">{{item.ngay | date:"dd-MM-yyyy HH:mm"}}</p>
         <a (click)="likeCmt(item)" [ngClass]="{'active': listCmtUserLike[item.id]}"><i class="fa fa-heart-o"></i>{{item.thich}}</a>
       </div>
     </div>
