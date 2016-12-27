@@ -13,7 +13,7 @@ export class UserService {
 
   public checkLoggedIn = new Subject();
   public checkAdminLoggedIn = new Subject();
-  private loggedIn = false;
+  private _loggedIn: boolean = false;
   private _user: any;
 
   constructor(private slimLoader: SlimLoadingBarService, private http: Http, private router: Router) {
@@ -33,6 +33,10 @@ export class UserService {
     this._user = user;
   }
 
+  set loggedIn(isLoggedIn: boolean) {
+    this._loggedIn = isLoggedIn;
+  }
+
   startLoading() {
     this.slimLoader.start(() => {
       console.log('Loading complete');
@@ -41,6 +45,14 @@ export class UserService {
 
   completeLoading() {
     this.slimLoader.complete();
+  }
+
+  setLocalStorage(resp) {
+    localStorage.clear();
+    let user = encodeURIComponent(JSON.stringify(resp));
+    localStorage.setItem('user', user);
+    let timeExp = Constants.getDateExp();
+    localStorage.setItem('exp', timeExp);
   }
 
   login(username, password, loai) {
@@ -56,7 +68,8 @@ export class UserService {
           this.completeLoading();
           if (!resp.result || resp.result !== 'fail') {
             if(loai === 'user') {
-              this.loggedIn = true;
+              this.setLocalStorage(resp);
+              this._loggedIn = true;
               this._user = resp;
               this.checkLoggedIn.next(true);
             } else {
@@ -76,18 +89,19 @@ export class UserService {
     if(role && role === 'admin') {
       this.checkAdminLoggedIn.next(false);
     } else {
-      this.loggedIn = false;
-      this.checkLoggedIn.next(false);
       if (this._user.email.indexOf('gg-') > -1 || this._user.email.indexOf('fb-') > -1) {
         let homepage = encodeURIComponent('http://localhost:4200/home');
         window.location.href = `https://nhatdq1810.auth0.com/v2/logout?returnTo=${homepage}`;
       }
       this._user = undefined;
+      localStorage.clear();
+      this.checkLoggedIn.next(false);
+      this._loggedIn = false;
     }
   }
 
   isLoggedIn(){
-    return this.loggedIn;
+    return this._loggedIn;
   }
 
   layTatcaUser(): Promise<any> {
@@ -152,7 +166,8 @@ export class UserService {
         .subscribe(resp => {
           this.completeLoading();
           if (!resp.result) {
-            this.loggedIn = true;
+            this.setLocalStorage(resp);
+            this._loggedIn = true;
             this._user = resp;
             this.checkLoggedIn.next(true);
             resolve(resp);
@@ -173,6 +188,7 @@ export class UserService {
         .subscribe(resp => {
           this.completeLoading();
           if (!resp.result) {
+            this.setLocalStorage(resp);
             this._user = resp;
             resolve(resp);
           } else {
@@ -214,6 +230,7 @@ export class UserService {
         .subscribe(resp => {
           this.completeLoading();
           if (!resp.result) {
+            this.setLocalStorage(resp);
             this._user = resp;
             resolve(resp);
           } else {

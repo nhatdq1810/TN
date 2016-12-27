@@ -21,8 +21,6 @@ export class AuthService {
     let result = this.auth0.parseHash(window.location.hash);
 
     if (result && result.idToken) {
-      localStorage.setItem('id_token', result.idToken);
-      localStorage.setItem('isLoggedIn', 'true');
       this.userService.checkLoggedIn.next(true);
       this.auth0.getProfile(result.idToken, (err, profile) => {
         let username, hoten, email, facebook;
@@ -50,16 +48,12 @@ export class AuthService {
         };
         this.userService.login(user.username, user.password, 'user').then(user => {
           this.userService.user = user;
-          localStorage.setItem('id_token', result.idToken);
-          localStorage.setItem('isLoggedIn', 'true');
           this.userService.checkLoggedIn.next(true);
         })
         .catch(err => {
           if(err === 'fail') {
             this.userService.themUser(user).then(user => {
               this.userService.user = user;
-              localStorage.setItem('id_token', result.idToken);
-              localStorage.setItem('isLoggedIn', 'true');
               this.userService.checkLoggedIn.next(true);
             });
           }
